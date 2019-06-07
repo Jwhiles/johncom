@@ -1,0 +1,27 @@
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    
+        <url>
+            <loc>https://johnwhiles.com/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://johnwhiles.com/blog/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://johnwhiles.com/blog/amelies-big-blog/</loc>
+            
+                <lastmod>2019-06-07</lastmod>
+            
+        </url>
+    
+        <url>
+            <loc>https://johnwhiles.com/blog/hello-world/</loc>
+            
+                <lastmod>2019-06-07</lastmod>
+            
+        </url>
+    
+</urlset>

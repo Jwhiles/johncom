@@ -1,19 +1,18 @@
 module Main exposing (main)
 
+import Blog
 import Browser
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (onClick, onInput)
+import Browser.Navigation as Nav
+import Html exposing (Html, div, h1, text)
 import Platform.Sub as Sub
-import String
-import Task
-import Time
-import Tuple exposing (first)
+import Url exposing (Url)
 
 
 main =
-    Browser.element
+    Browser.application
         { init = init
+        , onUrlChange = onUrlChange
+        , onUrlRequest = onUrlRequest
         , view = view
         , update = update
         , subscriptions = subscriptions
@@ -21,16 +20,31 @@ main =
 
 
 type Model
-    = Model
+    = Home
+    | Blog Blog.Model
 
 
 type Msg
     = Msg
 
 
-init : () -> ( Model, Cmd Msg )
-init _ =
-    ( Model
+onUrlChange : Url -> Msg
+onUrlChange url =
+    Msg
+
+
+onUrlRequest : Browser.UrlRequest -> Msg
+onUrlRequest urlRequest =
+    Msg
+
+
+
+-- decode the initial route here?
+
+
+init : Maybe String -> Url -> Nav.Key -> ( Model, Cmd Msg )
+init _ _ _ =
+    ( Home
     , Cmd.none
     )
 
@@ -45,6 +59,6 @@ subscriptions model =
     Sub.none
 
 
-view : Model -> Html Msg
+view : Model -> Browser.Document Msg
 view model =
-    div [] [ h1 [] [ text "welcome to my internet house" ] ]
+    Browser.Document "Title" <| [ div [] [ h1 [] [ text "welcome to my internet\n    house" ] ] ]

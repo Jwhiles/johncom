@@ -29,6 +29,7 @@ type alias Model =
 type SubModel
     = Home
     | BlogModel Blog.Model
+    | BlogIndex
 
 
 type Msg
@@ -76,8 +77,11 @@ changeRouteTo maybeRoute model =
             , Cmd.none
             )
 
-        Just (R.Blog slug) ->
-            ( { model | rest = BlogModel Blog.Blogel }, Cmd.none )
+        Just (R.BlogPost slug) ->
+            ( { model | rest = BlogModel <| Blog.init slug }, Cmd.none )
+
+        Just R.BlogIndex ->
+            ( { model | rest = BlogIndex }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
@@ -96,8 +100,15 @@ body model =
         Home ->
             div []
                 [ h1 [] [ text "welcome to my internet house" ]
-                , a [ R.href <| Blog (R.Slug "hello") ] [ text "click me" ]
+                , a [ R.href <| R.BlogIndex ] [ text "Blog" ]
+                , a [ R.href <| R.BlogPost (R.Slug "hello") ] [ text "BlogPost" ]
                 ]
 
         BlogModel blogModel ->
             Blog.view blogModel
+
+        BlogIndex ->
+            div []
+                [ text "todo"
+                , a [ R.href <| R.Home ] [ text "go home" ]
+                ]

@@ -1,4 +1,4 @@
-module Route exposing (Route(..), Slug(..), fromUrl, href)
+module Route exposing (Route(..), Slug(..), fromUrl, href, slugToString)
 
 import Browser.Navigation as Nav
 import Html exposing (Attribute)
@@ -9,7 +9,8 @@ import Url.Parser as Parser exposing ((</>), Parser, oneOf, s, string)
 
 type Route
     = Home
-    | Blog Slug
+    | BlogPost Slug
+    | BlogIndex
 
 
 type Slug
@@ -30,7 +31,8 @@ parser : Parser (Route -> a) a
 parser =
     oneOf
         [ Parser.map Home Parser.top
-        , Parser.map Blog (s "blog" </> urlParser)
+        , Parser.map BlogPost (s "blog" </> urlParser)
+        , Parser.map BlogIndex (s "blog")
         ]
 
 
@@ -50,11 +52,7 @@ replaceUrl key route =
 
 fromUrl : Url -> Maybe Route
 fromUrl url =
-    -- The RealWorld spec treats the fragment like a path.
-    -- This makes it *literally* the path, so we can proceed
-    -- with parsing as if it had been a normal path all along.
-    { url | path = Maybe.withDefault "" url.fragment, fragment = Nothing }
-        |> Parser.parse parser
+    Parser.parse parser <| url
 
 
 
@@ -69,7 +67,10 @@ routeToString page =
                 Home ->
                     []
 
-                Blog slug ->
+                BlogPost slug ->
                     [ "blog", slugToString slug ]
+
+                BlogIndex ->
+                    [ "blog" ]
     in
-    "#/" ++ String.join "/" pieces
+    "/" ++ String.join "/" pieces

@@ -3,8 +3,11 @@ module Main exposing (main)
 import Blog
 import Browser
 import Browser.Navigation as Nav
+import Debug
 import Html exposing (Html, a, div, h1, text)
+import Http
 import Platform.Sub as Sub
+import Request exposing (getBlogPost)
 import Route as R exposing (Route(..))
 import Url exposing (Url)
 
@@ -35,6 +38,7 @@ type SubModel
 type Msg
     = ClickedLink Browser.UrlRequest
     | ChangedUrl Url
+    | GotPost (Result Http.Error String)
 
 
 
@@ -48,9 +52,9 @@ init _ url navKey =
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case msg of
+    case ( msg, model.rest ) of
         --@todo   parse the new url from the link click
-        ClickedLink urlRequest ->
+        ( ClickedLink urlRequest, _ ) ->
             case urlRequest of
                 Browser.Internal url ->
                     ( model
@@ -62,8 +66,19 @@ update msg model =
                     , Nav.load href
                     )
 
-        ChangedUrl url ->
+        ( ChangedUrl url, _ ) ->
             changeRouteTo (R.fromUrl url) model
+
+        ( GotPost response, BlogModel _ ) ->
+            case response of
+                Ok x ->
+                    ( { model | rest = BlogModel <| Blog.build x "hey" }, Cmd.none )
+
+                Err e ->
+                    ( { model | rest = BlogModel Blog.NotFound }, Cmd.none )
+
+        ( _, _ ) ->
+            ( model, Cmd.none )
 
 
 changeRouteTo : Maybe Route -> Model -> ( Model, Cmd Msg )
@@ -78,7 +93,9 @@ changeRouteTo maybeRoute model =
             )
 
         Just (R.BlogPost slug) ->
-            ( { model | rest = BlogModel <| Blog.init slug }, Cmd.none )
+            ( { model | rest = BlogModel <| Blog.init slug }
+            , getBlogPost slug GotPost
+            )
 
         Just R.BlogIndex ->
             ( { model | rest = BlogIndex }, Cmd.none )
@@ -99,7 +116,7 @@ body model =
     case model.rest of
         Home ->
             div []
-                [ h1 [] [ text "welcome to my internet house" ]
+                [ h1 [] [ text "testing" ]
                 , a [ R.href <| R.BlogIndex ] [ text "Blog" ]
                 , a [ R.href <| R.BlogPost (R.Slug "programming") ] [ text "BlogPost" ]
                 ]

@@ -1,4 +1,4 @@
-module Blog exposing (Blog, blogIndex, init, view)
+module Blog exposing (Blog(..), blogIndex, build, init, view)
 
 import Dict exposing (Dict)
 import Html exposing (Html, a, div, text)
@@ -43,19 +43,14 @@ view b =
             div [] []
 
 
+build : MarkDownString -> String -> Blog
+build md title =
+    Blog <| BlogPost md title <| Time.millisToPosix 1572857902
+
+
 init : R.Slug -> Blog
 init slug =
-    let
-        thePost =
-            R.slugToString slug |> (\x -> Dict.get x blogPosts)
-    in
-    case thePost of
-        Just copy ->
-            -- @todo figureout a better way to store these thingums
-            Blog { copy = copy, title = R.slugToString slug, date = Time.millisToPosix 1572857902 }
-
-        Nothing ->
-            NotFound
+    Blog { copy = "hello", title = R.slugToString slug, date = Time.millisToPosix 1572857902 }
 
 
 type alias MarkDownString =
@@ -68,22 +63,6 @@ type alias MarkDownString =
 
 blogIndex : List String
 blogIndex =
-    Dict.keys blogPosts
-
-
-blogPosts : Dict String MarkDownString
-blogPosts =
-    Dict.fromList
-        [ ( "programming", blogPostOne )
-        ]
-
-
-blogPostOne : MarkDownString
-blogPostOne =
-    """
-# A history of programming
-
-I learnt to program in the Summer of 2016 to escape what I foresaw to be a future
-of adminstrative drudgery. I learnt by writing on
-
-  """
+    [ "2019-11-05-a-history-of-programming"
+    , "2019-11-04-i-want-to-write"
+    ]

@@ -2,7 +2,7 @@ module BlogIndex exposing (Model, toNavKey, view)
 
 import BlogPosts
 import Browser.Navigation as Nav
-import Html exposing (Html, a, div, text)
+import Html exposing (Html, a, div, h1, li, ol, text)
 import Route as R
 
 
@@ -19,13 +19,16 @@ toNavKey { navKey } =
 view : Html msg
 view =
     div [] <|
-        [ text "todo"
-        , a [ R.href <| R.Home ] [ text "go home" ]
-        ]
-            ++ List.map
+        [ h1 [] [ text "John's blog" ]
+        , ol [] <|
+            List.map
                 (\bp ->
-                    a [ R.href <| R.BlogPost (R.Slug bp) ]
-                        [ text bp
+                    li []
+                        [ a [ R.href <| R.BlogPost (R.Slug bp) ]
+                            [ text bp
+                            ]
                         ]
                 )
                 BlogPosts.blogIndex
+        , a [ R.href <| R.Home ] [ text "go home" ]
+        ]

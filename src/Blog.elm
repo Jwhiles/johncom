@@ -1,10 +1,22 @@
-module Blog exposing (Blog(..), build, init, view)
+module Blog exposing (Blog(..), Model, build, init, toNavKey, view)
 
+import Browser.Navigation as Nav
 import Html exposing (Html, a, div, text)
 import Markdown
 import Route as R
 import Time
 import TimeHelpers exposing (getDate)
+
+
+type alias Model =
+    { navKey : Nav.Key
+    , blogPost : Blog
+    }
+
+
+toNavKey : Model -> Nav.Key
+toNavKey { navKey } =
+    navKey
 
 
 type Blog
@@ -28,9 +40,9 @@ type alias BlogPost =
 ---
 
 
-view : Blog -> Html a
-view b =
-    case b of
+view : Model -> Html a
+view { blogPost } =
+    case blogPost of
         Loading ->
             div [] [ text "loading" ]
 

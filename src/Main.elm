@@ -25,16 +25,23 @@ main =
         }
 
 
-type alias Model =
-    { navKey : Nav.Key
-    , rest : SubModel
-    }
+type Model
+    = Home Nav.Key
+    | BlogModel Blog.Model
+    | BlogIndex BlogIndex.Model
 
 
-type SubModel
-    = Home
-    | BlogModel Blog.Blog
-    | BlogIndex
+toNavKey : Model -> Nav.Key
+toNavKey model =
+    case model of
+        Home nk ->
+            nk
+
+        BlogModel m ->
+            Blog.toNavKey m
+
+        BlogIndex m ->
+            BlogIndex.toNavKey m
 
 
 type Msg
@@ -49,18 +56,18 @@ type Msg
 
 init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
 init _ url navKey =
-    changeRouteTo (R.fromUrl url) (Model navKey Home)
+    changeRouteTo (R.fromUrl url) (Home navKey)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case ( msg, model.rest ) of
+    case ( msg, model ) of
         --@todo   parse the new url from the link click
         ( ClickedLink urlRequest, _ ) ->
             case urlRequest of
                 Browser.Internal url ->
                     ( model
-                    , Nav.pushUrl model.navKey (Url.toString url)
+                    , Nav.pushUrl (toNavKey model) (Url.toString url)
                     )
 
                 Browser.External href ->
@@ -71,13 +78,13 @@ update msg model =
         ( ChangedUrl url, _ ) ->
             changeRouteTo (R.fromUrl url) model
 
-        ( GotPost response, BlogModel _ ) ->
+        ( GotPost response, BlogModel m ) ->
             case response of
                 Ok x ->
-                    ( { model | rest = BlogModel <| Blog.build x "hey" }, Cmd.none )
+                    ( BlogModel { m | blogPost = Blog.build x "hey" }, Cmd.none )
 
                 Err e ->
-                    ( { model | rest = BlogModel Blog.NotFound }, Cmd.none )
+                    ( BlogModel { m | blogPost = Blog.NotFound }, Cmd.none )
 
         ( _, _ ) ->
             ( model, Cmd.none )
@@ -90,17 +97,17 @@ changeRouteTo maybeRoute model =
             ( model, Cmd.none )
 
         Just R.Home ->
-            ( { model | rest = Home }
+            ( Home (toNavKey model)
             , Cmd.none
             )
 
         Just (R.BlogPost slug) ->
-            ( { model | rest = BlogModel Blog.init }
+            ( BlogModel { navKey = toNavKey model, blogPost = Blog.init }
             , getBlogPost slug GotPost
             )
 
         Just R.BlogIndex ->
-            ( { model | rest = BlogIndex }, Cmd.none )
+            ( BlogIndex <| BlogIndex.Model <| toNavKey model, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
@@ -115,12 +122,12 @@ view model =
 
 body : Model -> Html Msg
 body model =
-    case model.rest of
-        Home ->
+    case model of
+        Home _ ->
             Home.view
 
         BlogModel blogModel ->
             Blog.view blogModel
 
-        BlogIndex ->
+        BlogIndex _ ->
             BlogIndex.view

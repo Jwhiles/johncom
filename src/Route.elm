@@ -1,10 +1,9 @@
 module Route exposing (Route(..), Slug(..), fromUrl, href, slugToString)
 
-import Browser.Navigation as Nav
 import Html exposing (Attribute)
 import Html.Attributes as HAtt
 import Url exposing (Url)
-import Url.Parser as Parser exposing ((</>), Parser, oneOf, s, string)
+import Url.Parser as Parser exposing ((</>), Parser, oneOf, s)
 
 
 type Route
@@ -43,11 +42,6 @@ parser =
 href : Route -> Attribute msg
 href targetRoute =
     HAtt.href (routeToString targetRoute)
-
-
-replaceUrl : Nav.Key -> Route -> Cmd msg
-replaceUrl key route =
-    Nav.replaceUrl key (routeToString route)
 
 
 fromUrl : Url -> Maybe Route

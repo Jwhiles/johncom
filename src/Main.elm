@@ -4,9 +4,8 @@ import Blog
 import BlogIndex
 import Browser
 import Browser.Navigation as Nav
-import Debug
 import Home
-import Html exposing (Html, a, div, h1, text)
+import Html exposing (Html)
 import Http
 import Platform.Sub as Sub
 import Request exposing (getBlogPost)

@@ -5,7 +5,6 @@ import Html exposing (Html, a, div, text)
 import Markdown
 import Route as R
 import Time
-import TimeHelpers exposing (getDate)
 
 
 type alias Model =

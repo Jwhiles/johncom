@@ -2,3 +2,6 @@
 dist
 elm-stuff
 node_modules/
+
+# This is so I can generate this file
+src/BlogPosts.elm

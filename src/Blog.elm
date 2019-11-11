@@ -1,6 +1,5 @@
-module Blog exposing (Blog(..), blogIndex, build, init, view)
+module Blog exposing (Blog(..), build, init, view)
 
-import Dict exposing (Dict)
 import Html exposing (Html, a, div, text)
 import Markdown
 import Route as R
@@ -55,13 +54,3 @@ init slug =
 
 type alias MarkDownString =
     String
-
-
-
--- could use the
-
-
-blogIndex : List String
-blogIndex =
-    [ "2019-11-04-i-want-to-write"
-    ]

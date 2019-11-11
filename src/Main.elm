@@ -1,6 +1,7 @@
 module Main exposing (main)
 
 import Blog
+import BlogPosts
 import Browser
 import Browser.Navigation as Nav
 import Debug
@@ -129,4 +130,10 @@ body model =
                 [ text "todo"
                 , a [ R.href <| R.Home ] [ text "go home" ]
                 ]
-                    ++ List.map (\bp -> a [ R.href <| R.BlogPost (R.Slug bp) ] [ text bp ]) Blog.blogIndex
+                    ++ List.map
+                        (\bp ->
+                            a [ R.href <| R.BlogPost (R.Slug bp) ]
+                                [ text bp
+                                ]
+                        )
+                        BlogPosts.blogIndex

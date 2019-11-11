@@ -63,6 +63,5 @@ type alias MarkDownString =
 
 blogIndex : List String
 blogIndex =
-    [ "2019-11-05-a-history-of-programming"
-    , "2019-11-04-i-want-to-write"
+    [ "2019-11-04-i-want-to-write"
     ]

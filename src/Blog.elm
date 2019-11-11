@@ -10,6 +10,7 @@ import TimeHelpers exposing (getDate)
 type Blog
     = Blog BlogPost
     | NotFound
+    | Loading
 
 
 
@@ -30,6 +31,9 @@ type alias BlogPost =
 view : Blog -> Html a
 view b =
     case b of
+        Loading ->
+            div [] [ text "loading" ]
+
         Blog bp ->
             div []
                 [ a [ R.href R.Home ]
@@ -47,9 +51,9 @@ build md title =
     Blog <| BlogPost md title <| Time.millisToPosix 1572857902
 
 
-init : R.Slug -> Blog
-init slug =
-    Blog { copy = "hello", title = R.slugToString slug, date = Time.millisToPosix 1572857902 }
+init : Blog
+init =
+    Loading
 
 
 type alias MarkDownString =

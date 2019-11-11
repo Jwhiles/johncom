@@ -94,7 +94,7 @@ changeRouteTo maybeRoute model =
             )
 
         Just (R.BlogPost slug) ->
-            ( { model | rest = BlogModel <| Blog.init slug }
+            ( { model | rest = BlogModel Blog.init }
             , getBlogPost slug GotPost
             )
 

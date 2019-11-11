@@ -26,10 +26,10 @@ const createIndexFile = posts => {
 };
 
 fs.readdir(testFolder, (err, files) => {
-  const head = files.slice(0, 1);
-  const tail = files.slice(1);
+  const withoutExtension = files.map(f => f.slice(0, -3));
+  const head = withoutExtension.slice(0, 1);
+  const tail = withoutExtension.slice(1);
   const result = head.map(f => `  [ "${f}"`).concat(tail.map(f => `  , "${f}"`));
 
   createIndexFile(result);
 });
-

@@ -10,7 +10,7 @@ import Route exposing (Slug, slugToString)
 
 blogPost : Slug -> String
 blogPost s =
-    "/posts/" ++ slugToString s
+    "/posts/" ++ slugToString s ++ ".md"
 
 
 getBlogPost : Slug -> (Result Http.Error String -> msg) -> Cmd msg

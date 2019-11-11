@@ -1,10 +1,11 @@
 module Main exposing (main)
 
 import Blog
-import BlogPosts
+import BlogIndex
 import Browser
 import Browser.Navigation as Nav
 import Debug
+import Home
 import Html exposing (Html, a, div, h1, text)
 import Http
 import Platform.Sub as Sub
@@ -116,24 +117,10 @@ body : Model -> Html Msg
 body model =
     case model.rest of
         Home ->
-            div []
-                [ h1 [] [ text "testing" ]
-                , a [ R.href <| R.BlogIndex ] [ text "Blog" ]
-                , a [ R.href <| R.BlogPost (R.Slug "programming") ] [ text "BlogPost" ]
-                ]
+            Home.view
 
         BlogModel blogModel ->
             Blog.view blogModel
 
         BlogIndex ->
-            div [] <|
-                [ text "todo"
-                , a [ R.href <| R.Home ] [ text "go home" ]
-                ]
-                    ++ List.map
-                        (\bp ->
-                            a [ R.href <| R.BlogPost (R.Slug bp) ]
-                                [ text bp
-                                ]
-                        )
-                        BlogPosts.blogIndex
+            BlogIndex.view

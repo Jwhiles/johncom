@@ -15,7 +15,7 @@
   "homepage": "https://github.com/Jwhiles/johncom#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged && elm-review"
   },
   "devDependencies": {
     "elm-format": "^0.8.2",

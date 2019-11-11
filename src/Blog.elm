@@ -1,46 +1,84 @@
-module Blog exposing (Model, init, view)
+module Blog exposing (Blog, blogIndex, init, view)
 
+import Dict exposing (Dict)
 import Html exposing (Html, a, div, text)
+import Markdown
 import Route as R
+import Time
+import TimeHelpers exposing (getDate)
 
 
-type alias Model =
-    { blogPost : BlogPost
-    }
+type Blog
+    = Blog BlogPost
+    | NotFound
 
 
-view : Model -> Html a
-view m =
-    div []
-        [ a [ R.href R.Home ]
-            [ text "take me home" ]
-        , text "blorg post"
-        ]
+
+-- internal type
 
 
 type alias BlogPost =
     { copy : String
     , title : String
-    , date : String -- ??
+    , date : Time.Posix
     }
 
 
-init : R.Slug -> Model
+
+---
+
+
+view : Blog -> Html a
+view b =
+    case b of
+        Blog bp ->
+            div []
+                [ a [ R.href R.Home ]
+                    [ text "take meeee home" ]
+                , Markdown.toHtml []
+                    bp.copy
+                ]
+
+        NotFound ->
+            div [] []
+
+
+init : R.Slug -> Blog
 init slug =
     let
-        blogPost =
-            case R.slugToString slug of
-                "programming" ->
-                    { copy = blogPostOne, title = "programming", date = "2019-10-04" }
-
-                _ ->
-                    --@todo
-                    { copy = "", title = "", date = "" }
+        thePost =
+            R.slugToString slug |> (\x -> Dict.get x blogPosts)
     in
-    { blogPost = blogPost }
+    case thePost of
+        Just copy ->
+            -- @todo figureout a better way to store these thingums
+            Blog { copy = copy, title = R.slugToString slug, date = Time.millisToPosix 1572857902 }
+
+        Nothing ->
+            NotFound
 
 
-blogPostOne : String
+type alias MarkDownString =
+    String
+
+
+
+-- could use the
+
+
+blogIndex : List String
+blogIndex =
+    Dict.keys blogPosts
+
+
+blogPosts : Dict String MarkDownString
+blogPosts =
+    Dict.fromList
+        [ ( "programming", blogPostOne )
+        ]
+
+
+blogPostOne : MarkDownString
 blogPostOne =
     """
 # A history of programming

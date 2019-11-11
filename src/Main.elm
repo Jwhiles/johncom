@@ -28,7 +28,7 @@ type alias Model =
 
 type SubModel
     = Home
-    | BlogModel Blog.Model
+    | BlogModel Blog.Blog
     | BlogIndex
 
 
@@ -101,14 +101,15 @@ body model =
             div []
                 [ h1 [] [ text "welcome to my internet house" ]
                 , a [ R.href <| R.BlogIndex ] [ text "Blog" ]
-                , a [ R.href <| R.BlogPost (R.Slug "hello") ] [ text "BlogPost" ]
+                , a [ R.href <| R.BlogPost (R.Slug "programming") ] [ text "BlogPost" ]
                 ]
 
         BlogModel blogModel ->
             Blog.view blogModel
 
         BlogIndex ->
-            div []
+            div [] <|
                 [ text "todo"
                 , a [ R.href <| R.Home ] [ text "go home" ]
                 ]
+                    ++ List.map (\bp -> a [ R.href <| R.BlogPost (R.Slug bp) ] [ text bp ]) Blog.blogIndex

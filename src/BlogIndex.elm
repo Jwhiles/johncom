@@ -42,5 +42,5 @@ view =
     div [ A.class "siteBody" ] <|
         [ h1 [] [ text "John's blog" ]
         , blogList BlogPosts.blogIndex
-        , a [ R.href <| R.Home ] [ text "go home" ]
+        , a [ A.class "bigLink", R.href <| R.Home ] [ text "go home" ]
         ]

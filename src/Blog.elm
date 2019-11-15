@@ -42,23 +42,25 @@ type alias BlogPost =
 
 view : Model -> Html a
 view { blogPost } =
-    case blogPost of
-        Loading ->
-            div [] [ text "loading" ]
+    div [ A.class "siteBody" ] <|
+        (case blogPost of
+            Loading ->
+                [ text "loading" ]
 
-        Blog bp ->
-            div [ A.class "siteBody" ]
+            Blog bp ->
                 [ Markdown.toHtml []
                     bp.copy
-                , a [ R.href R.Home ]
-                    [ text "Back home" ]
-                , span [] [ text " | " ]
-                , a [ R.href R.BlogIndex ]
-                    [ text "Blog index" ]
                 ]
 
-        NotFound ->
-            div [] []
+            NotFound ->
+                []
+        )
+            ++ [ a [ A.class "bigLink", R.href R.Home ]
+                    [ text "Back home" ]
+               , span [] [ text " | " ]
+               , a [ A.class "bigLink", R.href R.BlogIndex ]
+                    [ text "Blog index" ]
+               ]
 
 
 build : MarkDownString -> String -> Blog

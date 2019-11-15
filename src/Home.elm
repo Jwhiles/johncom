@@ -24,5 +24,5 @@ recentBlogPosts =
             List.take
                 3
                 BlogPosts.blogIndex
-        , a [ R.href <| R.BlogIndex ] [ text "See more blog posts" ]
+        , a [ A.class "bigLink", R.href <| R.BlogIndex ] [ text "See more blog posts" ]
         ]

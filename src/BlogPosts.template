@@ -1,7 +1,12 @@
 module BlogPosts exposing (blogIndex)
 
+type alias BlogIndexItem =
+    { title : String
+    , date : Time.Posix
+    , permalink : String
+    }
 
-blogIndex : List String
+blogIndex : List BlogIndexItem
 blogIndex =
 --@here
   ]

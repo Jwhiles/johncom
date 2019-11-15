@@ -22,10 +22,10 @@ view =
         [ h1 [] [ text "John's blog" ]
         , ol [] <|
             List.map
-                (\bp ->
+                (\{ title, permalink } ->
                     li []
-                        [ a [ R.href <| R.BlogPost (R.Slug bp) ]
-                            [ text bp
+                        [ a [ R.href <| R.BlogPost (R.Slug permalink) ]
+                            [ text title
                             ]
                         ]
                 )

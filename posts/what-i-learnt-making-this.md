@@ -1,8 +1,8 @@
 +++
-title=What I learnt making this
+title=What I learnt making this site
 date=1573430400000
 +++
-# What I learnt making this website
+# On making this website
 I built this website because I wanted start writing a blog. Because I am a
 'developer' I didn't want to use a normal blogging platform, figuring that it would
 have been boring.

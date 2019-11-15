@@ -1,7 +1,9 @@
 module Home exposing (view)
 
 import BlogPosts
-import Html exposing (Html, a, div, h1, h2, li, ol, text)
+import Date as D
+import Html exposing (Html, a, div, h1, h2, li, ol, text, time)
+import Html.Attributes as A
 import Route as R
 
 
@@ -20,10 +22,15 @@ recentBlogPosts =
             [ text "recent posts" ]
         , ol [] <|
             List.map
-                (\{ title, permalink } ->
-                    li []
+                (\{ title, permalink, date } ->
+                    li [ A.class "blogIndex" ]
                         [ a [ R.href <| R.BlogPost (R.Slug permalink) ]
                             [ text title
+                            ]
+                        , Html.br [] []
+                        , time [ A.datetime <| D.renderDate date ]
+                            [ text <|
+                                D.renderDate date
                             ]
                         ]
                 )

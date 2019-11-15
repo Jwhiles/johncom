@@ -4,6 +4,9 @@ const fs = require('fs');
 
 const toLines = file => file.split('\n');
 const fromLines = lines => lines.join('\n');
+const isUndefined = val => {
+  return val === null || typeof val === 'undefined';
+};
 
 const createIndexFile = posts => {
   fs.readFile(path.join(__dirname, '../src/BlogPosts.template'), 'utf8', (err, data) => {
@@ -13,10 +16,12 @@ const createIndexFile = posts => {
     const split = toLines(data.toString());
 
     const startIndex = split.findIndex(l => l == '--@here');
-    const result = fromLines(split
-      .slice(0, startIndex)
-      .concat(posts)
-      .concat(split.slice(startIndex + 1)))
+    const result = fromLines(
+      split
+        .slice(0, startIndex)
+        .concat(posts)
+        .concat(split.slice(startIndex + 1))
+    );
 
     fs.writeFile(path.join(__dirname, '../src/BlogPosts.elm'), result, err => {
       if (err) {
@@ -53,8 +58,15 @@ fs.readdir(postsFolder, (err, files) => {
 });
 
 const format = posts => {
-  const [head, ...tail] = posts.map(({ permalink, date, title }) => {
-    return `  , { permalink = "${permalink}", date = ${date}, title = "${title}" }`;
+  const [head, ...tail] = posts.map(({ permalink, date, title, tags }) => {
+    if ([permalink, date, title].some(isUndefined)) {
+      throw new Error(`found a blog post with a missing field, permalink was ${permalink}`);
+    }
+    return `  , { permalink = "${permalink}"
+                , date = ${date}
+                , title = "${title}"
+                , tags = ${isUndefined(tags) ? '[]' : tags}
+                }`;
   });
 
   return [head.replace(',', '['), ...tail];

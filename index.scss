@@ -68,6 +68,18 @@ code * {
   }
 }
 
+.taglist {
+  display: flex;
+  li {
+    margin-right: 4px;
+    display: inline;
+  }
+
+  a {
+    font-size: 10px;
+  }
+}
+
 // @media (prefers-color-scheme: light) {
 //   h1,
 //   h2,

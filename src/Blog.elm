@@ -58,7 +58,7 @@ view { blogPost } =
             ++ [ a [ A.class "bigLink", R.href R.Home ]
                     [ text "Back home" ]
                , span [] [ text " | " ]
-               , a [ A.class "bigLink", R.href R.BlogIndex ]
+               , a [ A.class "bigLink", R.href <| R.BlogIndex Nothing ]
                     [ text "Blog index" ]
                ]
 

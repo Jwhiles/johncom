@@ -20,9 +20,9 @@ recentBlogPosts =
     div [] <|
         [ h2 []
             [ text "Recent blog posts" ]
-        , BlogIndex.blogList <|
+        , BlogIndex.homeBlogList <|
             List.take
                 3
                 BlogPosts.blogIndex
-        , a [ A.class "bigLink", R.href <| R.BlogIndex ] [ text "See more blog posts" ]
+        , a [ A.class "bigLink", R.href <| R.BlogIndex Nothing ] [ text "See more blog posts" ]
         ]

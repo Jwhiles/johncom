@@ -1,15 +1,18 @@
 module Route exposing (Route(..), Slug(..), fromUrl, href, slugToString)
 
+import BlogPosts
 import Html exposing (Attribute)
 import Html.Attributes as HAtt
 import Url exposing (Url)
-import Url.Parser as Parser exposing ((</>), Parser, oneOf, s)
+import Url.Builder as UB
+import Url.Parser as Parser exposing ((</>), (<?>), Parser, oneOf, s)
+import Url.Parser.Query as PQ
 
 
 type Route
     = Home
     | BlogPost Slug
-    | BlogIndex
+    | BlogIndex (Maybe BlogPosts.Tag)
 
 
 type Slug
@@ -31,7 +34,7 @@ parser =
     oneOf
         [ Parser.map Home Parser.top
         , Parser.map BlogPost (s "blog" </> urlParser)
-        , Parser.map BlogIndex (s "blog")
+        , Parser.map BlogIndex (s "blog" <?> PQ.string "tag")
         ]
 
 
@@ -55,16 +58,21 @@ fromUrl url =
 
 routeToString : Route -> String
 routeToString page =
-    let
-        pieces =
-            case page of
-                Home ->
-                    []
+    case page of
+        Home ->
+            "/"
 
-                BlogPost slug ->
-                    [ "blog", slugToString slug ]
+        BlogPost slug ->
+            "/" ++ String.join "/" [ "blog", slugToString slug ]
 
-                BlogIndex ->
-                    [ "blog" ]
-    in
-    "/" ++ String.join "/" pieces
+        BlogIndex mtag ->
+            let
+                queries =
+                    case mtag of
+                        Just tag ->
+                            [ UB.string "tag" tag ]
+
+                        Nothing ->
+                            []
+            in
+            UB.absolute [ "blog" ] queries

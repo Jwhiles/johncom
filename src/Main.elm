@@ -105,8 +105,8 @@ changeRouteTo maybeRoute model =
             , getBlogPost slug GotPost
             )
 
-        Just R.BlogIndex ->
-            ( BlogIndex <| BlogIndex.Model <| toNavKey model, Cmd.none )
+        Just (R.BlogIndex mtag) ->
+            ( BlogIndex <| BlogIndex.Model (toNavKey model) mtag, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
@@ -128,5 +128,5 @@ body model =
         BlogModel blogModel ->
             Blog.view blogModel
 
-        BlogIndex _ ->
-            BlogIndex.view
+        BlogIndex blogIndexModel ->
+            BlogIndex.view blogIndexModel

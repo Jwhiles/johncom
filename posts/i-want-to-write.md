@@ -1,6 +1,7 @@
 +++
 title=I want to write
 date=1572825600000
+tags=["writing"]
 +++
 
 # I want to write

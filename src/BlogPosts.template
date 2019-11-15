@@ -1,10 +1,15 @@
-module BlogPosts exposing (BlogIndexItem, blogIndex)
+module BlogPosts exposing (BlogIndexItem, Tag, blogIndex)
+
+
+type alias Tag =
+    String
 
 
 type alias BlogIndexItem =
     { title : String
     , date : Int -- an epoch
     , permalink : String
+    , tags : List Tag
     }
 
 

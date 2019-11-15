@@ -8,22 +8,19 @@ const fromLines = lines => lines.join('\n');
 const createIndexFile = posts => {
   fs.readFile(path.join(__dirname, '../src/BlogPosts.template'), 'utf8', (err, data) => {
     if (err) {
-      return console.log(err);
+      throw new Error(err);
     }
-    const split = data.toString().split('\n');
+    const split = toLines(data.toString());
 
     const startIndex = split.findIndex(l => l == '--@here');
-    const result = split
+    const result = fromLines(split
       .slice(0, startIndex)
       .concat(posts)
-      .concat(split.slice(startIndex + 1))
-      .join('\n');
-
-    console.log(result);
+      .concat(split.slice(startIndex + 1)))
 
     fs.writeFile(path.join(__dirname, '../src/BlogPosts.elm'), result, err => {
       if (err) {
-        return console.log(err);
+        throw new Error(err);
       }
       console.log(`Created blog posts index`);
     });
@@ -62,4 +59,3 @@ const format = posts => {
 
   return [head.replace(',', '['), ...tail];
 };
-

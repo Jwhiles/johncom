@@ -1,0 +1,78 @@
+
+html {
+  background-color: #121212;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: futura;
+}
+
+a {
+  color: white;
+  opacity: 80%;
+}
+
+p,
+ul,
+ol,
+span,
+li,
+time {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+pre {
+  font-size: 20px;
+  background-color: grey;
+  border-radius: 4px;
+  padding: 24px;
+}
+code * {
+  font-family: monospace;
+}
+
+.siteBody {
+  max-width: 800px;
+  margin-left: 100px;
+}
+
+.blogIndex {
+  list-style: armenian;
+  font-style: italic;
+  font-size: 20px;
+}
+
+.blogIndexList {
+  li,
+  a {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: futura;
+    font-size: 20px;
+  }
+  time {
+    font-size: 18px;
+  }
+}
+
+// @media (prefers-color-scheme: light) {
+//   h1,
+//   h2,
+//   h3,
+//   h4,
+//   h5,
+//   h6,
+//   p,
+//   a,
+//   time {
+//     color: black;
+//   }
+//   html {
+//     background: white;
+//   }
+// }

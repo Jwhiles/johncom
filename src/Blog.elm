@@ -1,7 +1,8 @@
 module Blog exposing (Blog(..), Model, build, init, toNavKey, view)
 
 import Browser.Navigation as Nav
-import Html exposing (Html, a, div, text)
+import Html exposing (Html, a, div, span, text)
+import Html.Attributes as A
 import Markdown
 import Route as R
 import Time
@@ -46,11 +47,14 @@ view { blogPost } =
             div [] [ text "loading" ]
 
         Blog bp ->
-            div []
-                [ a [ R.href R.Home ]
-                    [ text "take meeee home" ]
-                , Markdown.toHtml []
+            div [ A.class "siteBody" ]
+                [ Markdown.toHtml []
                     bp.copy
+                , a [ R.href R.Home ]
+                    [ text "Back home" ]
+                , span [] [ text " | " ]
+                , a [ R.href R.BlogIndex ]
+                    [ text "Blog index" ]
                 ]
 
         NotFound ->

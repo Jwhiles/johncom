@@ -20,7 +20,7 @@ toNavKey { navKey } =
 
 blogList : List BlogPosts.BlogIndexItem -> Html msg
 blogList blogItems =
-    ol [] <|
+    ol [ A.class "blogIndexList" ] <|
         List.map
             (\{ title, permalink, date } ->
                 li [ A.class "blogIndex" ]
@@ -39,7 +39,7 @@ blogList blogItems =
 
 view : Html msg
 view =
-    div [] <|
+    div [ A.class "siteBody" ] <|
         [ h1 [] [ text "John's blog" ]
         , blogList BlogPosts.blogIndex
         , a [ R.href <| R.Home ] [ text "go home" ]

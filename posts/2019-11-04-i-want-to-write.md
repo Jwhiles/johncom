@@ -1,3 +1,8 @@
++++
+title=I want to write
+date=1572825600000
++++
+
 # I want to write
 
 I want to write, and have wanted to write for most of my life. Books, blogs,

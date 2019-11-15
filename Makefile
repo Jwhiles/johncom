@@ -5,8 +5,7 @@ build-elm:
 	node ./scripts/createBlogIndex.js
 	rm -rf dist
 	npx parcel build index.html
-	mkdir dist/posts
-	cp posts/* dist/posts/
+	./scripts/distributePosts.sh
 
 watch:
 	node ./scripts/createBlogIndex.js

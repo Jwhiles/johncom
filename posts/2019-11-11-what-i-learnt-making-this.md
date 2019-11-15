@@ -1,3 +1,7 @@
++++
+title=What I learnt making this
+date=1573430400000
++++
 # What I learnt making this website
 
 I built this website because I wanted start writing a blog. Being a

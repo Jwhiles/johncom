@@ -1,4 +1,4 @@
-module BlogIndex exposing (Model, toNavKey, view)
+module BlogIndex exposing (Model, blogList, toNavKey, view)
 
 import BlogPosts
 import Browser.Navigation as Nav
@@ -18,24 +18,29 @@ toNavKey { navKey } =
     navKey
 
 
+blogList : List BlogPosts.BlogIndexItem -> Html msg
+blogList blogItems =
+    ol [] <|
+        List.map
+            (\{ title, permalink, date } ->
+                li [ A.class "blogIndex" ]
+                    [ a [ R.href <| R.BlogPost (R.Slug permalink) ]
+                        [ text title
+                        ]
+                    , Html.br [] []
+                    , time [ A.datetime <| D.renderDate date ]
+                        [ text <|
+                            D.renderDate date
+                        ]
+                    ]
+            )
+            blogItems
+
+
 view : Html msg
 view =
     div [] <|
         [ h1 [] [ text "John's blog" ]
-        , ol [] <|
-            List.map
-                (\{ title, permalink, date } ->
-                    li [ A.class "blogIndex" ]
-                        [ a [ R.href <| R.BlogPost (R.Slug permalink) ]
-                            [ text title
-                            ]
-                        , Html.br [] []
-                        , time [ A.datetime <| D.renderDate date ]
-                            [ text <|
-                                D.renderDate date
-                            ]
-                        ]
-                )
-                BlogPosts.blogIndex
+        , blogList BlogPosts.blogIndex
         , a [ R.href <| R.Home ] [ text "go home" ]
         ]

@@ -1,4 +1,4 @@
-module BlogPosts exposing (blogIndex)
+module BlogPosts exposing (BlogIndexItem, blogIndex)
 
 
 type alias BlogIndexItem =

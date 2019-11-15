@@ -1,0 +1,9 @@
+* {
+  max-width: 800px;
+}
+
+.blogIndex {
+  list-style: armenian;
+  font-style: italic;
+  font-size: 20px;
+}

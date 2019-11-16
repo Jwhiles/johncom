@@ -3,7 +3,7 @@ module BlogIndex exposing (Model, blogList, homeBlogList, toNavKey, view)
 import BlogPosts
 import Browser.Navigation as Nav
 import Date as D
-import Html exposing (Html, a, div, h1, li, ol, p, text, time, ul)
+import Html exposing (Html, a, div, h1, li, ol, p, strong, text, time, ul)
 import Html.Attributes as A
 import Route as R
 
@@ -70,10 +70,6 @@ view m =
 
                 Nothing ->
                     BlogPosts.blogIndex
-
-        -- List.filter (\{ tags } ->
-        --   List.foldr (\t acc -> List.member t m.tags
-        -- || acc) False) True) BlogPosts.blogIndex
     in
     div [ A.class "siteBody" ] <|
         [ h1 [] [ text "John's blog" ] ]
@@ -87,7 +83,11 @@ activeTags : Maybe BlogPosts.Tag -> List (Html msg)
 activeTags mtag =
     case mtag of
         Just t ->
-            [ p [] [ text t ], a [ R.href <| R.BlogIndex Nothing ] [ text "clear tag" ] ]
+            [ div []
+                [ p [] [ text "Showing posts about: ", strong [] [ text t ] ]
+                , a [ R.href <| R.BlogIndex Nothing ] [ text "show all posts" ]
+                ]
+            ]
 
         Nothing ->
             []

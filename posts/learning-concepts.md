@@ -1,7 +1,7 @@
 +++
 title=How I like to learn things
 date=1573827116433
-tags=["tech", "functional programming", "learning"]
+tags=["functional programming", "learning"]
 +++
 
 # How I like to learn things

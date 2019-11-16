@@ -1,7 +1,7 @@
 +++
 title=What I learnt making this site
 date=1573430400000
-tags=["tech", "functional programming", "elm"]
+tags=["functional programming", "elm"]
 +++
 # On making this website
 I built this website because I wanted start writing a blog. Because I am a

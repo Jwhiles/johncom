@@ -60,7 +60,7 @@ tagList tags =
         List.map (\t -> li [] [ a [ R.href <| R.BlogIndex (Just t) ] [ text t ] ]) tags
 
 
-view : Model -> Html msg
+view : Model -> ( String, Html msg )
 view m =
     let
         filteredBlogPosts =
@@ -71,12 +71,14 @@ view m =
                 Nothing ->
                     BlogPosts.blogIndex
     in
-    div [ A.class "siteBody" ] <|
+    ( "John Whiles' blog"
+    , div [ A.class "siteBody" ] <|
         [ h1 [] [ text "John's blog" ] ]
             ++ activeTags m.tags
             ++ [ indexBlogList filteredBlogPosts
                , a [ A.class "bigLink", R.href R.Home ] [ text "go home" ]
                ]
+    )
 
 
 activeTags : Maybe BlogPosts.Tag -> List (Html msg)

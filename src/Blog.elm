@@ -40,27 +40,33 @@ type alias BlogPost =
 ---
 
 
-view : Model -> Html a
+view : Model -> ( String, Html a )
 view { blogPost } =
-    div [ A.class "siteBody" ] <|
+    let
+        footer =
+            [ a [ A.class "bigLink", R.href R.Home ]
+                [ text "Back home" ]
+            , span [] [ text " | " ]
+            , a [ A.class "bigLink", R.href <| R.BlogIndex Nothing ]
+                [ text "Blog index" ]
+            ]
+    in
+    Tuple.mapSecond (\body -> div [ A.class "siteBody" ] <| body ++ footer)
         (case blogPost of
             Loading ->
-                [ text "loading" ]
+                ( "Loading", [ text "loading" ] )
 
             Blog bp ->
-                [ Markdown.toHtml []
-                    bp.copy
-                ]
+                ( "Blog post"
+                  --@todo use the real title
+                , [ Markdown.toHtml []
+                        bp.copy
+                  ]
+                )
 
             NotFound ->
-                []
+                ( "Not found", [] )
         )
-            ++ [ a [ A.class "bigLink", R.href R.Home ]
-                    [ text "Back home" ]
-               , span [] [ text " | " ]
-               , a [ A.class "bigLink", R.href <| R.BlogIndex Nothing ]
-                    [ text "Blog index" ]
-               ]
 
 
 build : MarkDownString -> String -> Blog

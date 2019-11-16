@@ -7,12 +7,16 @@ import Html.Attributes as A
 import Route as R
 
 
-view : Html msg
+view : ( String, Html msg )
 view =
-    div [ A.class "siteBody" ] <|
-        [ h1 [] [ text "John's internet house" ]
-        , recentBlogPosts
-        ]
+    let
+        body =
+            div [ A.class "siteBody" ] <|
+                [ h1 [] [ text "John's internet house" ]
+                , recentBlogPosts
+                ]
+    in
+    ( "John Whiles' internet house", body )
 
 
 recentBlogPosts : Html msg

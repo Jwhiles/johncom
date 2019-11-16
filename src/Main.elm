@@ -116,10 +116,14 @@ subscriptions model =
 
 view : Model -> Browser.Document Msg
 view model =
-    Browser.Document "Title" <| [ body model ]
+    let
+        ( title, htmlBody ) =
+            body model
+    in
+    Browser.Document title <| [ htmlBody ]
 
 
-body : Model -> Html Msg
+body : Model -> ( String, Html Msg )
 body model =
     case model of
         Home _ ->

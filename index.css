@@ -1,0 +1,80 @@
+html {
+  background-color: #121212;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: white;
+  font-family: futura;
+}
+
+a {
+  color: white;
+}
+a:visited {
+  color: white;
+}
+
+p,
+ul,
+ol,
+span,
+li,
+time {
+  color: white;
+}
+
+pre {
+  background-color: grey;
+  border-radius: 4px;
+  padding: 24px;
+}
+
+code * {
+  font-size: 12px;
+  font-family: monospace;
+}
+@media only screen and (min-width: 800px) {
+  code * {
+    font-size: 20px;
+  }
+}
+
+.bigLink {
+  font-size: 20px;
+}
+
+@media only screen and (min-width: 800px) {
+  .siteBody {
+    max-width: 800px;
+    margin-left: 5%;
+  }
+}
+
+.blogIndex {
+  list-style: armenian;
+  font-style: italic;
+  font-size: 20px;
+}
+
+.blogIndexList li,
+.blogIndexList a {
+  font-family: futura;
+  font-size: 20px;
+}
+.blogIndexList time {
+  font-size: 18px;
+}
+
+.taglist a {
+  font-size: 10px;
+}
+
+.taglist li {
+  margin-right: 4px;
+  display: inline;
+}

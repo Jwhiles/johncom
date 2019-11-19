@@ -34,16 +34,6 @@ pre {
   padding: 24px;
 }
 
-code * {
-  font-size: 12px;
-  font-family: monospace;
-}
-@media only screen and (min-width: 800px) {
-  code * {
-    font-size: 20px;
-  }
-}
-
 .bigLink {
   font-size: 20px;
 }

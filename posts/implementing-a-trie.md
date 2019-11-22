@@ -14,10 +14,10 @@ Today we take on _The Trie_
 
 This article is mostly meant as a demonstration of what a Trie is. This is a totally
 naive implementation, which is based on skimming the [wikipedia article about Tries](https://en.wikipedia.org/wiki/Trie).
-As such you should probably shouldn't use this code anywhere.
+As such you probably shouldn't use this code anywhere.
 
 Although this is written in haskell, I've tried to avoid anything too weird.
-Hopefully this code should be comprehensible for someone who has written Elm.
+Hopefully this code will be comprehensible for someone who has written Elm.
 
 We'll start by watching me implementing a Trie incorrectly, realising my
 mistake, and then correcting it.

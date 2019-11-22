@@ -45,6 +45,38 @@ suite =
                     Expect.equalSets (Set.fromList <| Trie.getWords trie)
                         (Set.fromList words)
             ]
+        , describe "Trie.getSuffixes returns all the words that are a valid extension on an input word" <|
+            let
+                x =
+                    ""
+
+                words =
+                    List.map String.toList
+                        [ "hello"
+                        , "hero"
+                        , "helical"
+                        , "egg"
+                        ]
+
+                trie =
+                    List.foldr Trie.insert Trie.empty words
+            in
+            [ test "returns all words if input is string is empty" <|
+                \_ ->
+                    Expect.equalSets (Set.fromList <| Trie.getSuffixes [] trie)
+                        (Set.fromList words)
+            , test "returns no words if there are no matching words" <|
+                \_ ->
+                    Expect.equal [] <| Trie.getSuffixes (String.toList "peanut") trie
+            , test "returns appropriate words if there are matches" <|
+                \_ ->
+                    Expect.equal
+                        (Set.fromList <|
+                            Trie.getSuffixes (String.toList "he")
+                                trie
+                        )
+                        (Set.fromList <| List.map String.toList [ "hello", "hero", "helical" ])
+            ]
         ]
 
 

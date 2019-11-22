@@ -13,6 +13,7 @@ type Route
     = Home
     | BlogPost Slug
     | BlogIndex (Maybe BlogPosts.Tag)
+    | PlayGround
 
 
 type Slug
@@ -35,6 +36,7 @@ parser =
         [ Parser.map Home Parser.top
         , Parser.map BlogPost (s "blog" </> urlParser)
         , Parser.map BlogIndex (s "blog" <?> PQ.string "tag")
+        , Parser.map PlayGround (s "playground")
         ]
 
 
@@ -76,3 +78,6 @@ routeToString page =
                             []
             in
             UB.absolute [ "blog" ] queries
+
+        PlayGround ->
+            "/playground"

@@ -116,3 +116,20 @@ maybeToList ma =
 
         Nothing ->
             []
+
+
+getSuffixes : List comparable -> Trie comparable -> List (List comparable)
+getSuffixes word t =
+    case word of
+        [] ->
+            getWords t
+
+        character :: rest ->
+            case
+                Dict.get character (getChildren t)
+            of
+                Just matchingChildNode ->
+                    getSuffixes rest matchingChildNode
+
+                Nothing ->
+                    []

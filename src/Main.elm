@@ -8,6 +8,7 @@ import Home
 import Html exposing (Html)
 import Http
 import Platform.Sub as Sub
+import PlayGround
 import Request exposing (getBlogPost)
 import Route as R exposing (Route(..))
 import Url exposing (Url)
@@ -28,6 +29,7 @@ type Model
     = Home Nav.Key
     | BlogModel Blog.Model
     | BlogIndex BlogIndex.Model
+    | PlayGround PlayGround.Model
 
 
 toNavKey : Model -> Nav.Key
@@ -42,15 +44,15 @@ toNavKey model =
         BlogIndex m ->
             BlogIndex.toNavKey m
 
+        PlayGround m ->
+            PlayGround.toNavKey m
+
 
 type Msg
     = ClickedLink Browser.UrlRequest
     | ChangedUrl Url
     | GotPost (Result Http.Error String)
-
-
-
--- @todo  decode the initial route here?
+    | GotPlayGroundMsg PlayGround.Msg
 
 
 init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
@@ -61,7 +63,6 @@ init _ url navKey =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case ( msg, model ) of
-        --@todo   parse the new url from the link click
         ( ClickedLink urlRequest, _ ) ->
             case urlRequest of
                 Browser.Internal url ->
@@ -85,8 +86,20 @@ update msg model =
                 Err e ->
                     ( BlogModel { m | blogPost = Blog.NotFound }, Cmd.none )
 
+        ( GotPlayGroundMsg subMsg, PlayGround pgModel ) ->
+            PlayGround.update subMsg pgModel
+                |> updateWith PlayGround
+                    GotPlayGroundMsg
+
         ( _, _ ) ->
             ( model, Cmd.none )
+
+
+updateWith : (subModel -> Model) -> (subMsg -> Msg) -> ( subModel, Cmd subMsg ) -> ( Model, Cmd Msg )
+updateWith toModel toMsg ( subModel, subCmd ) =
+    ( toModel subModel
+    , Cmd.map toMsg subCmd
+    )
 
 
 changeRouteTo : Maybe Route -> Model -> ( Model, Cmd Msg )
@@ -108,6 +121,9 @@ changeRouteTo maybeRoute model =
         Just (R.BlogIndex mtag) ->
             ( BlogIndex <| BlogIndex.Model (toNavKey model) mtag, Cmd.none )
 
+        Just R.PlayGround ->
+            ( PlayGround <| PlayGround.init (toNavKey model), Cmd.none )
+
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
@@ -125,6 +141,10 @@ view model =
 
 body : Model -> ( String, Html Msg )
 body model =
+    let
+        viewpage wrapMsg v =
+            Tuple.mapSecond (Html.map wrapMsg) v
+    in
     case model of
         Home _ ->
             Home.view
@@ -134,3 +154,6 @@ body model =
 
         BlogIndex blogIndexModel ->
             BlogIndex.view blogIndexModel
+
+        PlayGround m ->
+            viewpage GotPlayGroundMsg <| PlayGround.view m

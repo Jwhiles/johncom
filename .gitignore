@@ -3,6 +3,7 @@ dist
 elm-stuff
 node_modules/
 elm.js
+.DS_Store
 
 # This is so I can generate this file
 src/BlogPosts.elm

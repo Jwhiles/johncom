@@ -3,7 +3,6 @@ const path = require('path');
 const fs = require('fs');
 const { getDataFromPost, toLines, fromLines, isUndefined } = require('./lib');
 
-
 const createIndexFile = posts => {
   fs.readFile(path.join(__dirname, '../src/BlogPosts.template'), 'utf8', (err, data) => {
     if (err) {
@@ -28,7 +27,6 @@ const createIndexFile = posts => {
   });
 };
 
-
 fs.readdir(postsFolder, (err, files) => {
   const withoutExtension = files.map(f => f.slice(0, -3));
   const data = files.map(getDataFromPost);
@@ -50,4 +48,3 @@ const format = posts => {
 
   return [head.replace(',', '['), ...tail];
 };
-

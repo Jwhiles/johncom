@@ -1,5 +1,5 @@
 html {
-  background-color: #121212;
+  background-color: #fec7d7;
 }
 
 h1,
@@ -8,15 +8,15 @@ h3,
 h4,
 h5,
 h6 {
-  color: white;
+  color: #0e172c;
   font-family: futura;
 }
 
 a {
-  color: white;
+  color: #0e172c;
 }
 a:visited {
-  color: white;
+  color: #0e172c;
 }
 
 p,
@@ -25,11 +25,11 @@ ol,
 span,
 li,
 time {
-  color: white;
+  color: #0e172c;
 }
 
 pre {
-  background-color: grey;
+  background-color: #d9d4e7;
   border-radius: 4px;
   padding: 24px;
 }

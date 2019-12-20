@@ -55,9 +55,28 @@ type Msg
     | GotPlayGroundMsg PlayGround.Msg
 
 
-init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
-init _ url navKey =
-    changeRouteTo (R.fromUrl url) (Home navKey)
+type alias Flags =
+    { blogPost : String
+    , title : String
+    }
+
+
+init : Maybe Flags -> Url -> Nav.Key -> ( Model, Cmd Msg )
+init maybeFlags url navKey =
+    case maybeFlags of
+        Just flags ->
+            ( BlogModel
+                { navKey = navKey
+                , blogPost =
+                    Blog.build
+                        flags.blogPost
+                        flags.title
+                }
+            , Cmd.none
+            )
+
+        Nothing ->
+            changeRouteTo (R.fromUrl url) (Home navKey)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

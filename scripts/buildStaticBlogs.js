@@ -12,19 +12,11 @@ const elmJs = fs.readFileSync(path.join(workDir, 'elm.js')).toString();
 const indexHtml = fs.readFileSync(path.join(workDir, 'dist/index.html'), 'utf8');
 
 const buildHtmlTemplate = content => {
-  const lines = toLines(indexHtml);
-  const idx = lines.findIndex(l => l.trim() === '<main></main>');
-  const res = fromLines(
-    lines
-      .slice(0, idx)
-      .concat(toLines(content))
-      .concat(lines.slice(idx + 1))
-  );
-  return res;
+  const [head, tail] = indexHtml.split('<main></main>');
+  return fromLines([head, toLines(content), tail]);
 };
 
 function generateHtml({ body, title, permalink }) {
-
   const flags = JSON.stringify({ blogPost: body, title });
 
   const script = new Script(`

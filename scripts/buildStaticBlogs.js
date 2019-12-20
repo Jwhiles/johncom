@@ -13,7 +13,7 @@ const indexHtml = fs.readFileSync(path.join(workDir, 'dist/index.html'), 'utf8')
 
 const buildHtmlTemplate = content => {
   const [head, tail] = indexHtml.split('<main></main>');
-  return fromLines([head, toLines(content), tail]);
+  return fromLines([head, ...toLines(content), tail]);
 };
 
 function generateHtml({ body, title, permalink }) {

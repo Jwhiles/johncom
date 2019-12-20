@@ -1,7 +1,7 @@
 const postsFolder = './posts/';
 const path = require('path');
 const fs = require('fs');
-const { getDataFromPost, toLines, fromLines, isUndefined } = require('./lib');
+const { traverseFiles, getDataFromPost, toLines, fromLines, isUndefined } = require('./lib');
 
 const createIndexFile = posts => {
   fs.readFile(path.join(__dirname, '../src/BlogPosts.template'), 'utf8', (err, data) => {
@@ -27,12 +27,7 @@ const createIndexFile = posts => {
   });
 };
 
-fs.readdir(postsFolder, (err, files) => {
-  const withoutExtension = files.map(f => f.slice(0, -3));
-  const data = files.map(getDataFromPost);
-
-  createIndexFile(format(data));
-});
+traverseFiles(postsFolder)(data => createIndexFile(format(data)))
 
 const format = posts => {
   const [head, ...tail] = posts.map(({ permalink, date, title, tags }) => {

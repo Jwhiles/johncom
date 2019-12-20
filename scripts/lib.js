@@ -25,7 +25,13 @@ const getDataFromPost = postPath => {
   );
 };
 
+const traverseFiles = folder => f =>
+  fs.readdir(folder, (err, files) => {
+    f(files.map(getDataFromPost));
+  });
+
 module.exports = {
+  traverseFiles,
   getDataFromPost,
   toLines,
   fromLines,

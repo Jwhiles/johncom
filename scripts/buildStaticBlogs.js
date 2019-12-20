@@ -3,7 +3,7 @@ const JsDom = require('jsdom').JSDOM;
 const { Script } = require('vm');
 const path = require('path');
 const fs = require('fs');
-const { getDataFromPost, toLines, fromLines, isUndefined } = require('./lib');
+const { traverseFiles, getDataFromPost, toLines, fromLines, isUndefined } = require('./lib');
 
 const workDir = path.join(__dirname, '..');
 const output = path.join(workDir, 'dist', 'blog');
@@ -41,9 +41,5 @@ function generateHtml({ body, title, permalink }) {
   }
 }
 
-fs.readdir(postsFolder, (err, files) => {
-  const withoutExtension = files.map(f => f.slice(0, -3));
-  const data = files.map(getDataFromPost);
+traverseFiles(postsFolder)(data => data.forEach(generateHtml))
 
-  data.forEach(generateHtml);
-});

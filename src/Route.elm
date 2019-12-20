@@ -27,7 +27,13 @@ slugToString (Slug s) =
 
 urlParser : Parser (Slug -> a) a
 urlParser =
-    Parser.custom "SLUG" (\str -> Just (Slug str))
+    Parser.custom "SLUG" <|
+        \str ->
+            if String.endsWith ".html" str then
+                Just <| Slug <| String.slice 0 -5 str
+
+            else
+                Just <| Slug str
 
 
 parser : Parser (Route -> a) a

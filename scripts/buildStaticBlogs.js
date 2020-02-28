@@ -53,8 +53,8 @@ function addPostToFeed(feed, post, content) {
   return feed.addItem({
     title: post.title,
     description: '',
-    id: `https://www.johnwhiles.com/${post.permalink}`,
-    link: `https://www.johnwhiles.com/${post.permalink}`,
+    id: `https://www.johnwhiles.com/blog/${post.permalink}`,
+    link: `https://www.johnwhiles.com/blog/${post.permalink}`,
     content,
     author: {
       name: 'John Whiles',

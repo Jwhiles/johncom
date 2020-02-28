@@ -93,11 +93,13 @@ let feed = new Feed({
 // For each post, generate the html,
 // then save a static file, and update the rss feed
 traverseFiles(postsFolder)(data => {
-  data.forEach(post => {
-    let content = generateHtml(post);
-    addPostToFeed(feed, post, content);
-    writeFile(post.permalink, content);
-  });
+  data
+    .sort((p1, p2) => p2.date - p1.date)
+    .forEach(post => {
+      let content = generateHtml(post);
+      addPostToFeed(feed, post, content);
+      writeFile(post.permalink, content);
+    });
 
   writeRss(feed);
 });

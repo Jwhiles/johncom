@@ -6,3 +6,4 @@ elm.js
 
 # This is so I can generate this file
 src/BlogPosts.elm
+.env

@@ -30,8 +30,11 @@
     "elm": "^0.19.1",
     "elm-review": "^1.0.1",
     "elm-test": "^0.19.1",
+    "env2": "^2.2.2",
     "jsdom": "^15.2.1",
+    "node-fetch": "^2.6.0",
     "parcel-bundler": "^1.12.4",
+    "prettier": "^1.19.1",
     "src": "^1.1.2"
   },
   "lint-staged": {

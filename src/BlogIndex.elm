@@ -74,7 +74,11 @@ view m =
     ( "John Whiles' blog"
     , div [ A.class "siteBody" ] <|
         [ h1 [] [ text "John's blog" ]
-        , a [ A.class "bigLink", A.href "https://www.johnwhiles.com/feed" ]
+        , a
+            [ A.class "bigLink"
+            , A.href "https://www.johnwhiles.com/feed"
+            , A.target "_blank"
+            ]
             [ text "RSS" ]
         ]
             ++ activeTags m.tags

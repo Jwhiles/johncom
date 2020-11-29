@@ -50,7 +50,11 @@ view { blogPost } =
             , a [ A.class "bigLink", R.href <| R.BlogIndex Nothing ]
                 [ text "Blog index" ]
             , span [] [ text " | " ]
-            , a [ A.class "bigLink", A.href "https://www.johnwhiles.com/feed" ]
+            , a
+                [ A.class "bigLink"
+                , A.href "https://www.johnwhiles.com/feed"
+                , A.target "_blank"
+                ]
                 [ text "RSS" ]
             ]
     in

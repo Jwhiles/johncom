@@ -49,6 +49,9 @@ view { blogPost } =
             , span [] [ text " | " ]
             , a [ A.class "bigLink", R.href <| R.BlogIndex Nothing ]
                 [ text "Blog index" ]
+            , span [] [ text " | " ]
+            , a [ A.class "bigLink", A.href "https://www.johnwhiles.com/feed" ]
+                [ text "RSS" ]
             ]
     in
     Tuple.mapSecond (\body -> div [ A.class "siteBody" ] <| body ++ footer)

@@ -73,7 +73,10 @@ view m =
     in
     ( "John Whiles' blog"
     , div [ A.class "siteBody" ] <|
-        [ h1 [] [ text "John's blog" ] ]
+        [ h1 [] [ text "John's blog" ]
+        , a [ A.class "bigLink", A.href "https://www.johnwhiles.com/feed" ]
+            [ text "RSS" ]
+        ]
             ++ activeTags m.tags
             ++ [ indexBlogList filteredBlogPosts
                , a [ A.class "bigLink", R.href R.Home ] [ text "go home" ]

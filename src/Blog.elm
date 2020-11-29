@@ -1,5 +1,6 @@
-module Blog exposing (Blog(..), Model, build, init, toNavKey, view)
+module Blog exposing (Blog(..), Model, build, buildFromSlug, init, toNavKey, view)
 
+import BlogPosts as BP
 import Browser.Navigation as Nav
 import Html exposing (Html, a, div, span, text)
 import Html.Attributes as A
@@ -61,11 +62,21 @@ view { blogPost } =
     Tuple.mapSecond (\body -> div [ A.class "siteBody" ] <| body ++ footer)
         (case blogPost of
             Loading ->
-                ( "Loading", [ text "loading" ] )
+                ( "Loading"
+                , [ div [ A.class "loading" ]
+                        [ div
+                            [ A.class
+                                "loading_text"
+                            ]
+                            [ text
+                                "loading"
+                            ]
+                        ]
+                  ]
+                )
 
             Blog bp ->
-                ( "Blog post"
-                  --@todo use the real title
+                ( bp.title
                 , [ Markdown.toHtml []
                         bp.copy
                   ]
@@ -76,9 +87,31 @@ view { blogPost } =
         )
 
 
-build : MarkDownString -> String -> Blog
-build md title =
-    Blog <| BlogPost md title <| Time.millisToPosix 1572857902
+find : String -> List BP.BlogIndexItem -> Maybe BP.BlogIndexItem
+find s bps =
+    List.head (List.filter (\bp -> bp.permalink == s) bps)
+
+
+buildFromSlug : MarkDownString -> R.Slug -> Blog
+buildFromSlug md slug =
+    let
+        link =
+            R.slugToString slug
+
+        blogIndexItem =
+            find link BP.blogIndex
+    in
+    case blogIndexItem of
+        Just bii ->
+            build md bii.title bii.date
+
+        Nothing ->
+            NotFound
+
+
+build : MarkDownString -> String -> Int -> Blog
+build md title time =
+    Blog <| BlogPost md title <| Time.millisToPosix time
 
 
 init : Blog

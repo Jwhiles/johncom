@@ -51,13 +51,14 @@ toNavKey model =
 type Msg
     = ClickedLink Browser.UrlRequest
     | ChangedUrl Url
-    | GotPost (Result Http.Error String)
+    | GotPost R.Slug (Result Http.Error String)
     | GotPlayGroundMsg PlayGround.Msg
 
 
 type alias Flags =
     { blogPost : String
     , title : String
+    , date : Int
     }
 
 
@@ -71,6 +72,7 @@ init maybeFlags url navKey =
                     Blog.build
                         flags.blogPost
                         flags.title
+                        flags.date
                 }
             , Cmd.none
             )
@@ -97,10 +99,17 @@ update msg model =
         ( ChangedUrl url, _ ) ->
             changeRouteTo (R.fromUrl url) model
 
-        ( GotPost response, BlogModel m ) ->
+        ( GotPost slug response, BlogModel m ) ->
             case response of
-                Ok x ->
-                    ( BlogModel { m | blogPost = Blog.build x "hey" }, Cmd.none )
+                Ok blogBody ->
+                    ( BlogModel
+                        { m
+                            | blogPost =
+                                Blog.buildFromSlug blogBody
+                                    slug
+                        }
+                    , Cmd.none
+                    )
 
                 Err e ->
                     ( BlogModel { m | blogPost = Blog.NotFound }, Cmd.none )
@@ -134,7 +143,7 @@ changeRouteTo maybeRoute model =
 
         Just (R.BlogPost slug) ->
             ( BlogModel { navKey = toNavKey model, blogPost = Blog.init }
-            , getBlogPost slug GotPost
+            , getBlogPost slug (GotPost slug)
             )
 
         Just (R.BlogIndex mtag) ->

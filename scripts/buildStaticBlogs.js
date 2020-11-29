@@ -17,8 +17,8 @@ const buildHtmlTemplate = content => {
   return fromLines([head, ...toLines(content), tail]);
 };
 
-function generateHtml({ body, title, permalink }) {
-  const flags = JSON.stringify({ blogPost: body, title });
+function generateHtml({ body, title, permalink, date }) {
+  const flags = JSON.stringify({ blogPost: body, title, date: parseInt(date) });
 
   const script = new Script(`
     ${elmJs}; let app = Elm.Main.init({flags: ${flags} })

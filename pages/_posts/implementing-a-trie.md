@@ -1,8 +1,11 @@
-+++
-title=Tries company
-date=1574362712465
-tags=["functional programming", "data structures", "trees"]
-+++
+---
+title: Tries company
+date: 2019-11-21
+tags: 
+  - functional programming
+  - data structures
+  - trees
+---
 # Implementing a Trie in Haskell
 
 Once upon a time (five months ago) I was doing a phone screening for a _tech job_. To my horror, I was asked to

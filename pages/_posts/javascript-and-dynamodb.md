@@ -1,8 +1,12 @@
-+++
-title=Local development with DynamoDB and JavaScript
-date=1604214136359
-tags=["DynamoDB", "javascript", "docker", "tech"]
-+++
+---
+title: Local development with DynamoDB and JavaScript
+date: 2020-11-01
+tags:
+  - DynamoDB
+  - javascript
+  - docker
+  - tech
+---
 # Local development with DynamoDB and JavaScript
 
 I was interested in learning how use DynamoDB, but didn't want to set

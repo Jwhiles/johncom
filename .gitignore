@@ -1,9 +1,6 @@
 .cache/
 dist
-elm-stuff
 node_modules/
-elm.js
 .DS_Store
+.saber
 
-# This is so I can generate this file
-src/BlogPosts.elm

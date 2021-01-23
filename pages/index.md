@@ -2,7 +2,7 @@
 layout: index
 injectAllPosts: true
 ---
-# Welcome
+# Hello
 
-fdsf
-to my home
+This is my website I hope you like it
+

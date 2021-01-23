@@ -1,0 +1,24 @@
+{
+  "name": "johncom",
+  "version": "1.0.0",
+  "description": "The codebase and content for my personal website.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "saber",
+    "build": "saber build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jwhiles/johncom.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jwhiles/johncom/issues"
+  },
+  "homepage": "https://github.com/Jwhiles/johncom#readme",
+  "dependencies": {
+    "saber": "^0.11.7",
+    "saber-plugin-query-posts": "^0.4.6"
+  }
+}

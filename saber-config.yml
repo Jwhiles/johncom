@@ -1,0 +1,4 @@
+siteConfig:
+    title: John's internet house
+plugins:
+  - resolve: saber-plugin-query-posts

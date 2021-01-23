@@ -1,8 +1,10 @@
-+++
-title=How to fix the web
-date=1575389267682
-tags=["internet", "comic sans"]
-+++
+---
+title: How to fix the web
+date: 2019-12-03
+tags: 
+  - internet
+  - comic sans
+---
 
 # How to fix the web
 

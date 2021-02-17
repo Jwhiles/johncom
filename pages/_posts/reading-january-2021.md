@@ -90,7 +90,7 @@ distinction is finite and infite games and the apollonian and cthonian. Both
 books also give the sense that the author is preoccupied by playing games with
 language.
 
-This book apparently made littleimpact when released, but
+This book apparently made little impact when released, but
 gained a larger following when it was regurgitated by Simon Sinek in
 2019 as 'The Infinite Game'. That book, which I have not read, claims that
 Business and Politics are examples of Infinite Games. Clearly they are not, if
@@ -114,7 +114,7 @@ Obviously the author is English.
 
 As an engineer with no Computer Science degree who has mostly worked on Front End projects, this book
 is teaching me lot of things that I assume my colleagues already know. In
-particular, I've learned  _alot_ of lingo.  Cool
+particular, I've learned  _a lot_ of lingo.  Cool
 
 ## The Longing for Less - Kyle Chayka
 

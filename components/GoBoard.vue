@@ -48,7 +48,7 @@
 </style>
 
 <script>
-module.exports = {
+export default {
   props: {
     board: Array,
   },

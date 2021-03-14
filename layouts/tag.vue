@@ -18,5 +18,5 @@
 export default {
   props: ['page']
 }
-</script><Paste>
+</script>
 

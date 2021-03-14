@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Jwhiles/johncom#readme",
   "dependencies": {
     "saber": "^0.11.7",
+    "saber-plugin-feed": "^0.4.3",
     "saber-plugin-query-posts": "^0.4.6"
   }
 }

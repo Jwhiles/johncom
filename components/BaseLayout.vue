@@ -17,7 +17,7 @@ main {
 </style>
 
 <script>
-import NavBar from "./Navbar.vue";
+import NavBar from "./NavBar.vue";
 
 export default {
   props: ["page"],

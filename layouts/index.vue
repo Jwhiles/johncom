@@ -3,7 +3,7 @@
     <div>
       <slot name="default" />
 
-      <ul>
+      <ul class="homepage_blog_list">
         <li v-for="post in page.posts" :key="post.permalink">
           <a :href="post.permalink">
             {{ post.title }}
@@ -22,9 +22,16 @@
 </template>
 
 <script>
-import BaseLayout from '../components/BaseLayout.vue'
+import BaseLayout from '@/components/BaseLayout.vue'
 export default {
   components: { BaseLayout },
   props: ["page"]
 };
 </script>
+
+<style>
+.homepage_blog_list {
+  list-style: none;
+  padding-left: 0;
+}
+</style>

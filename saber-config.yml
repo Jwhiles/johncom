@@ -1,15 +1,15 @@
 siteConfig:
     title: John's internet house
     author: John Whiles
-    url: https://johnwhiles.com # Required
+    url: https://johnwhiles.com
 permalinks:
   page: /:slug
 plugins:
   - resolve: saber-plugin-query-posts
     options:
       perPage: 10
-  # - resolve: saber-plugin-feed
-  #   options:
-  #     atomFeed: true
-  #     rss2Feed: true
-  #     jsonFeed: true
+  - resolve: saber-plugin-feed
+    options:
+      atomFeed: true
+      rss2Feed: true
+      jsonFeed: true

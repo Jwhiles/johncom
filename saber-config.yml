@@ -8,8 +8,8 @@ plugins:
   - resolve: saber-plugin-query-posts
     options:
       perPage: 10
-  - resolve: saber-plugin-feed
-    options:
-      atomFeed: true
-      rss2Feed: true
-      jsonFeed: true
+  # - resolve: saber-plugin-feed
+  #   options:
+  #     atomFeed: true
+  #     rss2Feed: true
+  #     jsonFeed: true

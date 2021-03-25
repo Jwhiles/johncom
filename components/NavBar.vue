@@ -2,9 +2,9 @@
   <nav>
     <h1>John's Internet House</h1>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/posts">Blog</a></li>
+      <li><a rel="nofollow" href="/">Home</a></li>
+      <li><a rel="nofollow" href="/about">About</a></li>
+      <li><a rel="nofollow" href="/posts">Blog</a></li>
     </ul>
   </nav>
 </template>

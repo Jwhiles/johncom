@@ -17,10 +17,10 @@ main {
 </style>
 
 <script>
-import NavBar from "./NavBar.vue";
+import NavBar from './NavBar.vue';
 
 export default {
-  props: ["page"],
+  props: ['page'],
   components: {
     NavBar,
   },
@@ -29,6 +29,14 @@ export default {
     const siteTitle = this.$siteConfig.title;
     return {
       title: pageTitle ? `${pageTitle} - ${siteTitle}` : siteTitle,
+      link: [
+        {
+          rel: 'alternative',
+          type: 'application/rss+xml',
+          title: 'RSS Feed',
+          href: this.$feed.permalink
+        },
+      ],
     };
   },
 };

@@ -31,10 +31,10 @@ export default {
       title: pageTitle ? `${pageTitle} - ${siteTitle}` : siteTitle,
       link: [
         {
-          rel: 'alternative',
+          rel: 'alternate',
           type: 'application/rss+xml',
-          title: 'RSS Feed',
-          href: this.$feed.permalink
+          title: 'john_whiles_rss_feed',
+          href: 'https://www.johnwhiles.com/atom.xml'
         },
       ],
     };

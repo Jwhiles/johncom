@@ -11,5 +11,5 @@ plugins:
   - resolve: saber-plugin-feed
     options:
       atomFeed: true
-      rss2Feed: true
+      rss2Feed: feed
       jsonFeed: true

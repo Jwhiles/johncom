@@ -8,24 +8,22 @@ tags:
 ---
 # Making a promise
 
-I've recently understood JavaScript promises, and thus realised
-that I did not understand promises during the past few years when I've been
-getting paid to work with them.
+I've recently understood JavaScript promises and thus realised
+I hadn't understood them the past few years that I have spent
+as a 'professional' JavaScript developer.
 
 I'm unsure whether I now understand promises as well as the average
 JavaScript developer, or if the average JavaScript developer doesn't
-understand promises. I suspect the latter is most likely.
+understand promises. Figuring that out is left as an exercise for the reader.
 
 # What did I 'understand'?
 
 What I've understood is that promises are immutable.
 I think I already 'knew' this - but did not understand the implications of it.
 
-So what does it mean for a promise to be 'immutable'. Well, simply
-it means it cannot be changed. One example of this in JavaScript
+So what does it mean for a promise to be 'immutable'.
+It means it cannot be changed. An example of this in JavaScript
 is the humble string. You can never change a string.
-
-For example
 
 ```javascript
 const myString = "hello";
@@ -36,9 +34,10 @@ console.log(myString); // 'hello'
 ```
 
 I can call methods on my string that will return a something new and different,
-but they don't change the string that I had to begin with. The same is not true for most other JavaScript entities.
+but they don't change the string that I had to begin with.
+The same is not true for most other JavaScript entities.
 
-Take an array, for example
+Take an array, for example.
 
 ```javascript
 const myArray = [1, 2, 3, 4];
@@ -48,14 +47,15 @@ myArray.push(5);
 console.log(myArray); // [1,2,3,4,5]
 ```
 
-I can push new elements to my array, and the original array changes.
+I can push new elements to my array, and the original array changes. It is
+'mutable'.
 
 ## Promises again
 
 So, as I said before. Promises _are immutable_. But if you use them
-in the way that I have used them, you might never have noticed this.
+in the way that I have generally used them you might never have noticed this.
 
-Typically when we use promises we do things like this
+Typically when we use promises we do things like this.
 
 ```javascript
 makeRequest()
@@ -72,7 +72,7 @@ try {
 }
 ```
 
-It's quite rare that we keep our original promise around and
+It's quite rare that we hold onto our original promise and
 interact with it multiple times, so whether `.then` and `.catch`
 mutate the original promise is largely irrelevant to us.
 

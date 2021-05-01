@@ -1,12 +1,11 @@
 ---
-title: Promise me this
+title: You can't change a promise
 date: 2021-04-30
-draft: true
 tags:
   - javascript
   - programming
 ---
-# Making a promise
+# You can't change a promise
 
 I've recently understood JavaScript promises and thus realised
 I hadn't understood them the past few years that I have spent
@@ -16,7 +15,7 @@ I'm unsure whether I now understand promises as well as the average
 JavaScript developer, or if the average JavaScript developer doesn't
 understand promises. Figuring that out is left as an exercise for the reader.
 
-# What did I 'understand'?
+## What did I 'understand'?
 
 What I've understood is that promises are immutable.
 I think I already 'knew' this - but did not understand the implications of it.
@@ -65,7 +64,7 @@ makeRequest()
 // or in a more up to date way
 
 try {
-  const data = makeRequest();
+  const data = await makeRequest();
   doSomethingWithData(data);
 } catch (err) {
   doSomethingWithError(err);
@@ -79,7 +78,7 @@ mutate the original promise is largely irrelevant to us.
 But the fact remains that `.catch` and `.then` do not mutate the original
 promise. Both return a new promise. So what are the implications of that?
 
-## Firstly a bug
+### Firstly a bug
 
 There's a bug you can very easily introduce! Take a look at this
 
@@ -107,7 +106,7 @@ const myCaughtPromise = myPromise.catch(err => doSomethingWithError(err));
 myCaughtPromise.then(data => doSomethingWithData(data));
 ```
 
-## Secondly, an opportunity
+### Secondly, an opportunity
 
 If calling `.then` makes a new promise, and does not change the original promise
 this means that we are not constrained in how many promises we can create.

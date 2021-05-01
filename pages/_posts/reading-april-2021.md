@@ -1,10 +1,12 @@
 ---
-title: What is Hamlet about, little else
+title: What I'm reading - March 2021 (Hamlet edition)
 date: 2021-05-1
 draft: true
 tags:
   - reading
 ---
+
+# What I'm reading - March 2021
 
 I've not read much this month. After reading my notes on the past
 few books I was feeling that I'd not taken enough time over them,
@@ -58,3 +60,24 @@ topic of Hamlet, and Shakespeare more generally. I now feel that I
 essentially 'get' the play and am excited to engage with adaptions
 of it in future. I'm particularly keen to see it performed once
 theatres are open again.
+
+Mythos - Stephen Fry
+Wow I've already more by Stephen Fry this year than in the rest of my life
+combined. This book is a simple introduction to Greek/Roman myths. It's gathering up a
+lot of the stories you might in sources like the Metamorphoses and The Theogony
+(check) and presenting them in a _very_ light weight format. I've previously
+read Ted Hughe's Metamorphoses, which presents some of the same stories,
+Arachne, Actaeon to give two examples (nairobe??) and it's striking how much more 
+powerful these stories are in Hughes' versions.
+
+compare
+
+ QUOTES HERE
+
+It's really nice that these stories are being made so accesible, you can tear
+through the stories quickly and be instantly start to undertand what every work of
+English literature was referring to. But the stories are not, for me, that
+pleasureable to read. Fry writes like an overgrown school boy - probably he
+writes for school boys. The rich plummy tone of Fry's narrative voice does these
+stories a disservice, makes all the emotions seem like school
+likes a book to read to get an overview of the area, rather than for direct enjoyment. 

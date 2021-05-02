@@ -1,36 +1,34 @@
 ---
-title: What I'm reading - March 2021 (Hamlet edition)
+title: What I'm reading - April 2021 (Hamlet edition)
 date: 2021-05-1
-draft: true
 tags:
   - reading
 ---
 
 # What I'm reading - March 2021
 
-I've not read much this month. After reading my notes on the past
-few books I was feeling that I'd not taken enough time over them,
-as evidenced by how little I had to say. Instead this month I wanted
+I've not read much this month. After reading a lot for the past
+few books I was feeling that I'd not taken enough time over each book.
+I didn't seem to have much to say in these notes. Instead this month I wanted
 to read a few books deeply and write more extensively about them.
 
 That hasn't happened. Instead I've been dedicating a lot of the
 time I would have spent reading to instead trying to learn German.
 I'd struggled to motivate myself to really trying to learn it before,
 I think because I lacked any real idea of how to improve. I'd taken
-German classes provided by an employer and found them to be useless,
-and had little idea what else to try.  [Peter](https://wielander.me/)
-suggested [refold](https://refold.la/) to me.  Reading through their
-guide to language learning instantly increased my motivation. I've
-got no real reason to believe in their program other than Peter's
-testimonial, but I think I'm choosing to trust it because I suspect
+German classes provided by an employer and found them to be demotivating.
+I had little idea what else to try. Anyway, thanks to [Peter](https://wielander.me/)
+suggesting [refold](https://refold.la/) to me, I've now got an approach to try,
+so I've spent a lot of time when I would have otherwise read instead watching
+mediocre German television. I've got no real reason to believe in their program other than Peter's
+testimonial, but I'm choosing to trust it because I suspect
 that consistently trying to learn the language over a long period
 is the only way to succeed, and maintaining such consistency is
-only possible if you have a method to believe in.
+only possible if you believe in your learning method.
 
-So, a lot of my reading time this month has instead been spent
-reviewing Anki cards and watching German television.
+## What I did read
 
-[What Happens in Hamlet - John Dover Wilson](https://www.goodreads.com/book/show/33188.What_Happens_in_Hamlet?ac=1&from_search=true&qid=wJ3mNSgixD&rank=1)
+## [What Happens in Hamlet - John Dover Wilson](https://www.goodreads.com/book/show/33188.What_Happens_in_Hamlet?ac=1&from_search=true&qid=wJ3mNSgixD&rank=1)
 This seems to be a classic of the maligned genre of literary
 criticism. The book simply tries to explain Hamlet. Why certain
 scenes, characters, and subplots that seem peculiar to a modern
@@ -61,23 +59,17 @@ essentially 'get' the play and am excited to engage with adaptions
 of it in future. I'm particularly keen to see it performed once
 theatres are open again.
 
-Mythos - Stephen Fry
-Wow I've already more by Stephen Fry this year than in the rest of my life
-combined. This book is a simple introduction to Greek/Roman myths. It's gathering up a
-lot of the stories you might in sources like the Metamorphoses and The Theogony
-(check) and presenting them in a _very_ light weight format. I've previously
-read Ted Hughe's Metamorphoses, which presents some of the same stories,
-Arachne, Actaeon to give two examples (nairobe??) and it's striking how much more 
-powerful these stories are in Hughes' versions.
+## Mythos - Stephen Fry
+This book is a simple introduction to Greek/Roman myths. It's gathering up a
+lot of the stories you might find in Ovid's Metamorphoses and the Theogony
+and presenting them in a quick accessible format. Being able to quickly read
+these stories in fairly plain language makes this a good entry point to learning
+about Greek myths.
 
-compare
+While it's nice for these stories to be so accessible, I think they lose
+something in this telling. Fry writes like an overgrown school boy - probably
+he wrote this book for school boys. The tone is sometimes bit too satisfied, a bit too
+plummy. And this tone, I think does a disservice to some of the stories.
 
- QUOTES HERE
-
-It's really nice that these stories are being made so accesible, you can tear
-through the stories quickly and be instantly start to undertand what every work of
-English literature was referring to. But the stories are not, for me, that
-pleasureable to read. Fry writes like an overgrown school boy - probably he
-writes for school boys. The rich plummy tone of Fry's narrative voice does these
-stories a disservice, makes all the emotions seem like school
-likes a book to read to get an overview of the area, rather than for direct enjoyment. 
+It's a lovely book anyway. Read it if you want to know about Greek myths. And
+then read [Ted Hughes' version](https://en.wikipedia.org/wiki/Tales_from_Ovid).

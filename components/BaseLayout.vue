@@ -34,7 +34,14 @@ export default {
           rel: 'alternate',
           type: 'application/rss+xml',
           title: 'john_whiles_rss_feed',
-          href: 'https://www.johnwhiles.com/atom.xml'
+          href: 'https://www.johnwhiles.com/atom.xml',
+        },
+      ],
+      script: [
+        {
+          defer: 'true',
+          'data-domain': 'johnwhiles.com',
+          src: 'https://plausible.io/js/plausible.js',
         },
       ],
     };

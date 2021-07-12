@@ -7,6 +7,10 @@
 
 <style>
 main {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 2rem;
+  padding-left: 2rem;
   max-width: 800px;
   font-size: 18px;
   font-family: sans-serif;

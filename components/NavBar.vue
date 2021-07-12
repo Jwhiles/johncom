@@ -1,6 +1,5 @@
 <template>
   <nav>
-    <h1>John's Internet House</h1>
     <ul>
       <li><a rel="nofollow" href="/">Home</a></li>
       <li><a rel="nofollow" href="/about">About</a></li>
@@ -20,8 +19,9 @@ ul {
   display: flex;
   flex-grow: 1;
   list-style: none;
+  padding-left: 0;
 }
 li {
-  margin: 3px;
+  margin-right: 20px;
 }
 </style>

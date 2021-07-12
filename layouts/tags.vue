@@ -30,7 +30,7 @@ export default {
   computed: {
     allTags() {
       const tags = this.page.posts.reduce((all, post) => {
-        post.tagsInfo?.forEach(({ name, permalink }) => {
+        post.tagsInfo && post.tagsInfo.forEach(({ name, permalink }) => {
           if (all[permalink]) {
             all[permalink].count += 1;
           } else {

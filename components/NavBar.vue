@@ -19,6 +19,7 @@ ul {
   display: flex;
   flex-grow: 1;
   list-style: none;
+  /* justify-content: space-between; */
   padding-left: 0;
 }
 li {

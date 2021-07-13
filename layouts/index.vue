@@ -7,13 +7,17 @@
         <h3>Latest blog posts</h3>
         <ul class="homepage_blog_list">
           <li v-for="post in latestPosts" :key="post.permalink">
-            <a :href="post.permalink">
-              {{ post.title }}
+            <a class="blog_link" :href="post.permalink">
+              <h4>
+                {{ post.title }}
+              </h4>
+              <div>
+                <div v-html="post.attributes.excerpt"></div>
+              </div>
             </a>
-            <div class="mt-0 mb-4" v-html="post.attributes.excerpt"></div>
           </li>
         </ul>
-        <a href="/posts">see more</a>
+        <a href="/posts">Older posts</a>
       </section>
     </div>
   </BaseLayout>
@@ -34,6 +38,9 @@ export default {
 </script>
 
 <style>
+.blog_link {
+  text-decoration: none;
+}
 .blog_section {
   border-top: solid antiquewhite 1px;
 }

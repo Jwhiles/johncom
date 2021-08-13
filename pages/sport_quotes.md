@@ -6,7 +6,13 @@ permalink: /sport_quotes
 ---
 
 # The greatest sport commentary
-## The Tour de France 2021
+## Tokyo 2020 BMX (2021)
+> He’s not just hungry. He’s ravishing
+>
+>
+> -- <cite>Unknown presenter for the 'cool' sports</cite>
+
+## The Tour de France (2021)
 
 > This man plays with a Rubiks cube and can solve it in seven seconds. There was
 > nano seconds involved there.

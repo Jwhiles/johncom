@@ -18,6 +18,10 @@ export default {
   font-size: 18px;
   font-family: sans-serif
 }
+img {
+width: 100%;
+
+}
 </style>
 
 

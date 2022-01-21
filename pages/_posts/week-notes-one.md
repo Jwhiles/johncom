@@ -60,5 +60,3 @@ Every year I try and release an album of Christmas Music. Every year I start fai
 
 <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=632360270/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://johnwhiles.bandcamp.com/album/future-christmas-2020">Future Christmas 2020 by John Whiles</a></iframe>
 
-### Summary
-I will try and publish a write up like this every weekend. Wish me luck

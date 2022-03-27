@@ -1,5 +1,5 @@
 ---
-title: Week Notes one
+title: Some stuff I did this week
 date: 2021-12-05
 tags:
   - The Beatles

@@ -1,23 +1,25 @@
 <template>
   <BaseLayout :page="page">
-    <div>
+    <div class="home">
+      <div class="home_left">
       <slot name="default" />
+      </div>
 
-      <section class="blog_section">
-        <h3>Latest blog posts</h3>
+      <section class="home_right">
+        <nav>
+        <strong>Latest</strong>
+        <a href="/posts">All</a>
+        <a href="/atom.xml">RSS feed</a>
+        </nav>
         <ul class="homepage_blog_list">
           <li v-for="post in latestPosts" :key="post.permalink">
             <a class="blog_link" :href="post.permalink">
               <h4>
                 {{ post.title }}
               </h4>
-              <div>
-                <div v-html="post.attributes.excerpt"></div>
-              </div>
             </a>
           </li>
         </ul>
-        <a href="/posts">Older posts</a>
       </section>
     </div>
   </BaseLayout>
@@ -30,7 +32,7 @@ export default {
   props: ["page"],
   computed: {
     latestPosts() {
-      const latestPosts = this.page.posts.slice(0, 3);
+      const latestPosts = this.page.posts.slice(0, 10);
       return latestPosts;
     },
   },
@@ -38,11 +40,22 @@ export default {
 </script>
 
 <style>
+.home {
+  display: flex;
+}
+
+.home_left {
+  margin-right: 20px;
+  margin-top: 20px;
+  width: 65%
+}
+
 .blog_link {
   text-decoration: none;
 }
-.blog_section {
-  border-top: solid antiquewhite 1px;
+.home_right {
+  width: 35%;
+  margin-top: 20px;
 }
 .homepage_blog_list {
   list-style: none;

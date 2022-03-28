@@ -41,4 +41,4 @@ Obviously I don't practise any of what I talk about here, and diligently ensure 
 
 [Ex-pro magic the gathering player on slack, no not that Slack](https://thezvi.wordpress.com/2017/09/30/slack/)
 
-[Julia Evans talks about learning at work here.](https://jvns.ca/blog/2017/08/06/learning-at-work/#:~:text=Take%20the%20time%20at%20work%20to%20learn). I remembered reading something about spending time learning while working remotely because 'no one knows what I'm doing anyway', but now that I look it up, this article says a lot more, and I think covers everything I've said here but better. So I guess there was no read to write this oh well. good bye
+[Julia Evans talks about learning at work here.](https://jvns.ca/blog/2017/08/06/learning-at-work/#:~:text=Take%20the%20time%20at%20work%20to%20learn). I remembered reading something about spending time learning while working remotely because 'no one knows what I'm doing anyway', but now that I look it up, this article says a lot more, and I think covers everything I've said here but better. So I guess there was no reason to write this oh well. good bye

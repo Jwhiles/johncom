@@ -9,7 +9,7 @@ tags:
 ---
 # How to attain power and influence
 
-Hi. A friend of mine asked me to write about networking. I'm not sure, but I think it was joke.
+Hi. [A friend of mine](https://thecomputersciencebook.com/) asked me to write about networking. I'm not sure, but I think it was joke.
 
 So what did they ask exactly?
 

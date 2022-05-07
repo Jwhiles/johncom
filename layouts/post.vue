@@ -19,8 +19,8 @@ export default {
   font-family: sans-serif
 }
 img {
-width: 100%;
-
+  max-width: 100%;
+  max-height: 500px;
 }
 </style>
 

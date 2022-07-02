@@ -9,6 +9,7 @@ build:
 	npm run build
 	mv public dist
 
-netlify-build:
+ci:
+	npm ci
 	make build
 

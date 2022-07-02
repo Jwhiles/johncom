@@ -1,0 +1,79 @@
+<!DOCTYPE html><html data-saber-ssr><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta data-saber-head="ssr" name="generator" content="Saber v0.11.7"> <title>You can&#x27;t change a promise - John&#x27;s internet house</title> <link data-saber-head="ssr" rel="alternate" type="application/rss+xml" title="john_whiles_rss_feed" href="https://www.johnwhiles.com/atom.xml"><style data-vue-ssr-id="34039455:0 ffa0680c:0 dfb44056:0">.body{max-width:800px;font-size:18px;font-family:sans-serif}img{max-width:100%;max-height:500px}
+main{margin-right:auto;margin-left:auto;padding-right:2rem;padding-left:2rem;max-width:800px;font-size:18px;font-family:sans-serif}.halfwidth{max-width:400px}.signup{border-top:3px solid #f0f0f0;margin-top:1rem;padding-top:1rem}
+nav[data-v-40eedac4]{height:30px;align-items:center;border-bottom:3px solid #f0f0f0}nav[data-v-40eedac4],ul[data-v-40eedac4]{display:flex}ul[data-v-40eedac4]{flex-grow:1;list-style:none;padding-left:0}li[data-v-40eedac4]{margin-right:20px}</style> <script data-saber-head="ssr" defer data-domain="johnwhiles.com" src="https://plausible.io/js/plausible.js"></script> </head><body><div id="_saber" data-server-rendered="true"><main role="main"><nav data-v-40eedac4><ul data-v-40eedac4><li data-v-40eedac4><a href="/" rel="nofollow" class="router-link-active" data-v-40eedac4>Home</a></li> <li data-v-40eedac4><a href="/about" rel="nofollow" data-v-40eedac4>About</a></li> <li data-v-40eedac4><a href="/posts" rel="nofollow" class="router-link-active" data-v-40eedac4>Blog</a></li></ul></nav> <h1 id="you-cant-change-a-promise">You can't change a promise</h1> <p>I've recently understood JavaScript promises and thus realised
+I hadn't understood them the past few years that I have spent
+as a 'professional' JavaScript developer.</p> <p>I'm unsure whether I now understand promises as well as the average
+JavaScript developer, or if the average JavaScript developer doesn't
+understand promises. Figuring that out is left as an exercise for the reader.</p> <h2 id="what-did-i-understand">What did I 'understand'?</h2> <p>What I've understood is that promises are immutable.
+I think I already 'knew' this - but did not understand the implications of it.</p> <p>So what does it mean for a promise to be 'immutable'.
+It means it cannot be changed. An example of this in JavaScript
+is the humble string. You can never change a string.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const myString = &quot;hello&quot;;
+
+console.log(myString.split(&quot;e&quot;)); // ['h', 'llo']
+
+console.log(myString); // 'hello'</code></pre></div><p>I can call methods on my string that will return a something new and different,
+but they don't change the string that I had to begin with.
+The same is not true for most other JavaScript entities.</p> <p>Take an array, for example.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const myArray = [1, 2, 3, 4];
+
+myArray.push(5);
+
+console.log(myArray); // [1,2,3,4,5]</code></pre></div><p>I can push new elements to my array, and the original array changes. It is
+'mutable'.</p> <h2 id="promises-again">Promises again</h2> <p>So, as I said before. Promises <em>are immutable</em>. But if you use them
+in the way that I have generally used them you might never have noticed this.</p> <p>Typically when we use promises we do things like this.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">makeRequest()
+  .then(data =&gt; doSomethingWithData(data))
+  .catch(err =&gt; doSomethingWithError(err));
+
+// or in a more up to date way
+
+try {
+  const data = await makeRequest();
+  doSomethingWithData(data);
+} catch (err) {
+  doSomethingWithError(err);
+}</code></pre></div><p>It's quite rare that we hold onto our original promise and
+interact with it multiple times, so whether <code>.then</code> and <code>.catch</code>
+mutate the original promise is largely irrelevant to us.</p> <p>But the fact remains that <code>.catch</code> and <code>.then</code> do not mutate the original
+promise. Both return a new promise. So what are the implications of that?</p> <h3 id="firstly-a-bug">Firstly a bug</h3> <p>There's a bug you can very easily introduce! Take a look at this</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const myPromise = makeRequest()
+
+myPromise.catch(err =&gt; doSomethingWithError(err))
+
+myPromise.then(data =&gt; doSomethingWithData(data))</code></pre></div><p>Do you see the issue?</p> <p>We are trying to catch errors that might be thrown when making a request for
+data, but calling <code>.catch</code> creates a new promise. Because we then call <code>.then</code>
+on the original promise, our attempts to catch the error is in vain.</p> <p>What we really need to write was this</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const myPromise = makeRequest();
+
+const myCaughtPromise = myPromise.catch(err =&gt; doSomethingWithError(err));
+
+myCaughtPromise.then(data =&gt; doSomethingWithData(data));</code></pre></div><h3 id="secondly-an-opportunity">Secondly, an opportunity</h3> <p>If calling <code>.then</code> makes a new promise, and does not change the original promise
+this means that we are not constrained in how many promises we can create.
+From one original promise we can make as many promises as we want. Hundreds.
+Thousands.</p> <p>But why?</p> <p>Perhaps we want to wait for our promise to resolve in different places, for different
+reasons. And perhaps in these places we want to transform our data in different
+ways. We may find ourselves in the awkward position of trying to control various
+combinations of transformed and non-transformed data through our code base.</p> <p>We would need to make sure that each .then is returning the data in a
+format that the next .then in the chain can handle. And if we want to
+get the data transformed in two different formats we might end up
+doing something like this.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">makeRequest()
+  .then(data =&gt; {
+    const transformedData = transform(data)
+    return { data, transformedData
+  }})
+  .then(({ data, transformedData }) =&gt; {
+    const differentlyTransformedData = transformDataDifferently(data)
+    return { data, transformedData, differentlyTransformedData }
+  })
+  .then(/* etc */)</code></pre></div><p>Hideous.</p> <p>Instead, because promises are immutable, we can just chain <code>.then</code>
+on the original promise several times.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const request = makeRequest()
+
+request.then(data =&gt; transform(data))
+
+request.then(data =&gt; transformDataDifferently(data))
+
+// etc</code></pre></div><p>Slightly less hideous!</p> <p>So In summary, despite having 'knowing' that promises were immutable, I
+sort of believed and acted like they were mutable. I thought that calling
+<code>.then</code> on a promise was changing that promise and then returning it.
+This is not actually the case.
+You can await or .then a promise as many times as you like without
+making any change to the original promise.</p> <p>This might be quite obvious to other people who've worked with
+promises, but is something that I had somehow missed entirely. When
+I realised that promises work like this it felt like a minor
+revelation.</p> <p>Ok.</p> <div class="signup"><p>Want to get updates and new posts via email?</p> <form action="https://buttondown.email/api/emails/embed-subscribe/johnwhiles" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/johnwhiles', 'popupwindow')" class="embeddable-buttondown-form"><label for="bd-email">Enter your email</label> <input type="email" name="email" id="bd-email"> <input type="submit" value="Subscribe"></form></div></main></div><script src="/_saber/js/client.ae5660e4.js" defer></script><script src="/_saber/js/page--_posts-promise-me-md.e0c7c623.js" defer></script></body></html>

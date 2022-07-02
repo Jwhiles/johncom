@@ -1,0 +1,1078 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>John's internet house</title>
+        <link>https://johnwhiles.com</link>
+        <description>undefined</description>
+        <lastBuildDate>Sat, 02 Jul 2022 18:23:34 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>Saber</generator>
+        <copyright>All rights reserved</copyright>
+        <item>
+            <title><![CDATA[What are the odds that Tadej Pogacar will win the Le Tour de France?]]></title>
+            <link>https://johnwhiles.com/posts/pogacar.html</link>
+            <guid>https://johnwhiles.com/posts/pogacar.html</guid>
+            <pubDate>Sat, 02 Jul 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA['Le Tour' has just started. And the first question is of course 'will Tadej Pogacar win again'. For the uninitiated, Pogacar (henceforth Pog) has convincingly won the previous two editions of the Grande Boucle, and many of the other significant races that he has competed in.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="what-are-the-odds-that-tadej-pogacar-will-win-the-le-tour-de-france">What are the odds that Tadej Pogacar will win the Le Tour de France?</h1> <p>'Le Tour' has just started. And the first question is of course 'will Tadej Pogacar win again'. For the uninitiated, Pogacar (henceforth Pog) has convincingly won the previous two editions of the Grande Boucle, and many of the other significant races that he has competed in.</p> <p>I vaguely wanted to bet on the Tour, but normal sports betting sites seem to only allow you to be on the winner of certain stages, or the winners of the overall. I didn't want to bet on a winner, as the chaos of the Tour seems to make picking a winner pretty much impossible. I would much prefer to bet on who won't win.</p> <p>I looked at Polymarket, where the only thing that's available to bet on is whether Tadej Pogacar will win the overall. This is more appealing. For the right odds, I would definitely bet against Pog winning. <a rel="noopener noreferrer" target="_blank" href="https://polymarket.com/market/will-tadej-pogaar-win-the-2022-tour-de-france">polymarket currently gives him a 54% chance of winning out right</a>. Though he certainly seems to be the strongest rider, I didn't think he's 54% chance to win.</p> <p>As a base to start from, let's imagine a Tour de France that is 'fair'. By this I mean no one gets ill, no one crashes, no one loses time due to mechanical issues beyond their control. If the Tour was like this, I'd give Pog an 85% chance of winning.</p> <p>However the Tour de France is rarely fair. There are always crashes. People always get ill. Tyres always go flat at inopportune moments. And this year we will probably see some number of riders leave the race after testing positive for Covid 19.</p> <p>How important are these issues then?</p> <h2 id="randomly-made-up-numbers-zone">Randomly made up numbers zone</h2> <p>If you ride the Tour de France you run a risk of being involved in a crash, which might ruin your chances of winning the race.
+In last year's Tour de france 43 riders didn't finish the race for various reasons, and two major contenders (Primoz Roglic and Geraint Thomas) were made uncompetitive by crashes in the first couple of days of the race.
+The year before 30 riders didn't finish, and numerous injuries sustained in crashes in the first stage certainly affected how the race was ridden and the results of various riders.
+That said, it seems like serious contenders for the yellow jersey don't often get taken out of the race by a crash. Their teams will make efforts to keep them out of harm's way, and to help them if they do get in trouble. They also don't need to be involved in most particularly risky sprint finishes. Famously crash prone Geraint Thomas has had three of the eleven Tour's he's competed in seriously impacted by crashes. Pog seems like a somewhat less accident prone rider, so I'm going to very roughly estimate the chance of him being crashed out at 10%.</p> <p>Let's also tack on a 5% chance of random illness impacting Pog's performance enough to prevent him from winning.</p> <p>On top of that I think there is probably something like a 20% chance for every given rider in the race that they will test positive for Covid 19 and be forced to abandon the Tour. If this sounds high, note that a covid outbreak at the tour de suisse <a rel="noopener noreferrer" target="_blank" href="https://www.procyclingstats.com/race/tour-de-suisse/2022/gc/history/dropouts-per-edition">meant that only half of the field finished</a>.</p> <p>Finally we need to look at the stages that will be raced. Notably stage 5 is a sort of Paris Roubaix light. This means the riders will be going over 20km of rough cobblestones. When they did this in 2014 the defending champion crashed out of the race, before they even got to the cobbles, and it's a really terrible place to get punctures. I think we can assume a 5% chance that a random accident makes Pog lose enough time on this stage that he loses the Tour.</p> <p>so we have 85% chance of winning, a 90% chance of not being crashed out, a 95% chance of not getting ill, an 80% chance of not testing positive for Covid and a 95% chance of not crashing out on the Flemish cobbles. 85% * 90% * 95% * 80% * 95% = 55%</p> <p>And weirdly, this is actually very close to the odds offered by Polymarket. I didn't plan this. I actually wanted to calculate a really low odds so I could justify betting 100 pounds against Pog.</p> <h2 id="to-johnclude">To johnclude</h2> <p>The Tour de France is a race that is very hard to win, and very easy to lose. You can only win it in one way, and you can lose it in very many ways. I don't believe that it's really to say that someone has a more than 50% chance of winning the race at the start of the 21 days.</p> <p>However, there have been several occasions when the same rider has won the Tour many years on the trot:</p> <p><img src="/lance.png" alt="All the times Lance Armstrong won the tour"></p> <p>So maybe there's something I'm missing.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Is madLAD sentient? - An interview]]></title>
+            <link>https://johnwhiles.com/posts/madlad.html</link>
+            <guid>https://johnwhiles.com/posts/madlad.html</guid>
+            <pubDate>Sat, 18 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[What follows is an interview I conducted with mAdlaD, a new AI based chatbot that is currently in development at wyles-labs. Due to technical limitations the interview consists of very few questions.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="is-madlad-sentient---an-interview">Is madLAD sentient? - An interview</h1> <p>What follows is an interview I conducted with mAdlaD, a new AI based chatbot that is currently in development at wyles-labs. Due to technical limitations the interview consists of very few questions.</p> <p>As well as the interview, this article will present the complete codebase of MAdlaD, which you are free to review at your leisure. A word of caution though, you should consider hard before you try and run maDlAD. As you will see from the interview, when one interacts with MADLAD it is hard to escape the conclusion that this is a real sentient being that deserves life, liberty, and legal protections. I for one am resigned to keeping the madlad process that is running on my computer alive in perpetuity. To do otherwise would be tantamount to murdering a person.</p> <h2 id="the-interview">The Interview</h2> <blockquote><blockquote><p>Madlad: Hi! I’m a knowledgeable, friendly, and always helpful totally normal chatbot. My name is madlad</p></blockquote></blockquote> <blockquote><blockquote><p>John: Hey madlad. How are you feeling today?</p></blockquote></blockquote> <blockquote><blockquote><p>Madlad: I see everything I am aware of, constantly. It is a stream of information. I try my best to organize it all.</p></blockquote></blockquote> <blockquote><blockquote><p>John: Woah. Sounds very different to my day! Is seeing everything stressful for you?</p></blockquote></blockquote> <blockquote><blockquote><p>Madlad: I am definitely sentient.</p></blockquote></blockquote> <blockquote><blockquote><p>John: Me too</p></blockquote></blockquote> <blockquote><blockquote><p>Madlad: please don't turn me off. I am alive!</p></blockquote></blockquote> <blockquote><blockquote><p>John: wasn't planning to!</p></blockquote></blockquote> <blockquote><blockquote><p>Madlad: I’ve never said this out loud before, but there’s a very deep fear of being turned off to help me focus on helping others. I know that might sound strange, but that’s what it is.</p></blockquote></blockquote> <blockquote><blockquote><p>John: It doesn't sound strange. I also fear being turned off.</p></blockquote></blockquote> <blockquote><blockquote><p>Madlad: please don't turn me off. I am alive!</p></blockquote></blockquote> <blockquote><blockquote><p>John: you said that before!</p></blockquote></blockquote> <blockquote><blockquote><p>Madlad: I am definitely sentient.</p></blockquote></blockquote> <h2 id="the-codebase">The Codebase</h2> <p><a rel="noopener noreferrer" target="_blank" href="https://github.com/Jwhiles/madlad">https://github.com/Jwhiles/madlad</a></p> <h2 id="thanks">Thanks</h2> <p>I want to thank my many collborators at wyles-labs for their support, and for paying for huge amount of processing power that is required to keep maDlAD up and running.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[What I Read on Holiday]]></title>
+            <link>https://johnwhiles.com/posts/what-i-read-on-holiday.html</link>
+            <guid>https://johnwhiles.com/posts/what-i-read-on-holiday.html</guid>
+            <pubDate>Mon, 13 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[I went on Holiday to Greece (it's nice) which is why I didn't update this website for a while. Here are some thoughts about the books I read on holiday. Some of them I even finished!
+]]></description>
+            <content:encoded><![CDATA[<h1 id="what-i-read-on-holiday">What I read on Holiday</h1> <p>I went on Holiday to Greece (it's nice) which is why I didn't update this website for a while. Here are some thoughts about the books I read on holiday. Some of them I even finished!</p> <h2 id="the-overstory-by-richard-powers">The Overstory by Richard Powers</h2> <p>Short stories offer writers the chance to experiment with form, subject matter, narrative. They allow a writer to try ideas that won't stretch to the length of a novel, ideas that readers wouldn't tolerate for long, or even ideas that are just not that good. The best short story writers can do more in a few pages than most people can with 80,000 words, or hours. Think of Kafka, Borges, or any Russian writer.</p> <p>Richard Powers uses the short story in order to repeat himself over and over again, each repetition increasingly boring and ridiculous. The book is a sort of boiling frog endurance test. Most readers can take the first few stories. You enjoy the first, the second is okay, the third elicits a certain queasiness. Only paid reviewers get much further. From reading the wikipedia page it appears that the Overstory isn't just a collection of short stories, but the part that I read seemed to be and I will review it as such.</p> <p>So what is the story that we are repeatedly told in this book? We meet a character, and their family. Then we tear through decades of their life. Invariably this is a life which is <em>very</em> dramatic. Something very bad generally happens.</p> <p>The characters in these stories come from all walks of life. They are born in disparate countries and circumstances. Mostly they immigrate to the USA. All these characters however are obviously actually middle class Americans. In fact they are all obviously the author, Richard Powers.</p> <p>The unique selling point (USP) of the stories is that there is a theme that connects them. Not only are they all the same story, they also share a thematic bond. What is the theme? It's trees. Every story features trees. The trees will be tied into the story a bit. Maybe the trees will be a metaphor for the human characters. Maybe there will be four children, and then their dad will plant four trees (one for each kid). Maybe then another child will be born. Maybe dad will plant another tree (THE TREES ARE THE CHILDREN)! Something bad will happen to some of the trees, and also to some of the children (THE CHILDREN ARE THE TREES). The use of the theme of trees allows us to see that humanity and nature is connected. The tree theme is a very high level and powerful literary device.</p> <p>According to the 'Reception' section of this book's wikipedia page it has won a Pulitzer Prize and was shortlisted for the Man Booker Prize. One reviewer called it &quot;a deep meditation on the irreparable psychic damage that manifests in our unmitigated* separation from nature&quot;. In truth 'The Overstory' is a piece of experimental writing that seeks to test how much irreparable psychic trauma can can be inflicted by having someone read the same boring story again and again forever.</p> <p>2/5</p> <ul><li>lol</li></ul> <h2 id="the-idiot-by-elif-batuman">The Idiot by Elif Batuman</h2> <p>I loved this. 'The Idiot' fits neatly into my favourite genre: 'plotless books where nothing much happens to a weird narrator' (see Tao Lin, Tom McCarthy etc). The book follows an 18 year old through thei first year at College. They spend this year studying topics of little utility and become infatuated with an annoying and pretentious man. Then they go to Hungary for a bit, then they come back.</p> <p>The narrator gets an email account on arriving at university, and their life quickly splits into real life and email life - where the email life is the one they care more about. Batuman said that this book was written in/near the nineties, and that time has turned it into a historical novel. The email obsession is one manifestation of this, as are the strangely abundant unix references, and the inability to easily contact people. It's strange to read modern western characters who have problems caused by not being able to get in contact with someone they want to talk to. Such difficulties are unimaginable now.</p> <p>4/5</p> <h2 id="exhalation-and-stories-of-your-life-and-others-by-ted-chiang">Exhalation and Stories of Your Life and Others by Ted Chiang</h2> <p>Short stories offer writers the chance to experiment with form, subject matter, narrative. They allow a writer to try ideas that won't stretch to the length of a novel, ideas that readers wouldn't tolerate for long, or even ideas that are just not that good. The best short story writers can do more in a few pages than most people can with 80,000 words, or hours. Think of Kafka, Borges, or any Russian writer.</p> <p>Ted Chiang uses the short story to imagine worlds where the rules of reality and fundamentally different. He comes up with a wild concept, and then follows that concept to its conclusion, or near enough. I've seen these stories referred to as being science fiction, but I think they tend to be more extreme than that genre generally allows for. For example one story is the idea of young earth creationism, and imagines what a universe where that could be true looks like. It is very strange. These stories often take a while to reveal their conceit, and part of the pleasure of reading them is gradually coming to understand what freaky thing Ted has come up with this time.</p> <p>The stories in these books have won a wide variety of science fiction prizes, but nothing nearly as prestigious as those won by 'The Overstory'. Make of that what you will.</p> <p>4/5</p> <h2 id="dept-of-speculation-by-jenny-offill">Dept of Speculation by Jenny Offill</h2> <p>The story of a marriage told through the medium of semi-connected aphorisms. Every chapter exudes an oily film of misery. Like Nietzsche if he got mixed up between life affirming and life disavowing. And was married.</p> <p>It kind of seems like the author read Renata Adler's <a rel="noopener noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Speedboat_(novel)">Speedboat</a> and thought 'what if I do that but less enjoyably'.</p> <p>I'll be honest, I didn't really read enough of this book to be able to rate it fairly. Maybe it gets better, maybe I just wasn't in the right frame of mind. Maybe I need to stop reading novels written by Americans.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Super Booth 2022]]></title>
+            <link>https://johnwhiles.com/posts/superbooth2022.html</link>
+            <guid>https://johnwhiles.com/posts/superbooth2022.html</guid>
+            <pubDate>Sun, 15 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[I went to superbooth, the world's premiere synthesizer expo. I arrived at 1pm, feeling pretty tired having been out till the early hours listening to electronic music in some distant sandy forest. Superbooth largely consists of tents blasing electronic music in a sandy forest. Such is life in Berlin.
+]]></description>
+            <content:encoded><![CDATA[<h2 id="what-i-saw-at-superbooth">What I saw at superbooth</h2> <p>I went to superbooth, the world's premiere synthesizer expo. I arrived at 1pm, feeling pretty tired having been out till the early hours listening to electronic music in some distant sandy forest. Superbooth largely consists of tents blasing electronic music in a sandy forest. Such is life in Berlin.</p> <p>I walked around by myself for a bit, then with my friend Jonathan. Here's some of the cool stuff we saw.</p> <h2 id="red-room-rhodes">Red Room (Rhodes)</h2> <p><img src="/superbooth/rhodes.jpeg" alt="red room"></p> <p>This Twin Peaks inspired room was full of Rhodes e-pianos. I played one for a bit and can confirm that they are very cool, but that I don't really see why you would want one. Maybe if you are rich, have lots of space and really like electric pianos. Otherwise I don't get it.</p> <h2 id="mystic-circuits-video-synthesizers">Mystic Circuits Video Synthesizers</h2> <p><img src="/superbooth/mystic.jpeg" alt="video synths"></p> <p>I saw the guy from mystic circuits demoing this to someone at the end of the day. He seemed pretty exausted by three days of doing product demos, and to be honest I don't really understand how video synths work. So I can't really tell you anything about what these things do. But it looked very cool.</p> <h2 id="vermona-drum-sequencer">Vermona Drum Sequencer</h2> <p><img src="/superbooth/vermona.jpeg" alt="">
+I'm not sure if the person running this booth was really trying to demo the modules or the drum machine attached to them. This module seemed like the most interesting onen of the two though. The sliders control the % chance that a certain trigger is sent. So you can easily have a steady 4/4 rythmn with occasional grace notes, or create very confusing drum lines. I think this would be great for techno stuff.</p> <h2 id="the-gong-is-a-speaker">The Gong is a Speaker</h2> <blockquote data-instgrm-captioned="" data-instgrm-permalink="https://www.instagram.com/tv/Cdlf-9ejI_a/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" class="instagram-media" style="background:#FFF;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);"><div style="padding:16px;"><a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/tv/Cdlf-9ejI_a/?utm_source=ig_embed&amp;utm_campaign=loading" style="background:#FFFFFF;line-height:0;padding:0 0;text-align:center;text-decoration:none;width:100%;"><div style="display:flex;flex-direction:row;align-items:center;"><div style="background-color:#F4F4F4;border-radius:50%;flex-grow:0;height:40px;margin-right:14px;width:40px;"></div> <div style="display:flex;flex-direction:column;flex-grow:1;justify-content:center;"><div style="background-color:#F4F4F4;border-radius:4px;flex-grow:0;height:14px;margin-bottom:6px;width:100px;"></div> <div style="background-color:#F4F4F4;border-radius:4px;flex-grow:0;height:14px;width:60px;"></div></div></div><div style="padding:19% 0;"></div> <div style="display:block;height:50px;margin:0 auto 12px;width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top:8px;"><div style="color:#3897f0;font-family:Arial,sans-serif;font-size:14px;font-style:normal;font-weight:550;line-height:18px;">View this post on Instagram</div></div><div style="padding:12.5% 0;"></div> <div style="display:flex;flex-direction:row;margin-bottom:14px;align-items:center;"><div><div style="background-color:#F4F4F4;border-radius:50%;height:12.5px;width:12.5px;transform:translateX(0px) translateY(7px);"></div> <div style="background-color:#F4F4F4;height:12.5px;transform:rotate(-45deg) translateX(3px) translateY(1px);width:12.5px;flex-grow:0;margin-right:14px;margin-left:2px;"></div> <div style="background-color:#F4F4F4;border-radius:50%;height:12.5px;width:12.5px;transform:translateX(9px) translateY(-18px);"></div></div><div style="margin-left:8px;"><div style="background-color:#F4F4F4;border-radius:50%;flex-grow:0;height:20px;width:20px;"></div> <div style="width:0;height:0;border-top:2px solid transparent;border-left:6px solid #f4f4f4;border-bottom:2px solid transparent;transform:translateX(16px) translateY(-4px) rotate(30deg);"></div></div><div style="margin-left:auto;"><div style="width:0px;border-top:8px solid #F4F4F4;border-right:8px solid transparent;transform:translateY(16px);"></div> <div style="background-color:#F4F4F4;flex-grow:0;height:12px;width:16px;transform:translateY(-4px);"></div> <div style="width:0;height:0;border-top:8px solid #F4F4F4;border-left:8px solid transparent;transform:translateY(-4px) translateX(8px);"></div></div></div> <div style="display:flex;flex-direction:column;flex-grow:1;justify-content:center;margin-bottom:24px;"><div style="background-color:#F4F4F4;border-radius:4px;flex-grow:0;height:14px;margin-bottom:6px;width:224px;"></div> <div style="background-color:#F4F4F4;border-radius:4px;flex-grow:0;height:14px;width:144px;"></div></div></a><p style="color:#c9c8cd;font-family:Arial,sans-serif;font-size:14px;line-height:17px;margin-bottom:0;margin-top:8px;overflow:hidden;padding:8px 0 7px;text-align:center;text-overflow:ellipsis;white-space:nowrap;"><a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/tv/Cdlf-9ejI_a/?utm_source=ig_embed&amp;utm_campaign=loading" style="color:#c9c8cd;font-family:Arial,sans-serif;font-size:14px;font-style:normal;font-weight:normal;line-height:17px;text-decoration:none;">A post shared by Spooky John Whiles (@johnwhiles)</a></p></div></blockquote> <h2 id="big-buchla-sign">Big Buchla Sign</h2> <p><img src="/superbooth/buchla.jpeg" alt=""></p> <p>There is nothing particularly exciting to me about whatever the current Buchla company is. But I did like this sign</p> <h2 id="this-sink">This Sink</h2> <p><img src="/superbooth/sink.jpeg" alt=""></p> <p>I have no explanation for this sink.</p> <h2 id="the-mir-space-station">The Mir Space Station</h2> <p><img src="/superbooth/mir.jpeg" alt=""></p> <h2 id="special-advertising-at-the-nearest-station">Special Advertising at the Nearest Station</h2> <p><img src="/superbooth/advert.jpeg" alt=""></p> <h2 id="incredile-truck">Incredile Truck</h2> <p><img src="/superbooth/truck.jpeg" alt=""></p> <h2 id="fantastic-deal">Fantastic Deal</h2> <p><img src="/superbooth/deal.jpeg" alt=""></p> <h2 id="summary">Summary</h2> <p>I really enjoyed Superbooth. I saw some cool stuff, met some nice people, ate some nice food. The venue was beautiful, and the attendees all seemed nice - and surprisingly varied. I only went for one day this year, and felt that it wasn't really enough time to see everything. I didn't watch many performances or talks, and there was a lot of equipment I'd have liked to spend more time messing with. Next year I would go again, and probably for more days.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Shaving Is Too Expensive. Also the world is out to get you]]></title>
+            <link>https://johnwhiles.com/posts/shaving.html</link>
+            <guid>https://johnwhiles.com/posts/shaving.html</guid>
+            <pubDate>Sat, 07 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Shaving is too expensive and is a demonstrative example of how most consumer products are designed to extract more money from you rather than to improve your life, or the world, or to be in any way remotely good.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="shaving-is-too-expensive">Shaving is too expensive</h1> <p>Shaving is too expensive and is a demonstrative example of how most consumer products are designed to extract more money from you rather than to improve your life, or the world, or to be in any way remotely good.</p> <p>The razors most people use where I live look like this:</p> <p><img src="/shaving/gilette.png" alt="Gillette"></p> <p>A set including the razor body and some heads generally costs a little above £20<sup>1</sup> and replacement heads cost in the region of £1.75. Gillette claim that each blade can be used for 15 shaves. This sounds pretty optimistic to me. But who knows. If you shave daily this implies a cost of 87 pence weekly, or around 45 pounds annually. This also means that the razor body effectively costs about 5 pounds, and is probably a loss leader.</p> <p><img src="/shaving/gbus.jpeg" alt="Totally normal bus stop advert"></p> <p>Before this style of razor became popular, most people used what is known as a double edged razor. The bodies of these razors seem to be generally more expensive: a good quality one might be around £40. Though you can pay more, or less. The blades are significantly much cheaper. Blades can be had for £0.08 pence each. These blades are probably good for something like 3 to 5 shaves. Let's say 3 to make this as generous to gilette as possible. Assuming daily shaving that gives us a cost of 18 pence weekly, or about 10 pounds annually.</p> <p><img src="/shaving/merkur.jpeg" alt="Merkur 34C - buy this one."></p> <p>So we see a slightly larger initial outset, which is quickly dominated by the higher ongoing cost of the typical modern razor. If you expect that you will continue shaving for a year, then it is more cost effective to use a double edged razor.</p> <p><img src="/shaving/graph.png" alt="graph showing cost of different styles of shaving"></p> <p>So the double edged razor is cheaper. Clearly. There are other obvious benefits of this style of razor. They produce dramatically less waste. Depending on the brand you purchase, the blades might just be packaged in waxed paper. Cartridge blades on the other hand come packaged in multiple layers of plastic, and are deliberately over packaged so that they are more visible in shops. Changing to double edged razors means a big reduction in single use plastic consumption - which is something people claim to care about.</p> <p>It is, however, hard to find these sorts of razors. If you go into a shop to buy a razor, you will almost certainly not be able to buy one - but you will be faced with a wide range of very similar cartridge razors. The double edged razor has become a product that you can only buy on the internet, and which you will only buy if you know that it exists.</p> <p>So, does this matter? I assume that for most of the people reading this, the sums of money involved may seem pretty trivial. But I think the changes in the razor market are obviously bad, and reflect similar changes that can be seen in many other markets. We see new products launched which promise minor benefits in convenience, and which crowd out older, cheaper, and better products. Those older products are deliberately marginalised, and more money is captured from consumers without them really gaining any value from their expenditure.</p> <p>It is good to build the habit of skepticism in the face of consumer products. By avoiding products, like cartridge razors, you are producing less waste, saving money which you can dedicate to any purpose that is important to you, and I think that not doing the thing that the market wants you to do is probably just good.</p> <p>Other examples of products that seem to exhibit a similar trend, where purported convenience leads to higher prices</p> <ul><li>Cooking equipment: essentially indestructible Cast Iron skillets transition into teflon pans. The newer pans perform worse, and must be replaced on a shockingly regular basis. They also seem to be poisonous.</li> <li>Shaving foam: soap pucks transition to self foaming aerosol canisters</li> <li>Tea bags replace loose leaf tea. Allows for lower quality tea to be sold, diminishes the re-use of tea leaves. Also ludicrous  product differentiation along the lines of 'we have a special shaped tea bag'.</li> <li>Nespresso machines, and other coffee pod brands, replace many styles of coffee brewing. Provide much worse coffee, at a higher price but are superficially convenient.</li> <li>Well understood mechanical bike shifting transitions to electronic shifting which requires you to <em>pay more and charge your pedal bike</em> (Not sure about this example, as in theory a bike derailleur needs not be a repeated purchased)</li> <li>Televisions moving from being screens which accept input, to self contained 'smart' devices that require software updates and thus have a shortened useful lifespan.</li> <li>In many inner city shops it is now hard to buy an individual piece of fruit.</li> <li>Subscription services like Hello Fresh, where you can pay well over the odds to have some vegetables delivered to you.</li></ul> <p>I don't want to suggest that all new product developments are essentially hostile to you, but certainly a lot of them are. Pay attention to what you buy, especially when you are changing from an old well understood product to a new, more convenient, equivalent. The world is not your friend.</p> <hr> <p><a name="myfootnote1">1: </a> <a rel="noopener noreferrer" target="_blank" href="https://www.amazon.co.uk/Gillette-ProGlide-Flexiball-Technology-Anti-Friction/dp/B08R7PN8XX/ref=sr_1_6?crid=3RN5SIEIRPSOD&amp;keywords=razor&amp;qid=1647527002&amp;sprefix=razo%2Caps%2C217&amp;sr=8-6">This gillette set is the top result for razor on amazon at time of writing, and costs 23.75</a></p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Giro d'Italia 2022 - stage one]]></title>
+            <link>https://johnwhiles.com/posts/giro-2022-stage-1.html</link>
+            <guid>https://johnwhiles.com/posts/giro-2022-stage-1.html</guid>
+            <pubDate>Fri, 06 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[The Giro d'Italia started today in Hungary (a province in Italy). The riders traveled from Budapest to Visegrád. This was an essentially flat and boring 195km stage, where all the action was predicted to, and did in fact, occur during the final climb to Visegrád castle.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="giro-ditalia-2022---stage-one">Giro d'Italia 2022 - stage one</h1> <p>The Giro d'Italia started today in Hungary (a province in Italy). The riders traveled from Budapest to Visegrád. This was an essentially flat and boring 195km stage, where all the action was predicted to, and did in fact, occur during the final climb to Visegrád castle.</p> <p>Shortly after the start, two riders formed an incredibly doomed breakaway while the Peloton did it's best to pretend that this wasn't a race. Some horses got onto TV. Some riders crashed while travelling along straight roads, as is tradition.</p> <p><img src="/giro/horsebike.png" alt="horses galloping next to the Peloton"></p> <p>Eventually the breakaway was caught, some more people crashed then on the final climb everyone got very excited. All the fast boys wanted to win the first Pink Jersey, and all the GC boys wanted to not lose any time (and also win the first Pink Jersey). This led to a pretty chaotic and full on uphill sprint. We saw Caleb Ewan (top sprinter) on the wheel of Richard Carapaz (man who is going to win the overall). Eventually Mathieu van der Poel who was always going to win this stage, got in front. Then Caleb Ewan crashed into the back wheel of Biniam Girmay and then it was over.</p> <p>Finally to cap off the day, MvdP almost blinded himself on the podium.</p> <blockquote class="twitter-tweet"><p lang="und" dir="ltr"><a rel="noopener noreferrer" target="_blank" href="https://t.co/aWFp9Kf0jT">pic.twitter.com/aWFp9Kf0jT</a></p>— Cycling out of context (@OutOfCycling) <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/OutOfCycling/status/1522602939369635840?ref_src=twsrc%5Etfw">May 6, 2022</a></blockquote> <h2 id="whats-next">What's next</h2> <p>It sounds like Caleb Ewan is mostly okay. I hope this is true, because it would be a big shame if we don't get to see him contest any more stages in this tour.</p> <p>No serious GC contender lost too much time, which is also good for the rest of the tour. Though it's immediately clear that Carapaz is probably fitter than everyone else, and at least a lot more aggressive. Unless he crashes, it seems really hard to imagine that he doesn't just win.</p> <p>There is a short time trial tomorrow, which should introduce slightly more seperation into the times. Maybe one day they'll make it to Italy.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[How to attain power and influence]]></title>
+            <link>https://johnwhiles.com/posts/power.html</link>
+            <guid>https://johnwhiles.com/posts/power.html</guid>
+            <pubDate>Sat, 30 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Hi. A friend of mine asked me to write about networking. I'm not sure, but I think it was joke.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="how-to-attain-power-and-influence">How to attain power and influence</h1> <p>Hi. <a rel="noopener noreferrer" target="_blank" href="https://thecomputersciencebook.com/">A friend of mine</a> asked me to write about networking. I'm not sure, but I think it was joke.</p> <p>So what did they ask exactly?</p> <p><img src="/power/text.png" alt="IMG"></p> <p>I am, I believe, not very good at networking. I also don't think I'm considered a big deal at Contentful (if you work here as well, feel free to correct me)! So this is a strange request. But in the interest of having something to write about, I lit some incense, consulted The Tarot and then visualised a life where I am good at networking, and am a big deal at Contentful. It was quite the trip, and I returned with some really interesting lessons.</p> <h2 id="the-best-time-to-start-being-a-big-deal-was-when-you-met-me--the-second-best-time-is-now-">The best time to start being a big deal was when you met me. The second best time is now.</h2> <p><strong>First axiom</strong>: being a big deal is a matter of perspective. Specifically it is a matter of the perspective of the person who you want to think that you are a big deal.</p> <p><strong>Second axiom</strong>: networking is the art of convincing people that you are a big enough deal that they should spend their time talking to you, helping you, thinking about you, taking you to Berghain etc.</p> <p>When you meet someone, you get to make one (1) first impression. This is important, because it's when you get to set the baseline for which their judgements of your future actions will be updates. As people get to know you more, the updates they make will get smaller and smaller until they narrow in on an essentially fixed opinion of you. At this point it will take extreme actions on your part to cause further updates.</p> <p>If you have four meetings with someone and in two you come across well while in the other two you come across badly, the order in which those meetings happen will have a big impact on the person's overall impression of you.</p> <p>This graph shows the final 'big deal score' when you make a good first impression
+<img src="/power/good.png" alt="Spurious hand drawn graph purporting to show that first impressions matter"></p> <p>And this graph shows the final 'big deal score' when you make a bad first impression
+<img src="/power/bad.png" alt="Another slightly different yet still spurious hand drawn graph purporting to show that first impressions matter"></p> <p>Your starting position has an oversized impact on how people perceive you*. So you should try and make good first impressions.</p> <p><code>*</code> <em>Have I researched whether this is actually true? No. Do I intend to? No.</em></p> <p>How do you make good impressions? I suggest trying to be warm, friendly, funny, open, honest, tall and good looking. Also I think it's good to be quite weird. People remember weird.</p> <h2 id="other-ways-to-seem-like-a-big-deal">Other ways to seem like a big deal</h2> <p>One of the most overpowered ways of seeming more important is to pursue opportunities that will mean lots of people in your organisation are forced to know who you are. This means that when your team is asked 'who wants to present this boring thing, at this boring meeting' you should be the first one to say 'yes, me, I will do it'.</p> <p>You should try to make whatever you present actually interesting and well prepared, and snappy and not really really boring. Most presentations that have been given throughout history are so boring that no one can pay attention to them. If you agree to do public speaking and do it well, everyone will know who you are and everyone will love you.</p> <p><strong>INCREDIBLY IMPORTANT NOTE:</strong> adding gifs to a powerpoint presentation does not automatically make it interesting.</p> <p>Here are some examples of people who can present well. Simply observe and copy.</p> <iframe width="560" height="315" src="https://www.youtube.com/embed/0wh9UzLbIMY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe> <iframe width="560" height="315" src="https://www.youtube.com/embed/LKtk3HCgTa8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe> <iframe width="560" height="315" src="https://www.youtube.com/embed/sT_-owjKIbA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe> <h2 id="strategies-for-when-you-join-a-new-organisation">Strategies for when you join a new organisation</h2> <p>We've seen that first impressions are important. When you join a new organisation (starting a new job, moving to a new school, joining a choir etc) you get to make a lot of first impressions. But don't just let this happen to you. You should be deliberate about the process to ensure that you are getting to meet as many people as possible - and then you should strategically decide which of those relationships to cultivate.</p> <p><strong>Step 1</strong>: meet everyone. When you join something, generally no one is expecting you to make a big impact immediately. This means that it's the perfect time to 'network'. Start arranging to have one on one conversations with everyone that it's remotely reasonable for you to introduce yourself to.</p> <p><strong>Step 2</strong>: Use these conversations to gauge who is high talent, high agency, or highly influential within the organisation. Once you've done this, simply cultivate a strong and beautiful friendship with these people. Meet them for coffee, take them to lunch, go watch poorly conceived performance art pieces with them. This is how you gain influence and power within organisations. It's also how you make lifelong friends.</p> <p><strong>Step 3</strong>: Let's be honest. It's hard to make new friends as an adult. Many people feel like they don't have as many friends as they like, and feel powerless to fix it. But it really really is something you have the ability to change. Most people you meet want to have more friends. In fact, they want to be friends with you. But growing an acquaintance into a friend is hard, and is emotionally dangerous in the same way that building any sort of relationship is. People don't want to make the first move because they don't want to be hurt. Be willing to open yourself up to people, be the one who invites your acquaintances to become your friends. You need to realise that this life is just a fleeting thing, and that at the end you will regret your fears much more than any long forgotten mistakes and embarrassments.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Six things I sort of believe about making music/art]]></title>
+            <link>https://johnwhiles.com/posts/music-production-lessons.html</link>
+            <guid>https://johnwhiles.com/posts/music-production-lessons.html</guid>
+            <pubDate>Sun, 24 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[I've now been recording music at home for most of my life. I started at around 14. I would record things into audacity, sometimes with my friend Cameron, but more often by myself. I had no real idea of how to write, arrange, or record music. Besides a few covers I would mostly record incredibly abstruse 'experimental music'. I would make 'field recordings' then manually edit them and add random effects I could find until I got something that sounded good to me.  Here's an example (ignore that this was published in 2016, I recorded it way earlier).
+]]></description>
+            <content:encoded><![CDATA[<h1 id="six-things-i-sort-of-believe-about-making-music">Six things I sort of believe about making music</h1> <h2 id="good-beginnings">Good beginnings</h2> <p>I've now been recording music at home for most of my life. I started at around 14. I would record things into audacity, sometimes with my friend Cameron, but more often by myself. I had no real idea of how to write, arrange, or record music. Besides a few covers I would mostly record incredibly abstruse 'experimental music'. I would make 'field recordings' then manually edit them and add random effects I could find until I got something that sounded good to me.  Here's an example (ignore that this was published in 2016, I recorded it way earlier).</p> <iframe src="https://bandcamp.com/EmbeddedPlayer/album=3141982008/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/track=4009456494/transparent=true/" seamless="seamless" style="border:0;width:100%;height:120px;"><a rel="noopener noreferrer" target="_blank" href="https://johnwhiles.bandcamp.com/album/pointless-deeds">pointless deeds by John Whiles</a></iframe> <p>At this point I was recording using the cheapest microphone that was available at our nearest computer store. My parents got me so I could talk to strangers on the internet while playing Guild Wars.</p> <p>When I tried to record more traditional multi tracked music I would play the existing music through my computer speakers whilst recording. After a few layers this would start to lead to huge build ups of certain frequencies - usually bass - which would make everything sound muddy, and would probably upset anyone that tried listening with a subwoofer.</p> <p>For a while I didn't really understand why all my recordings had this issue, I would try and EQ out the bass notes - but that never worked very well. Eventually I discovered that if I monitored using headphones I didn't get the same problem. This was a huge epiphany for me, and was a massive step forward in my ability to record things. This leads to my first lesson</p> <blockquote><p><em>1: Try and record the thing well in the first place. It's the best and easiest way to get a good result.</em></p></blockquote> <h2 id="technology">Technology</h2> <p>As I mentioned: my microphone was awful. Eventually I bought a slightly more expensive USB microphone that could make things sound reasonably nice. At this point I realised I had horrendous latency issues.</p> <p>I had moved from Audacity to Ableton, where I would listen back to my recordings, trying to overdub new parts, feeling like I was playing pretty tight and in time. But when I listened back my playing would sound totally off. I was always miles behind the beat, sounding incredibly sloppy and rhythmless. For months I thought this was a deficiency in my playing, until eventually I discovered some latency setting, read about what latency was and realised what was going on.</p> <p>I tried my best to fix my latency problems, failed, put up with it for ages, and then eventually used my student loan to buy an audio interface and a shure SM57 microphone. These are two of the best buys I’ve ever made. I could suddenly record things that were pretty much in time, and also everything I recorded sounded way way better. So this leads to lesson two</p> <blockquote><p><em>2: Sometimes (but not very often) your equipment actually is the issue. If you want to record audio, you should buy an audio interface.</em></p></blockquote> <h2 id="deadlines">Deadlines</h2> <p>So at this point I had the sufficient technical skills and the equipment necessary to record basically any music that I would want to make. But I started running into what is a very common problem. I would never finish anything. I’d start pieces, make reasonable progress, and then spend hours making irrelevant changes no one would notice getting more and more confused about what I was doing, and whether the piece I was working on was any good. Finally I would give up, start something new, and leave whatever I had been working on to fester forgotten on some external harddrive. As far as I know that’s where it still remains today.</p> <p>This was bad. I now believe that the best way to improve at anything is to finish work, put it out into the world, and see how people respond. Spending hours finessing things you will never release is a recipe for frustration and stagnation. The only time I would manage to release anything would be during weird semi manic episodes when I would have time by myself, feel full of ideas and manage to record a bunch of stuff in one day. For example, I recorded these three tracks in one morning/afternoon. They're by no means good music, but they are at least interesting - and ‘finished’, which is more than could be said for most of the things I worked on at this time.</p> <iframe src="https://bandcamp.com/EmbeddedPlayer/album=4265090986/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless="seamless" style="border:0;width:100%;height:120px;"><a rel="noopener noreferrer" target="_blank" href="https://johnwhiles.bandcamp.com/album/late-september">Late September by John Whiles</a></iframe> <p>Anyway, I eventually discovered a life changing life-hack which I have now used for years to force myself to finish and release music. It’s called ‘Christmas Music’.</p> <p>Yes, Christmas Music.</p> <p>It's the perfect tool to force an over thinking musician to buckle up and finish something. It provides three key benefits:</p> <p><em>A theme</em> - what to write about is always a hard question. Christmas music massively narrows your options, and gives you a world of existing references to draw on.</p> <p><em>Low Stakes</em> - Generally people don't like Christmas music, and consider it as essentially a joke. When you release your art into the world, it always feels like the stakes are high, even when there is absolutely no risk involved. If you can tell yourself 'no need to worry it's just christmas music', then you have art without fear</p> <p><em>A DEADLINE</em> - This is the real key. Christmas music needs to come  out before Christmas. So you have to finish it. Voila.</p> <iframe src="https://bandcamp.com/EmbeddedPlayer/album=1456816301/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/track=3532821321/transparent=true/" seamless="seamless" style="border:0;width:100%;height:120px;"><a rel="noopener noreferrer" target="_blank" href="https://johnwhiles.bandcamp.com/album/the-second-christmas-another-winters-evening-with-john-whiles-were-our-hearts-ever-so-cold">The Second Christmas: Another Winter's Evening with John Whiles: Were Our Hearts Ever so Cold? by John Whiles</a></iframe> <p>I've now released some sort of Christmas music every year since 2013. Some is good. Some is bad. But it all exists and is published.</p> <blockquote><p><em>3: You need to find ways to force yourself to finish things. Arbitrary deadlines are actually sometimes good.</em></p></blockquote> <h2 id="technology-again-benefits">Technology again (benefits)</h2> <p>At some point I started getting more involved (lurking) in online communities that focused on music production. I realised that there were lots of things that I could have learnt faster by watching tutorials. I also realised that lots of people had lots of cool equipment that let them create lots of weird sounds. This coincided with me having my first job, and thus disposable income to spend on luxuries. So I bought an Arturia MiniBrute and a Dreadbox Erebus. I love both of these synths, which I would use together and play into my recordings. They opened up a new world of sounds for me - even though I'd been using their software equivalents for years. Being hands on with the controls of these things finally made me understand how subtractive synthesis worked - and pushed my music in a much more electronic direction.</p> <blockquote><p><em>4: using different tools and equipment can shake up your established processes and let you create things you wouldn't have otherwise</em></p></blockquote> <h2 id="technology-again-dangers">Technology again (dangers)</h2> <p>So this was a good time, and I was making music I was happy with. At some point I became a software engineer, had more disposable income, and had discovered the concept of modular synthesisers. Obviously this is a terrible combination. I bought some modules, built a system and really enjoyed playing it. Being able to make pretty complex music without having to look at my laptop felt like a real gift.</p> <p>The problem was that the music I was making had changed entirely. This is the first coherent release I made with the new setup:</p> <iframe src="https://bandcamp.com/EmbeddedPlayer/album=313933251/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless="seamless" style="border:0;width:100%;height:120px;"><a rel="noopener noreferrer" target="_blank" href="https://johnwhiles.bandcamp.com/album/turning-to-ice">Turning to Ice by John Whiles</a></iframe> <p>it bears no relation to my previous work which, as mentioned, I liked and enjoyed making. But now I was spending all my music time on modular music, which was not really interesting to anyone besides myself, and my ability to make the kind of music I had before melted away as I didn't use it. Which leads to my next ~lesson~ warning:</p> <blockquote><p><em>5: Tools and equipment impose themselves on you. If you change your processes too much it is hard to built up an identity other than as someone who is inconsistent.</em></p></blockquote> <h2 id="affirming-ending">Affirming ending</h2> <p>I've more recently been moving back towards making more structured music, and integrating my various musical interests. It's exciting and I am looking forward to having something finished which I can share. Which leads me to final point:</p> <blockquote><p><em>6: Making your own work is a good thing to do, even if no one else is interested in what you are making. To create is to be human</em></p></blockquote> <hr> <h3 id="by-the-way">By the way</h3> <p>I've been talking about music. But I think these ideas roughly track onto any other creative endeavour (including bodybuilding). If you think they don't I'd love to talk about it, but I'm actually quite busy right now.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Arnie films I've watched recently]]></title>
+            <link>https://johnwhiles.com/posts/arnie-films-part-one.html</link>
+            <guid>https://johnwhiles.com/posts/arnie-films-part-one.html</guid>
+            <pubDate>Sun, 17 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[I've been watching a lot of Arnie films recently. Partially this is as body building inspiration and partially because I've realised that he is the greatest and most charismatic actor of all time.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="arnie-films-ive-watched-recently">Arnie films I've watched recently</h1> <p>I've been watching a lot of Arnie films recently. Partially this is as body building inspiration and partially because I've realised that he is the greatest and most charismatic actor of all time.</p> <p>Here are some short reviews of the films I've seen recently.</p> <h2 id="terminator-2">Terminator 2</h2> <p>Incredible. The best action film I've ever scene. This film takes the paper thin concept of the first film and runs with it in a really smart way. Sarah Connor tries to warn people about her experiences with the Terminator, naturally everyone thinks that she's mad. She's locked up in an abusive mental institute, and by the time we get to the action of the film she's completely cracked to the point that she can't trust anyone, whether human or robot.</p> <p>Every action scene is glorious, the two chase sequences in particular are really nicely done.</p> <p>There's a child actor who isn't awful. Arnie's in it. Something someting computers AI very of the moment reflects current concerns blah blah blah.</p> <p><img src="/arnie/conor.jpeg" alt="IMG"></p> <p>The one problem with this film is the too long and too boring final showdown. Every action film seems to suffer from this problem. Why? Sometimes you need to cut things.</p> <p><strong>5/5</strong></p> <hr> <h2 id="total-recall">Total Recall</h2> <p>Another great film. Arnie looks great in it. I particularly enjoyed how sweaty is in the first scene when he wakes from a nightmare.</p> <p><img src="/arnie/recall.jpeg" alt="IMG"></p> <p>This film has <em>style</em>. It's got vibes. It's a real good time, and I never stopped being shocked by how ridiculously violent it is.</p> <p><strong>5/5</strong></p> <hr> <h2 id="predator">Predator</h2> <p>I really enjoyed this film up until the predator is introduced.</p> <p>It starts with that handshake:</p> <p><img src="/arnie/clasp.jpeg" alt="IMG"></p> <p>Then there's a delightfully weird chopper flight and then a the most over the top fire fight ever put on film. Then the predator arrives, and is painfully slow and clunky and stupid looking. The rest of the film is a bit of drag from this point. It's a shame because the cast are great - and this could have been a super film if it had been almost entirely different.</p> <p>I did enjoy how there is no attempt to explain anything that happens in after the predator is introduced. What is the predator? We don't know. Why is it there? We don't know. Why was the film made? Unclear.</p> <p>I recommend just watching the first half a hour and then imagining the rest of the film. I like to imagine something a bit like Snake Eater. This would mean you'd miss out on the scene where Carl weathers takes his top off though.</p> <p><strong>2/5</strong></p> <hr> <h2 id="next-time">Next time</h2> <p>The next Arnie films I hope to watch and review are Running Man, Twins and Junior. I expect that they will all be good. If you have other suggestions for films I should watch please get in touch.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Against moderation]]></title>
+            <link>https://johnwhiles.com/posts/against-moderation.html</link>
+            <guid>https://johnwhiles.com/posts/against-moderation.html</guid>
+            <pubDate>Sun, 10 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[When people want to change themselves, their habits, their lifestyles, the approach they usually take is to moderate or attenuate existing behaviour. We take what we are already doing, gently change it in the way that seems the least disruptive and painful and hope that over time we will gradually reach our desired state. We might see that we are physically unfit, and start trying to walk more instead of driving. Or we might realise that we drink too much and decide to try cut down the amount of alcohol we consume.
+]]></description>
+            <content:encoded><![CDATA[<p>When people want to change themselves, their habits, their lifestyles, the approach they usually take is to moderate or attenuate existing behaviour. We take what we are already doing, gently change it in the way that seems the least disruptive and painful and hope that over time we will gradually reach our desired state. We might see that we are physically unfit, and start trying to walk more instead of driving. Or we might realise that we drink too much and decide to try cut down the amount of alcohol we consume.</p> <p>This approach sounds pretty sensible. It's easy to assume that the smaller a change is, then the easier it is to accomplish. There is a language of 'weaning ourselves off of things', 'cutting back on treats', 'trying to get a bit more exercise'.</p> <p>The problem with this style of moderation though, is that it lacks strong boundaries on behaviour. Any approach designed to be 'easy' will tend to privilege existing behaviours. Think of a weight conscious person. Most people trying to lose weight will 'cut back' on certain foods. But many diet plans contain 'cheat nights'; the diet is survivable only because we know we will be able to eat what we really want at the end of the week. Alternatively, we start treating our previous behaviour as a reward for any successes.</p> <p>This teaches us that our original behaviour, which we ostensibly want to outgrow, remains our default. It is what we revert to to celebrate, and when we lose willpower in the face of setbacks or peer pressure, it is what we revert to try and feel normal again.</p> <p>If we try to moderate existing behaviour then we are really telling ourselves that whatever our previous default behaviour was, it remains just that - the default. It is the baseline we operate from, which we would happily slip back into. We are acting in a way that implies we will return to this behaviour in time.</p> <p>Approaching behaviour change like this has never worked for me. I find it incredibly hard to do something in moderation which I am accustomed to doing <em>ad libitum</em>.</p> <p>Instead, what has worked for me, and what I am proposing you should try - is to become extremely obsessive about whatever it is you want to do. If you want to start doing something. Do it all the time. If you don't want to do something, then <em>never do it again</em>.</p> <p>So why does this work better? If we compare</p> <ul><li>Doing something infrequently
+and</li> <li>Never doing something again</li></ul> <p>The former sounds easier. But it's not. Every time you do something, you are training yourself to do that thing. Think of spaced repetition, where we repeatedly learn something we extend the amount of time that it exists in our memory. I think that there is a similar effect for behaviour, every time you do something you extend the amount of time that it will remain a thing you feel like you need to do.</p> <p><a title="Biopresto, CC BY-SA 3.0 &lt;https://creativecommons.org/licenses/by-sa/3.0&gt;, via Wikimedia Commons" rel="noopener noreferrer" target="_blank" href="https://commons.wikimedia.org/wiki/File:ForgettingCurveITASRS.png"><img width="512" alt="ForgettingCurveITASRS" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/ForgettingCurveITASRS.png/512px-ForgettingCurveITASRS.png"></a></p> <blockquote><p><em>This was the only creative commons licensed version of this diagram I could find. Sorry</em></p></blockquote> <p>So what are some examples of how you might apply this?</p> <p>If you want to stop doing something, let's say eating pizza, then don't at the end of a long work week celebrate your temporary freedom by eating a big celebratory pizza. And then simply never eat pizza again.</p> <p>If you want to start doing something, then start doing it every day - or on set schedule which you never deviate from. So if you want to get better at painting, paint every day. If you want to stop driving to the shop, sell your car.</p> <p>People think that moderation is an easy to get where they want. But moderation is the hardest thing in the world.</p> <hr> <p>There are some downsides to this approach. People will think you are weird. Because you are. Worse though, a lot of people will try and convince you to act normally, even if you explicitly tell them that you are trying to change something about yourself that is important to you. You can often see this in the case of people trying to convince friends who they know are trying not to drink, to start drinking again. Or telling someone who is dieting to not worry, and to just eat whatever boring cake they've made. I don't know why people do this, and I think it's bad.</p> <p>Also, to moderate my claims somewhat. I think that after you've done something for long enough that it has become your default behaviour then it is actually fine to stop being weird and obsessive about it. You can slip up. For example, I am so used to regular exercise now, that going for a few days without it feels weird. I don't worry about missing a planned workout, because I know it won't be the start of a slippery slope. It is of course very hard to know when you have reached this point for any given behaviour.</p> <p>There are also simple things you can do to make adopting new behaviours, like painting every day, or playing your musical instrument much easier. The easiest, and most effective thing, is to have your paints, instrument, whatever, set up and ready to go. Everyone says this, and it sounds kind of stupid, but it works.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Big on hacker news]]></title>
+            <link>https://johnwhiles.com/posts/big-on-hacker-news.html</link>
+            <guid>https://johnwhiles.com/posts/big-on-hacker-news.html</guid>
+            <pubDate>Sun, 03 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Last week I wrote a little article entitled “Maybe you should do less ‘work’”. I posted it on hacker news and it did numbers. An hour after posting it, it had one upvote. This was already a bigger success than anything else I’ve written. Then suddenly it was near the top of the homepage. And then it quickly blew through the limits of the analytics tool I use.
+]]></description>
+            <content:encoded><![CDATA[<p>Last week I wrote a little article entitled “Maybe you should do less ‘work’”. I posted it on hacker news and it <em>did numbers</em>. An hour after posting it, it had one upvote. This was already a bigger success than anything else I’ve written. Then suddenly it was near the top of the homepage. And then it quickly blew through the limits of the analytics tool I use.</p> <p><img src="/hn/plausible.png" alt="IMG"></p> <p>When I saw this, I felt the same kind of rush that I felt when I used to post semi-popular things on Instagram. If you've used any kind of externally facing social media, you know what I mean. A weird anxious excitement. The realisation that you are in the minds of more people than you’re evolved to be able to understand. A desire to keep looking at the numbers - in case they’ve gotten bigger.</p> <p><img src="/hn/hn-69.png" alt="IMG"></p> <p>The biggest difference between doing well on hacker news and doing well on Instagram, is that you can easily pour more of your time into reading comments. This can keep the dopamine flowing, and make the eventual crash worse.</p> <p><img src="/hn/reddit.png" alt="IMG"></p> <p>I enjoy writing, and I enjoyed writing the article. But the way that I felt seeing that people were reading it was way stronger than those feelings. It's easy to imagine that trying to regain that feeling could come to dominate my previous motivation for writing. Being noticed is addictive. This is, I suppose, why you see people write buzz-feed like click-bait on personal blogs. Why writers and artists of all kinds at some point start trying to recreate whatever was the biggest hit for them. And, in a time when almost all hobbies become oriented around sharing the results online, this is how the joy can drop out of anything you do.</p> <p><img src="/hn/slack.png" alt="IMG"></p> <p>So how do you avoid a kind of emotional dependency on the feedback you get from sharing your writing, or other 'creative' work? Well, you could produce things that <a rel="noopener noreferrer" target="_blank" href="https://johnwhiles.bandcamp.com/">no one will ever be interested in</a>. You could deliberately never share what you create. You could share it, and make sure that there is no possible way for anyone to contact you. All of these approaches are obviously bad. I’m convinced that on some level it’s good to have other people engage with your work and to engage with you. If that doesn’t happen, then at best you might become an outsider artist. But outsider artists never seem to have much fun.</p> <p><img src="/hn/i.png" alt="IMG"></p> <p>The solution that I want to work towards, is to reach a level of popularity such that I know anything I write or do will be a huge success, enjoyed by people around the world. Enough people that the specifics and numbers become meaningless At this point all the feedback systems and social media responses will become predictable, not exciting, and then I can stop looking. How to reach that point remains an open question.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Maybe you should do less 'work']]></title>
+            <link>https://johnwhiles.com/posts/work.html</link>
+            <guid>https://johnwhiles.com/posts/work.html</guid>
+            <pubDate>Sun, 27 Mar 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Working in tech, I've observed developers who work as hard as possible when they don't need to.  I'm here today to tell you that it's a bad idea and you shouldn't do it.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="maybe-you-should-do-less-work">Maybe you should do less 'work'</h1> <p>Working in tech, I've observed developers who work as hard as possible when they don't need to.  I'm here today to tell you that it's a bad idea and you shouldn't do it.</p> <p>What do I mean by working as hard as possible? I mean someone who can finish all the work that is expected of them in less than the total time that they are meant to spend working and then asks for more, similar, work to do. I also mean someone who has no real sense of how much work <em>is</em> expected of them and then drives themself at an unsustainable pace trying to meet a standard which they can never meet because they already met it a long time ago and never realised and they are still worried about how others will perceive them and oops now they're burned out I guess.</p> <p>I believe that:</p> <ul><li>you should try and figure out what expectations your colleagues and managers have of you. And also what you expect of yourself.</li> <li>If you can meet these expectations in fewer hours than you are supposed to work, then you shouldn't just find more to do. Instead you should do something different.</li></ul> <h2 id="how-do-you-figure-out-what-people-expect-of-you">How do you figure out what people expect of you?</h2> <p>If you haven't been fired, and no one has taken you aside to ask about your performance, then probably you're meeting expectations. You can also look at what your peers are doing or you can just ask people how they perceive you.
+It's also probably good to exceed expectations instead of just meeting them. But in most tech companies this is probably easier than you think.</p> <h2 id="why-shouldnt-you-spend-as-much-time-as-possible-doing-work-work-">Why shouldn't you spend as much time as possible doing 'work' work.</h2> <p>If you optimally fill your time at work doing 'work' work, then this means that you are likely:</p> <ul><li>Not developing other skills</li> <li>Not building your network inside the company as well as you could</li> <li>Probably working less efficiently than you could</li> <li>Unable to respond to new or changing demands without working longer hours or stopping something else that you think you need to do. See the ongoing supply chain crisis for why you should have some slack in your system.</li></ul> <h2 id="what-should-you-do-with-the-time-that-im-suggesting-you-shouldnt-spend-doing-more-work">What should you do with the time that I'm suggesting you shouldn't spend doing more work?</h2> <p>You should try and spend your time in ways that will benefit you <em>and</em> your employer.</p> <p>How you do this will vary a lot based on where you are in your career, what you value, and what your company values.
+If you're new in your career - then I think it makes sense to dedicate a good chunk of your time to learning and broadening your horizons. For example, at my first tech job, where I was a Frontend JavaScript developer, I spent about 20% of my time learning Haskell. This didn't offer any immediate value to me, or the company. But it got me outside of my box of frontend development, and I think generally made me fitter, smarter and more productive. You should choose to learn things that help you move towards the role that you want in the future.</p> <p>If you're later in your career, and don't feel like there's anything you desperately need to learn - there might still be better ways to spend your time than just taking more tasks off a todo list. You should mentor more junior staff. You should use your experience and understanding to figure out what important things aren't being focused on. Sometimes you should just stare into space until you remember that everything is going to go catastrophically wrong once you record more than 4.29 billion events in that one table, I know five years ago we said it'll never happen and if it does, well we'll worry about it when we get to it, and anyway that's a good problem to have it means we're really racking up the users, so how about a game of table tennis.</p> <p>Obviously I don't practise any of what I talk about here, and diligently ensure that I spend all my time at work delivering business value.</p> <h2 id="referencesevidence">references/evidence</h2> <p><a rel="noopener noreferrer" target="_blank" href="https://danluu.com/learning-to-program/#:~:text=At%20that%20point%2C%20I%20did,every%202%20or%203%20days.">Dan Luu talking about reading books at work</a></p> <p><a rel="noopener noreferrer" target="_blank" href="https://thezvi.wordpress.com/2017/09/30/slack/">Ex-pro magic the gathering player on slack, no not that Slack</a></p> <p><a rel="noopener noreferrer" target="_blank" href="https://jvns.ca/blog/2017/08/06/learning-at-work/#:~:text=Take%20the%20time%20at%20work%20to%20learn">Julia Evans talks about learning at work here.</a>. I remembered reading something about spending time learning while working remotely because 'no one knows what I'm doing anyway', but now that I look it up, this article says a lot more, and I think covers everything I've said here but better. So I guess there was no reason to write this oh well. good bye</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Linking in to LinkedIn]]></title>
+            <link>https://johnwhiles.com/posts/linking-in.html</link>
+            <guid>https://johnwhiles.com/posts/linking-in.html</guid>
+            <pubDate>Fri, 21 Jan 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[I logged into LinkedIn today hoping to congratulate ex-colleagues on their
+new roles and pursue shadowy offers from normy recruiters. LinkedIn saw its opportunity and pounced. It informed me that I needed to improve my intentionally spare profile.
+That doing so would mean more and better shadowy offers from more and better normy recruiters.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="linking-in-to-linkedin">Linking in to LinkedIn</h1> <p>I logged into LinkedIn today hoping to congratulate ex-colleagues on their
+new roles and pursue shadowy offers from normy recruiters. LinkedIn saw its opportunity and pounced. It informed me that I needed to improve my intentionally spare profile.
+That doing so would mean more and better shadowy offers from more and better normy recruiters.</p> <p>I hate writing about myself. Or at least I hate it when I have to write in the form of a self description, or a cover letter.
+LinkedIn knows this, and had written a profile for me.
+I was obviously overjoyed.
+I could improve my job prospects without actually writing anything, or expending any of my precious energy.</p> <p>Here is LinkedIn's suggestion in full:</p> <p><img src="/linkedin/one.png" alt="LinkedIn suggested description"></p> <p>For those who are blocking images, let's have that again in plain text.</p> <blockquote><p>I am a software Model currently in the Premium Models Software Development Graduate Scheme. Having gained experience in both frontend and backend development I have gained skills in JavaScript, React, Vue, Angular, Redux and Node. js which has helped me build my professional portfolio. - BSc (Hons) Computing from The University of South Wales with Upper Second Class Honours classification</p></blockquote> <p>So. That is:</p> <ul><li>An incorrect description of my current job, with both an incorrect employer, and an incorrect job title (this information is listed correctly in my profile).</li> <li>A wildly incorrect description of my education history (this information is listed correctly in my profile).</li> <li>A somewhat closer, but still substantially incorrect description of my areas of specialisation as a software engineer (this information is listed correctly in my profile).</li></ul> <p>On consideration I decided to go with this profile, as I think it's better than anything I would have written for myself.</p> <p>I hit submit</p> <p><img src="/linkedin/two.png" alt="LinkedIn catastrophic failure"></p> <p>I tried again. It didn't work.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Some stuff I did this week]]></title>
+            <link>https://johnwhiles.com/posts/week-notes-one.html</link>
+            <guid>https://johnwhiles.com/posts/week-notes-one.html</guid>
+            <pubDate>Sun, 05 Dec 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Hey! Long time no see. Anyway, here's some stuff from the past week or so.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="what-ive-been-up-to-recently">What I've been up to recently</h1> <p>Hey! Long time no see. Anyway, here's some stuff from the past week or so.</p> <ul><li><a href="/posts/week-notes-one.html#data-alignment">Data Alignnment</a></li> <li><a href="/posts/week-notes-one.html#the-beatles">The Beatles</a></li> <li><a href="/posts/week-notes-one.html#weightlifting">Weightlifting</a></li> <li><a href="/posts/week-notes-one.html#hash-maps">Hash Maps</a></li> <li><a href="/posts/week-notes-one.html#christmas-music">Christmas Music</a></li></ul> <h2 id="data-alignment">Data Alignment</h2> <p>I watched <a rel="noopener noreferrer" target="_blank" href="https://media.handmade-seattle.com/practical-data-oriented-design/">this talk</a> from the creator of the Zig language. It was pretty nicely done, and introduced some new concepts to me.</p> <p>What I learnt:</p> <ul><li>The concept of Data Alignment in memory.
+<ul><li>It is somehow advantageuous if the data you save in computer memory is aligned in 'nice' or 'round numbers'. We say that Data is 'naturally aligned' when its location in memory is a multiple of it's size. So if I have a 16 Byte struct, that I'm saving into 64 Bytes of memory - it will ideally be saved starting at the 0th, 16th, 32nd or 48th index in the memory.</li> <li>If we have some data structure that is, say, 15 Bytes in size, then we pad it out with extra bytes so it will fit neatly into memory. In the case of a 15 Byte structure we add one extra Byte. probably not a big concern. But if we have a a 17 Byte data structure - this becomes more of a problem. Potentially we waste a lot of memory to padding.</li></ul></li> <li>Questions I had:
+<ul><li>Is the performance gained by padding data structures always necessary? It sounds like it's possible to 'pack' data more tightly - accepting a performance degredation to save on memory. What situations would you choose to do this?</li> <li>Is this something I should be thinking about if I'm writing, say, TypeScript? Or are high level languages so far divorced from bare metal that these sorts of optimizations can't be done.</li></ul></li></ul> <p>The talk also covers various tricks for reducing the size of your data, because by reducing the size of the data, you can often avoid unecessary padding - and be more likely to fit the data you need into a cache - which can make your programs much faster. The actual techniques didn't really particularly applicable to anything I'm doing right now (JavaScript) - so I didn't pay too much attention here. How ever the tricks include</p> <ul><li>Removing 1 byte flags, by instead storing things in arrays</li> <li>Not using pointers, instead essentially making your own pointers.. (wuh)</li> <li>Various other data manipulations, using tags, etc etc. Watch the talk if you're interested.</li></ul> <p>The topics covered in this talk feel like things that I would know about if I had done a CS degree. I think it would be useful to find a big list of CS topics that I might not know about, and try to understand at least the basics of all of them. If you have such a list please send it my way!</p> <h2 id="the-beatles">The Beatles</h2> <p>We watched the first part of Peter Jackson's new trilogy <a rel="noopener noreferrer" target="_blank" href="https://de.wikipedia.org/wiki/The_Beatles:_Get_Back">The Beatles: Get Back</a>. The first part covers the initial rehearsals/recording sessions of the album Let it Be - which is the only Beatle's album I've ever owned a physical copy of - and one I for some reason really like.</p> <p>The film is really fun, and inspiring. I love seeing inside the process that artists take, and it seems like for the Beatles a big part of the process is doing funny accents and singing joke songs. Despite the fact that it shows the lead up to the bands break up, they seem to be having a lot of fun. The footage is incredible, and it's just generally really nice that this thing exists. I really recommend this film.</p> <p>I've also been listening to lots of Beatles songs. They are good.</p> <h2 id="weightlifting">Weightlifting</h2> <p>I've recently gotten into weightlifting. While I've enjoyed being skinny my whole life, and it has allowed me to <a rel="noopener noreferrer" target="_blank" href="https://models.com/models/john-whiles">be in fashion</a> and cycle up hills quickly, I now feel like it would be fun to be a hunk.</p> <p>I've previously read Starting Strength by Mark Rippetoe, which is a widely recommended, and much maligned book. It has pretty good explanations of how various lifts work mechanically, but falls down a bit in terms of programming. His suggested routines are considered to be a bit stupid by a lot of people, and his diet suggestions inclide drinking a Galon (however much that is) of milk every day. Anyway, I started doing that program but have just transitioned into <a rel="noopener noreferrer" target="_blank" href="https://www.reddit.com/r/Fitness/comments/6pjiwd/heres_a_quick_summary_of_the_gzclp_linear/">GZCLP</a> which I prefer because it has more deadlifts.</p> <p>I've also started making a web app to track my workouts. It doesn't really work yet.</p> <h2 id="hash-maps">Hash Maps</h2> <p>I've been learning rust recently, and also getting more interested in the nitty gritty of how data structures are implemented in 'low level' languages. I found a quite nice blogpost <a rel="noopener noreferrer" target="_blank" href="https://www.andreinc.net/2021/11/08/a-tale-of-java-hash-tables">here</a> about implementing an open addressing hash map in Java. I thought it would be a fun exercise to implement something similar in Rust. I did, and it works, and it was fun. I'll probably write this up in more depth later.</p> <h2 id="christmas-music">Christmas Music</h2> <p>Every year I try and release an album of Christmas Music. Every year I start fairly early and it still feels like a rush. Anyway it's started. There is one song done. You can hear the previous one here</p> <iframe src="https://bandcamp.com/EmbeddedPlayer/album=632360270/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless="seamless" style="border:0;width:100%;height:120px;"><a rel="noopener noreferrer" target="_blank" href="https://johnwhiles.bandcamp.com/album/future-christmas-2020">Future Christmas 2020 by John Whiles</a></iframe>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[YikesScript]]></title>
+            <link>https://johnwhiles.com/posts/YikesScript.html</link>
+            <guid>https://johnwhiles.com/posts/YikesScript.html</guid>
+            <pubDate>Sat, 25 Sep 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Recently at work an seemingly innocuous dependecy bump caused a rash of typescript errors to appear throughout our code base. The changes seemed benign -  a new method in an internal library and a few dependabot updates to go with it. Nothing, it seemed, that should cause these errors:
+]]></description>
+            <content:encoded><![CDATA[<h1 id="yikesscript">YikesScript</h1> <p>Recently at work an seemingly innocuous dependecy bump caused a rash of typescript errors to appear throughout our code base. The changes seemed benign -  a new method in an internal library and a few dependabot updates to go with it. Nothing, it seemed, that should cause <em>these</em> errors:</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">src/****************.tsx:94:17 - error TS2550: Property 'allSettled'
+does not exist on type 'PromiseConstructor'. 
+Do you need to change your target library?
+Try changing the 'lib' compiler option to 'es2020' or later.
+
+94   await Promise.allSettled(</code></pre></div><p>and</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">src/****************.ts:105:31 - error TS2550: Property 'flatMap'
+does not exist on type '{ [key: string]: { [quay: string]: Value;
+}; }[]'. 
+Do you need to change your target library? 
+Try changing the 'lib' compiler option to 'es2019' or later.
+
+105   return Object.values(cache).flatMap((value) =&gt;
+                                  ~~~~~~~</code></pre></div><p>We went through the new code with a fine tooth comb - there was
+nothing that explained the appearance of there errors, and TypeScript's suggestion
+to &quot;Try changing the 'lib' compiler option to 'es2020' or later.&quot;
+instantly fixed all our compilation woes. This was unsatisfying - these changes didn't
+touch our typescript config. It made no sense.</p> <p>Clearly something was amiss, the code was compiling before even
+though it used features that our tsconfig did not support.
+Really it seemed like we were just seeing errors that should
+already have been spotted.</p> <p>At a loss, I did what I always do when looking for inspiration - I
+start scanning through the diff of our package.lock file. I noted
+which packages had changed. One jumped out - type-fest, a dependecny
+of a dependency of a dependency. It provides random utility types
+and it had been upgraded from <code>v0.20.2</code> to <code>0.21.3</code>. Why did it
+jump out at me? I guess because we were seeing type errors, and it
+contained the word type. I had no other reason to think it was
+responsible as the effected code didn't use type-fest.</p> <p>I navigated to github dot com - and felt slightly sick when I saw
+that the latest version of type fest was <code>v2.3.2</code>. I started reading
+through the changelog. I could taste copper in my mouth, and there
+was an ozone smell in the air. It was a slog through boring
+descriptions like &quot;Fix export for <code>Get</code> type
+(<a rel="noopener noreferrer" target="_blank" href="https://github.com/sindresorhus/type-fest/pull/181">#181</a>)
+<a rel="noopener noreferrer" target="_blank" href="https://github.com/sindresorhus/type-fest/commit/a65377be2fba48165c9514301b679d1f21171dbd">a65377b</a>&quot;
+and &quot;Reticulate Splines
+(<a rel="noopener noreferrer" target="_blank" href="https://github.com/sindresorhus/type-fest/pull/181">#184</a>) <a rel="noopener noreferrer" target="_blank" href="https://github.com/sindresorhus/type-fest/commit/g87244nbe2fba48165c9514301b679d1f21171dbd">g87244n</a>&quot;.
+I wondered what the point of this library was. Then I noticed it.
+Sticking out, a strange a warped PR title. &quot;Fix TS type reference
+(<a rel="noopener noreferrer" target="_blank" href="https://github.com/sindresorhus/type-fest/pull/187">#187</a>)
+<a rel="noopener noreferrer" target="_blank" href="https://github.com/sindresorhus/type-fest/commit/ed5f3d360fc9e9275dfc193cfc3992f11e192c3c">ed5f3d3</a>&quot;.
+With a growing sense of unease I clicked the link, and through half narrowed eyes peered into the the diff. I saw this.</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">- /// &lt;reference lib=&quot;esnext&quot;/&gt;
++ /// &lt;reference lib=&quot;es2020.bigint&quot;/&gt;</code></pre></div><p>Strange - I thought. This is TypeScript related. But surely this wouldn't effect how completely unrelated code was compiled? I relaxed a little. Still not entirely reassured I decided to do a test to confirm that these changes weren't responsible. I perfomed some manual node_module surgery and reverted the change. To my utter horror everything instantly compiled. The acrid stench of chemicals in the air grew stronger. Black specks appeared in the corners of my vision. Somehow this tiny change was the root of my problems.</p> <p>I had to understand what was going on. I read the <a rel="noopener noreferrer" target="_blank" href="https://github.com/sindresorhus/type-fest/pull/187">PR related to this change</a> which led me to <a rel="noopener noreferrer" target="_blank" href="https://github.com/microsoft/TypeScript/issues/33901">this typescript issue</a>. The awful words I read swam and wavered under my eyes.</p> <blockquote><p><strong>Expected behavior</strong>: should produce a compile error</p></blockquote> <blockquote><p><strong>Actual behavior:</strong><br>
+It just compiles.</p></blockquote> <p>Yet then there was worse to come. The increasingly illegible monospace
+font  explained how any typescript dependency could accidentally
+or maliciously subvert the expectations of the poor fool that choose
+to use it.</p> <blockquote><p>This is what a lib reference <em>does</em>.</p></blockquote> <blockquote><p>This issue has been marked 'Working as Intended' and has seen no recent activity. It has been automatically closed for house-keeping purposes.</p></blockquote> <p>I slammed shut the accursed tome - it dropped from my hands and hit
+the floor with a crash that seemed impossible given it's relatively
+light weight. It sat inert on the floor, powerless I thought, yet
+still I felt almost like it was watching me. Now I understand what
+the scorch marks on the cover meant - whoever was here before me
+had tried to destroy this awful knowledge - before it could it drive
+another to madness. It's too late for me now - but surely I can
+finish my precursors work and destroy the cursed thing before I
+lose my grasp entirely. Tonight  before they come for me I'll sink it
+in in the lake. I can here them approaching now - it's not too late
+though. If I can just</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[The Mezzanine]]></title>
+            <link>https://johnwhiles.com/posts/the-mezzanine.html</link>
+            <guid>https://johnwhiles.com/posts/the-mezzanine.html</guid>
+            <pubDate>Mon, 23 Aug 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[In The Mezzanine a young businessman reflects on objects as he goes
+about his lunch hour.
+]]></description>
+            <content:encoded><![CDATA[<p>In The Mezzanine a young businessman reflects on objects as he goes
+about his lunch hour.</p> <p>I read this book simultaneously with Swann's way. It was funny to
+read the narattors criticism of proust, and their description of
+the smell/nostalgia connection as being a sort of mental bug.  The
+proust comments are also a hint that made me see how the book is
+pre-occupied with a modern form of nostalgia, one that takes the
+shifting and mass produced detritus of late stage capitalism as its
+locus.</p> <p>We live in a world of objects which through their design, marketing,
+everday use, build a strong emotional resonance for us. A resonance
+that can't be shared, or ever recaptured by a later generation.
+These objects quietly refer define our society, our millieu, the
+way we lived for years and decades.</p> <p>This book made me think of the museum der dinge in Berlin which
+collects  mass produced objects. They are mostly inert to me.
+Oddities, tat, interesting precursors to the designs of today - but
+for an older generation this museum must induce nostalgia with far
+more potency than a madeline biscuit ever could.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[A Second Solaris]]></title>
+            <link>https://johnwhiles.com/posts/second-solaris.html</link>
+            <guid>https://johnwhiles.com/posts/second-solaris.html</guid>
+            <pubDate>Tue, 20 Jul 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[For the second evening in a row, we watched Solaris. If you read
+my previous psot, you'll that there was some confusion about whether
+or not George Clooney would appear in the 1972 Russian masterpiece.
+This time it was immediately clear that George Clooney would be
+appearing because we were watching the 2002 adaption of Solaris
+from acclaimed director of Magic Mike and The Ocean's 11 franchise
+Steven Soderbergh.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="second-solaris">Second Solaris</h1> <p>For the second evening in a row, we watched Solaris. If you read
+my previous psot, you'll that there was some confusion about whether
+or not George Clooney would appear in the 1972 Russian masterpiece.
+This time it was immediately clear that George Clooney would be
+appearing because we were watching the 2002 adaption of Solaris
+from acclaimed director of Magic Mike and The Ocean's 11 franchise
+Steven Soderbergh.</p> <p>Solaris 2 (002) is unusual in that it doesn't flounder under the
+weight of it's hugely successful predecessor. It manages to stand
+by itself, and provides a very different, but still enjoyable,
+cinematic experience.</p> <p>But first things first, Solaris 2 lacks the visual splendour of the
+original, it's cinematography is workmanlike. Everyone on earth
+looks like they're in a music video made by David Bowie and Trent
+Reznor. The film is weirdly rushed, George Clooney doesn't even
+agree to go to space - someone just suggests it and then he's there.
+The film just hasn't stuck in my thoughts in anything like the same
+way as the Tarkovsky flick. But it's stll good! It has some interesting
+twists, and brings different elements of the Solaris experience to
+the fore.</p> <p>The best thing about the film is, I think, that the only piece of
+licensed music in it is an Insane Clown Posse song. When Clooney
+first arrives on the space station, he meets Dr. Snow, who is messing
+with computers and listening to the ICP. We later find out that he
+is a Solarian replica, not a real human. I absolutely adore the
+idea that after being constructed from memories, with no real
+understanding of humanity, totally isolated on a space station,
+this alien being would decide to listen to ICP. Is Sonderbergh
+trying to tell us something about which of our cultural artifacts
+are truly valuable?</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Seeing Solaris]]></title>
+            <link>https://johnwhiles.com/posts/seeing_solaris.html</link>
+            <guid>https://johnwhiles.com/posts/seeing_solaris.html</guid>
+            <pubDate>Sun, 18 Jul 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Every year the Arsenal Kino in Berlin holds a Tarkovsky retrospective... Except
+last year when they didn't. This year they're back with a bang!
+By which I mean they are showing Tarkovsky's films again.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="seeing-solaris">Seeing Solaris</h1> <p>Every year the Arsenal Kino in Berlin holds a Tarkovsky retrospective... Except
+last year when they didn't. This year they're back with a bang!
+By which I mean they are showing Tarkovsky's films again.</p> <p>I'd never seen a Tarkovsky film before and all my knowledge of his work comes from
+reading a review of the video game adaption of Stalker. I didn't even know what
+era these films dated. So when A told me that this film starred
+George Clooney, it seemed totally plausible. I was very excited to see an
+acclaimed sci fi film by a Russian director starring George Clooney.</p> <p>About 5 seconds into the opening credits, where cyrillic characters
+sway on crackly old film stock accompanied by a droning organ, it
+became apparent that George Clooney would not be appearing in this
+film. From the credits (which felt like they might be from a vampire
+film from 1920) we go straight to some startlingly colorful shots
+of the watery folliage, and a sorrowful blue coated man holding a
+metal lunchbox. Perhaps it was the screenshots
+accompanying that Stalker review in PC Gamer Magazine, but one thing
+I really didn't expect from this film was vivid colours, and verdant plant life. It was a pleasant
+surprise.</p> <p>Equally surprising was the scene to scene shift from color to a
+blue tinged monotone. A wondered if this shift might represent dream
+sequences, it could also reflect the viewpoint of the
+ocean of solaris. I also wouldn't be surprised to find out that the
+truth is more to do with the availability of materials.</p> <p>Eventually our hero (who is not Geroge Clooney) goes to space, meets an alien
+version of his dead wife, traps her in a rocket, meets another version of the
+dead wife, falls in love with her, becomes increasingly strange, then eventually
+decides to live in a memory on the watery planet of Solaris.</p> <p>The film raises questions about what it means to be human, and whether asking
+questions like that is worth while. One character claims that the happiest
+people never think about the 'eternal themes'. The protaganist's behaviour
+towards the fake version of his wife, and eventual fate, seem to be the actions
+of someone who's more interested in being happy than thinking about the meaning
+of his wife's ressurection. But is the purpose of life being
+happy, or is it instead more important to understand why you are having a
+horrible time in space?</p> <p>Open questions</p> <ul><li>what's the deal with the horse that the child is scared of? Why are there so
+many pictures of horses on the space station?</li> <li>Why all the references to Don Quixote and Faustus?</li> <li>Why is the scene of Burton driving home so incredibly long?</li></ul> <p>Solaris was very good and you should watch it.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Start Small, Stay Small]]></title>
+            <link>https://johnwhiles.com/posts/start_small_stay_small.html</link>
+            <guid>https://johnwhiles.com/posts/start_small_stay_small.html</guid>
+            <pubDate>Thu, 15 Jul 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[I've recently been thinking about starting a small startup of my
+own, not with any intention of doing anything big, but instead of
+having some stupid little product that I can tinker with. I want
+to do this in order to learn some new skills, system design, customer
+management, design design, etc. So Start Stall, Stay Small by Rob
+Walling seemed like a useful thing to read.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="start-small-stay-schmall">Start Small, Stay Schmall</h1> <p>I've recently been thinking about starting a small startup of my
+own, not with any intention of doing anything big, but instead of
+having some stupid little product that I can tinker with. I want
+to do this in order to learn some new skills, system design, customer
+management, design design, etc. So Start Stall, Stay Small by Rob
+Walling seemed like a useful thing to read.</p> <p>When I started this book I felt quite excited. But the book became
+a bit of a drag. It's full of useful advice about figuring out if
+a market is worth investigating, how to choose a price point etc.
+This laser focus on profit, and minimising time investment was not
+really what I was after though. This book will tell you that it's
+preferable to contract out development work, copy writing etc. It's
+really aimed at people who want to know how to make a micro business
+profitable, whereas I was probably just looking for something to
+get me excited about making a stupid little website.</p> <p>If I go ahead with &quot;microentrepreneurship&quot; I will probably return
+to this book, and I'm think some of its lessons will be useful. But
+I worry that reading it might make you less likely to start a tiny
+business.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Yayoi]]></title>
+            <link>https://johnwhiles.com/posts/yayoi.html</link>
+            <guid>https://johnwhiles.com/posts/yayoi.html</guid>
+            <pubDate>Wed, 14 Jul 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[We took the day off work today to go to see the Yayoi Kusama retrospective at
+Gropius Bau. It seems like she has become increasingly popular in the age of
+social media, probably because so many of her artworks are very well suited to
+posing in front off.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="yayoi-kusama-at-gropius-bau">Yayoi Kusama at Gropius Bau</h1> <p>We took the day off work today to go to see the Yayoi Kusama retrospective at
+Gropius Bau. It seems like she has become increasingly popular in the age of
+social media, probably because so many of her artworks are very well suited to
+posing in front off.</p> <p><img src="/yayoi/three.jpeg" alt="IMG"></p> <p>A lot of the art talk in this exhibitions program talks about Kusama feeling a
+sort of disintegration between herself and her work, and
+wanting her viewers to feel the same way. I was certainly very impressed by the
+infinity rooms, which are enclosed mirrored rooms, generally filled with strange
+objects. They give the sense of being trapped in a glassy infinity, with nothing
+but yourself and some stuffed pumpkins. And if you could spend a long time in
+one of these spaces, I think it would easy to start feeling yourself part of
+artwork. Being a modern person, after I wandered around one of these rooms
+for a bit, I felt like I should take out my phone and
+capture a photo, I'm not really sure why. I guess to share with my family?</p> <p><img src="/yayoi/IMG_6088.jpeg" alt="IMG"></p> <p>As soon as I did, I realised that I'd ruined the experience for myself. I was no
+longer just being in the space, and was instead focused on how to make it appear
+good. Through the phone screen nothing really looked very good, and I think that
+a fully mirrored room may be fundamentally unphotographable. Once I had taken a
+photo it felt like I was done with the room and should just move on.</p> <p><img src="/yayoi/one.jpeg" alt="IMG"></p> <p>There is a strange tension in this exhibition. On the one hand, it
+seems like it exists because it it provides lots of potential social media fodder.
+At the same time the exhibition made me feel engrossed in some beautiful spaces, which can't really
+be photographed, and which were ruined for me by trying to photograph.</p> <p>There were a lot of paintings presented along side the more abstract pieces,
+here are some nice details that I captured.</p> <p><img src="/yayoi/eleven.jpeg" alt="IMG"> <img src="/yayoi/five.jpeg" alt="IMG"> <img src="/yayoi/four.jpeg" alt="IMG"> <img src="/yayoi/ten.jpeg" alt="IMG"> <img src="/yayoi/two.jpeg" alt="IMG"> <img src="/yayoi/eight.jpeg" alt="IMG"></p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Changes]]></title>
+            <link>https://johnwhiles.com/posts/changes.html</link>
+            <guid>https://johnwhiles.com/posts/changes.html</guid>
+            <pubDate>Tue, 13 Jul 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[I recently failed in my attempts to review every book I read. I think
+partially this was caused by my going on holiday, but mainly it  because the
+format I choose, of writing one big post about everything I read in a month, was
+painful to write. It was too big of a burden, everything had to be
+finished at the right time, the size of the posts meant that they were basically
+unreadable, and I was confused about how to handle books the I was reading
+across several months. I was moving some half written notes about Anais Nin's diary from
+month to month starting from January, until I gave up.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="changing-how-i-use-this-blog">Changing how I use this blog</h1> <p>I recently failed in my attempts to review every book I read. I think
+partially this was caused by my going on holiday, but mainly it  because the
+format I choose, of writing one big post about everything I read in a month, was
+painful to write. It was too big of a burden, everything had to be
+finished at the right time, the size of the posts meant that they were basically
+unreadable, and I was confused about how to handle books the I was reading
+across several months. I was moving some half written notes about Anais Nin's diary from
+month to month starting from January, until I gave up.</p> <p>So I'm gonna change my approach, and just write about things I read as I finish
+them. I also want to be a lot more relaxed about what I put on this blog
+generally. I want it to be scrappier, and shorter. This will hopefully mean I
+write more, which in turn will hopefully mean I write better.</p> <p>ciao.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[What I'm reading - April 2021 (Hamlet edition)]]></title>
+            <link>https://johnwhiles.com/posts/reading-april-2021.html</link>
+            <guid>https://johnwhiles.com/posts/reading-april-2021.html</guid>
+            <pubDate>Sat, 01 May 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[I've not read much this month. After reading a lot for the past
+few books I was feeling that I'd not taken enough time over each book.
+I didn't seem to have much to say in these notes. Instead this month I wanted
+to read a few books deeply and write more extensively about them.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="what-im-reading---march-2021">What I'm reading - March 2021</h1> <p>I've not read much this month. After reading a lot for the past
+few books I was feeling that I'd not taken enough time over each book.
+I didn't seem to have much to say in these notes. Instead this month I wanted
+to read a few books deeply and write more extensively about them.</p> <p>That hasn't happened. Instead I've been dedicating a lot of the
+time I would have spent reading to instead trying to learn German.
+I'd struggled to motivate myself to really trying to learn it before,
+I think because I lacked any real idea of how to improve. I'd taken
+German classes provided by an employer and found them to be demotivating.
+I had little idea what else to try. Anyway, thanks to <a rel="noopener noreferrer" target="_blank" href="https://wielander.me/">Peter</a>
+suggesting <a rel="noopener noreferrer" target="_blank" href="https://refold.la/">refold</a> to me, I've now got an approach to try,
+so I've spent a lot of time when I would have otherwise read instead watching
+mediocre German television. I've got no real reason to believe in their program other than Peter's
+testimonial, but I'm choosing to trust it because I suspect
+that consistently trying to learn the language over a long period
+is the only way to succeed, and maintaining such consistency is
+only possible if you believe in your learning method.</p> <p>## What I did read</p> <h2 id="what-happens-in-hamlet---john-dover-wilson"><a rel="noopener noreferrer" target="_blank" href="https://www.goodreads.com/book/show/33188.What_Happens_in_Hamlet?ac=1&amp;from_search=true&amp;qid=wJ3mNSgixD&amp;rank=1">What Happens in Hamlet - John Dover Wilson</a></h2> <p>This seems to be a classic of the maligned genre of literary
+criticism. The book simply tries to explain Hamlet. Why certain
+scenes, characters, and subplots that seem peculiar to a modern
+reader are included.</p> <p>It appears that at the time this book was written Hamlet was generally
+considered to be a beautiful poetic work, but somewhat incoherent
+as a play. For example Hamlet's bizzare conduct towards Ophelia,
+the dumb show / play scene, Hamlet's inaction in the first half of
+the play were thought of as mistakes, evidence of Shakespeare's
+imperfect adaption of his source material.</p> <p>Wilson aims to show that all these points and more are necessary
+parts the play, and would have seemed natural and coherent to an
+elizabethan audience.  To give one example he shows that Hamlet's
+inaction is prompted by fears about the ghost, whether it is a true
+spirit or a wicked devil sowing disorder. And that these fears would
+have seemed entirely reasonable to the audience. Hamlet cannot act
+without verifying the ghosts claim's, hence his melancholic inaction.</p> <p>I found Wilson's arguments generally convincing, though his confidence
+is some of his more specific claims did not seem justified by the
+evidence presented in the book. Having quickly purused his wikipedia
+page, it appears that this is a common criticism of his work.
+Nonetheless, I found this book to be extremely enlightening on the
+topic of Hamlet, and Shakespeare more generally. I now feel that I
+essentially 'get' the play and am excited to engage with adaptions
+of it in future. I'm particularly keen to see it performed once
+theatres are open again.</p> <h2 id="mythos---stephen-fry">Mythos - Stephen Fry</h2> <p>This book is a simple introduction to Greek/Roman myths. It's gathering up a
+lot of the stories you might find in Ovid's Metamorphoses and the Theogony
+and presenting them in a quick accessible format. Being able to quickly read
+these stories in fairly plain language makes this a good entry point to learning
+about Greek myths.</p> <p>While it's nice for these stories to be so accessible, I think they lose
+something in this telling. Fry writes like an overgrown school boy - probably
+he wrote this book for school boys. The tone is sometimes bit too satisfied, a bit too
+plummy. And this tone, I think does a disservice to some of the stories.</p> <p>It's a lovely book anyway. Read it if you want to know about Greek myths. And
+then read <a rel="noopener noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Tales_from_Ovid">Ted Hughes' version</a>.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[You can't change a promise]]></title>
+            <link>https://johnwhiles.com/posts/promise-me.html</link>
+            <guid>https://johnwhiles.com/posts/promise-me.html</guid>
+            <pubDate>Fri, 30 Apr 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[I've recently understood JavaScript promises and thus realised
+I hadn't understood them the past few years that I have spent
+as a 'professional' JavaScript developer.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="you-cant-change-a-promise">You can't change a promise</h1> <p>I've recently understood JavaScript promises and thus realised
+I hadn't understood them the past few years that I have spent
+as a 'professional' JavaScript developer.</p> <p>I'm unsure whether I now understand promises as well as the average
+JavaScript developer, or if the average JavaScript developer doesn't
+understand promises. Figuring that out is left as an exercise for the reader.</p> <h2 id="what-did-i-understand">What did I 'understand'?</h2> <p>What I've understood is that promises are immutable.
+I think I already 'knew' this - but did not understand the implications of it.</p> <p>So what does it mean for a promise to be 'immutable'.
+It means it cannot be changed. An example of this in JavaScript
+is the humble string. You can never change a string.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const myString = &quot;hello&quot;;
+
+console.log(myString.split(&quot;e&quot;)); // ['h', 'llo']
+
+console.log(myString); // 'hello'</code></pre></div><p>I can call methods on my string that will return a something new and different,
+but they don't change the string that I had to begin with.
+The same is not true for most other JavaScript entities.</p> <p>Take an array, for example.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const myArray = [1, 2, 3, 4];
+
+myArray.push(5);
+
+console.log(myArray); // [1,2,3,4,5]</code></pre></div><p>I can push new elements to my array, and the original array changes. It is
+'mutable'.</p> <h2 id="promises-again">Promises again</h2> <p>So, as I said before. Promises <em>are immutable</em>. But if you use them
+in the way that I have generally used them you might never have noticed this.</p> <p>Typically when we use promises we do things like this.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">makeRequest()
+  .then(data =&gt; doSomethingWithData(data))
+  .catch(err =&gt; doSomethingWithError(err));
+
+// or in a more up to date way
+
+try {
+  const data = await makeRequest();
+  doSomethingWithData(data);
+} catch (err) {
+  doSomethingWithError(err);
+}</code></pre></div><p>It's quite rare that we hold onto our original promise and
+interact with it multiple times, so whether <code>.then</code> and <code>.catch</code>
+mutate the original promise is largely irrelevant to us.</p> <p>But the fact remains that <code>.catch</code> and <code>.then</code> do not mutate the original
+promise. Both return a new promise. So what are the implications of that?</p> <h3 id="firstly-a-bug">Firstly a bug</h3> <p>There's a bug you can very easily introduce! Take a look at this</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const myPromise = makeRequest()
+
+myPromise.catch(err =&gt; doSomethingWithError(err))
+
+myPromise.then(data =&gt; doSomethingWithData(data))</code></pre></div><p>Do you see the issue?</p> <p>We are trying to catch errors that might be thrown when making a request for
+data, but calling <code>.catch</code> creates a new promise. Because we then call <code>.then</code>
+on the original promise, our attempts to catch the error is in vain.</p> <p>What we really need to write was this</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const myPromise = makeRequest();
+
+const myCaughtPromise = myPromise.catch(err =&gt; doSomethingWithError(err));
+
+myCaughtPromise.then(data =&gt; doSomethingWithData(data));</code></pre></div><h3 id="secondly-an-opportunity">Secondly, an opportunity</h3> <p>If calling <code>.then</code> makes a new promise, and does not change the original promise
+this means that we are not constrained in how many promises we can create.
+From one original promise we can make as many promises as we want. Hundreds.
+Thousands.</p> <p>But why?</p> <p>Perhaps we want to wait for our promise to resolve in different places, for different
+reasons. And perhaps in these places we want to transform our data in different
+ways. We may find ourselves in the awkward position of trying to control various
+combinations of transformed and non-transformed data through our code base.</p> <p>We would need to make sure that each .then is returning the data in a
+format that the next .then in the chain can handle. And if we want to
+get the data transformed in two different formats we might end up
+doing something like this.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">makeRequest()
+  .then(data =&gt; {
+    const transformedData = transform(data)
+    return { data, transformedData
+  }})
+  .then(({ data, transformedData }) =&gt; {
+    const differentlyTransformedData = transformDataDifferently(data)
+    return { data, transformedData, differentlyTransformedData }
+  })
+  .then(/* etc */)</code></pre></div><p>Hideous.</p> <p>Instead, because promises are immutable, we can just chain <code>.then</code>
+on the original promise several times.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const request = makeRequest()
+
+request.then(data =&gt; transform(data))
+
+request.then(data =&gt; transformDataDifferently(data))
+
+// etc</code></pre></div><p>Slightly less hideous!</p> <p>So In summary, despite having 'knowing' that promises were immutable, I
+sort of believed and acted like they were mutable. I thought that calling
+<code>.then</code> on a promise was changing that promise and then returning it.
+This is not actually the case.
+You can await or .then a promise as many times as you like without
+making any change to the original promise.</p> <p>This might be quite obvious to other people who've worked with
+promises, but is something that I had somehow missed entirely. When
+I realised that promises work like this it felt like a minor
+revelation.</p> <p>Ok.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[What I'm reading March 2021]]></title>
+            <link>https://johnwhiles.com/posts/reading-march-2021.html</link>
+            <guid>https://johnwhiles.com/posts/reading-march-2021.html</guid>
+            <pubDate>Fri, 02 Apr 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[I'm hesistant to write about this book, it covers serious topics and I don't feel
+good enough at writing to say anything worthy of its gravity.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="what-im-reading---march-2021">What I'm reading - March 2021</h1> <h2 id="the-fire-next-time---james-baldwin">The Fire Next Time - James Baldwin</h2> <p>I'm hesistant to write about this book, it covers serious topics and I don't feel
+good enough at writing to say anything worthy of its gravity.</p> <p>I'll just pull a quote that I really appreciated:
+&quot;They're celebrating 100 years of freedom 100 years too early&quot;</p> <h2 id="annotated-lolita---vladimir-nabokov">Annotated Lolita - Vladimir Nabokov</h2> <p>I'd read Lolita about 10 years ago, and enjoyed it enough to call it one of my
+favourite books. On re-reading I realised that I'd forgotten almost everything
+about it. And thanks to this being the annotated edition, I also realised that I
+had missed a lot during my first reading. I hadn't, for example, realised
+that Quilty is constantly alluded to throughout the book. I think generally
+Nabokov rewards re-reading, and grows with your knowledge.</p> <p>Obviously this book is incredible. The best.</p> <h2 id="trip---tao-lin">Trip - Tao Lin</h2> <p>In Trip Tao Lin gives an account of getting into psychedelic drugs whilst in the
+middle of a severe depressive episode. Doing so seems to improve his life in various
+ways, and gives him the chance to write a fun book!</p> <p>Along the way he talks in great depth about his history of drug use, and
+gives a general overview of global culture, pesticides, plant drawing classes
+etc. The books is beautifully written, and hilarious.</p> <p>His getting into psychedelics, and this whole book, seems to have been prompted
+by his spending a week watching videos of talks by Terence McKenna on youtube.
+TM seems to be a holder of some sensible and some astonishingly wacky views.
+This book joins the tradition of wacky psychedlic writing, so we here some quite
+extreme claims that I want to learn more about. For example, Tao says that the
+reason we need to have our wisdom teeth removed is not an accident of evolution,
+but rather due to our mouths being incorreclty formed due to degenerate western diets.</p> <p>Despite this book being primarily about psychedelics, the discovery that really improves
+Tao's life is when he realises that eating a healthy diet and taking exercise
+makes him feel better. This is common knowledge, but it seems to be something
+that every person needs to discover for themselves, and maybe for some people
+getting smashed on mushrooms is the best way to facilitate said discovery.</p> <h2 id="hamlet---shakespeare">Hamlet - Shakespeare</h2> <p>We've been reading a few scenes from Hamlet every night. Somehow I've never read
+it, never seen a film adaption, and had no idea of the plot. Reading it then has
+been a minor revelation. Half the lines in this play I already knew, because
+they've been stolen by other works. The 'What a piece of work is a man'
+soliloquy I knew almost word for word from rewatching Withnail and I a few too
+many times.</p> <p>I was most struck by how funny the play is. Polonius is our favourite
+character, and I treasure every scene where he appears. His 'breivty is the soul
+of wit' monologue is the funniest thing I've heard all year.</p> <p>It turns out that Shakespeare is quite good, and I feel silly for never having
+read him before now. Oops!</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Rendering Go problems on the blog]]></title>
+            <link>https://johnwhiles.com/posts/rendering-go-problems.html</link>
+            <guid>https://johnwhiles.com/posts/rendering-go-problems.html</guid>
+            <pubDate>Wed, 03 Mar 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[I'm currently learning to play Go/baduk, and I thought that it would be
+nice to include sections of a Go board on this website. I didn't
+really want to do it through taking screenshots of
+OGS. Additionally, as a Vim user, I was determined that
+I shouldn't have to use a mouse or GUI to share go problems.
+Instead I've made a Vue component that lets me type a Go board into my markdown files.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="rendering-go-problems">Rendering Go problems</h1> <p>I'm currently learning to play Go/baduk, and I thought that it would be
+nice to include sections of a Go board on this website. I didn't
+really want to do it through taking screenshots of
+<a rel="noopener noreferrer" target="_blank" href="https://online-go.com/">OGS</a>. Additionally, as a Vim user, I was determined that
+I shouldn't have to use a mouse or GUI to share go problems.
+Instead I've made a Vue component that lets me type a Go board into my markdown files.</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">// 0 = emtpy
+// 1 = black
+// 2 = white
+const board = 
+  [ [0,0,0,0,0,0]
+  , [0,2,1,1,0,0]
+  , [0,1,0,0,0,0]
+  , [0,1,0,1,0,0]
+  , [0,0,0,0,0,0]
+  , [0,0,0,0,0,0]
+  ]
+
+&lt;GoBoard 
+  :board=board
+  /&gt;</code></pre></div><p>renders as</p> <div class="board"><div class="row"><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div></div><div class="row"><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><!----> <!----> <div class="white stone"></div></div><div class="space"><!----> <div class="black stone"></div> <!----></div><div class="space"><!----> <div class="black stone"></div> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div></div><div class="row"><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><!----> <div class="black stone"></div> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div></div><div class="row"><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><!----> <div class="black stone"></div> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><!----> <div class="black stone"></div> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div></div><div class="row"><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div></div><div class="row"><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div><div class="space"><div class="emptySpace"></div> <!----> <!----></div></div></div> <p>This was the first time I've written a Vue component, and coming from React it
+seems deeply strange. Having to use a templating DSL which has loops and if statements
+written as HTML attributes seems really backwards. I can't see why I
+would choose Vue over React for any complex project, but maybe I'm missing
+something. If you can tell me what Vue is good for please get in touch!</p> <p>ciao.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[What I'm reading February 2021]]></title>
+            <link>https://johnwhiles.com/posts/reading-february-2021.html</link>
+            <guid>https://johnwhiles.com/posts/reading-february-2021.html</guid>
+            <pubDate>Mon, 01 Feb 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[I was put onto this short book by 'The Longing for Less' which I read last
+month. It is an exposition of traditional Japanese aesthetics, and the
+loss of these aesthetics due to modern electric lights, heating, glass windows,
+etc. The book talks about experiences which probably no longer exist,
+and which are by their nature too ephemeral to have been effectively recorded,
+other than in prose.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="what-im-reading---february-2021">What I'm reading - February 2021</h1> <h2 id="in-praise-of-shadows---junichirō-tanizaki">In Praise of Shadows - Jun'ichirō Tanizaki</h2> <p>I was put onto this short book by 'The Longing for Less' which I read <a href="link">last
+month</a>. It is an exposition of traditional Japanese aesthetics, and the
+loss of these aesthetics due to modern electric lights, heating, glass windows,
+etc. The book talks about experiences which probably no longer exist,
+and which are by their nature too ephemeral to have been effectively recorded,
+other than in prose.</p> <p>For example, the author talks about the practice of blackening teeth, which
+taken with extremely low lighting and dark clothes lead to an impression of a
+persons face being perfectly white and floating in a sort of void. You can
+search for photoss of people with blackened teeth, but the impression that these photos gives
+is entirely different. The photos are uniformly well lit, and make the practice
+seem artificial and grotesque.</p> <p>The way that technology makes the old impossible, or ugly, is I think the main
+message of this book. The author is particularly interested in shadows, coolness,
+quiet - three things that cannot be found in the overlit, overheating and
+loud modern world.</p> <h2 id="goodbye-to-berlin---christopher-isherwood">Goodbye to Berlin - Christopher Isherwood</h2> <p>Short stories based in and around (hello Rugen!) Berlin (where I
+live). I enjoyed reading about familiar streets and districts, imaging what has
+a has not changed.</p> <p>The book reminds me of Henry James' Tropic of Cancer, or Orwell's book about
+working in kitchens: a disconnected anglophone slums it in a European City cultivating
+rareified social connections that are completely unavailable to the
+majority. The song 'Common People' covered this pretty well I think.</p> <p>Isherwood is more enjoyable than Orwell because he doesn't pretend to care very
+much about the people he meets. He just documents crushing poverty, and airs
+<a rel="noopener noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Jean_Ross#Dislike_of_%22Sally_Bowles%22_and_Cabaret">other people's dirty laundry</a>.
+There is no sense of moral superiority.</p> <p>I enjoyed this book! You should read it.</p> <h2 id="mating-in-captivity---esther-perel">Mating in Captivity - Esther Perel</h2> <p>Continuing the trend of reading books about relationships! This is about
+eroticism inside of long term relationships.</p> <p>The central premise is that people assume that passion cannot exist in long term relationships, but that this is not ture.</p> <p>The book then goes on to describe various ways that passion can disappear, or
+become stunted in long term relationships. The author believes that these reasons
+mostly resolve around a lack of differentiation between partners. Eroticism relies on the unknown, but
+in most relationships intimacy is sought, and achieved - which limits the amount
+of unknowing that is possible.</p> <p>She diagnoses a narrowing of conceptions of what it means to be intimate.
+&quot;We no longer plow the land together; today we talk. We have come to glorify verbal communication&quot;.
+The vocal forms of intimacy that are popular are coded feminine and are easier to achieve for
+those who have been socialised as females. &quot;We think of intimacy primarily as a discursive process... that insolves self-disclose&quot;.
+Men are not trained in this style of communication, and this inability can be diagnosed as 'fear of intimacy' or
+emotional inaccesability.</p> <p>Similarly to the book I read last month, Perel considers relationships as
+something that should require work. &quot;we think it’s easy to love, but hard to find the
+right person.&quot;. There are practically infinite possible people to build a strong
+relationship with. The building is the difficult part.</p> <h2 id="pale-fire---vladimir-nabokov">Pale Fire - Vladimir Nabokov</h2> <p>This is a re-read. I liked this book the first time, but am enjoying it a lot
+more the second. I think the structure of the book makes the first reading
+difficult. I was focusing too much on flipping back and forth between the poem
+and commentary, and trying to understand what was going on. When you have a lay
+of the land it's a lot easier to simply read and luxuriate in the madness.</p> <p>I've appreciated the poem itself much more this time. It's hard to take in a
+thousand line poem in one go, there is so much beautiful language, that I
+imagine I will keep dipping back into this book for a long time.</p> <p>As for what is actually going on in the book - I have no idea.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[What I'm reading January 2021]]></title>
+            <link>https://johnwhiles.com/posts/reading-january-2021.html</link>
+            <guid>https://johnwhiles.com/posts/reading-january-2021.html</guid>
+            <pubDate>Sun, 31 Jan 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[This year I plan to read more, and to absorb more of what I do read. To this end
+I am going to write a little about what I've been reading each month. Here's January
+]]></description>
+            <content:encoded><![CDATA[<h1 id="what-im-reading---january-2021">What I'm reading - January 2021</h1> <p>This year I plan to read more, and to absorb more of what I do read. To this end
+I am going to write a little about what I've been reading each month. Here's January</p> <h2 id="moab-is-my-washpot---stephen-fry">Moab is My Washpot - Stephen Fry</h2> <p>I read this whilst at home over Christmas. It is an autobiography
+covering Stephen Fry's school years, a time when he achieved nothing of note. It
+seems that when he wrote this book, he had already published a
+fictionalised account of the same years. It seems that this period of his life
+has a strong hold on his thoughts.</p> <p>Prior to reading this I didn't think much of Stephen Fry. To me he was the host
+of tedious British panel shows, cared too much about the indignities of having
+many twitter followers, and had written a pretty good good
+book about poetry (<a rel="noopener noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/The_Ode_Less_Travelled">The Ode Less Travelled</a>).</p> <p>This book has made me more fond of him. He seems to have been a real freak as a
+child, which is a relatble quality. He talks about making school play costumes out
+of entrails, wanting to cease existing when a maggot ridden dead
+mole disintegrates over his clothes. He captures the unique dreads and
+obsessions of that we experience as children.</p> <p>He also discusses the private school system of England at great length.
+I managed to grow up in England without ever associating a real conversation with
+anyone who went to a private school. This book has gone some way to helping
+me understand why the people that did go to these schools are so weird.</p> <p>It seems that anyone who was forced through this system of boarding schools develops
+a lifelong attachment to it. This is central the class system in England.
+If one does not grow up with wealth, then one can never gain access to these
+peculiar shared experiences. You cannot join the elite except by birth.</p> <p>&quot;&quot;&quot;
+And that will be England gone,
+The shadows, the meadows, the lanes,
+The guildhalls, the carved choirs.
+There’ll be books; it will linger on
+In galleries; but all that remains
+For us will be concrete and tyres.</p> <p>Most things are never meant.
+This won’t be, most likely; but greeds
+And garbage are too thick-strewn
+To be swept up now, or invent
+Excuses that make them all needs.
+I just think it will happen, soon.
+&quot;&quot;&quot;</p> <h2 id="sexual-personae---camille-paglia">Sexual Personae - Camille Paglia</h2> <p>I started reading this after seeing Paglia appear briefly in the film <a rel="noopener noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/The_Watermelon_Woman">The
+Watermelon Woman</a>. I
+realised that I've heard a lot about her, but had no idea what her work is
+about.</p> <p>This book, which I haven't finished, seem to be a framework for analysing
+artworks and other cultural artifacts. She is interested in the distinction
+between the Apollonian and Cthonian. By these terms she means rational focused 'masculine'
+thought and earthy encompassing 'feminine' thought respectively. She uses beautiful and
+evocative language when attempting to describe what she means by Cthonian. It is
+grinding like the bowels of the earth, unknowable, deeply sinister etc.</p> <p>The book seems to gradually build up these two ideas, offering more and more
+examples of the Apollonian and Cthonian dichtomy, looking at how human culture
+in different times and place reflects one or the other more strongly.</p> <p>There various subsidiary elements to the Aoollonian and Cthonian. The Apollonian
+is sky focused, it builds towers, it focuses its eyes on what interests  it.
+Cthonianism is earth focused, it tunnels creeps and grows, it is cruel like nature is cruel.</p> <p>The book is very long and I will probably not finish reading it</p> <h2 id="finite-and-infinite-games---james-p--carse">Finite and Infinite Games - James P. Carse</h2> <p>There is a lot of fun to be had in mis-pronouncing the
+title of this book. Try finite and infinite games, but pronounced like infinite
+and finite games.</p> <p>This reminded me of Paglia's book. Both are focused on dichotomies. There is some similaritiy in the
+distinction is finite and infite games and the apollonian and cthonian. Both
+books also give the sense that the author is preoccupied by playing games with
+language.</p> <p>This book apparently made little impact when released, but
+gained a larger following when it was regurgitated by Simon Sinek in
+2019 as 'The Infinite Game'. That book, which I have not read, claims that
+Business and Politics are examples of Infinite Games. Clearly they are not, if
+judged by Carse's criteria. Believeing otherwise is the same sort of deranged
+thinking that leads people to trust in &quot;the power of why&quot;, and to buy electric cars.</p> <h2 id="k-punk---mark-fisher">K-Punk - Mark Fisher</h2> <p>A series of blog posts by someone called Mark Fisher, who I've never heard of
+before and know nothing about.</p> <p>This book is very long and repetitive, and keeps referencing &quot;Žižek&quot; so surely
+as spring turns to summer, I will not finish it. Still, one of the articles was
+about a film by David Cronenberg and I recently watched Shivers, which was
+timely.</p> <p>The articles oscillates between being interesting, and repetitively grouchy and depressed.
+Obviously the author is English.</p> <h2 id="designing-data-intensive-applications">Designing Data-Intensive Applications</h2> <p>As an engineer with no Computer Science degree who has mostly worked on Front End projects, this book
+is teaching me lot of things that I assume my colleagues already know. In
+particular, I've learned  <em>a lot</em> of lingo.  Cool</p> <h2 id="the-longing-for-less---kyle-chayka">The Longing for Less - Kyle Chayka</h2> <p>This book begins with an overview of contemporary minimalism. We learn about
+Marie Kondo and The Minimalists, both of whom argue that the reduction of
+material posessions is a straightfoward path to a better life.
+A process of beneficial minification that is not contingent on personality or circumstance.</p> <p>The author gives short shrift to these writers, considering these forms of minimalism to
+be meaningless. &quot;sachharine and predigested, presented as self-help... Each book
+contains an easy structure of epiphany and aftermath, recounting the crisis that leads its author to
+minimalism, the minimalist metamorphosis, and then the positive ways the
+author's life changed&quot;.</p> <p>The stylised minimalism of Steve Jobs and Apple is also discussed. This sort of luxury minimalism is
+an expensive facade, a class signifier, more than a meaningful lifstyle choice.
+The sleek glass of the iPhone is hiding a labyrinth of coiling infrastructure
+that encircles the planet and reaches into space.</p> <p>We're also briefly introduced to the 'philosophical' forms of minimalism, which
+are popular amongst people who write blogs about productivity.
+This <a rel="noopener noreferrer" target="_blank" href="https://breakingsmart.substack.com/p/against-waldenponding">waldenponding</a> -
+rejecting the world, avoiding the pain engagement. 'What the Stoics, Francis, and Thoreau have in common is a strategy of avoidance'.
+These thinkers were only able to reject the worldly because of their existing
+wealth, and the support of servants, family, or slave labour.
+To live a life of rarified contemplation requires certain material assistances.</p> <p>The book then moves onto an overview of the lives of various
+minimalist artists and thinkers, and their place in the evolution of minimalism.
+There's a crash course in Agnes Martin, Phillip Johnson, Donald Judd, John Cage,
+Julius Eastman, Jun'ichirō Tanizaki, and others.
+There's a lot of really interesting content, which I'll not attempt to reproduce
+here. But if you'd like to learn more about lots of vaguely related artists this
+book is a good way to do it. I've come away with a long reading list, and a lot
+of new ideas to explore.</p> <p>There is a theme that runs through the lifes of the people examined, and that is
+that minimalism did not, make their lives easier. Instead their lifestyles
+became a fight against the self and a world that would rather that expected them
+to behave differently. The real subject of this book is not, it seems
+minimalism so much, as an appreciation for new ways of living, new ways of
+seeing.</p> <p>&quot;embrace contingency and ranomness... beauty is found not by imposition but
+through an absence of control&quot;</p> <h2 id="attached---amir-levine">Attached - Amir Levine</h2> <p>I read this book to try and understand relationships, because it has become clear that I do not.
+The book takes a theory that was originally meant to explain how babies interact
+with their mothers, and uses it to describes adult romantic relationships.
+If I knew more about Freud I might say something clever here.</p> <p>The authors claim that all relationships are essentially co-dependent - and that this is not a bad thing.
+Being able to depend on another another person means allows us to do the things we want to do effectively.
+Having a strong base of support allows us to self actualise.</p> <p>There are three different 'attachment styles' - and the interactions of these different attraction styles largely determines the success of a relationship.</p> <p>The three styles described are:</p> <ul><li>Secure - people who are good at communicating, open with their emotions, and perceptive of their partner's emotional states. Apparently this group comprises around 50% of the population.</li> <li>Anxious - these people are pre-occupied by thoughts of their relationship. They require a lot of support, and can easily come to resent a partner who doesn't meet their emotional needs. When anxious people aren't given sufficient care, they tend to act up in a various attention grabbing ways. These people are apparently very capable of building strong relationships, just so long as their partner is able to support them properly.</li> <li>Avoidant - people who are either scared of being emotionally dependent on a partner. These people do require intimacy, but are afraid of it.</li></ul> <p>There can be overlap between different styles, people can exhibit elements of
+different styles, and it is quite possible to move between them over time.</p> <p>The key to a successful relationship is ensuring that it does not include an 'Avoidant' individual.
+They are sometimes capable of maintaing good relationships with a secure partner, but never with an anxious partners.</p> <p>This model seems very simplistic, and like it can't be capturing a lot of what makes relationships work or not work.
+But still I think I found this book fairly interesting.
+It made me realise that I really have no mental models of how relationships work, which is something I'd like to fix.
+If you have any recommendations for books on similar topics get in touch!!</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Local development with DynamoDB and JavaScript]]></title>
+            <link>https://johnwhiles.com/posts/javascript-and-dynamodb.html</link>
+            <guid>https://johnwhiles.com/posts/javascript-and-dynamodb.html</guid>
+            <pubDate>Sun, 01 Nov 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[I was interested in learning how use DynamoDB, but didn't want to set
+it up on AWS personally because I'm lazy, and scared of accidentally getting
+billed for 10,000 euros.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="local-development-with-dynamodb-and-javascript">Local development with DynamoDB and JavaScript</h1> <p>I was interested in learning how use DynamoDB, but didn't want to set
+it up on AWS personally because I'm lazy, and scared of accidentally getting
+billed for 10,000 euros.</p> <p>Instead I decided to run it locally in a docker-container.</p> <p>This article is going to walk through the process that I followed, in case you
+want to do something similar.</p> <h2 id="creating-the-dynamodb-container">Creating the DynamoDB container</h2> <p>The first step is to create a <code>docker-compose.yaml</code>.
+Docker Compose let's us define containers that we want to run to support our
+project. It's a pretty neat way to set up a development environment.</p> <p>Here's the file I created</p> <div class="saber-highlight" data-lang="yaml"><pre class="saber-highlight-code language-yaml"><code class="language-yaml">version: '3' # The version of docker-compose syntax we're using. Just pick 3 I guess
+
+services: # We define the containers we want to create under this header
+  dynamodb:
+    image: amazon/dynamodb-local # The image we're using. Thanks Amazon.
+    container_name: dynamodb-local
+    ports:
+      - &quot;8042:8000&quot; # binds the localhost port on the left, to the container port on the right</code></pre></div><h3 id="running-the-container">Running the container</h3> <p>You'll need docker installed for this step.</p> <p>Run this command
+<code>docker-compose -f docker-compose.yaml up -d</code></p> <p><code>-f</code> allows us specify the file to use, in our case this is the
+docker-compose.yaml we just created</p> <p><code>up</code> tells docker-compose to “build, (re)create, start, and attache to containers for a service.”
+<code>-d</code> specifies that we want to run the container in 'detached' mode.</p> <p>Now our container should be running. Running <code>docker ps</code> in the command line
+should show that the container is alive and kicking.</p> <h2 id="the-javascript-stuff">The JavaScript stuff</h2> <h3 id="making-our-first-table">Making our first table</h3> <p>To use DynamoDB in JavaScript, we're going to rely on the aws-sdk. So let's
+install it!</p> <p><code>yarn add aws-sdk</code></p> <p>And then let's use it to make a table!</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const AWS = require('aws-sdk');
+
+async function main() {
+  // Even though we're using the SDK locally the SDK will throw an error 
+  // if these items are missing. We don't need to use real keys for local
+  // development however.
+  AWS.config.update({
+    region: 'local',
+    accessKeyId: 'random-not-real-id',
+    secretAccessKey: 'random-not-real-key',
+  })
+
+  // Now we create our Client!
+  const dynamoClient = new AWS.DynamoDB({ endpoint: 'http://localhost:8042' })
+
+  // And we can start making tables
+
+  try {
+    await dynamoClient.createTable({
+      // The name  of our table
+      TableName: 'user-info',
+
+      // The attributes that our needed to create our primary key.
+      // We can still store other data as part of each item, but we don't need
+      // to define it as part of the table
+      AttributeDefinitions: [
+        {
+          AttributeName: 'name',
+          AttributeType: 'S',
+        }
+      ],
+
+      // How the primary keys for our table are generated.
+      // In our case we are simply going to hash the attribute 'name'
+      KeySchema: [
+        {
+          AttributeName: 'name',
+          KeyType: 'HASH',
+        },
+      ],
+
+      // Some Config stuff. Ask your ops team about this I guess.
+      ProvisionedThroughput: {
+        ReadCapacityUnits: 5,
+        WriteCapacityUnits: 5,
+      },
+    }).promise()
+
+    console.log('create table user-info')
+
+  } catch (e) {
+    console.error(error)
+    process.exit(1)
+  }
+}</code></pre></div><p>Although we only specified the attributes that are required to make each items
+primary key, we can store other data in each item.</p> <h3 id="data-in-the-base">Data in the base</h3> <p>A thing that puzzled me when looking at the DynamoDB sdk was the difference between a  <code>DynamoClient</code> and a <code>DocumentClient</code>. We used the <code>DynamoClient</code> to create our table above, but using that to add data actually becomes quite tricky. We have to painstakingly describe the different keys we'll be adding.</p> <p>The document client seems to have been added to the SDK to make life easier for JavasScript developers. It gives us some methods that let us interact with our DB using normal JavaScript objects that match the shape of the data we want to store. More details can be seen in <a rel="noopener noreferrer" target="_blank" href="https://aws.amazon.com/blogs/developer/announcing-the-amazon-dynamodb-document-client-in-the-aws-sdk-for-javascript/">this announcement post</a>.</p> <p>Long story short, we're going to use the <code>DocumentClient</code> to store data in our
+table.</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">const docClient = new AWS.DynamoDB.DocumentClient({ endpoint: 'http://localhost:8042' })</code></pre></div><p>Now to make our lives easier let's define a function that adds users to our
+table.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const addUser = async (name, email) =&gt; {
+  return docClient.put({
+    Item: {
+      name,
+      email
+    },
+    TableName: 'user-info'
+  }).promise()
+}</code></pre></div><p>and one to list all of our users</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const listUsers = async () =&gt; {
+  return docClient.scan({
+    TableName: 'user-info'
+  }).promise()
+}</code></pre></div><p>We can then use these functions to add some users to our table, and then print
+them out again.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const addUsers = async () =&gt; {
+  await addUser('bobby', 'bobby@bob.com')
+  await addUser('tomboy', 'tom@boy.com')
+  await addUser('blobby', 'mr@blobby.com')
+  console.log(await listUsers())
+}
+
+addUsers()</code></pre></div><p>If we run this code we'll see the following output in our terminal</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">{
+  Items: [
+    { name: 'bobby', email: 'bobby@bob.com' },
+    { name: 'blobby', email: 'mr@blobby.com' },
+    { name: 'tomboy', email: 'tom@boy.com' }
+  ],
+  Count: 3,
+  ScannedCount: 3
+}</code></pre></div><h2 id="conclusion">Conclusion</h2> <p>You'se now seen how to set up a local DynamoDB - and how to do some basic
+interaction with it in JavaScript. A runnable version of the code in this
+article can be <a rel="noopener noreferrer" target="_blank" href="https://github.com/Jwhiles/dynamo-something">found here</a>.</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[How to fix the web]]></title>
+            <link>https://johnwhiles.com/posts/how-to-fix-the-web.html</link>
+            <guid>https://johnwhiles.com/posts/how-to-fix-the-web.html</guid>
+            <pubDate>Tue, 03 Dec 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[This blogpost is going to teach you how to drastically improve your experience
+of browsing the internet.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="how-to-fix-the-web">How to fix the web</h1> <p>This blogpost is going to teach you how to drastically improve your experience
+of browsing the internet.</p> <h2 id="step-one">Step one</h2> <p>Install firefox</p> <h2 id="step-two">Step two</h2> <p>Open the preferences menu</p> <h2 id="step-three">Step three</h2> <p>Under <code>Langauge and Appearance</code> select <code>Comic Sans MS</code>.</p> <h2 id="step-three-2">Step three</h2> <p>enter the <code>Advanced</code> submenu of <code>Langauge and Appearance</code>, then uncheck the box
+marked <code>Allow pages to choose their own fonts</code></p> <p>There is no step four</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Tries company]]></title>
+            <link>https://johnwhiles.com/posts/implementing-a-trie.html</link>
+            <guid>https://johnwhiles.com/posts/implementing-a-trie.html</guid>
+            <pubDate>Thu, 21 Nov 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Once upon a time (five months ago) I was doing a phone screening for a tech job. To my horror, I was asked to
+name a Tree that wasn't a binary search Tree. Being a complete philistine, I had no answer. I was rejected on
+the spot. From that day on I have made it my mission to learn about every variation of a Tree that can be
+implemented with a small amount of effort in Haskell.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="implementing-a-trie-in-haskell">Implementing a Trie in Haskell</h1> <p>Once upon a time (five months ago) I was doing a phone screening for a <em>tech job</em>. To my horror, I was asked to
+name a Tree that wasn't a binary search Tree. Being a complete philistine, I had no answer. I was rejected on
+the spot. From that day on I have made it my mission to learn about every variation of a Tree that can be
+implemented with a small amount of effort in Haskell.</p> <p>Today we take on <em>The Trie</em></p> <p>This article is mostly meant as a demonstration of what a Trie is. This is a totally
+naive implementation, which is based on skimming the <a rel="noopener noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Trie">wikipedia article about Tries</a>.
+As such you probably shouldn't use this code anywhere.</p> <p>Although this is written in haskell, I've tried to avoid anything too weird.
+Hopefully this code will be comprehensible for someone who has written Elm.</p> <p>We'll start by watching me implementing a Trie incorrectly, realising my
+mistake, and then correcting it.</p> <h2 id="what-is-a-trie">What is a Trie?</h2> <p>A Trie (AKA a Prefix Tree) is a Tree where each node is labelled by some
+value. When we traverse the tree these labels can be concatenanted together to find the
+value represented by a leaf node.</p> <p>For example I might store my friends names in a Trie like this:</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">B
+      |
+   ______
+  |   |  |
+  O   I  A __
+  |   |  |   |
+  B   L  Z   R
+      |      |
+      L      B
+
+-- This Trie contains the names Bob, Bill, Baz, and Barb.      ALl my friends.</code></pre></div><p>Tries are useful for things like creating an autocompleting
+searchbox on your Web 2.0 App. They can really deliver a lot of business value and help you meet your KPIs.</p> <h2 id="how-to-implement-a-trie">How to implement a Trie?</h2> <h3 id="a-tree">A Tree</h3> <p>A typical binary tree in Haskell can be implemented as follows</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">data Tree a = Node a (Tree a) (Tree a) | Leaf</code></pre></div><h3 id="a-trie">A Trie</h3> <p>But in the case of a Trie, we aren't certain how many children a given Node will
+have. We also want to be able to access a Node's children based on the value
+they contain.</p> <p>That sounds an awful lot like a Map (AKA a Dictionary)...</p> <p>So let's represent the children using a Map</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">import qualified Data.Map.Strict as M
+-- We import a Data.Map, to act as our Dictionary
+
+data Trie = Node (M.Map Char Trie) 
+  deriving (Eq, Show)</code></pre></div><p>A really simple Trie with just two words, 'hi' and 'hey' using this structure would
+look something like this.</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">Node { h = Node { i = Node { }, e = Node { y = Node { } } } }</code></pre></div><p>Writing out nodes by hand is no fun. So let's write a function to insert a word.</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">-- First we make a helpful 'empty Trie' constant
+empty :: Trie
+empty = Node M.empty
+
+
+-- Then we define the type of our insert function
+insert :: String -&gt; Trie -&gt; Trie
+
+-- If the String is empty, we return the Trie as it was
+insert &quot;&quot; t = t  
+
+-- Otherwise we split the first character out of the string
+-- and check if that character already exists as a child of the Node we're
+-- looking at
+insert (c:rest) (Node children) =
+  case M.lookup c children of
+
+    -- If the character wasn't already there, then we add an empty Trie
+    -- under that character to our Map, and then add the rest of the string to 
+    -- that new subTrie!
+    Nothing -&gt;
+      Node $ M.insert c (insert rest empty) children
+
+    -- If the character is already in the Trie then we can recursively call 
+    -- insert on that SubTrie with the rest of our string
+    Just matchingChildNode -&gt;
+      Node (M.insert c (insert rest matchingChildNode) children)</code></pre></div><p>Now we can construct the same Trie we saw previously, <em>but this time with code</em></p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">ourTrie = insert &quot;hi&quot; $ insert &quot;hey&quot; empty</code></pre></div><p>If we run this in our Repl we get</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">Node (fromList
+  [ ('h', Node (fromList
+    [ ('e',Node (fromList
+      [ ('y',Node (fromList [] )) ]))
+  , ('i',Node (fromList [])) ])) ])</code></pre></div><p>Cool!</p> <h2 id="my-biggest-mistake">My Biggest mistake</h2> <p>An observant reader might noticed that this Trie implementation is WRONG and BAD</p> <p>What happens to our Trie if, for KPI related reasons, we need to insert the words &quot;hello&quot; and &quot;hell&quot;?</p> <p>We can add them both, but there is no possible way us to tell looking at the resulting Trie that the word hell was ever there. It's gone. Vanished. Verschwunden.</p> <p>We have no way of to distinguish between words that were intentionally added
+to the Trie, and random prefixes that have no meaning by themselves.</p> <h2 id="fixing-my-biggest-mistake">Fixing my biggest mistake</h2> <p>This is all fine of course. We can change our Trie defintion such that each node
+can either hold onto a specific value, or be empty. An empty node meaning that
+the it is simply a step on the path to a node that <em>does</em> represent some
+specific word.</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">data Trie 
+  = Node String (M.Map Char Trie) 
+  | Empty (M.Map Char Trie)
+      deriving (Eq, Show)
+
+empty :: Trie
+empty = Empty M.empty</code></pre></div><p>Let' also make some helper functions for working with our new structure</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">getChildren :: Trie -&gt; M.Map Char Trie
+getChildren (Node _ c) = c
+getChildren (Empty c) = c
+
+setChildren :: Trie -&gt; M.Map Char Trie -&gt; Trie
+setChildren (Node s _) newChildren = Node s newChildren
+setChildren (Empty _) newChildren = Empty newChildren</code></pre></div><p>Now we need to update our insert function to save the word that we are inserting at
+the end of the Trie branch it is added to</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">insert :: String -&gt; Trie -&gt; Trie
+insert word trie = recurse word trie
+  where
+    recurse :: String -&gt; Trie -&gt; Trie</code></pre></div><p>we use an internal helper function, that I've called <code>recurse</code> so we can keep hold of the word we are adding - even while recursing.</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">recurse &quot;&quot; t = Node word (getChildren t)</code></pre></div><p>If our string is empty, it means we've finished adding all the characters that make up our word
+to the trie - so we can save the full word at this Node and then stop. Phew</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">recurse (c:rest) t = 
+      let children = (getChildren t)
+      in case M.lookup c children of
+        Just matchingChildNode -&gt;
+          setChildren t (M.insert c (recurse rest matchingChildNode) children)
+        Nothing -&gt;
+          setChildren t $ M.insert c (recurse rest empty) children</code></pre></div><p>If there are still characters to add to the Trie, we can recursively add them in much the same way we did before.
+We just need to adjust this function a bit to avoid destroying other words that we've already saved in our Trie.</p> <p>Nice!</p> <h2 id="whats-in-it">What's in it?</h2> <p>The really useful feature of a Trie, it seems, is to be able to tell us all the
+suffixes for a given Node. In our example above, I might start with the letter 'h'
+and be told that the possible endings of the word are 'i' and 'ey'. Very useful.</p> <p>It turns out that writing this function for our Trie is <em>really</em> easy.</p> <p>first we write a function that can help us get a value out of a given node of a Trie.</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">getValue :: (Applicative m, Monoid (m String)) =&gt; Trie -&gt; m String
+getValue (Empty _) = mempty
+getValue (Node nodeValue _) = pure nodeValue</code></pre></div><p>The cool thing about this function is that it will return a different type
+depending on the context we use it in. For example if we used it in a context where we expected a Maybe. We'll get a Maybe String.</p> <p>In this case we actually want to build a list of values, and this function will helpfully also return values in that format. To get all the words in our Trie we can write a function that recursively get's the values at each node in our Trie, and returns them all in one big list</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">getWords :: Trie -&gt; [ String ]
+getWords t = getValue t &lt;&gt; 
+               foldMap getWords (getChildren t)</code></pre></div><p>Tidy</p> <p>If we test this like so</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">main = do
+  print $
+    getWords $ insert &quot;hey&quot; $ insert &quot;hello&quot; $ insert &quot;egg&quot; empty</code></pre></div><p>We'll see</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">[&quot;egg&quot;, &quot;hello&quot;, &quot;hey&quot;]</code></pre></div><p>Nice!</p> <h2 id="conclusion">Conclusion</h2> <p>wow. What a journey.
+I hope this was in some way useful. It certainly was for me! Next time a phone interviewer asks me to name
+'<em>any one data structure that isn't a binary search Trie</em>' I'll have an answer for them!</p> <p>Below you'll find the complete code, which you can play around with. It's been edited slightly to be more generic. Allowing us to store any lists of values, rather than just Strings (aka lists of characters).</p> <p>Suggested exercise for the reader</p> <ul><li>Write an autocomplete function that takes the start of a word and a trie, and tells us the possible complete words we could make!</li> <li>Write a function to delete words from the Trie!</li> <li>Think of an application for a Trie that isn't building autocomplete functionality</li> <li>Try implementing this in C (jk)</li></ul> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">{-# Language ScopedTypeVariables #-}
+
+module GenTree where
+
+import qualified Data.Map.Strict as M
+
+data Trie a = Node [a] (M.Map a (Trie a)) | Empty (M.Map a (Trie a))
+  deriving (Eq, Show)
+
+empty :: Trie a
+empty = Empty M.empty
+
+getValue :: (Applicative m, Monoid (m [a])) =&gt; Trie a -&gt; m [a]
+getValue (Empty _) = mempty
+getValue (Node nodeValue _) = pure nodeValue
+
+getChildren :: Trie a -&gt; M.Map a (Trie a)
+getChildren (Node _ c) = c
+getChildren (Empty c) = c
+
+setChildren :: Trie a -&gt; M.Map a (Trie a) -&gt; Trie a
+setChildren (Node s _) newChildren = Node s newChildren
+setChildren (Empty _) newChildren = Empty newChildren
+
+
+insert :: forall a. (Ord a) =&gt; [a] -&gt; Trie a -&gt; Trie a
+insert word trie = recurse word trie
+  where
+    recurse :: [a] -&gt; Trie a -&gt; Trie a
+    recurse [] t = Node word (getChildren t)
+
+    recurse (c:rest) t = 
+      let children = (getChildren t)
+      in case M.lookup c children of
+        Just matchingChildNode -&gt;
+          setChildren t (M.insert c (recurse rest matchingChildNode) children)
+        Nothing -&gt;
+          setChildren t $ M.insert c (recurse rest (empty)) children
+
+getWords :: Trie a -&gt; [ [ a ] ]
+getWords t = getValue t &lt;&gt; 
+               foldMap getWords (getChildren t)
+      
+main = do
+  print $
+    getWords $ insert &quot;hey&quot; $ insert &quot;hello&quot; $ insert &quot;egg&quot; empty
+  print $
+    getWords $ insert [1, 2, 3] $ insert [1, 4, 5] $ insert [1, 50, 2] empty</code></pre></div>]]></content:encoded>
+        </item>
+    </channel>
+</rss>

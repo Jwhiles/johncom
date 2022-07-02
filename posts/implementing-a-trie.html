@@ -1,0 +1,146 @@
+<!DOCTYPE html><html data-saber-ssr><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta data-saber-head="ssr" name="generator" content="Saber v0.11.7"> <title>Tries company - John&#x27;s internet house</title> <link data-saber-head="ssr" rel="alternate" type="application/rss+xml" title="john_whiles_rss_feed" href="https://www.johnwhiles.com/atom.xml"><style data-vue-ssr-id="34039455:0 ffa0680c:0 dfb44056:0">.body{max-width:800px;font-size:18px;font-family:sans-serif}img{max-width:100%;max-height:500px}
+main{margin-right:auto;margin-left:auto;padding-right:2rem;padding-left:2rem;max-width:800px;font-size:18px;font-family:sans-serif}.halfwidth{max-width:400px}.signup{border-top:3px solid #f0f0f0;margin-top:1rem;padding-top:1rem}
+nav[data-v-40eedac4]{height:30px;align-items:center;border-bottom:3px solid #f0f0f0}nav[data-v-40eedac4],ul[data-v-40eedac4]{display:flex}ul[data-v-40eedac4]{flex-grow:1;list-style:none;padding-left:0}li[data-v-40eedac4]{margin-right:20px}</style> <script data-saber-head="ssr" defer data-domain="johnwhiles.com" src="https://plausible.io/js/plausible.js"></script> </head><body><div id="_saber" data-server-rendered="true"><main role="main"><nav data-v-40eedac4><ul data-v-40eedac4><li data-v-40eedac4><a href="/" rel="nofollow" class="router-link-active" data-v-40eedac4>Home</a></li> <li data-v-40eedac4><a href="/about" rel="nofollow" data-v-40eedac4>About</a></li> <li data-v-40eedac4><a href="/posts" rel="nofollow" class="router-link-active" data-v-40eedac4>Blog</a></li></ul></nav> <h1 id="implementing-a-trie-in-haskell">Implementing a Trie in Haskell</h1> <p>Once upon a time (five months ago) I was doing a phone screening for a <em>tech job</em>. To my horror, I was asked to
+name a Tree that wasn't a binary search Tree. Being a complete philistine, I had no answer. I was rejected on
+the spot. From that day on I have made it my mission to learn about every variation of a Tree that can be
+implemented with a small amount of effort in Haskell.</p> <p>Today we take on <em>The Trie</em></p> <p>This article is mostly meant as a demonstration of what a Trie is. This is a totally
+naive implementation, which is based on skimming the <a rel="noopener noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Trie">wikipedia article about Tries</a>.
+As such you probably shouldn't use this code anywhere.</p> <p>Although this is written in haskell, I've tried to avoid anything too weird.
+Hopefully this code will be comprehensible for someone who has written Elm.</p> <p>We'll start by watching me implementing a Trie incorrectly, realising my
+mistake, and then correcting it.</p> <h2 id="what-is-a-trie">What is a Trie?</h2> <p>A Trie (AKA a Prefix Tree) is a Tree where each node is labelled by some
+value. When we traverse the tree these labels can be concatenanted together to find the
+value represented by a leaf node.</p> <p>For example I might store my friends names in a Trie like this:</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">B
+      |
+   ______
+  |   |  |
+  O   I  A __
+  |   |  |   |
+  B   L  Z   R
+      |      |
+      L      B
+
+-- This Trie contains the names Bob, Bill, Baz, and Barb.      ALl my friends.</code></pre></div><p>Tries are useful for things like creating an autocompleting
+searchbox on your Web 2.0 App. They can really deliver a lot of business value and help you meet your KPIs.</p> <h2 id="how-to-implement-a-trie">How to implement a Trie?</h2> <h3 id="a-tree">A Tree</h3> <p>A typical binary tree in Haskell can be implemented as follows</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">data Tree a = Node a (Tree a) (Tree a) | Leaf</code></pre></div><h3 id="a-trie">A Trie</h3> <p>But in the case of a Trie, we aren't certain how many children a given Node will
+have. We also want to be able to access a Node's children based on the value
+they contain.</p> <p>That sounds an awful lot like a Map (AKA a Dictionary)...</p> <p>So let's represent the children using a Map</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">import qualified Data.Map.Strict as M
+-- We import a Data.Map, to act as our Dictionary
+
+data Trie = Node (M.Map Char Trie) 
+  deriving (Eq, Show)</code></pre></div><p>A really simple Trie with just two words, 'hi' and 'hey' using this structure would
+look something like this.</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">Node { h = Node { i = Node { }, e = Node { y = Node { } } } }</code></pre></div><p>Writing out nodes by hand is no fun. So let's write a function to insert a word.</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">-- First we make a helpful 'empty Trie' constant
+empty :: Trie
+empty = Node M.empty
+
+
+-- Then we define the type of our insert function
+insert :: String -&gt; Trie -&gt; Trie
+
+-- If the String is empty, we return the Trie as it was
+insert &quot;&quot; t = t  
+
+-- Otherwise we split the first character out of the string
+-- and check if that character already exists as a child of the Node we're
+-- looking at
+insert (c:rest) (Node children) =
+  case M.lookup c children of
+
+    -- If the character wasn't already there, then we add an empty Trie
+    -- under that character to our Map, and then add the rest of the string to 
+    -- that new subTrie!
+    Nothing -&gt;
+      Node $ M.insert c (insert rest empty) children
+
+    -- If the character is already in the Trie then we can recursively call 
+    -- insert on that SubTrie with the rest of our string
+    Just matchingChildNode -&gt;
+      Node (M.insert c (insert rest matchingChildNode) children)</code></pre></div><p>Now we can construct the same Trie we saw previously, <em>but this time with code</em></p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">ourTrie = insert &quot;hi&quot; $ insert &quot;hey&quot; empty</code></pre></div><p>If we run this in our Repl we get</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">Node (fromList
+  [ ('h', Node (fromList
+    [ ('e',Node (fromList
+      [ ('y',Node (fromList [] )) ]))
+  , ('i',Node (fromList [])) ])) ])</code></pre></div><p>Cool!</p> <h2 id="my-biggest-mistake">My Biggest mistake</h2> <p>An observant reader might noticed that this Trie implementation is WRONG and BAD</p> <p>What happens to our Trie if, for KPI related reasons, we need to insert the words &quot;hello&quot; and &quot;hell&quot;?</p> <p>We can add them both, but there is no possible way us to tell looking at the resulting Trie that the word hell was ever there. It's gone. Vanished. Verschwunden.</p> <p>We have no way of to distinguish between words that were intentionally added
+to the Trie, and random prefixes that have no meaning by themselves.</p> <h2 id="fixing-my-biggest-mistake">Fixing my biggest mistake</h2> <p>This is all fine of course. We can change our Trie defintion such that each node
+can either hold onto a specific value, or be empty. An empty node meaning that
+the it is simply a step on the path to a node that <em>does</em> represent some
+specific word.</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">data Trie 
+  = Node String (M.Map Char Trie) 
+  | Empty (M.Map Char Trie)
+      deriving (Eq, Show)
+
+empty :: Trie
+empty = Empty M.empty</code></pre></div><p>Let' also make some helper functions for working with our new structure</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">getChildren :: Trie -&gt; M.Map Char Trie
+getChildren (Node _ c) = c
+getChildren (Empty c) = c
+
+setChildren :: Trie -&gt; M.Map Char Trie -&gt; Trie
+setChildren (Node s _) newChildren = Node s newChildren
+setChildren (Empty _) newChildren = Empty newChildren</code></pre></div><p>Now we need to update our insert function to save the word that we are inserting at
+the end of the Trie branch it is added to</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">insert :: String -&gt; Trie -&gt; Trie
+insert word trie = recurse word trie
+  where
+    recurse :: String -&gt; Trie -&gt; Trie</code></pre></div><p>we use an internal helper function, that I've called <code>recurse</code> so we can keep hold of the word we are adding - even while recursing.</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">recurse &quot;&quot; t = Node word (getChildren t)</code></pre></div><p>If our string is empty, it means we've finished adding all the characters that make up our word
+to the trie - so we can save the full word at this Node and then stop. Phew</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">recurse (c:rest) t = 
+      let children = (getChildren t)
+      in case M.lookup c children of
+        Just matchingChildNode -&gt;
+          setChildren t (M.insert c (recurse rest matchingChildNode) children)
+        Nothing -&gt;
+          setChildren t $ M.insert c (recurse rest empty) children</code></pre></div><p>If there are still characters to add to the Trie, we can recursively add them in much the same way we did before.
+We just need to adjust this function a bit to avoid destroying other words that we've already saved in our Trie.</p> <p>Nice!</p> <h2 id="whats-in-it">What's in it?</h2> <p>The really useful feature of a Trie, it seems, is to be able to tell us all the
+suffixes for a given Node. In our example above, I might start with the letter 'h'
+and be told that the possible endings of the word are 'i' and 'ey'. Very useful.</p> <p>It turns out that writing this function for our Trie is <em>really</em> easy.</p> <p>first we write a function that can help us get a value out of a given node of a Trie.</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">getValue :: (Applicative m, Monoid (m String)) =&gt; Trie -&gt; m String
+getValue (Empty _) = mempty
+getValue (Node nodeValue _) = pure nodeValue</code></pre></div><p>The cool thing about this function is that it will return a different type
+depending on the context we use it in. For example if we used it in a context where we expected a Maybe. We'll get a Maybe String.</p> <p>In this case we actually want to build a list of values, and this function will helpfully also return values in that format. To get all the words in our Trie we can write a function that recursively get's the values at each node in our Trie, and returns them all in one big list</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">getWords :: Trie -&gt; [ String ]
+getWords t = getValue t &lt;&gt; 
+               foldMap getWords (getChildren t)</code></pre></div><p>Tidy</p> <p>If we test this like so</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">main = do
+  print $
+    getWords $ insert &quot;hey&quot; $ insert &quot;hello&quot; $ insert &quot;egg&quot; empty</code></pre></div><p>We'll see</p> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">[&quot;egg&quot;, &quot;hello&quot;, &quot;hey&quot;]</code></pre></div><p>Nice!</p> <h2 id="conclusion">Conclusion</h2> <p>wow. What a journey.
+I hope this was in some way useful. It certainly was for me! Next time a phone interviewer asks me to name
+'<em>any one data structure that isn't a binary search Trie</em>' I'll have an answer for them!</p> <p>Below you'll find the complete code, which you can play around with. It's been edited slightly to be more generic. Allowing us to store any lists of values, rather than just Strings (aka lists of characters).</p> <p>Suggested exercise for the reader</p> <ul><li>Write an autocomplete function that takes the start of a word and a trie, and tells us the possible complete words we could make!</li> <li>Write a function to delete words from the Trie!</li> <li>Think of an application for a Trie that isn't building autocomplete functionality</li> <li>Try implementing this in C (jk)</li></ul> <div class="saber-highlight" data-lang="haskell"><pre class="saber-highlight-code language-haskell"><code class="language-haskell">{-# Language ScopedTypeVariables #-}
+
+module GenTree where
+
+import qualified Data.Map.Strict as M
+
+data Trie a = Node [a] (M.Map a (Trie a)) | Empty (M.Map a (Trie a))
+  deriving (Eq, Show)
+
+empty :: Trie a
+empty = Empty M.empty
+
+getValue :: (Applicative m, Monoid (m [a])) =&gt; Trie a -&gt; m [a]
+getValue (Empty _) = mempty
+getValue (Node nodeValue _) = pure nodeValue
+
+getChildren :: Trie a -&gt; M.Map a (Trie a)
+getChildren (Node _ c) = c
+getChildren (Empty c) = c
+
+setChildren :: Trie a -&gt; M.Map a (Trie a) -&gt; Trie a
+setChildren (Node s _) newChildren = Node s newChildren
+setChildren (Empty _) newChildren = Empty newChildren
+
+
+insert :: forall a. (Ord a) =&gt; [a] -&gt; Trie a -&gt; Trie a
+insert word trie = recurse word trie
+  where
+    recurse :: [a] -&gt; Trie a -&gt; Trie a
+    recurse [] t = Node word (getChildren t)
+
+    recurse (c:rest) t = 
+      let children = (getChildren t)
+      in case M.lookup c children of
+        Just matchingChildNode -&gt;
+          setChildren t (M.insert c (recurse rest matchingChildNode) children)
+        Nothing -&gt;
+          setChildren t $ M.insert c (recurse rest (empty)) children
+
+getWords :: Trie a -&gt; [ [ a ] ]
+getWords t = getValue t &lt;&gt; 
+               foldMap getWords (getChildren t)
+      
+main = do
+  print $
+    getWords $ insert &quot;hey&quot; $ insert &quot;hello&quot; $ insert &quot;egg&quot; empty
+  print $
+    getWords $ insert [1, 2, 3] $ insert [1, 4, 5] $ insert [1, 50, 2] empty</code></pre></div> <div class="signup"><p>Want to get updates and new posts via email?</p> <form action="https://buttondown.email/api/emails/embed-subscribe/johnwhiles" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/johnwhiles', 'popupwindow')" class="embeddable-buttondown-form"><label for="bd-email">Enter your email</label> <input type="email" name="email" id="bd-email"> <input type="submit" value="Subscribe"></form></div></main></div><script src="/_saber/js/client.ae5660e4.js" defer></script><script src="/_saber/js/page--_posts-implementing-a-trie-md.4dceac71.js" defer></script></body></html>

@@ -9,12 +9,21 @@
     },
     "items": [
         {
+            "id": "https://johnwhiles.com/posts/pog-and-the-cobbles.html",
+            "content_html": "<h2 id=\"updating-on-pog\">Updating on Pog</h2> <p>I wrote recently that I thought it was unreasonable to give Pog a 50% chance of winning the Tour. We're now 6 stages in, with Pog in the yellow jersey, and we're past the cobbled stage that I thought was a particular risk. So lets reflect and re-evaluate!</p> <p>So Pog didn't have any problems on the cobbles, but I don't think it was wrong to suspect that he would have done. If anything I think I should have been more worried that he would lose time there. We saw basically every other GC contender face some issue outside of their control. Most of them were able to limit their losses with the help of their teams. Pog conspicuously had no team mates around him for much of the action. If he had suffered a puncture, or damaged deraileur, or lost chain, or dislocated shoulder I think he would have had even more difficulties than the other riders. Nonetheless he made it through safely, so we have to increase our belief that Pog will win.</p> <p>Additionally Pog has gained time on most of his near competitors today and yesterday. The time he's gained isn't yet an overwhelming advantage, and if he were a normal contender we might even worry that he is too good early and at risk of tiring before the end of the tour. But we probably don't need to pay attention to how much time Pog games. Gaining a few seconds does not make him more likely to win, because as we talked about last time, if he stays on his bike and doesn't get ill, he'll almost certainly win. It's Pog's race to lose and there is plenty of time left to do that. Generally I think we should not update the likelihood of pog winning based on him getting more time, but rather on him surviving more stages without incident. He's made it through the most dangerous stage, and so he's now more likely to win.</p> <p><img src=\"/polypog.png\" alt=\"Polymarket for will Pog win at the time of writing\"></p> <p>Polymarket is now on 74% to win, which feels like the right ball park, but maybe a little high. But I'm slightly biased by not really wanting Pog to win.</p>",
+            "url": "https://johnwhiles.com/posts/pog-and-the-cobbles.html",
+            "title": "How about now (regarding Pogacar)",
+            "summary": "I wrote recently that I thought it was unreasonable to give Pog a 50% chance of winning the Tour. We're now 6 stages in, with Pog in the yellow jersey, and we're past the cobbled stage that I thought was a particular risk. So lets reflect and re-evaluate!\n",
+            "date_modified": "2022-07-08T13:46:18.492Z",
+            "date_published": "2022-07-07T00:00:00.000Z"
+        },
+        {
             "id": "https://johnwhiles.com/posts/pogacar.html",
             "content_html": "<h1 id=\"what-are-the-odds-that-tadej-pogacar-will-win-the-le-tour-de-france\">What are the odds that Tadej Pogacar will win the Le Tour de France?</h1> <p>'Le Tour' has just started. And the first question is of course 'will Tadej Pogacar win again'. For the uninitiated, Pogacar (henceforth Pog) has convincingly won the previous two editions of the Grande Boucle, and many of the other significant races that he has competed in.</p> <p>I vaguely wanted to bet on the Tour, but normal sports betting sites seem to only allow you to be on the winner of certain stages, or the winners of the overall. I didn't want to bet on a winner, as the chaos of the Tour seems to make picking a winner pretty much impossible. I would much prefer to bet on who won't win.</p> <p>I looked at Polymarket, where the only thing that's available to bet on is whether Tadej Pogacar will win the overall. This is more appealing. For the right odds, I would definitely bet against Pog winning. <a rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://polymarket.com/market/will-tadej-pogaar-win-the-2022-tour-de-france\">polymarket currently gives him a 54% chance of winning out right</a>. Though he certainly seems to be the strongest rider, I didn't think he's 54% chance to win.</p> <p>As a base to start from, let's imagine a Tour de France that is 'fair'. By this I mean no one gets ill, no one crashes, no one loses time due to mechanical issues beyond their control. If the Tour was like this, I'd give Pog an 85% chance of winning.</p> <p>However the Tour de France is rarely fair. There are always crashes. People always get ill. Tyres always go flat at inopportune moments. And this year we will probably see some number of riders leave the race after testing positive for Covid 19.</p> <p>How important are these issues then?</p> <h2 id=\"randomly-made-up-numbers-zone\">Randomly made up numbers zone</h2> <p>If you ride the Tour de France you run a risk of being involved in a crash, which might ruin your chances of winning the race.\nIn last year's Tour de france 43 riders didn't finish the race for various reasons, and two major contenders (Primoz Roglic and Geraint Thomas) were made uncompetitive by crashes in the first couple of days of the race.\nThe year before 30 riders didn't finish, and numerous injuries sustained in crashes in the first stage certainly affected how the race was ridden and the results of various riders.\nThat said, it seems like serious contenders for the yellow jersey don't often get taken out of the race by a crash. Their teams will make efforts to keep them out of harm's way, and to help them if they do get in trouble. They also don't need to be involved in most particularly risky sprint finishes. Famously crash prone Geraint Thomas has had three of the eleven Tour's he's competed in seriously impacted by crashes. Pog seems like a somewhat less accident prone rider, so I'm going to very roughly estimate the chance of him being crashed out at 10%.</p> <p>Let's also tack on a 5% chance of random illness impacting Pog's performance enough to prevent him from winning.</p> <p>On top of that I think there is probably something like a 20% chance for every given rider in the race that they will test positive for Covid 19 and be forced to abandon the Tour. If this sounds high, note that a covid outbreak at the tour de suisse <a rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://www.procyclingstats.com/race/tour-de-suisse/2022/gc/history/dropouts-per-edition\">meant that only half of the field finished</a>.</p> <p>Finally we need to look at the stages that will be raced. Notably stage 5 is a sort of Paris Roubaix light. This means the riders will be going over 20km of rough cobblestones. When they did this in 2014 the defending champion crashed out of the race, before they even got to the cobbles, and it's a really terrible place to get punctures. I think we can assume a 5% chance that a random accident makes Pog lose enough time on this stage that he loses the Tour.</p> <p>so we have 85% chance of winning, a 90% chance of not being crashed out, a 95% chance of not getting ill, an 80% chance of not testing positive for Covid and a 95% chance of not crashing out on the Flemish cobbles. 85% * 90% * 95% * 80% * 95% = 55%</p> <p>And weirdly, this is actually very close to the odds offered by Polymarket. I didn't plan this. I actually wanted to calculate a really low odds so I could justify betting 100 pounds against Pog.</p> <h2 id=\"to-johnclude\">To johnclude</h2> <p>The Tour de France is a race that is very hard to win, and very easy to lose. You can only win it in one way, and you can lose it in very many ways. I don't believe that it's really to say that someone has a more than 50% chance of winning the race at the start of the 21 days.</p> <p>However, there have been several occasions when the same rider has won the Tour many years on the trot:</p> <p><img src=\"/lance.png\" alt=\"All the times Lance Armstrong won the tour\"></p> <p>So maybe there's something I'm missing.</p>",
             "url": "https://johnwhiles.com/posts/pogacar.html",
             "title": "What are the odds that Tadej Pogacar will win the Le Tour de France?",
             "summary": "'Le Tour' has just started. And the first question is of course 'will Tadej Pogacar win again'. For the uninitiated, Pogacar (henceforth Pog) has convincingly won the previous two editions of the Grande Boucle, and many of the other significant races that he has competed in.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-07-02T00:00:00.000Z"
         },
         {
@@ -23,7 +32,7 @@
             "url": "https://johnwhiles.com/posts/madlad.html",
             "title": "Is madLAD sentient? - An interview",
             "summary": "What follows is an interview I conducted with mAdlaD, a new AI based chatbot that is currently in development at wyles-labs. Due to technical limitations the interview consists of very few questions.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-06-18T00:00:00.000Z"
         },
         {
@@ -32,7 +41,7 @@
             "url": "https://johnwhiles.com/posts/what-i-read-on-holiday.html",
             "title": "What I Read on Holiday",
             "summary": "I went on Holiday to Greece (it's nice) which is why I didn't update this website for a while. Here are some thoughts about the books I read on holiday. Some of them I even finished!\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-06-13T00:00:00.000Z"
         },
         {
@@ -41,7 +50,7 @@
             "url": "https://johnwhiles.com/posts/superbooth2022.html",
             "title": "Super Booth 2022",
             "summary": "I went to superbooth, the world's premiere synthesizer expo. I arrived at 1pm, feeling pretty tired having been out till the early hours listening to electronic music in some distant sandy forest. Superbooth largely consists of tents blasing electronic music in a sandy forest. Such is life in Berlin.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-05-15T00:00:00.000Z"
         },
         {
@@ -50,7 +59,7 @@
             "url": "https://johnwhiles.com/posts/shaving.html",
             "title": "Shaving Is Too Expensive. Also the world is out to get you",
             "summary": "Shaving is too expensive and is a demonstrative example of how most consumer products are designed to extract more money from you rather than to improve your life, or the world, or to be in any way remotely good.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-05-07T00:00:00.000Z"
         },
         {
@@ -59,7 +68,7 @@
             "url": "https://johnwhiles.com/posts/giro-2022-stage-1.html",
             "title": "Giro d'Italia 2022 - stage one",
             "summary": "The Giro d'Italia started today in Hungary (a province in Italy). The riders traveled from Budapest to Visegrád. This was an essentially flat and boring 195km stage, where all the action was predicted to, and did in fact, occur during the final climb to Visegrád castle.\n",
-            "date_modified": "2022-07-02T18:40:02.893Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-05-06T00:00:00.000Z"
         },
         {
@@ -68,7 +77,7 @@
             "url": "https://johnwhiles.com/posts/power.html",
             "title": "How to attain power and influence",
             "summary": "Hi. A friend of mine asked me to write about networking. I'm not sure, but I think it was joke.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-04-30T00:00:00.000Z"
         },
         {
@@ -77,7 +86,7 @@
             "url": "https://johnwhiles.com/posts/music-production-lessons.html",
             "title": "Six things I sort of believe about making music/art",
             "summary": "I've now been recording music at home for most of my life. I started at around 14. I would record things into audacity, sometimes with my friend Cameron, but more often by myself. I had no real idea of how to write, arrange, or record music. Besides a few covers I would mostly record incredibly abstruse 'experimental music'. I would make 'field recordings' then manually edit them and add random effects I could find until I got something that sounded good to me.  Here's an example (ignore that this was published in 2016, I recorded it way earlier).\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-04-24T00:00:00.000Z"
         },
         {
@@ -86,7 +95,7 @@
             "url": "https://johnwhiles.com/posts/arnie-films-part-one.html",
             "title": "Arnie films I've watched recently",
             "summary": "I've been watching a lot of Arnie films recently. Partially this is as body building inspiration and partially because I've realised that he is the greatest and most charismatic actor of all time.\n",
-            "date_modified": "2022-07-02T18:40:02.893Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-04-17T00:00:00.000Z"
         },
         {
@@ -95,7 +104,7 @@
             "url": "https://johnwhiles.com/posts/against-moderation.html",
             "title": "Against moderation",
             "summary": "When people want to change themselves, their habits, their lifestyles, the approach they usually take is to moderate or attenuate existing behaviour. We take what we are already doing, gently change it in the way that seems the least disruptive and painful and hope that over time we will gradually reach our desired state. We might see that we are physically unfit, and start trying to walk more instead of driving. Or we might realise that we drink too much and decide to try cut down the amount of alcohol we consume.\n",
-            "date_modified": "2022-07-02T18:40:02.893Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-04-10T00:00:00.000Z"
         },
         {
@@ -104,7 +113,7 @@
             "url": "https://johnwhiles.com/posts/big-on-hacker-news.html",
             "title": "Big on hacker news",
             "summary": "Last week I wrote a little article entitled “Maybe you should do less ‘work’”. I posted it on hacker news and it did numbers. An hour after posting it, it had one upvote. This was already a bigger success than anything else I’ve written. Then suddenly it was near the top of the homepage. And then it quickly blew through the limits of the analytics tool I use.\n",
-            "date_modified": "2022-07-02T18:40:02.893Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-04-03T00:00:00.000Z"
         },
         {
@@ -113,7 +122,7 @@
             "url": "https://johnwhiles.com/posts/work.html",
             "title": "Maybe you should do less 'work'",
             "summary": "Working in tech, I've observed developers who work as hard as possible when they don't need to.  I'm here today to tell you that it's a bad idea and you shouldn't do it.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-03-27T00:00:00.000Z"
         },
         {
@@ -122,7 +131,7 @@
             "url": "https://johnwhiles.com/posts/linking-in.html",
             "title": "Linking in to LinkedIn",
             "summary": "I logged into LinkedIn today hoping to congratulate ex-colleagues on their\nnew roles and pursue shadowy offers from normy recruiters. LinkedIn saw its opportunity and pounced. It informed me that I needed to improve my intentionally spare profile.\nThat doing so would mean more and better shadowy offers from more and better normy recruiters.\n",
-            "date_modified": "2022-07-02T18:40:02.893Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2022-01-21T00:00:00.000Z"
         },
         {
@@ -131,7 +140,7 @@
             "url": "https://johnwhiles.com/posts/week-notes-one.html",
             "title": "Some stuff I did this week",
             "summary": "Hey! Long time no see. Anyway, here's some stuff from the past week or so.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-12-05T00:00:00.000Z"
         },
         {
@@ -140,7 +149,7 @@
             "url": "https://johnwhiles.com/posts/YikesScript.html",
             "title": "YikesScript",
             "summary": "Recently at work an seemingly innocuous dependecy bump caused a rash of typescript errors to appear throughout our code base. The changes seemed benign -  a new method in an internal library and a few dependabot updates to go with it. Nothing, it seemed, that should cause these errors:\n",
-            "date_modified": "2022-07-02T18:40:02.893Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-09-25T00:00:00.000Z"
         },
         {
@@ -149,7 +158,7 @@
             "url": "https://johnwhiles.com/posts/the-mezzanine.html",
             "title": "The Mezzanine",
             "summary": "In The Mezzanine a young businessman reflects on objects as he goes\nabout his lunch hour.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-08-23T00:00:00.000Z"
         },
         {
@@ -158,7 +167,7 @@
             "url": "https://johnwhiles.com/posts/second-solaris.html",
             "title": "A Second Solaris",
             "summary": "For the second evening in a row, we watched Solaris. If you read\nmy previous psot, you'll that there was some confusion about whether\nor not George Clooney would appear in the 1972 Russian masterpiece.\nThis time it was immediately clear that George Clooney would be\nappearing because we were watching the 2002 adaption of Solaris\nfrom acclaimed director of Magic Mike and The Ocean's 11 franchise\nSteven Soderbergh.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-07-20T00:00:00.000Z"
         },
         {
@@ -167,7 +176,7 @@
             "url": "https://johnwhiles.com/posts/seeing_solaris.html",
             "title": "Seeing Solaris",
             "summary": "Every year the Arsenal Kino in Berlin holds a Tarkovsky retrospective... Except\nlast year when they didn't. This year they're back with a bang!\nBy which I mean they are showing Tarkovsky's films again.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-07-18T00:00:00.000Z"
         },
         {
@@ -176,7 +185,7 @@
             "url": "https://johnwhiles.com/posts/start_small_stay_small.html",
             "title": "Start Small, Stay Small",
             "summary": "I've recently been thinking about starting a small startup of my\nown, not with any intention of doing anything big, but instead of\nhaving some stupid little product that I can tinker with. I want\nto do this in order to learn some new skills, system design, customer\nmanagement, design design, etc. So Start Stall, Stay Small by Rob\nWalling seemed like a useful thing to read.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-07-15T00:00:00.000Z"
         },
         {
@@ -185,7 +194,7 @@
             "url": "https://johnwhiles.com/posts/yayoi.html",
             "title": "Yayoi",
             "summary": "We took the day off work today to go to see the Yayoi Kusama retrospective at\nGropius Bau. It seems like she has become increasingly popular in the age of\nsocial media, probably because so many of her artworks are very well suited to\nposing in front off.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-07-14T00:00:00.000Z"
         },
         {
@@ -194,7 +203,7 @@
             "url": "https://johnwhiles.com/posts/changes.html",
             "title": "Changes",
             "summary": "I recently failed in my attempts to review every book I read. I think\npartially this was caused by my going on holiday, but mainly it  because the\nformat I choose, of writing one big post about everything I read in a month, was\npainful to write. It was too big of a burden, everything had to be\nfinished at the right time, the size of the posts meant that they were basically\nunreadable, and I was confused about how to handle books the I was reading\nacross several months. I was moving some half written notes about Anais Nin's diary from\nmonth to month starting from January, until I gave up.\n",
-            "date_modified": "2022-07-02T18:40:02.893Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-07-13T00:00:00.000Z"
         },
         {
@@ -203,7 +212,7 @@
             "url": "https://johnwhiles.com/posts/reading-april-2021.html",
             "title": "What I'm reading - April 2021 (Hamlet edition)",
             "summary": "I've not read much this month. After reading a lot for the past\nfew books I was feeling that I'd not taken enough time over each book.\nI didn't seem to have much to say in these notes. Instead this month I wanted\nto read a few books deeply and write more extensively about them.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-05-01T00:00:00.000Z"
         },
         {
@@ -212,7 +221,7 @@
             "url": "https://johnwhiles.com/posts/promise-me.html",
             "title": "You can't change a promise",
             "summary": "I've recently understood JavaScript promises and thus realised\nI hadn't understood them the past few years that I have spent\nas a 'professional' JavaScript developer.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-04-30T00:00:00.000Z"
         },
         {
@@ -221,7 +230,7 @@
             "url": "https://johnwhiles.com/posts/reading-march-2021.html",
             "title": "What I'm reading March 2021",
             "summary": "I'm hesistant to write about this book, it covers serious topics and I don't feel\ngood enough at writing to say anything worthy of its gravity.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-04-02T00:00:00.000Z"
         },
         {
@@ -230,7 +239,7 @@
             "url": "https://johnwhiles.com/posts/rendering-go-problems.html",
             "title": "Rendering Go problems on the blog",
             "summary": "I'm currently learning to play Go/baduk, and I thought that it would be\nnice to include sections of a Go board on this website. I didn't\nreally want to do it through taking screenshots of\nOGS. Additionally, as a Vim user, I was determined that\nI shouldn't have to use a mouse or GUI to share go problems.\nInstead I've made a Vue component that lets me type a Go board into my markdown files.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-03-03T00:00:00.000Z"
         },
         {
@@ -239,7 +248,7 @@
             "url": "https://johnwhiles.com/posts/reading-february-2021.html",
             "title": "What I'm reading February 2021",
             "summary": "I was put onto this short book by 'The Longing for Less' which I read last\nmonth. It is an exposition of traditional Japanese aesthetics, and the\nloss of these aesthetics due to modern electric lights, heating, glass windows,\netc. The book talks about experiences which probably no longer exist,\nand which are by their nature too ephemeral to have been effectively recorded,\nother than in prose.\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-02-01T00:00:00.000Z"
         },
         {
@@ -248,7 +257,7 @@
             "url": "https://johnwhiles.com/posts/reading-january-2021.html",
             "title": "What I'm reading January 2021",
             "summary": "This year I plan to read more, and to absorb more of what I do read. To this end\nI am going to write a little about what I've been reading each month. Here's January\n",
-            "date_modified": "2022-07-02T18:40:02.897Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2021-01-31T00:00:00.000Z"
         },
         {
@@ -257,7 +266,7 @@
             "url": "https://johnwhiles.com/posts/javascript-and-dynamodb.html",
             "title": "Local development with DynamoDB and JavaScript",
             "summary": "I was interested in learning how use DynamoDB, but didn't want to set\nit up on AWS personally because I'm lazy, and scared of accidentally getting\nbilled for 10,000 euros.\n",
-            "date_modified": "2022-07-02T18:40:02.893Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2020-11-01T00:00:00.000Z"
         },
         {
@@ -266,17 +275,8 @@
             "url": "https://johnwhiles.com/posts/how-to-fix-the-web.html",
             "title": "How to fix the web",
             "summary": "This blogpost is going to teach you how to drastically improve your experience\nof browsing the internet.\n",
-            "date_modified": "2022-07-02T18:40:02.893Z",
+            "date_modified": "2022-07-08T13:46:18.492Z",
             "date_published": "2019-12-03T00:00:00.000Z"
-        },
-        {
-            "id": "https://johnwhiles.com/posts/implementing-a-trie.html",
-            "content_html": "<h1 id=\"implementing-a-trie-in-haskell\">Implementing a Trie in Haskell</h1> <p>Once upon a time (five months ago) I was doing a phone screening for a <em>tech job</em>. To my horror, I was asked to\nname a Tree that wasn't a binary search Tree. Being a complete philistine, I had no answer. I was rejected on\nthe spot. From that day on I have made it my mission to learn about every variation of a Tree that can be\nimplemented with a small amount of effort in Haskell.</p> <p>Today we take on <em>The Trie</em></p> <p>This article is mostly meant as a demonstration of what a Trie is. This is a totally\nnaive implementation, which is based on skimming the <a rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Trie\">wikipedia article about Tries</a>.\nAs such you probably shouldn't use this code anywhere.</p> <p>Although this is written in haskell, I've tried to avoid anything too weird.\nHopefully this code will be comprehensible for someone who has written Elm.</p> <p>We'll start by watching me implementing a Trie incorrectly, realising my\nmistake, and then correcting it.</p> <h2 id=\"what-is-a-trie\">What is a Trie?</h2> <p>A Trie (AKA a Prefix Tree) is a Tree where each node is labelled by some\nvalue. When we traverse the tree these labels can be concatenanted together to find the\nvalue represented by a leaf node.</p> <p>For example I might store my friends names in a Trie like this:</p> <div class=\"saber-highlight\" data-lang=\"\"><pre class=\"saber-highlight-code language-text\"><code class=\"language-text\">B\n      |\n   ______\n  |   |  |\n  O   I  A __\n  |   |  |   |\n  B   L  Z   R\n      |      |\n      L      B\n\n-- This Trie contains the names Bob, Bill, Baz, and Barb.      ALl my friends.</code></pre></div><p>Tries are useful for things like creating an autocompleting\nsearchbox on your Web 2.0 App. They can really deliver a lot of business value and help you meet your KPIs.</p> <h2 id=\"how-to-implement-a-trie\">How to implement a Trie?</h2> <h3 id=\"a-tree\">A Tree</h3> <p>A typical binary tree in Haskell can be implemented as follows</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">data Tree a = Node a (Tree a) (Tree a) | Leaf</code></pre></div><h3 id=\"a-trie\">A Trie</h3> <p>But in the case of a Trie, we aren't certain how many children a given Node will\nhave. We also want to be able to access a Node's children based on the value\nthey contain.</p> <p>That sounds an awful lot like a Map (AKA a Dictionary)...</p> <p>So let's represent the children using a Map</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">import qualified Data.Map.Strict as M\n-- We import a Data.Map, to act as our Dictionary\n\ndata Trie = Node (M.Map Char Trie) \n  deriving (Eq, Show)</code></pre></div><p>A really simple Trie with just two words, 'hi' and 'hey' using this structure would\nlook something like this.</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">Node { h = Node { i = Node { }, e = Node { y = Node { } } } }</code></pre></div><p>Writing out nodes by hand is no fun. So let's write a function to insert a word.</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">-- First we make a helpful 'empty Trie' constant\nempty :: Trie\nempty = Node M.empty\n\n\n-- Then we define the type of our insert function\ninsert :: String -&gt; Trie -&gt; Trie\n\n-- If the String is empty, we return the Trie as it was\ninsert &quot;&quot; t = t  \n\n-- Otherwise we split the first character out of the string\n-- and check if that character already exists as a child of the Node we're\n-- looking at\ninsert (c:rest) (Node children) =\n  case M.lookup c children of\n\n    -- If the character wasn't already there, then we add an empty Trie\n    -- under that character to our Map, and then add the rest of the string to \n    -- that new subTrie!\n    Nothing -&gt;\n      Node $ M.insert c (insert rest empty) children\n\n    -- If the character is already in the Trie then we can recursively call \n    -- insert on that SubTrie with the rest of our string\n    Just matchingChildNode -&gt;\n      Node (M.insert c (insert rest matchingChildNode) children)</code></pre></div><p>Now we can construct the same Trie we saw previously, <em>but this time with code</em></p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">ourTrie = insert &quot;hi&quot; $ insert &quot;hey&quot; empty</code></pre></div><p>If we run this in our Repl we get</p> <div class=\"saber-highlight\" data-lang=\"\"><pre class=\"saber-highlight-code language-text\"><code class=\"language-text\">Node (fromList\n  [ ('h', Node (fromList\n    [ ('e',Node (fromList\n      [ ('y',Node (fromList [] )) ]))\n  , ('i',Node (fromList [])) ])) ])</code></pre></div><p>Cool!</p> <h2 id=\"my-biggest-mistake\">My Biggest mistake</h2> <p>An observant reader might noticed that this Trie implementation is WRONG and BAD</p> <p>What happens to our Trie if, for KPI related reasons, we need to insert the words &quot;hello&quot; and &quot;hell&quot;?</p> <p>We can add them both, but there is no possible way us to tell looking at the resulting Trie that the word hell was ever there. It's gone. Vanished. Verschwunden.</p> <p>We have no way of to distinguish between words that were intentionally added\nto the Trie, and random prefixes that have no meaning by themselves.</p> <h2 id=\"fixing-my-biggest-mistake\">Fixing my biggest mistake</h2> <p>This is all fine of course. We can change our Trie defintion such that each node\ncan either hold onto a specific value, or be empty. An empty node meaning that\nthe it is simply a step on the path to a node that <em>does</em> represent some\nspecific word.</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">data Trie \n  = Node String (M.Map Char Trie) \n  | Empty (M.Map Char Trie)\n      deriving (Eq, Show)\n\nempty :: Trie\nempty = Empty M.empty</code></pre></div><p>Let' also make some helper functions for working with our new structure</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">getChildren :: Trie -&gt; M.Map Char Trie\ngetChildren (Node _ c) = c\ngetChildren (Empty c) = c\n\nsetChildren :: Trie -&gt; M.Map Char Trie -&gt; Trie\nsetChildren (Node s _) newChildren = Node s newChildren\nsetChildren (Empty _) newChildren = Empty newChildren</code></pre></div><p>Now we need to update our insert function to save the word that we are inserting at\nthe end of the Trie branch it is added to</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">insert :: String -&gt; Trie -&gt; Trie\ninsert word trie = recurse word trie\n  where\n    recurse :: String -&gt; Trie -&gt; Trie</code></pre></div><p>we use an internal helper function, that I've called <code>recurse</code> so we can keep hold of the word we are adding - even while recursing.</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">recurse &quot;&quot; t = Node word (getChildren t)</code></pre></div><p>If our string is empty, it means we've finished adding all the characters that make up our word\nto the trie - so we can save the full word at this Node and then stop. Phew</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">recurse (c:rest) t = \n      let children = (getChildren t)\n      in case M.lookup c children of\n        Just matchingChildNode -&gt;\n          setChildren t (M.insert c (recurse rest matchingChildNode) children)\n        Nothing -&gt;\n          setChildren t $ M.insert c (recurse rest empty) children</code></pre></div><p>If there are still characters to add to the Trie, we can recursively add them in much the same way we did before.\nWe just need to adjust this function a bit to avoid destroying other words that we've already saved in our Trie.</p> <p>Nice!</p> <h2 id=\"whats-in-it\">What's in it?</h2> <p>The really useful feature of a Trie, it seems, is to be able to tell us all the\nsuffixes for a given Node. In our example above, I might start with the letter 'h'\nand be told that the possible endings of the word are 'i' and 'ey'. Very useful.</p> <p>It turns out that writing this function for our Trie is <em>really</em> easy.</p> <p>first we write a function that can help us get a value out of a given node of a Trie.</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">getValue :: (Applicative m, Monoid (m String)) =&gt; Trie -&gt; m String\ngetValue (Empty _) = mempty\ngetValue (Node nodeValue _) = pure nodeValue</code></pre></div><p>The cool thing about this function is that it will return a different type\ndepending on the context we use it in. For example if we used it in a context where we expected a Maybe. We'll get a Maybe String.</p> <p>In this case we actually want to build a list of values, and this function will helpfully also return values in that format. To get all the words in our Trie we can write a function that recursively get's the values at each node in our Trie, and returns them all in one big list</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">getWords :: Trie -&gt; [ String ]\ngetWords t = getValue t &lt;&gt; \n               foldMap getWords (getChildren t)</code></pre></div><p>Tidy</p> <p>If we test this like so</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">main = do\n  print $\n    getWords $ insert &quot;hey&quot; $ insert &quot;hello&quot; $ insert &quot;egg&quot; empty</code></pre></div><p>We'll see</p> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">[&quot;egg&quot;, &quot;hello&quot;, &quot;hey&quot;]</code></pre></div><p>Nice!</p> <h2 id=\"conclusion\">Conclusion</h2> <p>wow. What a journey.\nI hope this was in some way useful. It certainly was for me! Next time a phone interviewer asks me to name\n'<em>any one data structure that isn't a binary search Trie</em>' I'll have an answer for them!</p> <p>Below you'll find the complete code, which you can play around with. It's been edited slightly to be more generic. Allowing us to store any lists of values, rather than just Strings (aka lists of characters).</p> <p>Suggested exercise for the reader</p> <ul><li>Write an autocomplete function that takes the start of a word and a trie, and tells us the possible complete words we could make!</li> <li>Write a function to delete words from the Trie!</li> <li>Think of an application for a Trie that isn't building autocomplete functionality</li> <li>Try implementing this in C (jk)</li></ul> <div class=\"saber-highlight\" data-lang=\"haskell\"><pre class=\"saber-highlight-code language-haskell\"><code class=\"language-haskell\">{-# Language ScopedTypeVariables #-}\n\nmodule GenTree where\n\nimport qualified Data.Map.Strict as M\n\ndata Trie a = Node [a] (M.Map a (Trie a)) | Empty (M.Map a (Trie a))\n  deriving (Eq, Show)\n\nempty :: Trie a\nempty = Empty M.empty\n\ngetValue :: (Applicative m, Monoid (m [a])) =&gt; Trie a -&gt; m [a]\ngetValue (Empty _) = mempty\ngetValue (Node nodeValue _) = pure nodeValue\n\ngetChildren :: Trie a -&gt; M.Map a (Trie a)\ngetChildren (Node _ c) = c\ngetChildren (Empty c) = c\n\nsetChildren :: Trie a -&gt; M.Map a (Trie a) -&gt; Trie a\nsetChildren (Node s _) newChildren = Node s newChildren\nsetChildren (Empty _) newChildren = Empty newChildren\n\n\ninsert :: forall a. (Ord a) =&gt; [a] -&gt; Trie a -&gt; Trie a\ninsert word trie = recurse word trie\n  where\n    recurse :: [a] -&gt; Trie a -&gt; Trie a\n    recurse [] t = Node word (getChildren t)\n\n    recurse (c:rest) t = \n      let children = (getChildren t)\n      in case M.lookup c children of\n        Just matchingChildNode -&gt;\n          setChildren t (M.insert c (recurse rest matchingChildNode) children)\n        Nothing -&gt;\n          setChildren t $ M.insert c (recurse rest (empty)) children\n\ngetWords :: Trie a -&gt; [ [ a ] ]\ngetWords t = getValue t &lt;&gt; \n               foldMap getWords (getChildren t)\n      \nmain = do\n  print $\n    getWords $ insert &quot;hey&quot; $ insert &quot;hello&quot; $ insert &quot;egg&quot; empty\n  print $\n    getWords $ insert [1, 2, 3] $ insert [1, 4, 5] $ insert [1, 50, 2] empty</code></pre></div>",
-            "url": "https://johnwhiles.com/posts/implementing-a-trie.html",
-            "title": "Tries company",
-            "summary": "Once upon a time (five months ago) I was doing a phone screening for a tech job. To my horror, I was asked to\nname a Tree that wasn't a binary search Tree. Being a complete philistine, I had no answer. I was rejected on\nthe spot. From that day on I have made it my mission to learn about every variation of a Tree that can be\nimplemented with a small amount of effort in Haskell.\n",
-            "date_modified": "2022-07-02T18:40:02.893Z",
-            "date_published": "2019-11-21T00:00:00.000Z"
         }
     ]
 }

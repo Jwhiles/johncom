@@ -4,10 +4,20 @@
         <title>John's internet house</title>
         <link>https://johnwhiles.com</link>
         <description>undefined</description>
-        <lastBuildDate>Fri, 08 Jul 2022 13:47:04 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 27 Jul 2022 18:39:48 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Saber</generator>
         <copyright>All rights reserved</copyright>
+        <item>
+            <title><![CDATA[Reflections on my prediction of Pogacar's defeat]]></title>
+            <link>https://johnwhiles.com/posts/pog-prediction-review.html</link>
+            <guid>https://johnwhiles.com/posts/pog-prediction-review.html</guid>
+            <pubDate>Wed, 27 Jul 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[The Men's Tour de France is now over. It was a very special race, probably one of the best of all time. 10/10 great sporting event. I only would have liked the times going into the final time trial to be a bit closer, and also for Geraint Thomas to win.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="reflections-on-my-prediction-of-pogacars-defeat">Reflections on my prediction of Pogacar's defeat</h1> <p>The Men's Tour de France is now over. It was a very special race, probably one of the best of all time. 10/10 great sporting event. I only would have liked the times going into the final time trial to be a bit closer, and also for Geraint Thomas to win.</p> <p>You may remember that I suggested betting against Pogacar on Polymarket. If you had followed this advice you could have made some money. I personally have made 36 dollars. Nice.</p> <p>I initially felt quite happy about my prediction being correct. However, on reflection, I've realised that the prediction was only correct in the sense that I chose the right outcome. In all the specifics I was kind of wrong.</p> <p>My central argument was that Le Tour is fundamentally chaotic and that even though Pog appeared to be the best rider going into the tour you shouldn't have bet that he would win because he was so likely to be scuppered by random factors. I still think that this is essentially true, and bore out by the number of riders who did leave the tour due to random accidents. Nonetheless, I suggested that you should bet against Pog because he might crash, or get ill enough to be uncompetitive, or test positive for Covid and be ejected from the tour, or have some mishap on the cobblestones that lost him time. None of these happened. Instead, Pog gained a big early lead over his main rivals, like Jonas Vingegaard who <em>did</em> lose time on the cobbles. But we eventually saw Jonas Vingegaard come from behind, to take a huge amount of time on Pogacar.</p> <p>So what went wrong for Pogacar? What did I miss?</p> <ul><li>I think I overestimated his strength as a rider. I think he's still probably the best in the world physically, but he's clearly not miles above Vingegaard.</li> <li>I didn't consider that Pog's relative inexperience, and attacking style could lead him to make poor decisions like chasing down Primoz Roglic repeatedly, or attacking at the start of 181km flat stages. Pog seemed to do a lot more work than any other GC contender in the race, and by the end of the tour he looked exhausted.</li> <li>I also didn't predict An unprecedented heatwave, and that it would hurt Pogacar more than his competitors. He likes cold and wet conditions, and if this tour had more freezing rainstorms, he would have performed much better.</li></ul> <p>So</p> <p>I was right, but mostly through luck. I still believe that the reasons I predicted Pog not winning were all valid, but I think I overrated his chances to win outside of those conditions.
+It's easy to feel satisfied with yourself when something goes the way you predicted - but I think it's worth trying to figure out how right you actually were, and I wasn't that right. Still, I won my 35 dollars.</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[How about now (regarding Pogacar)]]></title>
             <link>https://johnwhiles.com/posts/pog-and-the-cobbles.html</link>
@@ -915,18 +925,6 @@ addUsers()</code></pre></div><p>If we run this code we'll see the following outp
 }</code></pre></div><h2 id="conclusion">Conclusion</h2> <p>You'se now seen how to set up a local DynamoDB - and how to do some basic
 interaction with it in JavaScript. A runnable version of the code in this
 article can be <a rel="noopener noreferrer" target="_blank" href="https://github.com/Jwhiles/dynamo-something">found here</a>.</p>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[How to fix the web]]></title>
-            <link>https://johnwhiles.com/posts/how-to-fix-the-web.html</link>
-            <guid>https://johnwhiles.com/posts/how-to-fix-the-web.html</guid>
-            <pubDate>Tue, 03 Dec 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[This blogpost is going to teach you how to drastically improve your experience
-of browsing the internet.
-]]></description>
-            <content:encoded><![CDATA[<h1 id="how-to-fix-the-web">How to fix the web</h1> <p>This blogpost is going to teach you how to drastically improve your experience
-of browsing the internet.</p> <h2 id="step-one">Step one</h2> <p>Install firefox</p> <h2 id="step-two">Step two</h2> <p>Open the preferences menu</p> <h2 id="step-three">Step three</h2> <p>Under <code>Langauge and Appearance</code> select <code>Comic Sans MS</code>.</p> <h2 id="step-three-2">Step three</h2> <p>enter the <code>Advanced</code> submenu of <code>Langauge and Appearance</code>, then uncheck the box
-marked <code>Allow pages to choose their own fonts</code></p> <p>There is no step four</p>]]></content:encoded>
         </item>
     </channel>
 </rss>

@@ -4,10 +4,19 @@
         <title>John's internet house</title>
         <link>https://johnwhiles.com</link>
         <description>undefined</description>
-        <lastBuildDate>Wed, 27 Jul 2022 18:39:48 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 09 Sep 2022 14:40:01 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Saber</generator>
         <copyright>All rights reserved</copyright>
+        <item>
+            <title><![CDATA[Life is very long when you're lonely]]></title>
+            <link>https://johnwhiles.com/posts/queen.html</link>
+            <guid>https://johnwhiles.com/posts/queen.html</guid>
+            <pubDate>Tue, 09 Aug 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[The queen is dead. And coincidentally I am in England. I'm staying at my Mum's house where my stepdad, in the throes of technology addiction, receives push notifications from the BBC news. These notifications play the familiar sound that accompanies any headline on the TV. We knew that the queen was somewhat ill, and when one of these alerts went off we joked 'sounds like the queen has died', he checked his phone and she had in fact.
+]]></description>
+            <content:encoded><![CDATA[<h3 id="life-is-very-long-when-youre-lonely">Life is very long when you're lonely</h3> <p>The queen is dead. And coincidentally I am in England. I'm staying at my Mum's house where my stepdad, in the throes of technology addiction, receives push notifications from the BBC news. These notifications play the familiar sound that accompanies any headline on the TV. We knew that the queen was somewhat ill, and when one of these alerts went off we joked 'sounds like the queen has died', he checked his phone and she had in fact.</p> <p>We were all slightly more affected by this than we expected to be. Despite not really caring about the queen, her absence suddenly revealed quite how much of a fixture she has been, and for how long. The death of some rich old woman is never very happy, and this is to some extent our old rich woman. We made the necessary jokes about her meeting with Liz Truss being the killing blow and then didn't know what else to say.</p> <p><img src="/queen-lego.jpeg" alt=""></p> <p>Later we walked around the village, and through every window on every giant flat screen we could see the same BBC news broadcast showing crowds gathered in mourning. I've no idea what the reporters were saying, but I guess it was scripted months or years ago.</p> <p><img src="/queen-google.png" alt=""></p> <p>Today I am looking at the <a rel="noopener noreferrer" target="_blank" href="https://www.theguardian.com/uk-news/2022/sep/09/our-hearts-are-broken-how-the-uk-papers-reported-the-death-of-the-queen">front pages of the newspapers</a> some are quite stirring, with beautiful photographers and a degree of restraint. The others I can't help but sneer at. They cry 'Our hearts are broken', 'We love you Ma'am', 'Our beloved queen is dead'. The grief is shown to be false by its clearly intentional performativity. I realize that  the front pages I like are split along party political lines.</p> <p>There is a new king. Soon there will be new coins, a funeral, endless pageantry - and the Queen can join princess Diana on the frontpages of the tacky newspapers as pernicious psychics reach out to her beyond the grave again and again.</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Reflections on my prediction of Pogacar's defeat]]></title>
             <link>https://johnwhiles.com/posts/pog-prediction-review.html</link>
@@ -810,121 +819,6 @@ They are sometimes capable of maintaing good relationships with a secure partner
 But still I think I found this book fairly interesting.
 It made me realise that I really have no mental models of how relationships work, which is something I'd like to fix.
 If you have any recommendations for books on similar topics get in touch!!</p>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[Local development with DynamoDB and JavaScript]]></title>
-            <link>https://johnwhiles.com/posts/javascript-and-dynamodb.html</link>
-            <guid>https://johnwhiles.com/posts/javascript-and-dynamodb.html</guid>
-            <pubDate>Sun, 01 Nov 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[I was interested in learning how use DynamoDB, but didn't want to set
-it up on AWS personally because I'm lazy, and scared of accidentally getting
-billed for 10,000 euros.
-]]></description>
-            <content:encoded><![CDATA[<h1 id="local-development-with-dynamodb-and-javascript">Local development with DynamoDB and JavaScript</h1> <p>I was interested in learning how use DynamoDB, but didn't want to set
-it up on AWS personally because I'm lazy, and scared of accidentally getting
-billed for 10,000 euros.</p> <p>Instead I decided to run it locally in a docker-container.</p> <p>This article is going to walk through the process that I followed, in case you
-want to do something similar.</p> <h2 id="creating-the-dynamodb-container">Creating the DynamoDB container</h2> <p>The first step is to create a <code>docker-compose.yaml</code>.
-Docker Compose let's us define containers that we want to run to support our
-project. It's a pretty neat way to set up a development environment.</p> <p>Here's the file I created</p> <div class="saber-highlight" data-lang="yaml"><pre class="saber-highlight-code language-yaml"><code class="language-yaml">version: '3' # The version of docker-compose syntax we're using. Just pick 3 I guess
-
-services: # We define the containers we want to create under this header
-  dynamodb:
-    image: amazon/dynamodb-local # The image we're using. Thanks Amazon.
-    container_name: dynamodb-local
-    ports:
-      - &quot;8042:8000&quot; # binds the localhost port on the left, to the container port on the right</code></pre></div><h3 id="running-the-container">Running the container</h3> <p>You'll need docker installed for this step.</p> <p>Run this command
-<code>docker-compose -f docker-compose.yaml up -d</code></p> <p><code>-f</code> allows us specify the file to use, in our case this is the
-docker-compose.yaml we just created</p> <p><code>up</code> tells docker-compose to “build, (re)create, start, and attache to containers for a service.”
-<code>-d</code> specifies that we want to run the container in 'detached' mode.</p> <p>Now our container should be running. Running <code>docker ps</code> in the command line
-should show that the container is alive and kicking.</p> <h2 id="the-javascript-stuff">The JavaScript stuff</h2> <h3 id="making-our-first-table">Making our first table</h3> <p>To use DynamoDB in JavaScript, we're going to rely on the aws-sdk. So let's
-install it!</p> <p><code>yarn add aws-sdk</code></p> <p>And then let's use it to make a table!</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const AWS = require('aws-sdk');
-
-async function main() {
-  // Even though we're using the SDK locally the SDK will throw an error 
-  // if these items are missing. We don't need to use real keys for local
-  // development however.
-  AWS.config.update({
-    region: 'local',
-    accessKeyId: 'random-not-real-id',
-    secretAccessKey: 'random-not-real-key',
-  })
-
-  // Now we create our Client!
-  const dynamoClient = new AWS.DynamoDB({ endpoint: 'http://localhost:8042' })
-
-  // And we can start making tables
-
-  try {
-    await dynamoClient.createTable({
-      // The name  of our table
-      TableName: 'user-info',
-
-      // The attributes that our needed to create our primary key.
-      // We can still store other data as part of each item, but we don't need
-      // to define it as part of the table
-      AttributeDefinitions: [
-        {
-          AttributeName: 'name',
-          AttributeType: 'S',
-        }
-      ],
-
-      // How the primary keys for our table are generated.
-      // In our case we are simply going to hash the attribute 'name'
-      KeySchema: [
-        {
-          AttributeName: 'name',
-          KeyType: 'HASH',
-        },
-      ],
-
-      // Some Config stuff. Ask your ops team about this I guess.
-      ProvisionedThroughput: {
-        ReadCapacityUnits: 5,
-        WriteCapacityUnits: 5,
-      },
-    }).promise()
-
-    console.log('create table user-info')
-
-  } catch (e) {
-    console.error(error)
-    process.exit(1)
-  }
-}</code></pre></div><p>Although we only specified the attributes that are required to make each items
-primary key, we can store other data in each item.</p> <h3 id="data-in-the-base">Data in the base</h3> <p>A thing that puzzled me when looking at the DynamoDB sdk was the difference between a  <code>DynamoClient</code> and a <code>DocumentClient</code>. We used the <code>DynamoClient</code> to create our table above, but using that to add data actually becomes quite tricky. We have to painstakingly describe the different keys we'll be adding.</p> <p>The document client seems to have been added to the SDK to make life easier for JavasScript developers. It gives us some methods that let us interact with our DB using normal JavaScript objects that match the shape of the data we want to store. More details can be seen in <a rel="noopener noreferrer" target="_blank" href="https://aws.amazon.com/blogs/developer/announcing-the-amazon-dynamodb-document-client-in-the-aws-sdk-for-javascript/">this announcement post</a>.</p> <p>Long story short, we're going to use the <code>DocumentClient</code> to store data in our
-table.</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">const docClient = new AWS.DynamoDB.DocumentClient({ endpoint: 'http://localhost:8042' })</code></pre></div><p>Now to make our lives easier let's define a function that adds users to our
-table.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const addUser = async (name, email) =&gt; {
-  return docClient.put({
-    Item: {
-      name,
-      email
-    },
-    TableName: 'user-info'
-  }).promise()
-}</code></pre></div><p>and one to list all of our users</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const listUsers = async () =&gt; {
-  return docClient.scan({
-    TableName: 'user-info'
-  }).promise()
-}</code></pre></div><p>We can then use these functions to add some users to our table, and then print
-them out again.</p> <div class="saber-highlight" data-lang="javascript"><pre class="saber-highlight-code language-javascript"><code class="language-javascript">const addUsers = async () =&gt; {
-  await addUser('bobby', 'bobby@bob.com')
-  await addUser('tomboy', 'tom@boy.com')
-  await addUser('blobby', 'mr@blobby.com')
-  console.log(await listUsers())
-}
-
-addUsers()</code></pre></div><p>If we run this code we'll see the following output in our terminal</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">{
-  Items: [
-    { name: 'bobby', email: 'bobby@bob.com' },
-    { name: 'blobby', email: 'mr@blobby.com' },
-    { name: 'tomboy', email: 'tom@boy.com' }
-  ],
-  Count: 3,
-  ScannedCount: 3
-}</code></pre></div><h2 id="conclusion">Conclusion</h2> <p>You'se now seen how to set up a local DynamoDB - and how to do some basic
-interaction with it in JavaScript. A runnable version of the code in this
-article can be <a rel="noopener noreferrer" target="_blank" href="https://github.com/Jwhiles/dynamo-something">found here</a>.</p>]]></content:encoded>
         </item>
     </channel>
 </rss>

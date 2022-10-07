@@ -4,10 +4,66 @@
         <title>John's internet house</title>
         <link>https://johnwhiles.com</link>
         <description>undefined</description>
-        <lastBuildDate>Wed, 21 Sep 2022 15:16:39 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 07 Oct 2022 08:08:42 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Saber</generator>
         <copyright>All rights reserved</copyright>
+        <item>
+            <title><![CDATA[Setting up my new computer, vim, and listening to Spotify in the terminal]]></title>
+            <link>https://johnwhiles.com/posts/the-new-dots.html</link>
+            <guid>https://johnwhiles.com/posts/the-new-dots.html</guid>
+            <pubDate>Fri, 07 Oct 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[I recently got a new laptop, and I decided that this would finally be the time that I don't set it up in a completely ad hoc way.
+Previously I would install every program I needed as I needed it, with no real plan of how I would replicate the setup if I needed to move to a different machine, or wipe the current one.
+Tellingly, the one thing that I did make an effort to protect was my Vim config, which I've been maintaining for five years at this point (I have been a software developer for 5 years).
+I want more things to be like Vim, so, I should decided to setup my computer with Ansible.
+]]></description>
+            <content:encoded><![CDATA[<h1 id="setting-up-my-new-computer-neovim-configs-and-listening-to-spotify-in-the-terminal">Setting up my new computer, neovim configs, and listening to Spotify in the terminal</h1> <p>I recently got a new laptop, and I decided that this would finally be the time that I don't set it up in a completely ad hoc way.
+Previously I would install every program I needed as I needed it, with no real plan of how I would replicate the setup if I needed to move to a different machine, or wipe the current one.
+Tellingly, the one thing that I <em>did</em> make an effort to protect was my Vim config, which I've been maintaining for five years at this point (I have been a software developer for 5 years).
+I want more things to be like Vim, so, I should decided to setup my computer with Ansible.</p> <p>As well as having a good name (presumably from Ursula Le Guin's interplanetary communcation macguffin), Ansible is a really cool and useful tool.
+It lets you write some yaml that explain things you want doing to a computer. Then it takes this recipe and runs the specified commands.
+So for example I have the following command to download the codebase of my personal website, where I wrote this post that you are now reading.</p> <h2 id="ansible">Ansible</h2> <div class="saber-highlight" data-lang="yaml"><pre class="saber-highlight-code language-yaml"><code class="language-yaml">- name: Personal Project johncom
+  ansible.builtin.git:
+    repo: 'git@github.com:Jwhiles/johncom.git'
+    bare: false
+    dest: &quot;{{ lookup('env', 'HOME') }}/personal/johncom&quot;
+  tags:
+    - install
+    - personal-project</code></pre></div><p>This means that I can get a new computer, run ansible and the codebase will be immediately be there, ready for me to write things in it. Nice!</p> <p>I'm also using Ansible to:</p> <ul><li>install all the homebrew packages I want</li> <li>store my ssh keys</li> <li>set up a cronjob to sync my weird and overly complicated multicomputer note taking system</li> <li>ETC</li></ul> <p>Cool! I love it.</p> <p>Ansible seems to be the imperative equivalent to something like Nix.
+In ansible I'm describing the steps I want it to take to get my computer in order, whereas in Nix I would just describe the computer I wanted and it would hopefully give it to me.
+One advantage of ansible is that it's slightly less likely to fill my entire hard drive storing slightly different versions of GHC. So that's nice.</p> <h2 id="stow">Stow</h2> <p>As well as setting up a new repo to hold my Ansible config, I've converted my beloved repo 'vimmy' into a more general dotfiles repo.
+It's now called <a rel="noopener noreferrer" target="_blank" href="https://github.com/Jwhiles/dotfiles-FKA-vimmy">dotfiles-FKA-vimmy</a>, and alongside my Vim config also contains some other configuration files.</p> <p>Stow is a CLI tool for managing symlinks, that has allowed me to replace an ugly script I once wrote:</p> <div class="saber-highlight" data-lang="sh"><pre class="saber-highlight-code language-sh"><code class="language-sh">echo &quot;adding the appropirate nvim init file&quot;
+mkdir -p ~/.config/nvim
+ln -s ~/.vim/init.lua ~/.config/nvim/init.lua
+ln -s ~/.vim/lua ~/.config/nvim/lua
+
+echo &quot;creating symlink to .tmux.conf&quot;
+ln -s ~/.vim/.tmux.conf ~/.tmux.conf
+
+echo &quot;done and done 👻 &quot;</code></pre></div><p>With a new beautiful script that does basically the same thing but better:</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">pushd $HOME/.dotfiles
+
+echo &quot;stowing nvim&quot;
+stow nvim
+echo &quot;stowing tmux&quot;
+stow tmux
+echo &quot;stowing zsh&quot;
+stow zsh</code></pre></div><p>Stow seems really neat, but it does have a slightly weird behaviour where it places all symlinks in the folder one step up from your working directory.
+So try and make sure that you run in it the right place ;)</p> <h2 id="spotifyd-and-spotify-tui">Spotifyd and spotify-tui</h2> <p>Like most people in my demographic group, I listen to a lot of music on spotify. But I <em>hate</em> the spotify client. It's really slow and bad, and continually getting worse.
+Whilst setting up all this computer stuff, I idly searched something like 'native spotify client', and lo I found two incredible Rust programs.</p> <p><img src="/spotterm.png" alt="IMG"></p> <p>Spotifyd is a daemon that can sit running on your computer, waiting for spotify to send music for it to play. spotify-tui is a terminal application that lets you browse music, and play it on any connected devices.
+Using the two together lets me have music controlled and played through the terminal. It's much faster than the normal Spotify client, makes you look like a real hacker, and only shows a few inexplicable errors.</p> <p>It took me a bit of a struggle to get spotifyd to actually run successfully.
+It seems like it will just fail quietly unless you have a valid config, and some of the default config values aren't valid on Osx, I think (I might be wrong about this, but if I'm right it seems like a nice thing to try and fix). Now it works though, and I love it.</p> <h2 id="tmuxinator">Tmuxinator</h2> <p>Imagine you are a complete maniac and have decided to use some horrible setup where you listen to music in your terminal by using two different command line tools that both need to be running at the same time.
+How do you go about actually opening and running these things in less time than it would take to open the normal Spotify client (~30seconds).
+Let me introduce you to Tmuxinator. It's nice little tool that lets you write some YAML to describe a tmux session you'd like to start.</p> <p>For example:</p> <div class="saber-highlight" data-lang="yaml"><pre class="saber-highlight-code language-yaml"><code class="language-yaml"># /Users/johnwhiles/.config/tmuxinator/music.yml
+
+name: music
+root: ~/
+
+windows:
+  - spotify: spt
+  - daemon: spotifyd --no-daemon</code></pre></div><p>This configures a TMUX session that will open with two panes, one running spotifyd, and the other running spotify-tui.
+Now we can start our weird music listening setup by typing <code>tmuxinator start music</code>, this is both easy <em>and</em> is exactly the sort of thing I imagined I would be saying to computers in 2022.</p> <h2 id="conclusion">Conclusion</h2> <p>Ansible is cool. You can see <a rel="noopener noreferrer" target="_blank" href="https://github.com/Jwhiles/ansible">my setup on Github</a>. I originally forked it from <a rel="noopener noreferrer" target="_blank" href="https://github.com/adamchainz/mac-ansible">this repo</a>, and also to a look of inspiration from <a rel="noopener noreferrer" target="_blank" href="https://github.com/ThePrimeagen/ansible">The Primeagen's setup</a>.</p> <p>BYE!</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Walnuts can stain your hands for a very long time]]></title>
             <link>https://johnwhiles.com/posts/walnuts.html</link>
@@ -676,60 +732,6 @@ seems deeply strange. Having to use a templating DSL which has loops and if stat
 written as HTML attributes seems really backwards. I can't see why I
 would choose Vue over React for any complex project, but maybe I'm missing
 something. If you can tell me what Vue is good for please get in touch!</p> <p>ciao.</p>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[What I'm reading February 2021]]></title>
-            <link>https://johnwhiles.com/posts/reading-february-2021.html</link>
-            <guid>https://johnwhiles.com/posts/reading-february-2021.html</guid>
-            <pubDate>Mon, 01 Feb 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[I was put onto this short book by 'The Longing for Less' which I read last
-month. It is an exposition of traditional Japanese aesthetics, and the
-loss of these aesthetics due to modern electric lights, heating, glass windows,
-etc. The book talks about experiences which probably no longer exist,
-and which are by their nature too ephemeral to have been effectively recorded,
-other than in prose.
-]]></description>
-            <content:encoded><![CDATA[<h1 id="what-im-reading---february-2021">What I'm reading - February 2021</h1> <h2 id="in-praise-of-shadows---junichirō-tanizaki">In Praise of Shadows - Jun'ichirō Tanizaki</h2> <p>I was put onto this short book by 'The Longing for Less' which I read <a href="link">last
-month</a>. It is an exposition of traditional Japanese aesthetics, and the
-loss of these aesthetics due to modern electric lights, heating, glass windows,
-etc. The book talks about experiences which probably no longer exist,
-and which are by their nature too ephemeral to have been effectively recorded,
-other than in prose.</p> <p>For example, the author talks about the practice of blackening teeth, which
-taken with extremely low lighting and dark clothes lead to an impression of a
-persons face being perfectly white and floating in a sort of void. You can
-search for photoss of people with blackened teeth, but the impression that these photos gives
-is entirely different. The photos are uniformly well lit, and make the practice
-seem artificial and grotesque.</p> <p>The way that technology makes the old impossible, or ugly, is I think the main
-message of this book. The author is particularly interested in shadows, coolness,
-quiet - three things that cannot be found in the overlit, overheating and
-loud modern world.</p> <h2 id="goodbye-to-berlin---christopher-isherwood">Goodbye to Berlin - Christopher Isherwood</h2> <p>Short stories based in and around (hello Rugen!) Berlin (where I
-live). I enjoyed reading about familiar streets and districts, imaging what has
-a has not changed.</p> <p>The book reminds me of Henry James' Tropic of Cancer, or Orwell's book about
-working in kitchens: a disconnected anglophone slums it in a European City cultivating
-rareified social connections that are completely unavailable to the
-majority. The song 'Common People' covered this pretty well I think.</p> <p>Isherwood is more enjoyable than Orwell because he doesn't pretend to care very
-much about the people he meets. He just documents crushing poverty, and airs
-<a rel="noopener noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Jean_Ross#Dislike_of_%22Sally_Bowles%22_and_Cabaret">other people's dirty laundry</a>.
-There is no sense of moral superiority.</p> <p>I enjoyed this book! You should read it.</p> <h2 id="mating-in-captivity---esther-perel">Mating in Captivity - Esther Perel</h2> <p>Continuing the trend of reading books about relationships! This is about
-eroticism inside of long term relationships.</p> <p>The central premise is that people assume that passion cannot exist in long term relationships, but that this is not ture.</p> <p>The book then goes on to describe various ways that passion can disappear, or
-become stunted in long term relationships. The author believes that these reasons
-mostly resolve around a lack of differentiation between partners. Eroticism relies on the unknown, but
-in most relationships intimacy is sought, and achieved - which limits the amount
-of unknowing that is possible.</p> <p>She diagnoses a narrowing of conceptions of what it means to be intimate.
-&quot;We no longer plow the land together; today we talk. We have come to glorify verbal communication&quot;.
-The vocal forms of intimacy that are popular are coded feminine and are easier to achieve for
-those who have been socialised as females. &quot;We think of intimacy primarily as a discursive process... that insolves self-disclose&quot;.
-Men are not trained in this style of communication, and this inability can be diagnosed as 'fear of intimacy' or
-emotional inaccesability.</p> <p>Similarly to the book I read last month, Perel considers relationships as
-something that should require work. &quot;we think it’s easy to love, but hard to find the
-right person.&quot;. There are practically infinite possible people to build a strong
-relationship with. The building is the difficult part.</p> <h2 id="pale-fire---vladimir-nabokov">Pale Fire - Vladimir Nabokov</h2> <p>This is a re-read. I liked this book the first time, but am enjoying it a lot
-more the second. I think the structure of the book makes the first reading
-difficult. I was focusing too much on flipping back and forth between the poem
-and commentary, and trying to understand what was going on. When you have a lay
-of the land it's a lot easier to simply read and luxuriate in the madness.</p> <p>I've appreciated the poem itself much more this time. It's hard to take in a
-thousand line poem in one go, there is so much beautiful language, that I
-imagine I will keep dipping back into this book for a long time.</p> <p>As for what is actually going on in the book - I have no idea.</p>]]></content:encoded>
         </item>
     </channel>
 </rss>

@@ -1,0 +1,47 @@
+<!DOCTYPE html><html data-saber-ssr><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta data-saber-head="ssr" name="generator" content="Saber v0.11.7"> <title>Setting up my new computer, vim, and listening to Spotify in the terminal - John&#x27;s internet house</title> <link data-saber-head="ssr" rel="alternate" type="application/rss+xml" title="john_whiles_rss_feed" href="https://www.johnwhiles.com/atom.xml"><style data-vue-ssr-id="34039455:0 ffa0680c:0 dfb44056:0">.body{max-width:800px;font-size:18px;font-family:sans-serif}img{max-width:100%;max-height:500px}
+main{margin-right:auto;margin-left:auto;padding-right:2rem;padding-left:2rem;max-width:800px;font-size:18px;font-family:sans-serif}.halfwidth{max-width:400px}.signup{border-top:3px solid #f0f0f0;margin-top:1rem;padding-top:1rem}
+nav[data-v-40eedac4]{height:30px;align-items:center;border-bottom:3px solid #f0f0f0}nav[data-v-40eedac4],ul[data-v-40eedac4]{display:flex}ul[data-v-40eedac4]{flex-grow:1;list-style:none;padding-left:0}li[data-v-40eedac4]{margin-right:20px}</style> <script data-saber-head="ssr" defer data-domain="johnwhiles.com" src="https://plausible.io/js/plausible.js"></script> </head><body><div id="_saber" data-server-rendered="true"><main role="main"><nav data-v-40eedac4><ul data-v-40eedac4><li data-v-40eedac4><a href="/" rel="nofollow" class="router-link-active" data-v-40eedac4>Home</a></li> <li data-v-40eedac4><a href="/about" rel="nofollow" data-v-40eedac4>About</a></li> <li data-v-40eedac4><a href="/posts" rel="nofollow" class="router-link-active" data-v-40eedac4>Blog</a></li></ul></nav> <h1 id="setting-up-my-new-computer-neovim-configs-and-listening-to-spotify-in-the-terminal">Setting up my new computer, neovim configs, and listening to Spotify in the terminal</h1> <p>I recently got a new laptop, and I decided that this would finally be the time that I don't set it up in a completely ad hoc way.
+Previously I would install every program I needed as I needed it, with no real plan of how I would replicate the setup if I needed to move to a different machine, or wipe the current one.
+Tellingly, the one thing that I <em>did</em> make an effort to protect was my Vim config, which I've been maintaining for five years at this point (I have been a software developer for 5 years).
+I want more things to be like Vim, so, I should decided to setup my computer with Ansible.</p> <p>As well as having a good name (presumably from Ursula Le Guin's interplanetary communcation macguffin), Ansible is a really cool and useful tool.
+It lets you write some yaml that explain things you want doing to a computer. Then it takes this recipe and runs the specified commands.
+So for example I have the following command to download the codebase of my personal website, where I wrote this post that you are now reading.</p> <h2 id="ansible">Ansible</h2> <div class="saber-highlight" data-lang="yaml"><pre class="saber-highlight-code language-yaml"><code class="language-yaml">- name: Personal Project johncom
+  ansible.builtin.git:
+    repo: 'git@github.com:Jwhiles/johncom.git'
+    bare: false
+    dest: &quot;{{ lookup('env', 'HOME') }}/personal/johncom&quot;
+  tags:
+    - install
+    - personal-project</code></pre></div><p>This means that I can get a new computer, run ansible and the codebase will be immediately be there, ready for me to write things in it. Nice!</p> <p>I'm also using Ansible to:</p> <ul><li>install all the homebrew packages I want</li> <li>store my ssh keys</li> <li>set up a cronjob to sync my weird and overly complicated multicomputer note taking system</li> <li>ETC</li></ul> <p>Cool! I love it.</p> <p>Ansible seems to be the imperative equivalent to something like Nix.
+In ansible I'm describing the steps I want it to take to get my computer in order, whereas in Nix I would just describe the computer I wanted and it would hopefully give it to me.
+One advantage of ansible is that it's slightly less likely to fill my entire hard drive storing slightly different versions of GHC. So that's nice.</p> <h2 id="stow">Stow</h2> <p>As well as setting up a new repo to hold my Ansible config, I've converted my beloved repo 'vimmy' into a more general dotfiles repo.
+It's now called <a rel="noopener noreferrer" target="_blank" href="https://github.com/Jwhiles/dotfiles-FKA-vimmy">dotfiles-FKA-vimmy</a>, and alongside my Vim config also contains some other configuration files.</p> <p>Stow is a CLI tool for managing symlinks, that has allowed me to replace an ugly script I once wrote:</p> <div class="saber-highlight" data-lang="sh"><pre class="saber-highlight-code language-sh"><code class="language-sh">echo &quot;adding the appropirate nvim init file&quot;
+mkdir -p ~/.config/nvim
+ln -s ~/.vim/init.lua ~/.config/nvim/init.lua
+ln -s ~/.vim/lua ~/.config/nvim/lua
+
+echo &quot;creating symlink to .tmux.conf&quot;
+ln -s ~/.vim/.tmux.conf ~/.tmux.conf
+
+echo &quot;done and done 👻 &quot;</code></pre></div><p>With a new beautiful script that does basically the same thing but better:</p> <div class="saber-highlight" data-lang=""><pre class="saber-highlight-code language-text"><code class="language-text">pushd $HOME/.dotfiles
+
+echo &quot;stowing nvim&quot;
+stow nvim
+echo &quot;stowing tmux&quot;
+stow tmux
+echo &quot;stowing zsh&quot;
+stow zsh</code></pre></div><p>Stow seems really neat, but it does have a slightly weird behaviour where it places all symlinks in the folder one step up from your working directory.
+So try and make sure that you run in it the right place ;)</p> <h2 id="spotifyd-and-spotify-tui">Spotifyd and spotify-tui</h2> <p>Like most people in my demographic group, I listen to a lot of music on spotify. But I <em>hate</em> the spotify client. It's really slow and bad, and continually getting worse.
+Whilst setting up all this computer stuff, I idly searched something like 'native spotify client', and lo I found two incredible Rust programs.</p> <p><img src="/spotterm.png" alt="IMG"></p> <p>Spotifyd is a daemon that can sit running on your computer, waiting for spotify to send music for it to play. spotify-tui is a terminal application that lets you browse music, and play it on any connected devices.
+Using the two together lets me have music controlled and played through the terminal. It's much faster than the normal Spotify client, makes you look like a real hacker, and only shows a few inexplicable errors.</p> <p>It took me a bit of a struggle to get spotifyd to actually run successfully.
+It seems like it will just fail quietly unless you have a valid config, and some of the default config values aren't valid on Osx, I think (I might be wrong about this, but if I'm right it seems like a nice thing to try and fix). Now it works though, and I love it.</p> <h2 id="tmuxinator">Tmuxinator</h2> <p>Imagine you are a complete maniac and have decided to use some horrible setup where you listen to music in your terminal by using two different command line tools that both need to be running at the same time.
+How do you go about actually opening and running these things in less time than it would take to open the normal Spotify client (~30seconds).
+Let me introduce you to Tmuxinator. It's nice little tool that lets you write some YAML to describe a tmux session you'd like to start.</p> <p>For example:</p> <div class="saber-highlight" data-lang="yaml"><pre class="saber-highlight-code language-yaml"><code class="language-yaml"># /Users/johnwhiles/.config/tmuxinator/music.yml
+
+name: music
+root: ~/
+
+windows:
+  - spotify: spt
+  - daemon: spotifyd --no-daemon</code></pre></div><p>This configures a TMUX session that will open with two panes, one running spotifyd, and the other running spotify-tui.
+Now we can start our weird music listening setup by typing <code>tmuxinator start music</code>, this is both easy <em>and</em> is exactly the sort of thing I imagined I would be saying to computers in 2022.</p> <h2 id="conclusion">Conclusion</h2> <p>Ansible is cool. You can see <a rel="noopener noreferrer" target="_blank" href="https://github.com/Jwhiles/ansible">my setup on Github</a>. I originally forked it from <a rel="noopener noreferrer" target="_blank" href="https://github.com/adamchainz/mac-ansible">this repo</a>, and also to a look of inspiration from <a rel="noopener noreferrer" target="_blank" href="https://github.com/ThePrimeagen/ansible">The Primeagen's setup</a>.</p> <p>BYE!</p> <div class="signup"><p>Want to get updates and new posts via email?</p> <form action="https://buttondown.email/api/emails/embed-subscribe/johnwhiles" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/johnwhiles', 'popupwindow')" class="embeddable-buttondown-form"><label for="bd-email">Enter your email</label> <input type="email" name="email" id="bd-email"> <input type="submit" value="Subscribe"></form></div></main></div><script src="/_saber/js/client.dc89e259.js" defer></script><script src="/_saber/js/page--_posts-the-new-dots-md.1a535bae.js" defer></script></body></html>

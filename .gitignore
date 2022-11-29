@@ -1,6 +1,7 @@
 .cache/
+.env
 dist
 node_modules/
 .DS_Store
-.saber
-
+build/
+public/build/

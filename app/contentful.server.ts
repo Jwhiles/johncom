@@ -9,7 +9,7 @@ export const getEntry = async (slug: string) => {
   return client
     .getEntries<{ body: string; date: string; title: string }>({
       content_type: "blogPost",
-      "fields.slug[match]": slug,
+      "fields.slug[equals]": slug,
     })
     .then(function (res) {
       if (res.total !== 1) {

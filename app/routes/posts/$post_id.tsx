@@ -1,6 +1,6 @@
 import { getEntry } from "~/contentful.server";
 import { useLoaderData } from "@remix-run/react";
-import type { LoaderArgs } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { marked } from "marked";
 
@@ -13,13 +13,20 @@ export const loader = async ({ params }: LoaderArgs) => {
   return json({ html, date: entry.fields.date, title: entry.fields.title });
 };
 
+export const meta: MetaFunction = ({ data }) => {
+  return {
+    charset: "utf-8",
+    title: data.title,
+    viewport: "width=device-width,initial-scale=1",
+  };
+};
+
 export default function Post() {
   const { html, title } = useLoaderData<typeof loader>();
 
   return (
-    <div>
-      <h1>{title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+    <div className="p-4 leading-tight max-w-2xl mx-auto">
+      <div className="" dangerouslySetInnerHTML={{ __html: html }} />
     </div>
   );
 }

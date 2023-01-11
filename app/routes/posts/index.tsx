@@ -18,16 +18,20 @@ export const loader = async () => {
 export default function Post() {
   const { entries } = useLoaderData<typeof loader>();
   return (
-    <ol>
-      {entries.map(({ title, slug, date }) => {
-        return (
-          <li key={`${title}${slug}`}>
-            <Link prefetch="intent" to={slug}>
-              {title} - {date}
-            </Link>
-          </li>
-        );
-      })}
-    </ol>
+    <div className="p-4 leading-tight max-w-2xl mx-auto">
+      <h1>John's blog</h1>
+      <br />
+      <ol>
+        {entries.map(({ title, slug, date }) => {
+          return (
+            <li key={`${title}${slug}`}>
+              <Link prefetch="intent" to={slug}>
+                {title} - {date}
+              </Link>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
   );
 }

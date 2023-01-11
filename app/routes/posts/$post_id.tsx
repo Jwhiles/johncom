@@ -15,9 +15,7 @@ export const loader = async ({ params }: LoaderArgs) => {
 
 export const meta: MetaFunction = ({ data }) => {
   return {
-    charset: "utf-8",
     title: data.title,
-    viewport: "width=device-width,initial-scale=1",
   };
 };
 

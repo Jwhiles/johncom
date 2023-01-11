@@ -444,6 +444,10 @@ p {
   line-height: 1.35;
 }
 
+a {
+  color: blue;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -553,10 +557,5 @@ p {
 
 .leading-tight {
   line-height: 1.25;
-}
-
-.text-slate-800 {
-  --tw-text-opacity: 1;
-  color: rgb(30 41 59 / var(--tw-text-opacity));
 }
 

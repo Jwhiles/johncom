@@ -1,32 +1,19 @@
-import * as contentful from "contentful";
+const baseUrl = "https://cdn.contentful.com";
 
-var client = contentful.createClient({
-  space: process.env.SPACE_ID!,
-  accessToken: process.env.CDA_TOKEN!,
-});
-
-export const getEntry = async (slug: string) => {
-  return client
-    .getEntries<{ body: string; date: string; title: string }>({
-      content_type: "blogPost",
-      "fields.slug[equals]": slug,
-    })
-    .then(function (res) {
-      if (res.total !== 1) {
-        console.log(res.total);
-        throw new Error("TODO");
-      }
-      return res.items[0];
-    });
+export const getEntry = async (context: any, slug: string) => {
+  const url = `${baseUrl}/spaces/${context.SPACE_ID}/entries?access_token=${context.CDA_TOKEN}&content_type=blogPost&fields.slug[equals]=${slug}`;
+  const res = await fetch(url);
+  const j = await res.json();
+  if (j.items.length === 0) {
+    throw new Response("Blogpost not found", { status: 404 });
+  }
+  return j.items[0];
 };
 
-export const getListOfEntries = async () => {
-  return client
-    .getEntries<{ body: string; date: string; title: string; slug: string }>({
-      content_type: "blogPost",
-      order: '-fields.date'
-    })
-    .then(function (res) {
-      return res;
-    });
+export const getListOfEntries = async (context: any) => {
+  const url = `${baseUrl}/spaces/${context.SPACE_ID}/entries?access_token=${context.CDA_TOKEN}&content_type=blogPost&order=-fields.date`;
+
+  const res = await fetch(url);
+  const j = await res.json();
+  return j;
 };

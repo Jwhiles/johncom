@@ -3,26 +3,25 @@ import { getListOfEntries } from "~/contentful.server";
 import { marked } from "marked";
 
 export type RssEntry = {
-    title: string;
-    link: string;
-    content: string;
-    pubDate: string;
-    guid: string
-  };
+  title: string;
+  link: string;
+  content: string;
+  pubDate: string;
+  guid: string;
+};
 
-
-  export function generateRss({
-    description,
-    entries,
-    title,
-    lastUpdate,
-  }: {
-    lastUpdate: string
-    title: string;
-    description: string;
-    entries: RssEntry[];
-  }): string {
-    return `<?xml version="1.0" encoding="UTF-8"?>
+export function generateRss({
+  description,
+  entries,
+  title,
+  lastUpdate,
+}: {
+  lastUpdate: string;
+  title: string;
+  description: string;
+  entries: RssEntry[];
+}): string {
+  return `<?xml version="1.0" encoding="UTF-8"?>
   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
       <title>${title}</title>
@@ -52,34 +51,33 @@ export type RssEntry = {
         .join("")}
     </channel>
   </rss>`;
-  }
+}
 
-  export const loader: LoaderFunction = async () => {
-    const blogEntries = await getListOfEntries();
-  
-  
-    const feed = generateRss({
-      title: "John's internet house",
-      description: "My Blog",
-      lastUpdate: blogEntries.items[0].fields.date,
-      entries: blogEntries.items.map((post) => ({
-        content: marked(post.fields.body),
-        pubDate: new Date(post.fields.date).toUTCString(),
-        title: post.fields.title,
-        link: `https://johnwhiles.com/posts/${post.fields.slug}`,
-        guid: `https://johnwhiles.com/${post.fields.slug}`,
-      })),
-    });
-  
-    return new Response(feed, {
-      headers: {
-        "Content-Type": "application/xml",
-        "Cache-Control": "public, max-age=2419200",
-      },
-    });
-  };
+export const loader: LoaderFunction = async ({ context }: LoaderArgs) => {
+  const blogEntries = await getListOfEntries(context);
+
+  const feed = generateRss({
+    title: "John's internet house",
+    description: "My Blog",
+    lastUpdate: blogEntries.items[0].fields.date,
+    entries: blogEntries.items.map((post) => ({
+      content: marked(post.fields.body),
+      pubDate: new Date(post.fields.date).toUTCString(),
+      title: post.fields.title,
+      link: `https://johnwhiles.com/posts/${post.fields.slug}`,
+      guid: `https://johnwhiles.com/${post.fields.slug}`,
+    })),
+  });
+
+  return new Response(feed, {
+    headers: {
+      "Content-Type": "application/xml",
+      "Cache-Control": "public, max-age=2419200",
+    },
+  });
+};
 
 function makeSummaryFromBody(body) {
-    const summary = body.slice(0, 150);
-    return summary;
-  }
+  const summary = body.slice(0, 150);
+  return summary;
+}

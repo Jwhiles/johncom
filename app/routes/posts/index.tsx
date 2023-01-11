@@ -1,9 +1,9 @@
 import { getListOfEntries } from "~/contentful.server";
 import { useLoaderData, Link } from "@remix-run/react";
-import { json } from "@remix-run/node";
+import { json } from "@remix-run/cloudflare";
 
-export const loader = async () => {
-  const entries = await getListOfEntries();
+export const loader = async ({ context }) => {
+  const entries = await getListOfEntries(context);
   // how does contentful order entries?
   const e = entries.items.map((entry) => {
     return {

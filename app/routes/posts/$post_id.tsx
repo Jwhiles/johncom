@@ -22,9 +22,5 @@ export const meta: MetaFunction = ({ data }) => {
 export default function Post() {
   const { html } = useLoaderData<typeof loader>();
 
-  return (
-    <div className="p-4 leading-tight max-w-2xl mx-auto">
-      <div className="" dangerouslySetInnerHTML={{ __html: html }} />
-    </div>
-  );
+  return <div className="" dangerouslySetInnerHTML={{ __html: html }} />;
 }

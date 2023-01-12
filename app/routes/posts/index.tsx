@@ -22,14 +22,18 @@ export const loader = async ({ context }: LoaderArgs) => {
 export default function Post() {
   const { entries } = useLoaderData<typeof loader>();
   return (
-    <div className="p-4 leading-tight max-w-2xl mx-auto">
+    <div>
       <h1>John's blog</h1>
       <br />
       <ol>
         {entries.map(({ title, slug, date }) => {
           return (
             <li key={`${title}${slug}`}>
-              <Link className="justify-between flex" prefetch="intent" to={slug}>
+              <Link
+                className="justify-between flex"
+                prefetch="intent"
+                to={slug}
+              >
                 {title}
                 <span>{formatDate(date)}</span>
               </Link>

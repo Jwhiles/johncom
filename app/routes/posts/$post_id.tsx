@@ -1,6 +1,6 @@
 import { getEntry } from "~/contentful.server";
 import { useLoaderData } from "@remix-run/react";
-import type { LoaderArgs, MetaFunction } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { marked } from "marked";
 
@@ -20,7 +20,7 @@ export const meta: MetaFunction = ({ data }) => {
 };
 
 export default function Post() {
-  const { html, title } = useLoaderData<typeof loader>();
+  const { html } = useLoaderData<typeof loader>();
 
   return (
     <div className="p-4 leading-tight max-w-2xl mx-auto">

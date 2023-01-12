@@ -2,10 +2,14 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
+    "build": "run-s build:*",
+    "build:css": "npm run generate:css -- --minify",
+    "build:remix": "remix build",
     "dev:remix": "remix watch",
+    "dev:css": "npm run generate:css -- --watch",
     "dev:wrangler": "cross-env NODE_ENV=development npm run wrangler",
     "dev": "remix build && run-p \"dev:*\"",
+    "generate:css": "tailwindcss -m -i ./styles/app.css -o ./app/styles/tailwind.css",
     "start": "cross-env NODE_ENV=production npm run wrangler",
     "typecheck": "tsc -b",
     "wrangler": "wrangler pages dev ./public"
@@ -14,6 +18,7 @@
     "@remix-run/cloudflare": "^1.10.0",
     "@remix-run/cloudflare-pages": "^1.10.0",
     "@remix-run/react": "^1.10.0",
+    "@types/marked": "^4.0.8",
     "cross-env": "^7.0.3",
     "isbot": "^3.5.4",
     "marked": "^4.2.1",

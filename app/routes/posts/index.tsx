@@ -1,10 +1,14 @@
 import { getListOfEntries } from "~/contentful.server";
 import { useLoaderData, Link } from "@remix-run/react";
-import { json } from "@remix-run/cloudflare";
+import { json, LoaderArgs } from "@remix-run/cloudflare";
 
-export const loader = async ({ context }) => {
+const formatDate = (date) => {
+  const d = new Date(date);
+  return d.toLocaleDateString("en-GB");
+};
+
+export const loader = async ({ context }: LoaderArgs) => {
   const entries = await getListOfEntries(context);
-  // how does contentful order entries?
   const e = entries.items.map((entry) => {
     return {
       title: entry.fields.title,
@@ -25,8 +29,9 @@ export default function Post() {
         {entries.map(({ title, slug, date }) => {
           return (
             <li key={`${title}${slug}`}>
-              <Link prefetch="intent" to={slug}>
-                {title} - {date}
+              <Link className="justify-between flex" prefetch="intent" to={slug}>
+                {title}
+                <span>{formatDate(date)}</span>
               </Link>
             </li>
           );

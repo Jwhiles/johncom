@@ -3,10 +3,16 @@
 @tailwind utilities;
 @layer base {
   h1 {
-    @apply text-3xl;
+    @apply text-4xl;
+    @apply my-4;
   }
   h2 {
+    @apply text-3xl;
+    @apply my-3;
+  }
+  h3 {
     @apply text-2xl;
+    @apply my-2;
   }
   img {
     @apply max-w-lg;
@@ -16,7 +22,18 @@
   }
   p {
     @apply text-xl;
-    line-height: 1.35;
+    line-height: 1.4;
+    @apply mb-4;
+  }
+  ul {
+    @apply list-disc;
+    @apply my-4;
+    @apply ml-6;
+  }
+  li {
+    @apply text-xl;
+    line-height: 1.4;
+    @apply my-4;
   }
   a {
     color: blue;

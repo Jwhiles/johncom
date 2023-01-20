@@ -12,6 +12,9 @@ export default function Index() {
           <Link to="/posts">My blog</Link>
         </li>
         <li>
+          <Link to="/contact">Talk to me?</Link>
+        </li>
+        <li>
           <Link to="/sport_quotes">My favourite sports quotes</Link>
         </li>
       </ul>

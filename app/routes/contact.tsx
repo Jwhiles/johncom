@@ -10,6 +10,7 @@ export default function Conctact() {
         warned that I reserve the right to cancel meetings at any time for any
         reason.
       </div>
+      <div>Alternatively, you can email me at hi@johnwhiles.com</div>
 
       <div className="mt-2">
       <ClientOnly>

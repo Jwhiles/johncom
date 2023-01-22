@@ -1,6 +1,7 @@
 import { AppLoadContext } from "@remix-run/cloudflare";
 
 const baseUrl = "https://cdn.contentful.com";
+const previewUrl = "https://preview.contentful.com";
 
 export const getEntry = async (
   context: AppLoadContext,
@@ -12,7 +13,14 @@ export const getEntry = async (
   const res = await fetch(url);
   const j = (await res.json()) as any;
   if (j.items.length === 0) {
-    throw new Response("Blogpost not found", { status: 404 });
+    const purl = `${previewUrl}/spaces/${context.SPACE_ID}/entries?access_token=${context.PREVIEW_TOKEN}&content_type=blogPost&fields.slug[equals]=${slug}`;
+    const pres = await fetch(purl);
+    const p = (await pres.json()) as any;
+
+    if (p.items.length === 0) {
+      throw new Response("Blogpost not found", { status: 404 });
+    }
+    return p.items[0];
   }
   return j.items[0];
 };

@@ -36,3 +36,28 @@ export const getListOfEntries = async (
   const j = await res.json();
   return j as any;
 };
+
+export const getListOfEntriesByTag = async (
+  context: AppLoadContext,
+  tagId: string
+): Promise<{
+  items: { fields: { title: string; slug: string; date: string } }[];
+}> => {
+  const url = `${baseUrl}/spaces/${context.SPACE_ID}/entries?access_token=${context.CDA_TOKEN}&content_type=blogPost&order=-fields.date&links_to_entry=${tagId}`;
+
+  const res = await fetch(url);
+  const j = await res.json();
+  return j as any;
+};
+
+export const getListOfTags = async (
+  context: AppLoadContext
+): Promise<{
+  items: { sys: { id: string }; fields: { tagName: string } }[];
+}> => {
+  const url = `${baseUrl}/spaces/${context.SPACE_ID}/entries?access_token=${context.CDA_TOKEN}&content_type=tag`;
+
+  const res = await fetch(url);
+  const j = await res.json();
+  return j as any;
+};

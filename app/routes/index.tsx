@@ -12,10 +12,10 @@ export default function Index() {
           <Link to="/posts">My blog</Link>
         </li>
         <li>
-          <Link to="/contact">Talk to me?</Link>
+          <Link to="/tags/technology">Just technology posts (for the nerds)</Link>
         </li>
         <li>
-          <Link to="/sport_quotes">My favourite sports quotes</Link>
+          <Link to="/contact">Talk to me?</Link>
         </li>
       </ul>
       <div>
@@ -25,10 +25,14 @@ export default function Index() {
             <Link to="/posts/work">Maybe you should do less 'work'</Link>
           </li>
           <li>
-            <Link to="/posts/shaving">Shaving, or 'the world is out to get you'</Link>
+            <Link to="/posts/shaving">
+              Shaving, or 'the world is out to get you'
+            </Link>
           </li>
           <li>
-            <Link to="/posts/music-production-lessons">Six things I believe about making music</Link>
+            <Link to="/posts/music-production-lessons">
+              Six things I believe about making music
+            </Link>
           </li>
         </ul>
       </div>

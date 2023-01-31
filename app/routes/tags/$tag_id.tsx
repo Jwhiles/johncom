@@ -42,7 +42,7 @@ export default function Post() {
               <Link
                 className="justify-between flex"
                 prefetch="intent"
-                to={slug}
+                to={`/posts/${slug}`}
               >
                 {title}
                 <span>{formatDate(date)}</span>

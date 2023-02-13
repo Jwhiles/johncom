@@ -3,6 +3,13 @@ import { useLoaderData } from "@remix-run/react";
 import type { LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { marked } from "marked";
+import { quoteBack } from "~/utils/quotebacks";
+import quotebacksStyle from "~/utils/quotebacks.css";
+
+marked.use({ extensions: [quoteBack] });
+export function links() {
+  return [{ rel: "stylesheet", href: quotebacksStyle }];
+}
 
 export const loader = async ({ context, params }: LoaderArgs) => {
   if (!params.post_id) {

@@ -22,6 +22,7 @@
     "cross-env": "^7.0.3",
     "isbot": "^3.5.4",
     "marked": "^4.2.1",
+    "marked-quotebacks": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "remix-utils": "^6.0.0"

@@ -2,7 +2,7 @@ import { getListOfEntries } from "~/contentful.server";
 import { useLoaderData, Link } from "@remix-run/react";
 import { json, LoaderArgs } from "@remix-run/cloudflare";
 
-const formatDate = (date) => {
+const formatDate = (date: string) => {
   const d = new Date(date);
   return d.toLocaleDateString("en-GB");
 };
@@ -23,6 +23,7 @@ export default function Post() {
   const { entries } = useLoaderData<typeof loader>();
   return (
     <div>
+      <Link className="my-2" to="..">Go back</Link>
       <h1>John's blog</h1>
       <br />
       <ol>

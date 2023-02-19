@@ -1,5 +1,5 @@
 import { getEntry } from "~/contentful.server";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import type { LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { marked } from "marked";
@@ -29,5 +29,10 @@ export const meta: MetaFunction = ({ data }) => {
 export default function Post() {
   const { html } = useLoaderData<typeof loader>();
 
-  return <div className="" dangerouslySetInnerHTML={{ __html: html }} />;
+  return (
+    <div>
+      <Link className="my-2" to="..">Go back</Link>
+      <div className="" dangerouslySetInnerHTML={{ __html: html }} />
+    </div>
+  );
 }

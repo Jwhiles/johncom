@@ -33,6 +33,7 @@ export default function Post() {
   const { entries } = useLoaderData<typeof loader>();
   return (
     <div>
+      <Link className="my-2" to="..">Go back</Link>
       <h1>John's blog</h1>
       <br />
       <ol>

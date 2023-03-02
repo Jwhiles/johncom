@@ -1,4 +1,17 @@
 import { Outlet } from "@remix-run/react";
+import { getListOfTags } from "~/contentful.server";
+import { json, LoaderArgs } from "@remix-run/cloudflare";
+
+export const loader = async ({ context }: LoaderArgs) => {
+  const tags = await getListOfTags(context);
+  const t = tags.items.map((tag) => {
+    return {
+      id: tag.sys.id,
+      name: tag.fields.tagName,
+    };
+  });
+  return json({ tags: t });
+};
 
 export default function Index() {
   return (

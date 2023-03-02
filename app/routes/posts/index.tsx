@@ -1,6 +1,12 @@
 import { getListOfEntries } from "~/contentful.server";
 import { useLoaderData, Link } from "@remix-run/react";
-import { json, LoaderArgs } from "@remix-run/cloudflare";
+import { json, LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "John's blog",
+  };
+};
 
 const formatDate = (date: string) => {
   const d = new Date(date);

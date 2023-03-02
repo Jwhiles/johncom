@@ -1,6 +1,12 @@
 import { getListOfEntriesByTag } from "~/contentful.server";
-import { useLoaderData, Link } from "@remix-run/react";
-import { json, LoaderArgs } from "@remix-run/cloudflare";
+import { useLoaderData, Link, useMatches } from "@remix-run/react";
+import { json, LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
+
+export const meta: MetaFunction = ({ data }) => {
+  return {
+    title: "John's blog posts about " + data.tagName,
+  };
+};
 
 // I'll do this better when I'm not about to go to sleep..
 const niceTags: { [niceName: string]: string } = {
@@ -15,27 +21,66 @@ const formatDate = (date: string) => {
 export const loader = async ({ context, params: { tag_id } }: LoaderArgs) => {
   if (!tag_id) throw new Error();
 
-  const entries = await getListOfEntriesByTag(
+  const { entries, tagName } = await getListOfEntriesByTag(
     context,
     niceTags[tag_id] ?? tag_id
   );
-  const e = entries.items.map((entry) => {
+
+  const e = entries.map((entry) => {
     return {
       title: entry.fields.title,
       slug: entry.fields.slug,
       date: entry.fields.date,
     };
   });
-  return json({ entries: e });
+
+  return json({ entries: e, tagName: tagName });
 };
 
 export default function Post() {
-  const { entries } = useLoaderData<typeof loader>();
+  const { entries, tagName } = useLoaderData<typeof loader>();
+  const matches = useMatches();
+  const { tags } = matches[matches.length - 2].data as {
+    tags: { id: string; name: string }[];
+  };
+
+  if (entries.length === 0) {
+    return (
+      <div>
+        <Link className="my-2" to="..">
+          Go back
+        </Link>
+        <h1>John's blog</h1>
+        <br />
+        <h2>Sorry, I haven't written any posts that are tagged with "{tagName}"</h2>
+        <p>Why not try one of these:</p>
+        <ol>
+          {tags.map(({ name, id }) => {
+            return (
+              <li key={id}>
+                <Link
+                  className="justify-between flex"
+                  prefetch="intent"
+                  to={`../${id}`}
+                >
+                  {name}
+                </Link>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <Link className="my-2" to="..">Go back</Link>
+      <Link className="my-2" to="..">
+        Go back
+      </Link>
       <h1>John's blog</h1>
       <br />
+        <h2>Blog posts that are tagged with: "{tagName}"</h2>
       <ol>
         {entries.map(({ title, slug, date }) => {
           return (

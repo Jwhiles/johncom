@@ -1,24 +1,15 @@
-import { getListOfTags } from "~/contentful.server";
-import { useLoaderData, Link } from "@remix-run/react";
-import { json, LoaderArgs } from "@remix-run/cloudflare";
-
-
-export const loader = async ({ context }: LoaderArgs) => {
-  const tags = await getListOfTags(context);
-  const t = tags.items.map((tag) => {
-    return {
-      id: tag.sys.id,
-      name: tag.fields.tagName,
-    };
-  });
-  return json({ tags: t });
-};
+import { Link, useMatches } from "@remix-run/react";
 
 export default function Post() {
-  const { tags } = useLoaderData<typeof loader>();
+  const matches = useMatches();
+  const { tags } = matches[matches.length - 2].data as {
+    tags: { id: string; name: string }[];
+  };
   return (
     <div>
-      <Link className="my-2" to="..">Go back</Link>
+      <Link className="my-2" to="..">
+        Go back
+      </Link>
       <h1>John's blog</h1>
       <br />
       <ol>

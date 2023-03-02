@@ -1,4 +1,11 @@
-import { json } from "@remix-run/cloudflare";
+import { json, MetaFunction } from "@remix-run/cloudflare";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "Page not found",
+  };
+};
+
 
 export const loader = () => {
   return json(null, { status: 404 });

@@ -5,14 +5,17 @@
   h1 {
     @apply text-4xl;
     @apply my-4;
+    @apply font-header;
   }
   h2 {
     @apply text-3xl;
     @apply my-3;
+    @apply font-header;
   }
   h3 {
     @apply text-2xl;
     @apply my-2;
+    @apply font-header;
   }
   img {
     @apply max-w-lg;

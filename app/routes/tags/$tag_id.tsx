@@ -51,7 +51,6 @@ export default function Post() {
           Go back
         </Link>
         <h1>John's blog</h1>
-        <br />
         <h2>Sorry, I haven't written any posts that are tagged with "{tagName}"</h2>
         <p>Why not try one of these:</p>
         <ol>
@@ -79,7 +78,6 @@ export default function Post() {
         Go back
       </Link>
       <h1>John's blog</h1>
-      <br />
         <h2>Blog posts that are tagged with: "{tagName}"</h2>
       <ol>
         {entries.map(({ title, slug, date }) => {

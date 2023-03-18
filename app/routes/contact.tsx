@@ -4,13 +4,14 @@ import { useEffect } from "react";
 export default function Conctact() {
   return (
     <div className="p-4 leading-tight max-w-2xl mx-auto">
+      <div className="my-0">&nbsp;</div>
       <h1>Contact Me</h1>
-      <div>
+      <p>
         If you want to talk to me, you can add a meeting to my Calendly, but be
         warned that I reserve the right to cancel meetings at any time for any
         reason.
-      </div>
-      <div>Alternatively, you can email me at hi@johnwhiles.com</div>
+      </p>
+      <p>Alternatively, you can email me at hi@johnwhiles.com</p>
 
       <div className="mt-2">
       <ClientOnly>

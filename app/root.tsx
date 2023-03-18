@@ -7,10 +7,14 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import styles from "./styles/tailwind.css"
+import styles from "./styles/tailwind.css";
+import fonts from "./styles/fonts.css";
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }]
+  return [
+    { rel: "stylesheet", href: styles },
+    { rel: "stylesheet", href: fonts },
+  ];
 }
 
 export const meta: MetaFunction = () => ({
@@ -25,7 +29,11 @@ export default function App() {
       <head>
         <Meta />
         <Links />
-        <script defer data-domain="johnwhiles.com" src="https://plausible.io/js/script.js"></script>
+        <script
+          defer
+          data-domain="johnwhiles.com"
+          src="https://plausible.io/js/script.js"
+        ></script>
       </head>
       <body>
         <Outlet />

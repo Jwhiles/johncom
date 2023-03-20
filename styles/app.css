@@ -19,9 +19,8 @@
     @apply font-header;
   }
   img {
-    @apply max-w-lg;
-    @apply w-full;
-    @apply my-4;
+    @apply drop-shadow-md;
+    @apply my-6;
     @apply mx-auto;
   }
   p {

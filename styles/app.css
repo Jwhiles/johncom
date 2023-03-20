@@ -3,9 +3,10 @@
 @tailwind utilities;
 @layer base {
   h1 {
-    @apply text-4xl;
+    @apply text-5xl;
     @apply my-4;
     @apply font-header;
+    @apply tracking-tight
   }
   h2 {
     @apply text-3xl;

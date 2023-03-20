@@ -4,7 +4,7 @@ import { json, LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
 
 export const meta: MetaFunction = () => {
   return {
-    title: "John's blog",
+    title: "John’s blog",
   };
 };
 
@@ -30,7 +30,7 @@ export default function Post() {
   return (
     <div>
       <Link className="my-2" to="..">Go back</Link>
-      <h1>John's blog</h1>
+      <h1 className="tracking-tight">John’s blog</h1>
       <ol>
         {entries.map(({ title, slug, date }) => {
           return (

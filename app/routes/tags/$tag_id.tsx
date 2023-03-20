@@ -4,7 +4,7 @@ import { json, LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
 
 export const meta: MetaFunction = ({ data }) => {
   return {
-    title: "John's blog posts about " + data.tagName,
+    title: "John’s blog posts about " + data.tagName,
   };
 };
 
@@ -50,7 +50,7 @@ export default function Post() {
         <Link className="my-2" to="..">
           Go back
         </Link>
-        <h1>John's blog</h1>
+        <h1>John’s blog</h1>
         <h2>Sorry, I haven't written any posts that are tagged with "{tagName}"</h2>
         <p>Why not try one of these:</p>
         <ol>
@@ -77,7 +77,7 @@ export default function Post() {
       <Link className="my-2" to="..">
         Go back
       </Link>
-      <h1>John's blog</h1>
+      <h1>John’s blog</h1>
         <h2>Blog posts that are tagged with: "{tagName}"</h2>
       <ol>
         {entries.map(({ title, slug, date }) => {

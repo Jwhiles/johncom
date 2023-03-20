@@ -3,8 +3,8 @@ import { Link } from "@remix-run/react";
 export default function Index() {
   return (
     <div className="p-4 leading-tight max-w-2xl mx-auto">
-      <div className="my-0">&nbsp;</div>
-      <h1>John's website</h1>
+      <div className="select-none my-0">&nbsp;</div>
+      <h1 className="text-8xl tracking-tighter">John’s website.</h1>
       <ul>
         <li>
           <Link to="/posts">My blog</Link>
@@ -20,11 +20,11 @@ export default function Index() {
         <h2>Most Popular Posts</h2>
         <ul>
           <li>
-            <Link to="/posts/work">Maybe you should do less 'work'</Link>
+            <Link to="/posts/work">Maybe you should do less ‘work’</Link>
           </li>
           <li>
             <Link to="/posts/shaving">
-              Shaving, or 'the world is out to get you'
+              Shaving, or ‘the world is out to get you’
             </Link>
           </li>
           <li>

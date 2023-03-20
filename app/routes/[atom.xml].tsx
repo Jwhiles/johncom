@@ -57,7 +57,7 @@ export const loader: LoaderFunction = async ({ context }: LoaderArgs) => {
   const blogEntries = await getListOfEntries(context);
 
   const feed = generateRss({
-    title: "John's internet house",
+    title: "John’s internet house",
     description: "My Blog",
     lastUpdate: blogEntries.items[0].fields.date,
     entries: blogEntries.items.map((post) => ({

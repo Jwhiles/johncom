@@ -9,3 +9,4 @@ node_modules
 /functions/\[\[path\]\].js.map
 /public/build
 .env
+/app/styles/tailwind.css

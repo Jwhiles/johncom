@@ -1,10 +1,11 @@
 import { ClientOnly } from "remix-utils";
 import { useEffect } from "react";
+import { Link } from "@remix-run/react";
 
 export default function Conctact() {
   return (
     <div className="p-4 leading-tight max-w-2xl mx-auto">
-      <div className="my-0">&nbsp;</div>
+      <Link className="my-2" to="..">Go back</Link>
       <h1>Contact Me</h1>
       <p>
         If you want to talk to me, you can add a meeting to my Calendly, but be

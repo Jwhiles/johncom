@@ -5,7 +5,7 @@ module.exports = {
     extend: {},
     fontFamily: {
       // sans: ["system"],
-      header: ["Garamond"],
+      header: ["Garamond", "serif"],
     },
   },
   plugins: [],

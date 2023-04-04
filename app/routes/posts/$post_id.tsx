@@ -6,7 +6,6 @@ import { marked } from "marked";
 import { quoteBack } from "marked-quotebacks";
 import quotebacksStyle from "marked-quotebacks/dist/main.css";
 
-
 const footnoteMatch = /^\[\^([^\]]+)\]:([\s\S]*)$/;
 const referenceMatch = /\[\^([^\]]+)\](?!\()/g;
 const referencePrefix = "marked-fnref";
@@ -38,7 +37,17 @@ const renderer = {
       interpolateReferences(interpolateFootnotes(text)),
     ]);
   },
+
+  // all my images are in Contentful
+  // this function just applys the same query params to all of them
+  image(href: string, _title: string, text: string) {
+    const url = new URL(`https:${href}`);
+    url.searchParams.set("w", "800");
+    url.searchParams.set("fm", "webp");
+    return `<img src=${url} alt=${text} />`;
+  },
 };
+
 marked.use({ renderer, extensions: [quoteBack] });
 
 export function links() {

@@ -8,4 +8,8 @@ module.exports = {
   // assetsBuildDirectory: "public/build",
   // serverBuildPath: "functions/[[path]].js",
   // publicPath: "/build/",
+  // module.exports = {
+  future: {
+    v2_routeConvention: true,
+  },
 };

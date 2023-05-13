@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   h1 {
     @apply text-5xl;
@@ -40,6 +41,13 @@
   }
   a {
     color: blue;
+  }
+  pre {
+    background-color: #f5f5f5;
+    @apply overflow-x-auto;
+    @apply p-4;
+    @apply rounded-md;
+    @apply my-4;
   }
 }
 

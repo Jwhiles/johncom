@@ -20,9 +20,6 @@ export default function Index() {
         <h2>Most Popular Posts</h2>
         <ul>
           <li>
-            <Link to="/posts/work">Maybe you should do less ‘work’</Link>
-          </li>
-          <li>
             <Link to="/posts/shaving">
               Shaving, or ‘the world is out to get you’
             </Link>

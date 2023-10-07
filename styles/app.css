@@ -49,5 +49,8 @@
     @apply rounded-md;
     @apply my-4;
   }
+  hr {
+    @apply my-16;
+  }
 }
 

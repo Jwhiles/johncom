@@ -5,32 +5,14 @@ export default function Index() {
     <div className="p-4 leading-tight max-w-2xl mx-auto">
       <div className="select-none my-0">&nbsp;</div>
       <h1 className="text-8xl tracking-tighter">John’s website.</h1>
-      <ul>
+      <ul className="mt-10">
         <li>
-          <Link to="/posts">My blog</Link>
+          <Link className="text-2xl" to="/posts">My blog</Link>
         </li>
         <li>
-          <Link to="/tags/technology">Just technology posts (for the nerds)</Link>
-        </li>
-        <li>
-          <Link to="/contact">Talk to me?</Link>
+          <Link className="text-2xl" to="/contact">Talk to me?</Link>
         </li>
       </ul>
-      <div>
-        <h2>Most Popular Posts</h2>
-        <ul>
-          <li>
-            <Link to="/posts/shaving">
-              Shaving, or ‘the world is out to get you’
-            </Link>
-          </li>
-          <li>
-            <Link to="/posts/music-production-lessons">
-              Six things I believe about making music
-            </Link>
-          </li>
-        </ul>
-      </div>
     </div>
   );
 }

@@ -20,7 +20,7 @@ export default function Conctact() {
           <Cal
             minWidth="320px"
             height="630px"
-            url="https://calendly.com/jwhiles/speak-to-john"
+            url="https://calendly.com/jwwhiles-123/speak-to-john"
           />
         )}
       </ClientOnly>

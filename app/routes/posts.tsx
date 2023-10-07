@@ -3,7 +3,7 @@ import { Outlet } from "@remix-run/react";
 export default function Index() {
   return (
     <div>
-      <div className="p-4 leading-tight max-w-2xl mx-auto">
+      <div className="p-4 leading-tight max-w-prose mx-auto">
         <Outlet />
         <br />
 

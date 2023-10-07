@@ -78,10 +78,6 @@ export default function Post() {
         Go back
       </Link>
       <div className="" dangerouslySetInnerHTML={{ __html: html }} />
-      <img
-        className="m-0 mt-4 w-[120px] hover:animate-pulse"
-        src="https://images.ctfassets.net/wc253zohgsra/7MfQ59OgowAvh9TltHpqTA/0063f601b8b1f5fe341b313666b86b56/Written-By-Human-Not-By-AI-Badge-white_2x.png"
-      />
     </div>
   );
 }

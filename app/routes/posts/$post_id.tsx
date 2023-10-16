@@ -1,6 +1,6 @@
 import { getEntry } from "~/contentful.server";
 import { Link, useLoaderData } from "@remix-run/react";
-import type { LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
+import type { HeadersFunction, LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { marked } from "marked";
 import { quoteBack } from "marked-quotebacks";
@@ -60,7 +60,10 @@ export const loader = async ({ context, params }: LoaderArgs) => {
   }
   const entry = await getEntry(context, params.post_id);
   const html = marked(entry.fields.body);
-  return json({ html, date: entry.fields.date, title: entry.fields.title });
+  return json(
+    { html, date: entry.fields.date, title: entry.fields.title },
+    { headers: { "cache-control": "max-age=300, s-maxage=3600" } }
+  );
 };
 
 export const meta: MetaFunction = ({ data }) => {
@@ -68,6 +71,9 @@ export const meta: MetaFunction = ({ data }) => {
     title: data.title,
   };
 };
+export const headers: HeadersFunction = () => ({
+  "Cache-Control": "max-age=300, s-maxage=3600",
+});
 
 export default function Post() {
   const { html } = useLoaderData<typeof loader>();

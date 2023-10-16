@@ -1,10 +1,13 @@
-import { json, MetaFunction } from "@remix-run/cloudflare";
+import { HeadersFunction, json, MetaFunction } from "@remix-run/cloudflare";
 
 export const meta: MetaFunction = () => {
   return {
     title: "Page not found",
   };
 };
+export const headers: HeadersFunction = () => ({
+  "Cache-Control": "max-age=300, s-maxage=3600",
+});
 
 
 export const loader = () => {

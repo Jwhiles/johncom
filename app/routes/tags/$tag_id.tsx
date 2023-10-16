@@ -1,12 +1,20 @@
 import { getListOfEntriesByTag } from "~/contentful.server";
 import { useLoaderData, Link, useMatches } from "@remix-run/react";
-import { json, LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
+import {
+  HeadersFunction,
+  json,
+  LoaderArgs,
+  MetaFunction,
+} from "@remix-run/cloudflare";
 
 export const meta: MetaFunction = ({ data }) => {
   return {
     title: "John’s blog posts about " + data.tagName,
   };
 };
+export const headers: HeadersFunction = () => ({
+  "Cache-Control": "max-age=300, s-maxage=3600",
+});
 
 // I'll do this better when I'm not about to go to sleep..
 const niceTags: { [niceName: string]: string } = {
@@ -34,7 +42,10 @@ export const loader = async ({ context, params: { tag_id } }: LoaderArgs) => {
     };
   });
 
-  return json({ entries: e, tagName: tagName });
+  return json(
+    { entries: e, tagName: tagName },
+    { headers: { "cache-control": "max-age=300, s-maxage=3600" } }
+  );
 };
 
 export default function Post() {
@@ -51,7 +62,9 @@ export default function Post() {
           Go back
         </Link>
         <h1>John’s blog</h1>
-        <h2>Sorry, I haven't written any posts that are tagged with "{tagName}"</h2>
+        <h2>
+          Sorry, I haven't written any posts that are tagged with "{tagName}"
+        </h2>
         <p>Why not try one of these:</p>
         <ol>
           {tags.map(({ name, id }) => {
@@ -78,7 +91,7 @@ export default function Post() {
         Go back
       </Link>
       <h1>John’s blog</h1>
-        <h2>Blog posts that are tagged with: "{tagName}"</h2>
+      <h2>Blog posts that are tagged with: "{tagName}"</h2>
       <ol>
         {entries.map(({ title, slug, date }) => {
           return (

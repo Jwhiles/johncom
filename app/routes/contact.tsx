@@ -1,7 +1,11 @@
 import { ClientOnly } from "remix-utils";
 import { useEffect } from "react";
 import { Link } from "@remix-run/react";
+import { HeadersFunction } from "@remix-run/cloudflare";
 
+export const headers: HeadersFunction = () => ({
+  "Cache-Control": "max-age=300, s-maxage=3600",
+});
 export default function Conctact() {
   return (
     <div className="p-4 leading-tight max-w-2xl mx-auto">

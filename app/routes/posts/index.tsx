@@ -1,12 +1,20 @@
 import { getListOfEntries } from "~/contentful.server";
 import { useLoaderData, Link } from "@remix-run/react";
-import { json, LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
+import {
+  HeadersFunction,
+  json,
+  LoaderArgs,
+  MetaFunction,
+} from "@remix-run/cloudflare";
 
 export const meta: MetaFunction = () => {
   return {
     title: "John’s blog",
   };
 };
+export const headers: HeadersFunction = () => ({
+  "Cache-Control": "max-age=300, s-maxage=3600",
+});
 
 const formatDate = (date: string) => {
   const d = new Date(date);
@@ -22,14 +30,19 @@ export const loader = async ({ context }: LoaderArgs) => {
       date: entry.fields.date,
     };
   });
-  return json({ entries: e });
+  return json(
+    { entries: e },
+    { headers: { "cache-control": "max-age=300, s-maxage=3600" } }
+  );
 };
 
 export default function Post() {
   const { entries } = useLoaderData<typeof loader>();
   return (
     <div>
-      <Link className="my-2" to="..">Go back</Link>
+      <Link className="my-2" to="..">
+        Go back
+      </Link>
       <h1 className="tracking-tight">John’s blog</h1>
       <ol>
         {entries.map(({ title, slug, date }) => {

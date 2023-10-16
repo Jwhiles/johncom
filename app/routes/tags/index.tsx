@@ -1,5 +1,9 @@
+import { HeadersFunction } from "@remix-run/cloudflare";
 import { Link, useMatches } from "@remix-run/react";
 
+export const headers: HeadersFunction = () => ({
+  "Cache-Control": "max-age=300, s-maxage=3600",
+});
 export default function Post() {
   const matches = useMatches();
   const { tags } = matches[matches.length - 2].data as {

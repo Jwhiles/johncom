@@ -52,5 +52,16 @@
   hr {
     @apply my-16;
   }
+  blockquote p {
+    @apply p-2;
+    @apply pl-4;
+    @apply italic;
+    @apply border-l-4;
+
+    @apply border-gray-200;
+    @apply mr-4;
+
+    @apply bg-gray-100;
+  }
 }
 

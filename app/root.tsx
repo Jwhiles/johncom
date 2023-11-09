@@ -10,10 +10,29 @@ import {
 import styles from "./styles/tailwind.css";
 import fonts from "./styles/fonts.css";
 
+// These should probably be on some cdn...
 export function links() {
   return [
     { rel: "stylesheet", href: styles },
     { rel: "stylesheet", href: fonts },
+    {
+      rel: "apple-touch-icon",
+      href: "/apple-touch-icon.png",
+      sizes: "180x180",
+      type: "image/png",
+    },
+    {
+      rel: "icon",
+      href: "/favicon-16x16.ico",
+      sizes: "16x16",
+      type: "image/ico",
+    },
+    {
+      rel: "icon",
+      href: "/favicon-32x32.ico",
+      sizes: "32x32",
+      type: "image/ico",
+    },
   ];
 }
 

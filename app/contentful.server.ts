@@ -42,7 +42,7 @@ export const getListOfEntriesByTag = async (
   tagId: string
 ): Promise<{
   entries: { fields: { title: string; slug: string; date: string } }[];
-  tagName: string
+  tagName: string;
 }> => {
   const url = `${baseUrl}/spaces/${context.SPACE_ID}/entries?access_token=${context.CDA_TOKEN}&content_type=blogPost&order=-fields.date&links_to_entry=${tagId}`;
 
@@ -51,8 +51,7 @@ export const getListOfEntriesByTag = async (
 
   let tagName = tagId;
   if (j?.includes?.Entry) {
-    tagName = j.includes.Entry.find((e) => e.sys.id === tagId).fields
-      .tagName;
+    tagName = j.includes.Entry.find((e) => e.sys.id === tagId).fields.tagName;
   }
 
   return { entries: j.items, tagName } as any;

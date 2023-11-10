@@ -5,12 +5,17 @@ export const headers: HeadersFunction = () => ({
   "Cache-Control": "max-age=300, s-maxage=3600",
 });
 
+
 const albums: Array<{ title: string; image: string; url: string }> = [
   {
     title: "A Maggot",
     image: "https://f4.bcbits.com/img/a2832880625_10.jpg",
-    // can I render this page as an iframe?
     url: "https://whiles.mmm.page/maggot",
+  },
+  {
+    title: "Exit",
+    image: "https://f4.bcbits.com/img/a0621469758_10.jpg",
+    url: "https://whiles.mmm.page/exit",
   },
 ];
 

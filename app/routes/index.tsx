@@ -27,7 +27,7 @@ export default function Index() {
         </li>
       </ul>
       <img
-        className="w-24 h-24 md:w-max md:h-max absolute bottom-20 right-20 z-0"
+        className="w-24 h-24 md:w-max md:h-max absolute bottom-20 right-20 z-0 animate-spin-slow"
         src="https://images.ctfassets.net/wc253zohgsra/6ldaNVODgtTNBymgloaY3Z/c36d9234283255a4802cb949b8c0dfad/john_logo.png"
       />
     </div>

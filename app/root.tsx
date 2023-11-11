@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/cloudflare";
+import { json, LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
 import {
   Links,
   LiveReload,
@@ -6,9 +6,22 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 import styles from "./styles/tailwind.css";
 import fonts from "./styles/fonts.css";
+import { Toaster } from "sonner";
+import usePartySocket from "partysocket/react";
+import { toast } from "sonner";
+
+export async function loader({ context }: LoaderArgs) {
+
+
+  return json(
+    { partyKitUrl: context.PARTYKIT_URL! },
+    { headers: { "cache-control": "max-age=300, s-maxage=3600" } }
+  );
+}
 
 // These should probably be on some cdn...
 export function links() {
@@ -43,6 +56,14 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function App() {
+  const { partyKitUrl } = useLoaderData<typeof loader>();
+  usePartySocket({
+    host: partyKitUrl as string,
+    room: "the-watcher",
+    onMessage(event) {
+      toast(event.data);
+    },
+  });
   return (
     <html lang="en">
       <head>
@@ -59,6 +80,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <Toaster />
       </body>
     </html>
   );

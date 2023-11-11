@@ -1,5 +1,7 @@
 # Welcome to Remix!
 
+ENV VARS ARE IN .dev.vars
+
 - [Remix Docs](https://remix.run/docs)
 
 ## Development

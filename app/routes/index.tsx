@@ -1,5 +1,6 @@
 import { HeadersFunction } from "@remix-run/cloudflare";
 import { Link } from "@remix-run/react";
+
 export const headers: HeadersFunction = () => ({
   "Cache-Control": "max-age=300, s-maxage=3600",
 });

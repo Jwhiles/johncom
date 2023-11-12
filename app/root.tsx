@@ -29,7 +29,7 @@ export function links() {
     { rel: "stylesheet", href: styles },
     { rel: "stylesheet", href: fonts },
     {
-      rel: "apple-touch-icon",
+      rel: "pple-touch-icon",
       href: "/apple-touch-icon.png",
       sizes: "180x180",
       type: "image/png",
@@ -75,7 +75,7 @@ export default function App() {
           src="https://plausible.io/js/script.js"
         ></script>
       </head>
-      <body>
+      <body className="bg-white dark:bg-stone-800"> 
         <Outlet />
         <ScrollRestoration />
         <Scripts />

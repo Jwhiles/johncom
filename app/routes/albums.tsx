@@ -5,7 +5,6 @@ export const headers: HeadersFunction = () => ({
   "Cache-Control": "max-age=300, s-maxage=3600",
 });
 
-
 const albums: Array<{ title: string; image: string; url: string }> = [
   {
     title: "A Maggot",
@@ -16,6 +15,11 @@ const albums: Array<{ title: string; image: string; url: string }> = [
     title: "Exit",
     image: "https://f4.bcbits.com/img/a0621469758_10.jpg",
     url: "https://whiles.mmm.page/exit",
+  },
+  {
+    title: "Turning to Ice",
+    image: "https://f4.bcbits.com/img/a3864256372_10.jpg",
+    url: "https://whiles.mmm.page/turning_to_ice",
   },
 ];
 

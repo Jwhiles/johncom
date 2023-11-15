@@ -1,11 +1,11 @@
 import { Outlet } from "@remix-run/react";
 import { getListOfTags } from "~/contentful.server";
-import { HeadersFunction, json, LoaderArgs } from "@remix-run/cloudflare";
+import { HeadersFunction, json, LoaderFunctionArgs } from "@remix-run/cloudflare";
 
 export const headers: HeadersFunction = () => ({
   "Cache-Control": "max-age=300, s-maxage=3600",
 });
-export const loader = async ({ context }: LoaderArgs) => {
+export const loader = async ({ context }: LoaderFunctionArgs) => {
   const tags = await getListOfTags(context);
   const t = tags.items.map((tag) => {
     return {

@@ -1,10 +1,15 @@
 import { getEntry } from "~/contentful.server";
 import { Link, useLoaderData } from "@remix-run/react";
-import type { HeadersFunction, LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
+import type {
+  HeadersFunction,
+  LoaderFunctionArgs,
+  MetaFunction,
+} from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { marked } from "marked";
 import { quoteBack } from "marked-quotebacks";
 import quotebacksStyle from "marked-quotebacks/dist/main.css";
+import { metaV1 } from "@remix-run/v1-meta";
 
 const footnoteMatch = /^\[\^([^\]]+)\]:([\s\S]*)$/;
 const referenceMatch = /\[\^([^\]]+)\](?!\()/g;
@@ -54,7 +59,7 @@ export function links() {
   return [{ rel: "stylesheet", href: quotebacksStyle }];
 }
 
-export const loader = async ({ context, params }: LoaderArgs) => {
+export const loader = async ({ context, params }: LoaderFunctionArgs) => {
   if (!params.post_id) {
     throw new Error("no post id");
   }
@@ -66,11 +71,112 @@ export const loader = async ({ context, params }: LoaderArgs) => {
   );
 };
 
-export const meta: MetaFunction = ({ data }) => {
-  return {
-    title: data.title,
-  };
+// const ldData = {
+//   "@context": "https://schema.org",
+//   "@type": "Corporation",
+//   description:
+//     "Coachtracker helps Coaches with admin, so that they have more time to focus on helping their clients achieve the best results.",
+//   name: "Coachtracker",
+//   alternateName: "Coachtracker.net",
+//   url: "https://coachtracker.net",
+//   logo: "https://coachtracker.net/coachtracker.png",
+//   sameAs: [
+//     "https://twitter.com/_coachtracker_",
+//     // TODO add linked in
+//   ],
+//   founder: [
+//     {
+//       "@type": "Person",
+//       name: "John Whiles",
+//       jobTitle: "Founder",
+//       // image: "todo",
+//       // sameAs: ["TODO add social media links"],
+//     },
+//   ],
+//   foundingDate: "2023-01-01",
+//   contactPoint: [
+//     {
+//       "@type": "ContactPoint",
+//       contactType: "customer service",
+//       email: "support@coachtracker.net",
+//       url: "https://coachtracker.net",
+//     },
+//   ],
+// };
+
+// const createSeoPageMetaTags = ({
+//   ogTitle,
+//   description,
+//   ogType,
+//   canonicalUrl,
+// }: {
+//   /*
+//    * A title for the page, that should be rendered on social media shares. Make this short and snappy
+//    * and appealing to people, not to robots.
+//    */
+//   ogTitle: string;
+//   /*
+//    * A description for the page, that should be rendered on social media shares.
+//    * Will be plain text, and won't be rendered nicely by the site. So don't shove it full of links.
+//    */
+//   description: string;
+//   /*
+//    * The type of the page. Different page types will be shared differently.
+//    */
+//   ogType: "website" | "article";
+
+//   /*
+//    * The URL to which SEO should be attributed. Strip out any query parameters, and make sure it's something that will _never change_
+//    */
+//   canonicalUrl: string;
+// }) => {
+//   // TODO: add the twitter tags
+
+//   return [
+//     {
+//       property: "og:title",
+//       content: ogTitle,
+//     },
+//     {
+//       property: "og:description",
+//       content: description,
+//     },
+//     {
+//       property: "og:type",
+//       content: ogType,
+//     },
+//     {
+//       tagName: "link",
+//       rel: "canonical",
+//       href: canonicalUrl,
+//     },
+//     {
+//       "script:ld+json": ldData,
+//     },
+//   ];
+// };
+
+export const meta: MetaFunction<typeof loader> = (args) => {
+  const e = metaV1(args, {
+    title: args.data?.title ?? 'John’s blog',
+  });
+  return e;
+  // return [
+  //   ...e,
+  //   ...createSeoPageMetaTags({
+  //     ogTitle: "Coachtracker",
+  //     description: "Coachtracker lets you",
+  //     ogType: "website",
+  //     canonicalUrl: "https://coachtracker.net/",
+  //   }),
+  // ];
 };
+
+// export const meta: MetaFunction = ({ data }) => {
+//   return {
+//     title: data.title,
+//   };
+// };
 export const headers: HeadersFunction = () => ({
   "Cache-Control": "max-age=300, s-maxage=3600",
 });

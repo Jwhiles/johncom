@@ -28,7 +28,9 @@ export const getEntry = async (
 export const getListOfEntries = async (
   context: AppLoadContext
 ): Promise<{
-  items: { fields: { title: string; slug: string; date: string } }[];
+  items: {
+    fields: { title: string; slug: string; date: string; body: string };
+  }[];
 }> => {
   const url = `${baseUrl}/spaces/${context.SPACE_ID}/entries?access_token=${context.CDA_TOKEN}&content_type=blogPost&order=-fields.date`;
 
@@ -47,11 +49,13 @@ export const getListOfEntriesByTag = async (
   const url = `${baseUrl}/spaces/${context.SPACE_ID}/entries?access_token=${context.CDA_TOKEN}&content_type=blogPost&order=-fields.date&links_to_entry=${tagId}`;
 
   const res = await fetch(url);
-  const j = await res.json();
+  const j = (await res.json()) as any;
+  // Do proper validation of the returned value..
 
   let tagName = tagId;
   if (j?.includes?.Entry) {
-    tagName = j.includes.Entry.find((e) => e.sys.id === tagId).fields.tagName;
+    tagName = j.includes.Entry.find((e: any) => e.sys.id === tagId).fields
+      .tagName;
   }
 
   return { entries: j.items, tagName } as any;

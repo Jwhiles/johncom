@@ -1,4 +1,4 @@
-import { ClientOnly } from "remix-utils";
+// import { ClientOnly } from "remix-utils";
 import { useEffect } from "react";
 import { Link } from "@remix-run/react";
 import { HeadersFunction } from "@remix-run/cloudflare";
@@ -19,19 +19,19 @@ export default function Conctact() {
       <p>Alternatively, you can email me at hi@johnwhiles.com</p>
 
       <div className="mt-2">
-      <ClientOnly>
-        {() => (
-          <Cal
-            minWidth="320px"
-            height="630px"
-            url="https://calendly.com/jwwhiles-123/speak-to-john"
-          />
-        )}
-      </ClientOnly>
       </div>
     </div>
   );
 }
+      // <ClientOnly>
+      //   {() => (
+      //     <Cal
+      //       minWidth="320px"
+      //       height="630px"
+      //       url="https://calendly.com/jwwhiles-123/speak-to-john"
+      //     />
+      //   )}
+      // </ClientOnly>
 const Cal = ({ minWidth, height, url }: any) => {
   useEffect(() => {
     const head = document.querySelector("head");

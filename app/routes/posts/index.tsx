@@ -3,14 +3,15 @@ import { useLoaderData, Link } from "@remix-run/react";
 import {
   HeadersFunction,
   json,
-  LoaderArgs,
+  LoaderFunctionArgs,
   MetaFunction,
 } from "@remix-run/cloudflare";
+import { metaV1 } from "@remix-run/v1-meta";
 
-export const meta: MetaFunction = () => {
-  return {
+export const meta: MetaFunction = (args) => {
+  return metaV1(args, {
     title: "John’s blog",
-  };
+  });
 };
 export const headers: HeadersFunction = () => ({
   "Cache-Control": "max-age=300, s-maxage=3600",
@@ -21,7 +22,7 @@ const formatDate = (date: string) => {
   return d.toLocaleDateString("en-GB");
 };
 
-export const loader = async ({ context }: LoaderArgs) => {
+export const loader = async ({ context }: LoaderFunctionArgs) => {
   const entries = await getListOfEntries(context);
   const e = entries.items.map((entry) => {
     return {

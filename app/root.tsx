@@ -1,4 +1,4 @@
-import { json, LoaderArgs, MetaFunction } from "@remix-run/cloudflare";
+import { json, LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
 import {
   Links,
   LiveReload,
@@ -13,10 +13,9 @@ import fonts from "./styles/fonts.css";
 import { Toaster } from "sonner";
 import usePartySocket from "partysocket/react";
 import { toast } from "sonner";
+import { metaV1 } from "@remix-run/v1-meta";
 
-export async function loader({ context }: LoaderArgs) {
-
-
+export async function loader({ context }: LoaderFunctionArgs) {
   return json(
     { partyKitUrl: context.PARTYKIT_URL! },
     { headers: { "cache-control": "max-age=300, s-maxage=3600" } }
@@ -49,11 +48,12 @@ export function links() {
   ];
 }
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "John's internet house",
-  viewport: "width=device-width,initial-scale=1",
-});
+export const meta: MetaFunction = (args) =>
+  metaV1(args, {
+    charset: "utf-8",
+    title: "John's internet house",
+    viewport: "width=device-width,initial-scale=1",
+  });
 
 export default function App() {
   const { partyKitUrl } = useLoaderData<typeof loader>();
@@ -75,7 +75,7 @@ export default function App() {
           src="https://plausible.io/js/script.js"
         ></script>
       </head>
-      <body className="bg-white dark:bg-stone-800"> 
+      <body className="bg-white dark:bg-stone-800">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

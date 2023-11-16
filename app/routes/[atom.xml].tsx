@@ -1,14 +1,15 @@
-import { getListOfEntries } from "~/contentful.server";
+import { LoaderFunction } from "@remix-run/node";
 import { marked } from "marked";
-import { LoaderFunctionArgs, LoaderFunction } from "@remix-run/cloudflare";
 
-export type RssEntry = {
+import { getListOfEntries } from "~/contentful.server";
+
+export interface RssEntry {
   title: string;
   link: string;
   content: string;
   pubDate: string;
   guid: string;
-};
+}
 
 export function generateRss({
   description,
@@ -53,10 +54,8 @@ export function generateRss({
   </rss>`;
 }
 
-export const loader: LoaderFunction = async ({
-  context,
-}: LoaderFunctionArgs) => {
-  const blogEntries = await getListOfEntries(context);
+export const loader: LoaderFunction = async () => {
+  const blogEntries = await getListOfEntries();
 
   const feed = generateRss({
     title: "John’s internet house",

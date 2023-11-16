@@ -1,4 +1,4 @@
-import { HeadersFunction } from "@remix-run/cloudflare";
+import { HeadersFunction } from "@remix-run/node";
 import { Link, useMatches } from "@remix-run/react";
 
 export const headers: HeadersFunction = () => ({

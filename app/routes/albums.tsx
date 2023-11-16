@@ -1,11 +1,11 @@
-import { HeadersFunction } from "@remix-run/cloudflare";
+import { HeadersFunction } from "@remix-run/node";
 import { Link } from "react-router-dom";
 
 export const headers: HeadersFunction = () => ({
   "Cache-Control": "max-age=300, s-maxage=3600",
 });
 
-const albums: Array<{ title: string; image: string; url: string }> = [
+const albums: { title: string; image: string; url: string }[] = [
   {
     title: "A Maggot",
     image: "https://f4.bcbits.com/img/a2832880625_10.jpg",
@@ -39,7 +39,7 @@ export default function Albums() {
               href={album.url}
             >
               <h3 className="my-1">{album.title}</h3>
-              <img className="my-1" src={album.image} />
+              <img alt={album.title + ' album cover'} className="my-1" src={album.image} />
             </a>
           </li>
         ))}

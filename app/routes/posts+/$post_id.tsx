@@ -1,16 +1,17 @@
-import { getEntry } from "~/contentful.server";
-import { Link, useLoaderData } from "@remix-run/react";
+import { cssBundleHref } from "@remix-run/css-bundle";
 import type {
   HeadersFunction,
   LoaderFunctionArgs,
   MetaFunction,
-} from "@remix-run/cloudflare";
-import { json } from "@remix-run/cloudflare";
+} from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { Link, useLoaderData } from "@remix-run/react";
+import { metaV1 } from "@remix-run/v1-meta";
 import { marked } from "marked";
 import { quoteBack } from "marked-quotebacks";
 import quotebacksStyle from "marked-quotebacks/dist/main.css";
-import { metaV1 } from "@remix-run/v1-meta";
 
+import { getEntry } from "~/contentful.server";
 const footnoteMatch = /^\[\^([^\]]+)\]:([\s\S]*)$/;
 const referenceMatch = /\[\^([^\]]+)\](?!\()/g;
 const referencePrefix = "marked-fnref";
@@ -33,37 +34,41 @@ const interpolateFootnotes = (text: string) => {
 };
 const renderer = {
   paragraph(text: string) {
-    return marked.Renderer.prototype.paragraph.apply(null as any, [
+    return marked.Renderer.prototype.paragraph.apply(null as unknown, [
       interpolateReferences(interpolateFootnotes(text)),
     ]);
   },
   text(text: string) {
-    return marked.Renderer.prototype.text.apply(null as any, [
+    return marked.Renderer.prototype.text.apply(null as unknown, [
       interpolateReferences(interpolateFootnotes(text)),
     ]);
   },
 
   // all my images are in Contentful
   // this function just applys the same query params to all of them
-  image(href: string, _title: string, text: string) {
+  image(href: string, _title: string | null, text: string) {
     const url = new URL(`https:${href}`);
     url.searchParams.set("w", "800");
     url.searchParams.set("fm", "webp");
     return `<img src=${url} alt=${text} />`;
   },
-};
+} ;
 
 marked.use({ renderer, extensions: [quoteBack] });
 
 export function links() {
-  return [{ rel: "stylesheet", href: quotebacksStyle }];
+  return [
+    { rel: "stylesheet", href: quotebacksStyle },
+
+    ...(cssBundleHref ? [{ rel: "stylesheet", href: quotebacksStyle }] : []),
+  ];
 }
 
-export const loader = async ({ context, params }: LoaderFunctionArgs) => {
+export const loader = async ({ params }: LoaderFunctionArgs) => {
   if (!params.post_id) {
     throw new Error("no post id");
   }
-  const entry = await getEntry(context, params.post_id);
+  const entry = await getEntry(params.post_id);
   const html = marked(entry.fields.body);
   return json(
     { html, date: entry.fields.date, title: entry.fields.title },
@@ -158,7 +163,7 @@ export const loader = async ({ context, params }: LoaderFunctionArgs) => {
 
 export const meta: MetaFunction<typeof loader> = (args) => {
   const e = metaV1(args, {
-    title: args.data?.title ?? 'John’s blog',
+    title: args.data?.title ?? "John’s blog",
   });
   return e;
   // return [

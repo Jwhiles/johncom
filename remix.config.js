@@ -1,11 +1,14 @@
 /** @type {import('@remix-run/dev').AppConfig} */
+const { flatRoutes } = require("remix-flat-routes");
 module.exports = {
-  serverBuildTarget: "cloudflare-pages",
-  server: "./server.js",
-  devServerBroadcastDelay: 1000,
-  ignoredRouteFiles: ["**/.*"],
-  // appDirectory: "app",
-  // assetsBuildDirectory: "public/build",
-  // serverBuildPath: "functions/[[path]].js",
-  // publicPath: "/build/",
+  cacheDirectory: "./node_modules/.cache/remix",
+  ignoredRouteFiles: ["**/.*", "**/*.test.{ts,tsx}"],
+  serverModuleFormat: "cjs",
+
+  routes: async (defineRoutes) => flatRoutes("routes", defineRoutes),
+
+  // update this package so I don't need to do this..
+  serverDependenciesToBundle: [
+    /^marked-quotebacks/,
+  ],
 };

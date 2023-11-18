@@ -1,4 +1,4 @@
-import { HeadersFunction, json, MetaFunction } from "@remix-run/cloudflare";
+import { HeadersFunction, json, MetaFunction } from "@remix-run/node";
 import { metaV1 } from "@remix-run/v1-meta";
 
 export const meta: MetaFunction = (args) =>

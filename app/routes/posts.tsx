@@ -1,4 +1,4 @@
-import { HeadersFunction } from "@remix-run/cloudflare";
+import { HeadersFunction } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
 
 export const headers: HeadersFunction = () => ({
@@ -14,6 +14,7 @@ export default function Index() {
         <div className="border-t-2 pt-4">
           <p>Want to receive email updates from me?</p>
           <iframe
+            title="Subscribe to my newsletter"
             scrolling="no"
             style={{
               width: "100% !important",

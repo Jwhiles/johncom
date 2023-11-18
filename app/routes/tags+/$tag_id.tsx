@@ -1,12 +1,13 @@
-import { getListOfEntriesByTag } from "~/contentful.server";
-import { useLoaderData, Link, useMatches } from "@remix-run/react";
 import {
   HeadersFunction,
   json,
   LoaderFunctionArgs,
   MetaFunction,
-} from "@remix-run/cloudflare";
+} from "@remix-run/node";
+import { useLoaderData, Link, useMatches } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
+
+import { getListOfEntriesByTag } from "~/contentful.server";
 
 export const meta: MetaFunction<typeof loader> = (args) => {
   return metaV1(args, {
@@ -18,7 +19,7 @@ export const headers: HeadersFunction = () => ({
 });
 
 // I'll do this better when I'm not about to go to sleep..
-const niceTags: { [niceName: string]: string } = {
+const niceTags: Record<string, string> = {
   technology: "2WcIjFkPgdfJVky5t8mYUl",
 };
 
@@ -27,11 +28,10 @@ const formatDate = (date: string) => {
   return d.toLocaleDateString("en-GB");
 };
 
-export const loader = async ({ context, params: { tag_id } }: LoaderFunctionArgs) => {
+export const loader = async ({ params: { tag_id } }: LoaderFunctionArgs) => {
   if (!tag_id) throw new Error();
 
   const { entries, tagName } = await getListOfEntriesByTag(
-    context,
     niceTags[tag_id] ?? tag_id
   );
 

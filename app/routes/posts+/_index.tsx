@@ -1,12 +1,12 @@
-import { getListOfEntries } from "~/contentful.server";
-import { useLoaderData, Link } from "@remix-run/react";
 import {
   HeadersFunction,
   json,
-  LoaderFunctionArgs,
   MetaFunction,
-} from "@remix-run/cloudflare";
+} from "@remix-run/node";
+import { useLoaderData, Link } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
+
+import { getListOfEntries } from "~/contentful.server";
 
 export const meta: MetaFunction = (args) => {
   return metaV1(args, {
@@ -22,8 +22,8 @@ const formatDate = (date: string) => {
   return d.toLocaleDateString("en-GB");
 };
 
-export const loader = async ({ context }: LoaderFunctionArgs) => {
-  const entries = await getListOfEntries(context);
+export const loader = async () => {
+  const entries = await getListOfEntries();
   const e = entries.items.map((entry) => {
     return {
       title: entry.fields.title,

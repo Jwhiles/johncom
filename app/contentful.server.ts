@@ -5,7 +5,7 @@ const previewUrl = "https://preview.contentful.com";
 export const getEntry = async (
   slug: string
 ): Promise<{
-  fields: { body: string; title: string; slug: string; date: string };
+  fields: { body: string; title: string; slug: string; date: string; hackerNewsLink?: string };
 }> => {
   const url = `${baseUrl}/spaces/${process.env.SPACE_ID}/entries?access_token=${process.env.CDA_TOKEN}&content_type=blogPost&fields.slug[equals]=${slug}`;
   const res = await fetch(url);

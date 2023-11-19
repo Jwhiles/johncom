@@ -71,7 +71,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const entry = await getEntry(params.post_id);
   const html = marked(entry.fields.body);
   return json(
-    { html, date: entry.fields.date, title: entry.fields.title },
+    { html, date: entry.fields.date, title: entry.fields.title, hnUrl: entry.fields.hackerNewsLink },
     { headers: { "cache-control": "max-age=300, s-maxage=3600" } }
   );
 };
@@ -187,7 +187,7 @@ export const headers: HeadersFunction = () => ({
 });
 
 export default function Post() {
-  const { html } = useLoaderData<typeof loader>();
+  const { html, hnUrl } = useLoaderData<typeof loader>();
 
   return (
     <div>
@@ -195,6 +195,11 @@ export default function Post() {
         Go back
       </Link>
       <div className="" dangerouslySetInnerHTML={{ __html: html }} />
+      {hnUrl && (
+        <div className="mt-4">
+          <a href={hnUrl}>Discuss on Hacker News</a>
+        </div>
+      )}
     </div>
   );
 }

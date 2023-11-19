@@ -7,18 +7,14 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
-import usePartySocket from "partysocket/react";
-import { Toaster, toast } from "sonner";
 
 import fonts from "~/styles/fonts.css";
 import styles from "~/styles/tailwind.css";
 
 export async function loader() {
   return json(
-    { partyKitUrl: process.env.PARTYKIT_URL! },
     { headers: { "cache-control": "max-age=300, s-maxage=3600" } }
   );
 }
@@ -62,14 +58,6 @@ export const meta: MetaFunction = (args) =>
   });
 
 export default function App() {
-  const { partyKitUrl } = useLoaderData<typeof loader>();
-  usePartySocket({
-    host: partyKitUrl as string,
-    room: "the-watcher",
-    onMessage(event) {
-      toast(event.data);
-    },
-  });
   return (
     <html lang="en">
       <head>
@@ -86,7 +74,6 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
-        <Toaster />
       </body>
     </html>
   );

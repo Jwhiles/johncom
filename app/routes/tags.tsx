@@ -1,6 +1,7 @@
 import { HeadersFunction, json } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
 
+import { EmailSignupForm } from "~/components/EmailSignupForm";
 import { getListOfTags } from "~/contentful.server";
 
 export const headers: HeadersFunction = () => ({
@@ -27,18 +28,7 @@ export default function Index() {
         <Outlet />
         <br />
 
-        <div className="border-t-2 pt-4">
-          <p>Want to receive email updates from me?</p>
-          <iframe
-            title="Subscribe to my newsletter"
-            scrolling="no"
-            style={{
-              width: "100% !important",
-              height: "220px !important",
-            }}
-            src="https://buttondown.email/johnwhiles?as_embed=true"
-          ></iframe>
-        </div>
+        <EmailSignupForm />
       </div>
     </div>
   );

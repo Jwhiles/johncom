@@ -195,11 +195,9 @@ export default function Post() {
         Go back
       </Link>
       <div className="" dangerouslySetInnerHTML={{ __html: html }} />
-      {hnUrl && (
-        <div className="mt-4">
+      {hnUrl ? <div className="mt-4">
           <a href={hnUrl}>Discuss on Hacker News</a>
-        </div>
-      )}
+        </div> : null}
     </div>
   );
 }

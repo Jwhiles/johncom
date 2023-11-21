@@ -1,11 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const baseUrl = "https://cdn.contentful.com";
+
 const previewUrl = "https://preview.contentful.com";
 
 export const getEntry = async (
-  slug: string
+  slug: string,
 ): Promise<{
-  fields: { body: string; title: string; slug: string; date: string; hackerNewsLink?: string };
+  fields: {
+    body: string;
+    title: string;
+    slug: string;
+    date: string;
+    hackerNewsLink?: string;
+  };
 }> => {
   const url = `${baseUrl}/spaces/${process.env.SPACE_ID}/entries?access_token=${process.env.CDA_TOKEN}&content_type=blogPost&fields.slug[equals]=${slug}`;
   const res = await fetch(url);
@@ -23,8 +30,7 @@ export const getEntry = async (
   return j.items[0];
 };
 
-export const getListOfEntries = async (
-): Promise<{
+export const getListOfEntries = async (): Promise<{
   items: {
     fields: { title: string; slug: string; date: string; body: string };
   }[];
@@ -37,7 +43,7 @@ export const getListOfEntries = async (
 };
 
 export const getListOfEntriesByTag = async (
-  tagId: string
+  tagId: string,
 ): Promise<{
   entries: { fields: { title: string; slug: string; date: string } }[];
   tagName: string;

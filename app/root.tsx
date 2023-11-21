@@ -14,16 +14,14 @@ import fonts from "~/styles/fonts.css";
 import styles from "~/styles/tailwind.css";
 
 export async function loader() {
-  return json(
-    { headers: { "cache-control": "max-age=300, s-maxage=3600" } }
-  );
+  return json({ headers: { "cache-control": "max-age=300, s-maxage=3600" } });
 }
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
 
   { rel: "stylesheet", href: fonts },
-// These should probably be on some cdn...
+  // These should probably be on some cdn...
   {
     rel: "apple-touch-icon",
     href: "/apple-touch-icon.png",

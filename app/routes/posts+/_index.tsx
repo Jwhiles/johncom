@@ -1,12 +1,9 @@
-import {
-  HeadersFunction,
-  json,
-  MetaFunction,
-} from "@remix-run/node";
+import { HeadersFunction, json, MetaFunction } from "@remix-run/node";
 import { useLoaderData, Link } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
 
 import { getListOfEntries } from "~/contentful.server";
+import { formatDate } from "~/utils/formatDate";
 
 export const meta: MetaFunction = (args) => {
   return metaV1(args, {
@@ -16,11 +13,6 @@ export const meta: MetaFunction = (args) => {
 export const headers: HeadersFunction = () => ({
   "Cache-Control": "max-age=300, s-maxage=3600",
 });
-
-const formatDate = (date: string) => {
-  const d = new Date(date);
-  return d.toLocaleDateString("en-GB");
-};
 
 export const loader = async () => {
   const entries = await getListOfEntries();
@@ -33,7 +25,7 @@ export const loader = async () => {
   });
   return json(
     { entries: e },
-    { headers: { "cache-control": "max-age=300, s-maxage=3600" } }
+    { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
   );
 };
 

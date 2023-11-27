@@ -92,7 +92,7 @@
 
   "lint-staged": {
     "*.md": "prettier --write",
-    "*ts": "prettier --write",
-    "*tsx": "prettier --write"
+    "*ts": ["prettier --write", "eslint --fix"],
+    "*tsx": ["prettier --write", "eslint --fix"]
   }
 }

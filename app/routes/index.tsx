@@ -1,5 +1,6 @@
 import { HeadersFunction, json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
+
 import { getListOfEntries } from "~/contentful.server";
 import { formatDate } from "~/utils/formatDate";
 

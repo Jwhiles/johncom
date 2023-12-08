@@ -44,7 +44,9 @@ export default function Index() {
         <a href={`/posts/${latestPost.fields.slug}`}>
           {latestPost.fields.title}
         </a>
-        <div className="text-xs">{formatDate(latestPost.fields.date)}</div>
+        <div className="text-xs dark:text-slate-300">
+          {formatDate(latestPost.fields.date)}
+        </div>
       </div>
       <img
         alt="John’s logo"

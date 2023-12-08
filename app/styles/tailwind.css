@@ -51,6 +51,9 @@ body * {
     @apply ml-6;
     @apply dark:text-gray-200;
   }
+  label {
+    @apply dark:text-gray-200;
+  }
   li {
     @apply text-xl;
     line-height: 1.4;
@@ -87,7 +90,9 @@ body * {
     @apply mr-4;
 
     @apply bg-gray-100;
+  }
 
-    /* @apply dark:text-gray-200	; */
+  button {
+    @apply dark:text-gray-200;
   }
 }

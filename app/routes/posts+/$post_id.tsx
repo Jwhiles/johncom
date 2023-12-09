@@ -5,13 +5,15 @@ import type {
   MetaFunction,
 } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useFetcher, useLoaderData } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
 import { marked } from "marked";
 import { quoteBack } from "marked-quotebacks";
 import quotebacksStyle from "marked-quotebacks/dist/main.css";
+import { useState } from "react";
 
 import { getEntry } from "~/contentful.server";
+import { prisma } from "~/db.server";
 import {
   createPostBreadcrumbs,
   createSeoPageMetaTags,
@@ -74,6 +76,14 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   }
   const entry = await getEntry(params.post_id);
   const html = marked(entry.fields.body);
+
+  const comments = await prisma.comment.findMany({
+    where: {
+      postId: params.post_id,
+      approved: true,
+    },
+  });
+
   return json(
     {
       html,
@@ -81,6 +91,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       title: entry.fields.title,
       hnUrl: entry.fields.hackerNewsLink,
       canonicalUrl: `https://johnwhiles.com/posts/${params.post_id}`,
+      comments,
     },
     { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
   );
@@ -126,11 +137,129 @@ export default function Post() {
         Go back
       </Link>
       <div className="" dangerouslySetInnerHTML={{ __html: html }} />
+      <hr />
+      <div className="mt-4">
+        <h3>Comments</h3>
+        <Comments />
+      </div>
       {hnUrl ? (
         <div className="mt-4">
-          <a href={hnUrl}>Discuss on Hacker News</a>
+          <a href={hnUrl}>Or, discuss on Hacker News</a>
         </div>
       ) : null}
     </div>
   );
 }
+
+const Comments = () => {
+  const { comments } = useLoaderData<typeof loader>();
+  const [addingComment, setAddingComment] = useState(false);
+
+  return (
+    <div>
+      {comments.length > 0 ? (
+        comments.map((comment) => {
+          return (
+            <div
+              key={comment.id}
+              className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4"
+            >
+              <p className="text-xs font-bold">
+                {comment.name} - {formatDate(new Date(comment.createdAt))}
+              </p>
+              <p>{comment.content}</p>
+            </div>
+          );
+        })
+      ) : (
+        <div className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4">
+          <p className="text-xs font-bold">
+            John - {formatDate(new Date(Date.now()))}
+          </p>
+          <p>It's a bit quiet here!</p>
+        </div>
+      )}
+
+      {addingComment ? (
+        <AddComment />
+      ) : (
+        <button
+          type="button"
+          onClick={() => {
+            setAddingComment(true);
+          }}
+        >
+          Add Comment
+        </button>
+      )}
+    </div>
+  );
+};
+
+const AddComment = () => {
+  const fetcher = useFetcher();
+
+  if (fetcher.data) {
+    return (
+      <div className="bg-gray-100 dark:bg-slate-500 rounded-md p-4 my-4">
+        <p>
+          Thanks for your comment! Once it's approved it will appear on the
+          site.
+        </p>
+      </div>
+    );
+  }
+  return (
+    <fetcher.Form method="POST" action="comments">
+      <div className="bg-gray-100 dark:bg-slate-500 rounded-md p-4 my-4">
+        <div className="mb-4">
+          <label
+            htmlFor="comment-email"
+            className="block text-xs font-bold mb-1"
+          >
+            Email
+          </label>
+          <input
+            id="comment-email"
+            className="w-1/2"
+            placeholder="you@example.com"
+            type="email"
+            name="email"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-xs font-bold mb-1">
+            Name
+          </label>
+          <input
+            id="name"
+            className="w-1/2"
+            placeholder="Krusty the Clown"
+            type="text"
+            name="name"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="content" className="block text-xs font-bold mb-1">
+            Comment
+          </label>
+          <textarea
+            id="content"
+            className="w-2/3"
+            placeholder="I have a very important opinion..."
+            name="content"
+          />
+        </div>
+        <button className="btn">Submit</button>
+      </div>
+    </fetcher.Form>
+  );
+};
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+};

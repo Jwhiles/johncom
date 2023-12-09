@@ -13,17 +13,13 @@ export const EmailSignupForm = () => (
       </label>
       <div>
         <input
-          className="p-1 mr-2"
+          className="mr-2"
           type="email"
           name="email"
           placeholder="you@example.com"
         />
         <input type="hidden" value="1" name="embed" />
-        <button
-          className="border-2 p-2 rounded"
-          type="submit"
-          value="Subscribe"
-        >
+        <button type="submit" value="Subscribe">
           Subscribe
         </button>
       </div>

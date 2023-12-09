@@ -46,7 +46,7 @@ module.exports = {
         ],
       },
       rules: {
-        "react/no-unescaped-entities": "warn",
+        "react/no-unescaped-entities": "off",
         "react/jsx-no-leaked-render": [
           "warn",
           { validStrategies: ["ternary"] },

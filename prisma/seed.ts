@@ -3,7 +3,6 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function seed() {
-  await prisma.test.deleteMany({});
 
   console.log(`Database has been seeded. 🌱`);
 }

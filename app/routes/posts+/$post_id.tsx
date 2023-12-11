@@ -82,6 +82,13 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       postId: params.post_id,
       approved: true,
     },
+    // Manually select the fields we want. Don't want to accidentally reveal anyone's email address.
+    select: {
+      id: true,
+      content: true,
+      name: true,
+      createdAt: true,
+    },
   });
 
   return json(
@@ -217,7 +224,7 @@ const AddComment = () => {
             htmlFor="comment-email"
             className="block text-xs font-bold mb-1"
           >
-            Email
+            Email (I won't share this with anyone)
           </label>
           <input
             id="comment-email"

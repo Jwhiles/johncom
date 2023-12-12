@@ -53,8 +53,9 @@ export async function action({ request }: ActionFunctionArgs) {
 export default function Admin() {
   const comments = useLoaderData<typeof loader>();
   return (
-    <div>
-      <h1>Admin</h1>
+    <div className="p-4 leading-tight max-w-2xl mx-auto">
+      <div className="select-none my-0">&nbsp;</div>
+      <h1 className="text-8xl tracking-tighter">Welcome to the Admin Zone</h1>
       <LogoutButton />
       {comments.map((c) => {
         return (

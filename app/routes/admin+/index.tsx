@@ -57,21 +57,28 @@ export default function Admin() {
       <div className="select-none my-0">&nbsp;</div>
       <h1 className="text-8xl tracking-tighter">Welcome to the Admin Zone</h1>
       <LogoutButton />
-      {comments.map((c) => {
-        return (
-          <div key={c.id}>
-            <p>{c.content}</p>
-            <Form method="POST">
-              <input type="hidden" name="commentId" value={c.id} />
-              <button type="submit">Approve</button>
-            </Form>
-            <Form method="DELETE">
-              <input type="hidden" name="commentId" value={c.id} />
-              <button type="submit">Delete </button>
-            </Form>
-          </div>
-        );
-      })}
+      <ul className="my-4">
+        {comments.map((c) => {
+          return (
+            <li className="list-none" key={c.id}>
+              <p className="text-xs font-bold">
+                {c.name} - {c.authorEmail} - {c.postId}
+              </p>
+              <p>{c.content}</p>
+              <div className="flex">
+                <Form method="POST">
+                  <input type="hidden" name="commentId" value={c.id} />
+                  <button type="submit">Approve</button>
+                </Form>
+                <Form method="DELETE">
+                  <input type="hidden" name="commentId" value={c.id} />
+                  <button type="submit">Delete </button>
+                </Form>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

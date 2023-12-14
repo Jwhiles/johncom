@@ -2,13 +2,30 @@ import { HeadersFunction, json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 
 import { getListOfEntries } from "~/contentful.server";
+import { prisma } from "~/db.server";
 import { formatDate } from "~/utils/formatDate";
 
 export const loader = async () => {
   const latestPost = (await getListOfEntries()).items[0];
 
+  const latestComments = await prisma.comment.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    where: {
+      approved: true,
+    },
+    take: 5,
+    select: {
+      id: true,
+      postId: true,
+      name: true,
+      content: true,
+    },
+  });
+
   return json(
-    { latestPost },
+    { latestPost, latestComments },
     { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
   );
 };
@@ -40,13 +57,17 @@ export default function Index() {
         </li>
       </ul>
       <div className="my-24">
-        <div className="text-sm font-bold text-slate-300">Latest</div>
-        <a href={`/posts/${latestPost.fields.slug}`}>
+        <div className="text-md font-bold text-slate-300">Latest post</div>
+        <a className="mt-1" href={`/posts/${latestPost.fields.slug}`}>
           {latestPost.fields.title}
         </a>
         <div className="text-xs dark:text-slate-300">
           {formatDate(latestPost.fields.date)}
         </div>
+        <div className="text-md font-bold text-slate-300 mt-8">
+          Recent comments
+        </div>
+        <Comments />
       </div>
       <img
         alt="John’s logo"
@@ -56,3 +77,19 @@ export default function Index() {
     </div>
   );
 }
+
+const Comments = () => {
+  const { latestComments } = useLoaderData<typeof loader>();
+  return (
+    <ol>
+      {latestComments.map((comment) => (
+        <li className="mt-1" key={comment.id}>
+          <Link to={`/posts/${comment.postId}`}>
+            <p className="mb-0 text-xs italic">{comment.name} says:</p>
+          </Link>
+          <p className="text-sm mt-0">{comment.content}</p>
+        </li>
+      ))}
+    </ol>
+  );
+};

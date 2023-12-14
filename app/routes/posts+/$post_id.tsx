@@ -81,6 +81,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     where: {
       postId: params.post_id,
       approved: true,
+      responseToId: null,
     },
     // Manually select the fields we want. Don't want to accidentally reveal anyone's email address.
     select: {
@@ -88,6 +89,18 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       content: true,
       name: true,
       createdAt: true,
+      responses: {
+        where: {
+          postId: params.post_id,
+          approved: true,
+        },
+        select: {
+          id: true,
+          content: true,
+          name: true,
+          createdAt: true,
+        },
+      },
     },
   });
 
@@ -161,20 +174,52 @@ export default function Post() {
 const Comments = () => {
   const { comments } = useLoaderData<typeof loader>();
   const [addingComment, setAddingComment] = useState(false);
+  const [replyingTo, setReplyingTo] = useState<{
+    name: string;
+    commentId: string;
+  } | null>(null);
 
   return (
     <div>
       {comments.length > 0 ? (
         comments.map((comment) => {
           return (
-            <div
-              key={comment.id}
-              className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4"
-            >
-              <p className="text-xs font-bold">
-                {comment.name} - {formatDate(new Date(comment.createdAt))}
-              </p>
-              <p>{comment.content}</p>
+            <div key={comment.id}>
+              <div className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4">
+                <p className="text-xs font-bold">
+                  {comment.name} - {formatDate(new Date(comment.createdAt))}
+                </p>
+                <p>{comment.content}</p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAddingComment(true);
+                    setReplyingTo({
+                      name: comment.name,
+                      commentId: comment.id,
+                    });
+                  }}
+                >
+                  reply
+                </button>
+              </div>
+              {comment.responses.length > 0 ? (
+                <div className="pl-8 mb-8">
+                  {comment.responses.map((reply) => {
+                    return (
+                      <div
+                        key={reply.id}
+                        className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4"
+                      >
+                        <p className="text-xs font-bold">
+                          {reply.name} - {formatDate(new Date(reply.createdAt))}
+                        </p>
+                        <p>{reply.content}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : null}
             </div>
           );
         })
@@ -188,7 +233,7 @@ const Comments = () => {
       )}
 
       {addingComment ? (
-        <AddComment />
+        <AddComment replyingTo={replyingTo} />
       ) : (
         <button
           type="button"
@@ -203,7 +248,14 @@ const Comments = () => {
   );
 };
 
-const AddComment = () => {
+const AddComment = ({
+  replyingTo,
+}: {
+  replyingTo: {
+    name: string;
+    commentId: string;
+  } | null;
+}) => {
   const fetcher = useFetcher();
 
   if (fetcher.data) {
@@ -218,7 +270,17 @@ const AddComment = () => {
   }
   return (
     <fetcher.Form method="POST" action="comments">
+      {replyingTo ? (
+        <input type="hidden" name="responseToId" value={replyingTo.commentId} />
+      ) : null}
       <div className="bg-gray-100 dark:bg-slate-500 rounded-md p-4 my-4">
+        {replyingTo ? (
+          <p>
+            replying to <strong>{replyingTo.name}</strong>
+          </p>
+        ) : (
+          <p>Add your comment</p>
+        )}
         <div className="mb-4">
           <label
             htmlFor="comment-email"

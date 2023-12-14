@@ -1,4 +1,5 @@
 import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
+import { z } from "zod";
 
 import { prisma } from "~/db.server";
 
@@ -16,32 +17,33 @@ export async function loader({ params }: LoaderFunctionArgs) {
     comments,
   });
 }
+
+const CommentSchema = z.object({
+  content: z.string(),
+  email: z.string().email(),
+  name: z.string(),
+  responseToId: z.string().optional(),
+});
+
 export async function action({ params, request }: ActionFunctionArgs) {
   if (!params.post_id) {
     throw new Error("no post id");
   }
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
 
-  const data = await request.formData();
-  const content = data.get("content");
-  const email = data.get("email");
-  const name = data.get("name");
-
-  if (typeof content !== "string") {
-    throw new Error("no content");
-  }
-  if (typeof email !== "string") {
-    throw new Error("no email");
-  }
-  if (typeof name !== "string") {
-    throw new Error("no name");
+  const parsed = CommentSchema.safeParse(data);
+  if (!parsed.success) {
+    throw new Response(parsed.error.message, { status: 400 });
   }
 
   const comments = await prisma.comment.create({
     data: {
-      content,
-      authorEmail: email,
+      content: parsed.data.content,
+      authorEmail: parsed.data.email,
       postId: params.post_id,
-      name,
+      name: parsed.data.name,
+      responseToId: parsed.data.responseToId,
     },
   });
 

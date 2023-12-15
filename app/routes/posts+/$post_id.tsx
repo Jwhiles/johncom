@@ -224,12 +224,9 @@ const Comments = () => {
           );
         })
       ) : (
-        <div className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4">
-          <p className="text-xs font-bold">
-            John - {formatDate(new Date(Date.now()))}
-          </p>
-          <p>It's a bit quiet here!</p>
-        </div>
+        <p className="text-xs italic">
+          There are no comments on this post yet.
+        </p>
       )}
 
       {addingComment ? (

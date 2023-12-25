@@ -1,5 +1,5 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, Link, useLoaderData } from "@remix-run/react";
 
 import { requireAdmin } from "~/auth.server";
 import LogoutButton from "~/components/LogoutButton";
@@ -56,6 +56,7 @@ export default function Admin() {
     <div className="p-4 leading-tight max-w-2xl mx-auto">
       <div className="select-none my-0">&nbsp;</div>
       <h1 className="text-8xl tracking-tighter">Welcome to the Admin Zone</h1>
+      <Link to="microblog">blog</Link>
       <LogoutButton />
       <ul className="my-4">
         {comments.map((c) => {

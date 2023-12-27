@@ -17,14 +17,14 @@ export const loader = async () => {
   });
   return json(
     { tags: t },
-    { headers: { "cache-control": "max-age=300, s-maxage=3600" } }
+    { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
   );
 };
 
 export default function Index() {
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <div className="p-4 leading-tight max-w-2xl mx-auto">
+      <div className="body">
         <Outlet />
         <br />
 

@@ -2,28 +2,31 @@ import { HeadersFunction, json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import dayjs from "dayjs";
 
+import { Note } from "~/components/Note";
 import { getListOfEntries } from "~/contentful.server";
 import { prisma } from "~/db.server";
-import { ShowMarkdown } from "~/features/markdown";
 import { renderToHtml } from "~/features/markdown/index.server";
 import { formatDate } from "~/utils/formatDate";
 
 export const loader = async () => {
   const latestPost = (await getListOfEntries()).items[0];
 
-  const microBlogPosts = (
-    await prisma.microBlog.findMany({ orderBy: { createdAt: "desc" }, take: 5 })
+  const notes = (
+    await prisma.note.findMany({ orderBy: { createdAt: "desc" }, take: 5 })
   ).map((post) => {
     return {
       id: post.id,
       content: renderToHtml(post.content),
       // Dates... Do I want to add dayjs to this projects?
       createdAt: dayjs(post.createdAt).format("ddd, MMM D, YYYY h:mmA Z"),
+      inReplyToUrl: post.inReplyToUrl,
+      inReplyToAuthor: post.inReplyToAuthor,
+      inReplyToTitle: post.inReplyToTitle,
     };
   });
 
   return json(
-    { latestPost, microBlogPosts },
+    { latestPost, notes },
     { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
   );
 };
@@ -55,7 +58,9 @@ export default function Index() {
         </li>
       </ul>
       <div className="my-24">
-        <div className="text-md font-bold text-slate-300">Latest article</div>
+        <div className="text-base font-bold text-slate-300 mb-1">
+          Latest article
+        </div>
         <a className="mt-1" href={`/posts/${latestPost.fields.slug}`}>
           {latestPost.fields.title}
         </a>
@@ -63,14 +68,14 @@ export default function Index() {
           {formatDate(latestPost.fields.date)}
         </div>
 
-        <div className="text-md font-bold text-slate-300 mt-8">
-          What's Happening
+        <div className="text-base font-bold text-slate-300 mt-8 mb-1">
+          Stream of consciousness
         </div>
-        <MicroBlog />
+        <Notes />
       </div>
       <img
         alt="John’s logo"
-        className="w-24 h-24 md:w-max md:h-max absolute bottom-20 right-20 z-0 animate-spin-slow"
+        className="w-24 h-24 md:w-40 md:h-40 absolute top-20 right-20 z-0 animate-spin-slow"
         src="https://images.ctfassets.net/wc253zohgsra/6ldaNVODgtTNBymgloaY3Z/c36d9234283255a4802cb949b8c0dfad/john_logo.png"
       />
       <a className="hidden" href="https://github.com/jwhiles" rel="me">
@@ -80,16 +85,18 @@ export default function Index() {
   );
 }
 
-const MicroBlog = () => {
-  const { microBlogPosts } = useLoaderData<typeof loader>();
+const Notes = () => {
+  const { notes } = useLoaderData<typeof loader>();
   return (
-    <div>
-      {microBlogPosts.map((post) => (
-        <div key={post.id} className="p-4 rounded-md mb-2 bg-gray-200">
-          <ShowMarkdown className="" markdown={post.content} />
-          <p className="text-xs">{post.createdAt}</p>
-        </div>
+    <ol>
+      {notes.map((post) => (
+        <li key={post.id}>
+          <Note {...post} />
+        </li>
       ))}
-    </div>
+      <Link className="text-xs" to={`/notes`}>
+        See more
+      </Link>
+    </ol>
   );
 };

@@ -6,6 +6,12 @@ body * {
   @apply transition-colors duration-1000;
 }
 
+@layer components {
+  .body {
+    @apply p-4 leading-tight max-w-2xl mx-auto;
+  }
+}
+
 @layer base {
   h1 {
     @apply text-5xl;

@@ -1,4 +1,8 @@
-import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
+import {
+  ActionFunctionArgs,
+  LoaderFunctionArgs,
+  redirect,
+} from "@remix-run/node";
 import { Form, useSubmit } from "@remix-run/react";
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone.js";
@@ -19,6 +23,15 @@ export async function loader({ request }: LoaderFunctionArgs) {
 const MicroBlogSchema = z.object({
   content: z.string(),
   createdDate: z.string(),
+  inReplyToUrl: z
+    .union([z.string().url().optional(), z.literal("")])
+    .transform((s) => (s === "" ? undefined : s)),
+  inReplyToAuthor: z
+    .union([z.string().optional(), z.literal("")])
+    .transform((s) => (s === "" ? undefined : s)),
+  inReplyToTitle: z
+    .union([z.string().optional(), z.literal("")])
+    .transform((s) => (s === "" ? undefined : s)),
 });
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -32,7 +45,7 @@ export async function action({ request }: ActionFunctionArgs) {
     if (!parsed.success) {
       throw new Response(parsed.error.message, { status: 400 });
     }
-    await prisma.microBlog.create({
+    await prisma.note.create({
       data: {
         content: parsed.data.content,
         createdAt: parsed.data.createdDate,
@@ -40,9 +53,13 @@ export async function action({ request }: ActionFunctionArgs) {
         createdBy: {
           connect: { id: adminId },
         },
+        inReplyToUrl: parsed.data.inReplyToUrl,
+        inReplyToAuthor: parsed.data.inReplyToAuthor,
+        inReplyToTitle: parsed.data.inReplyToTitle,
       },
     });
-    return null;
+
+    return redirect("/admin");
   }
 
   throw new Response("invalid method", { status: 400 });
@@ -57,14 +74,30 @@ export default function MicroBlog() {
 
         // Date is created on the client so we can capture the timezone.
         const createdDate = dayjs.tz(dayjs(), dayjs.tz.guess()).format();
-        data.append("date", createdDate);
+        data.append("createdDate", createdDate);
 
         submit(data, { method: "post" });
         event.preventDefault();
       }}
       method="POST"
+      className="flex flex-col gap-4"
     >
       <RichTextEditor id="content" name="content" />
+      <input
+        placeholder="https://inreplyto.com"
+        type="text"
+        name="inReplyToUrl"
+      />
+      <input
+        placeholder="In reply to title"
+        type="text"
+        name="inReplyToTitle"
+      />
+      <input
+        placeholder="In reply to author"
+        type="text"
+        name="inReplyToAuthor"
+      />
       <button type="submit">Save</button>
     </Form>
   );

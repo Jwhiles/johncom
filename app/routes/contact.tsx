@@ -6,7 +6,7 @@ export const headers: HeadersFunction = () => ({
 });
 export default function Conctact() {
   return (
-    <div className="p-4 leading-tight max-w-2xl mx-auto">
+    <div className="body">
       <Link className="my-2" to="..">
         Go back
       </Link>

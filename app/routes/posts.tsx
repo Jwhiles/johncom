@@ -11,7 +11,7 @@ export const headers: HeadersFunction = () => ({
 export default function Index() {
   return (
     <div>
-      <div className="p-4 leading-tight max-w-prose mx-auto">
+      <div className="body">
         <Outlet />
         <br />
 

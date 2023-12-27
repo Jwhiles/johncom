@@ -74,6 +74,9 @@ export default function Index() {
         className="w-24 h-24 md:w-max md:h-max absolute bottom-20 right-20 z-0 animate-spin-slow"
         src="https://images.ctfassets.net/wc253zohgsra/6ldaNVODgtTNBymgloaY3Z/c36d9234283255a4802cb949b8c0dfad/john_logo.png"
       />
+      <a className="hidden" href="https://github.com/jwhiles" rel="me">
+        github.com/jwhiles
+      </a>
     </div>
   );
 }

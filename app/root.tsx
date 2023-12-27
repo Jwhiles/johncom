@@ -40,6 +40,10 @@ export const links: LinksFunction = () => [
     sizes: "32x32",
     type: "image/ico",
   },
+  {
+    rel: "webmention",
+    href: "https://webmention.io/johnwhiles.com/webmention",
+  },
   ...(cssBundleHref
     ? [
         { rel: "stylesheet", href: cssBundleHref },

@@ -80,7 +80,7 @@ export default function LoginPage() {
   }, [actionData]);
 
   return (
-    <div className="p-4 leading-tight max-w-2xl mx-auto">
+    <div className="body">
       <div className="flex w-full justify-center">
         <h1 className="mb-8">Welcome back!</h1>
       </div>

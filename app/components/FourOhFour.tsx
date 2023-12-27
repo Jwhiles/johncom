@@ -1,6 +1,6 @@
 export const FourOhFour = () => {
   return (
-    <div className="p-4 leading-tight max-w-2xl mx-auto">
+    <div className="body">
       <h1>Page not found!</h1>
       <p>Sorry, this page doesn't exist!</p>
       <img

@@ -17,6 +17,16 @@ async function seed() {
     },
   });
 
+  await prisma.webmention.create({
+    data: {
+      source: "https://johnwhiles.com/test_webmention",
+      target: "https://johnwhiles.com/posts/vimming-pains",
+      authorUrl: "https://johnwhiles.com",
+      wmProperty: "mention-of",
+      raw: "{}",
+    },
+  });
+
   console.log(`Database has been seeded. 🌱`);
 }
 

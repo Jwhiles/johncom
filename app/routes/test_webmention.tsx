@@ -9,7 +9,7 @@ export default function TestWebmention() {
             className="u-photo"
             width="40"
           />
-          <a href="https://johnwhles.com/" className="u-url p-name">
+          <a href="https://johnwhiles.com/" className="u-url p-name">
             John Whiles
           </a>
         </div>

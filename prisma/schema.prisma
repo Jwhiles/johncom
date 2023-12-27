@@ -41,3 +41,13 @@ model Password {
   admin   Admin  @relation(fields: [adminId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   adminId String @unique
 }
+
+model Webmention {
+  target String
+  source String 
+
+  @@id([target, source])
+
+  raw String
+}
+

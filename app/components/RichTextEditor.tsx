@@ -16,8 +16,6 @@ import {
 
 import type { HTML } from "~/features/markdown";
 
-// TODO:
-// I'd love to have the controls appear when you highlight text - like on linear...
 const EditorC = ({ editor }: { editor: Editor }) => {
   const [addLinkModalOpen, setAddLinkModalOpen] = useState(false);
   const [previousUrl, setPreviousUrl] = useState("");

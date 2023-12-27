@@ -59,19 +59,19 @@ const workHistory: WorkEntryProps[] = [
     description: (
       <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
         <li>
-          Managed Contentful’s fleet of Postgres database. Including leading a
+          Managed Contentful’s fleet of Postgres databases, including leading a
           project to perform major version upgrades across the entire fleet with
           zero downtime for customers.
         </li>
         <li>
-          Extensive contributions to Contentful’s app framework, which is
+          Made extensive contributions to Contentful’s app framework, which is
           heavily used by enterprise customers.
         </li>
         <li>
           Rebuilt the front-end technical interview, improving the experience
           for interviewers and candidates.
         </li>
-        <li>Helped to on board various other engineers to the company</li>
+        <li>Assisted in onboarding various other engineers to the company.</li>
       </ul>
     ),
   },
@@ -98,13 +98,13 @@ const workHistory: WorkEntryProps[] = [
     description: (
       <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
         <li>
-          As a team of two, completed a rebuild of Habito's design system and
-          styling, including building a design system, which improved the
-          accessibility of the product.
+          As part of a two-person team, completed a rebuild of Habito’s design
+          system and styling, including building a design system that improved
+          the accessibility of the product.
         </li>
         <li>
           Implemented the dynamic mortgage interview, which is the core of
-          Habito's user journey.
+          Habito’s user journey.
         </li>
       </ul>
     ),
@@ -117,10 +117,10 @@ const workHistory: WorkEntryProps[] = [
     description: (
       <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
         <li>
-          Replatformed one of The Trainline's busiest services from C# to
-          Node.js, improving performance and maintainability.
+          Moved one of The Trainline’s busiest services from C# to Node.js,
+          improving performance and maintainability.{" "}
         </li>
-        <li>Improved The Trainline's internal design system.</li>
+        <li>Improved The Trainline’s internal design system.</li>
       </ul>
     ),
   },
@@ -132,10 +132,10 @@ const workHistory: WorkEntryProps[] = [
     description: (
       <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
         <li>Built a rich UI for a new financial reporting service.</li>
-        <li>Maintained our design system's component library.</li>
+        <li>Maintained our design system’s component library.</li>
         <li>
-          Led a TypeScript migration. Ensured that our builds continued to work,
-          and helped the rest of the team get used to TypeScript.
+          Led a TypeScript migration, ensuring that our builds continued to
+          work, and helped the rest of the team get used to TypeScript.
         </li>
       </ul>
     ),

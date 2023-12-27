@@ -26,7 +26,7 @@ const albums: { title: string; image: string; url: string }[] = [
 // add album art work and links to the pages
 export default function Albums() {
   return (
-    <div className="p-4 leading-tight max-w-2xl mx-auto">
+    <div className="body">
       <Link className="my-2" to="..">
         Go back
       </Link>
@@ -39,7 +39,11 @@ export default function Albums() {
               href={album.url}
             >
               <h3 className="my-1">{album.title}</h3>
-              <img alt={album.title + ' album cover'} className="my-1" src={album.image} />
+              <img
+                alt={album.title + " album cover"}
+                className="my-1"
+                src={album.image}
+              />
             </a>
           </li>
         ))}

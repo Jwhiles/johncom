@@ -1,8 +1,10 @@
+import { Prisma } from "@prisma/client";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type {
   HeadersFunction,
   LoaderFunctionArgs,
   MetaFunction,
+  SerializeFrom,
 } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useFetcher, useLoaderData } from "@remix-run/react";
@@ -12,12 +14,14 @@ import { quoteBack } from "marked-quotebacks";
 import quotebacksStyle from "marked-quotebacks/dist/main.css";
 import { useState } from "react";
 
+import { ExternalLink } from "~/components/ExternalLink";
 import { getEntry } from "~/contentful.server";
 import { prisma } from "~/db.server";
 import {
   createPostBreadcrumbs,
   createSeoPageMetaTags,
 } from "~/utils/createSeoMetadata";
+
 const footnoteMatch = /^\[\^([^\]]+)\]:([\s\S]*)$/;
 const referenceMatch = /\[\^([^\]]+)\](?!\()/g;
 const referencePrefix = "marked-fnref";
@@ -70,6 +74,52 @@ export function links() {
   ];
 }
 
+const mentionsSelect = {
+  publishedAt: true,
+  authorName: true,
+  authorPhoto: true,
+  authorUrl: true,
+  wmProperty: true,
+  contentText: true,
+  source: true,
+} satisfies Prisma.WebmentionSelect;
+
+export type MentionSelected = Prisma.WebmentionGetPayload<{
+  select: typeof mentionsSelect;
+}>;
+
+const commentsSelect = (postId: string) => ({
+  id: true,
+  content: true,
+  name: true,
+  createdAt: true,
+  responses: {
+    where: {
+      approved: true,
+      postId,
+    },
+    select: {
+      id: true,
+      content: true,
+      name: true,
+      createdAt: true,
+    },
+  },
+});
+export type CommentsSelected = Prisma.CommentGetPayload<{
+  select: ReturnType<typeof commentsSelect>;
+}>;
+
+type CommentOrMention =
+  | {
+      data: CommentsSelected;
+      type: "comment";
+    }
+  | {
+      data: MentionSelected;
+      type: "mention";
+    };
+
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   if (!params.post_id) {
     throw new Error("no post id");
@@ -77,31 +127,57 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const entry = await getEntry(params.post_id);
   const html = marked(entry.fields.body);
 
-  const comments = await prisma.comment.findMany({
-    where: {
-      postId: params.post_id,
-      approved: true,
-      responseToId: null,
-    },
-    // Manually select the fields we want. Don't want to accidentally reveal anyone's email address.
-    select: {
-      id: true,
-      content: true,
-      name: true,
-      createdAt: true,
-      responses: {
-        where: {
-          postId: params.post_id,
-          approved: true,
-        },
-        select: {
-          id: true,
-          content: true,
-          name: true,
-          createdAt: true,
-        },
+  // TODO: prisma transaction to get all this stuff at once.
+
+  const [comments, mentions] = await prisma.$transaction([
+    prisma.comment.findMany({
+      where: {
+        postId: params.post_id,
+        approved: true,
+        responseToId: null,
       },
-    },
+
+      // Make sure we don't accidentally reveal the users email
+      select: commentsSelect(params.post_id),
+    }),
+
+    prisma.webmention.findMany({
+      where: {
+        target: `https://johnwhiles.com/posts/${params.post_id}`,
+        approved: true,
+      },
+
+      // Make sure we don't accidentally reveal the raw data.
+      select: mentionsSelect,
+    }),
+  ]);
+
+  const likes = mentions.filter((m) => m.wmProperty === "like-of");
+  const reposts = mentions.filter((m) => m.wmProperty === "repost-of");
+
+  const commentsAndMentions = [
+    ...comments.map((comment) => {
+      return { data: comment, type: "comment" } as CommentOrMention;
+    }),
+
+    // Filter out webmentions that don't have content
+    ...mentions
+      .filter((m) => ["in-reply-to", "mention-of"].includes(m.wmProperty))
+      .map((mention) => {
+        return { data: mention, type: "mention" } as CommentOrMention;
+      }),
+  ].sort((a, b) => {
+    const aDate = "createdAt" in a.data ? a.data.createdAt : a.data.publishedAt;
+    const bDate = "createdAt" in b.data ? b.data.createdAt : b.data.publishedAt;
+
+    if (aDate === null) {
+      return 1;
+    }
+    if (bDate === null) {
+      return -1;
+    }
+
+    return aDate > bDate ? -1 : 1;
   });
 
   return json(
@@ -111,7 +187,9 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       title: entry.fields.title,
       hnUrl: entry.fields.hackerNewsLink,
       canonicalUrl: `https://johnwhiles.com/posts/${params.post_id}`,
-      comments,
+      commentsAndMentions,
+      likes,
+      reposts,
     },
     { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
   );
@@ -157,22 +235,142 @@ export default function Post() {
         Go back
       </Link>
       <div className="" dangerouslySetInnerHTML={{ __html: html }} />
-      <hr />
+      <hr className="mb-1" />
+      <LikesAndReposts />
       <div className="mt-4">
-        <h3>Comments</h3>
+        <h3>Comments & Web Mentions</h3>
         <Comments />
       </div>
-      {hnUrl ? (
-        <div className="mt-4">
-          <a href={hnUrl}>Or, discuss on Hacker News</a>
-        </div>
-      ) : null}
+      <div className="mt-4">
+        <WebmentionForm />
+        {hnUrl ? <a href={hnUrl}>Or, discuss on Hacker News</a> : null}
+      </div>
     </div>
   );
 }
 
+const LikesAndReposts = () => {
+  const { likes } = useLoaderData<typeof loader>();
+
+  return likes.length > 0 ? (
+    <div className="">
+      <p className="text-xs">
+        {likes.length} Like{likes.length > 1 ? "s" : ""}
+      </p>
+      <ul className="list-none flex m-0 p-0">
+        {likes.map((like) => {
+          return (
+            <li className="my-0 p-0" key={like.source}>
+              <ExternalLink className="m-0 p-0 inline" href={like.source}>
+                {like.authorPhoto ? (
+                  <img alt="" className="my-0 h-6 w-6" src={like.authorPhoto} />
+                ) : (
+                  <div>{/* todo default_image */}</div>
+                )}
+              </ExternalLink>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  ) : null;
+};
+
+type WebmentionSubmission = "idle" | "submitting" | "success" | "error";
+
+const WebmentionForm = () => {
+  const { canonicalUrl } = useLoaderData<typeof loader>();
+  const [submission, setSubmission] = useState<WebmentionSubmission>("idle");
+
+  if (submission === "success") {
+    return (
+      <div className="bg-green-100 dark:bg-green-900 rounded-md p-4 my-4">
+        <p>
+          Thanks for the webmention! It will appear on the site once it's
+          approved.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      className="webmention-form"
+      action="https://webmention.io/johnwhiles.com/webmention"
+      method="post"
+      onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+        // The form should work without JS. When JS is enabled, we prevent default and then submit via fetch.
+        // To make the user experience 'better' :)
+        e.preventDefault();
+        setSubmission("submitting");
+        const form = e.target as HTMLFormElement;
+
+        const formData = new FormData(form);
+
+        const body = new URLSearchParams({
+          source: formData.get("source") as string,
+          target: formData.get("target") as string,
+        });
+
+        fetch("https://webmention.io/johnwhiles.com/webmention", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body,
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.text();
+          })
+          .then(() => {
+            setSubmission("success");
+          })
+          .catch(() => {
+            setSubmission("error");
+          });
+      }}
+    >
+      <div>
+        <label htmlFor="source">
+          <p>Or, submit a webmention response!</p>
+        </label>
+        <div className="">
+          <input
+            type="url"
+            name="source"
+            id="source"
+            placeholder="https://mysite.com/webmention"
+            className="mr-2"
+          />
+          <button
+            disabled={["submitting", "success"].includes(submission)}
+            type="submit"
+            value="Send Webmention"
+          >
+            {submission === "submitting" ? "Sending" : "Send wembention"}
+          </button>
+        </div>
+      </div>
+      <div className="status hidden">
+        <div className="ui message"></div>
+      </div>
+      <input type="hidden" name="target" value={canonicalUrl} />
+      {submission === "error" ? (
+        <div className="bg-red-100 dark:bg-red-900 rounded-md p-4 my-4">
+          <p>
+            Something went wrong submitting your webmention. Please try again.
+          </p>
+        </div>
+      ) : null}
+    </form>
+  );
+};
+
 const Comments = () => {
-  const { comments } = useLoaderData<typeof loader>();
+  const { commentsAndMentions } = useLoaderData<typeof loader>();
   const [addingComment, setAddingComment] = useState(false);
   const [replyingTo, setReplyingTo] = useState<{
     name: string;
@@ -181,53 +379,22 @@ const Comments = () => {
 
   return (
     <div>
-      {comments.length > 0 ? (
-        comments.map((comment) => {
+      {commentsAndMentions.map((item) => {
+        if (item.type === "comment") {
           return (
-            <div key={comment.id}>
-              <div className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4">
-                <p className="text-xs font-bold">
-                  {comment.name} - {formatDate(new Date(comment.createdAt))}
-                </p>
-                <p>{comment.content}</p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setAddingComment(true);
-                    setReplyingTo({
-                      name: comment.name,
-                      commentId: comment.id,
-                    });
-                  }}
-                >
-                  reply
-                </button>
-              </div>
-              {comment.responses.length > 0 ? (
-                <div className="pl-8 mb-8">
-                  {comment.responses.map((reply) => {
-                    return (
-                      <div
-                        key={reply.id}
-                        className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4"
-                      >
-                        <p className="text-xs font-bold">
-                          {reply.name} - {formatDate(new Date(reply.createdAt))}
-                        </p>
-                        <p>{reply.content}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : null}
-            </div>
+            <Comment
+              key={item.data.id}
+              comment={item.data}
+              setReplyingTo={setReplyingTo}
+              setAddingComment={setAddingComment}
+            />
           );
-        })
-      ) : (
-        <p className="text-xs italic">
-          There are no comments on this post yet.
-        </p>
-      )}
+        }
+        if (item.type === "mention") {
+          return <Mention key={item.data.source} mention={item.data} />;
+        }
+        throw new Error("unknown type");
+      })}
 
       {addingComment ? (
         <AddComment replyingTo={replyingTo} />
@@ -241,6 +408,87 @@ const Comments = () => {
           Add Comment
         </button>
       )}
+    </div>
+  );
+};
+
+const Comment = ({
+  comment,
+  setReplyingTo,
+  setAddingComment,
+}: {
+  comment: SerializeFrom<CommentsSelected>;
+  setReplyingTo: (input: { name: string; commentId: string }) => void;
+  setAddingComment: (input: boolean) => void;
+}) => {
+  return (
+    <div key={comment.id}>
+      <div className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4">
+        <p className="text-xs font-bold">
+          {comment.name} - {formatDate(new Date(comment.createdAt))}
+        </p>
+        <p>{comment.content}</p>
+        <button
+          type="button"
+          onClick={() => {
+            setAddingComment(true);
+            setReplyingTo({
+              name: comment.name,
+              commentId: comment.id,
+            });
+          }}
+        >
+          reply
+        </button>
+      </div>
+      {comment.responses.length > 0 ? (
+        <div className="pl-8 mb-8">
+          {comment.responses.map((reply) => {
+            return (
+              <div
+                key={reply.id}
+                className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4"
+              >
+                <p className="text-xs font-bold">
+                  {reply.name} - {formatDate(new Date(reply.createdAt))}
+                </p>
+                <p>{reply.content}</p>
+              </div>
+            );
+          })}
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+const Mention = ({
+  mention,
+}: {
+  // Type this with the cool satisfied thing.
+  mention: SerializeFrom<MentionSelected>;
+}) => {
+  return (
+    <div className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4">
+      <p className="text-xs font-bold">
+        {mention.authorPhoto ? (
+          <img
+            alt=""
+            src={mention.authorPhoto}
+            className="w-8 h-8 m-0 rounded-full inline-block mr-2"
+          />
+        ) : null}
+        <ExternalLink href={mention.authorUrl}>
+          {mention.authorName}
+        </ExternalLink>
+        {mention.publishedAt
+          ? ` - ${formatDate(new Date(mention.publishedAt))}`
+          : null}
+      </p>
+      <p>{mention.contentText}</p>
+      <ExternalLink className="text-xs" href={mention.source}>
+        See in context
+      </ExternalLink>
     </div>
   );
 };

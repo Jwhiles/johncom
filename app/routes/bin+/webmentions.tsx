@@ -48,7 +48,7 @@ const webmentionUpsert = z.object({
     }),
 
     url: z.string().url().optional(),
-    published: z.string().nullable(),
+    published: z.string().datetime({ offset: true }).nullable(),
     name: z.string().optional(),
     "repost-of": z.string().url().optional(),
     "wm-property": z.union([
@@ -108,6 +108,7 @@ export async function action({ request }: ActionFunctionArgs) {
           authorName: parsed.post.author.name,
           authorPhoto: parsed.post.author.photo,
           authorUrl: parsed.post.author.url ?? parsed.source,
+          publishedAt: parsed.post.published,
           raw: JSON.stringify(raw),
         },
         update: {
@@ -115,6 +116,7 @@ export async function action({ request }: ActionFunctionArgs) {
           authorName: parsed.post.author.name,
           authorPhoto: parsed.post.author.photo,
           authorUrl: parsed.post.author.url ?? parsed.source,
+          publishedAt: parsed.post.published,
           raw: JSON.stringify(raw),
         },
       });

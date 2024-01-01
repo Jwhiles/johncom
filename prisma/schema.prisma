@@ -51,8 +51,11 @@ model Webmention {
 
   wmProperty  String
   contentText String?
+  publishedAt DateTime?
 
   raw String
+
+  approved Boolean @default(false)
 
   @@id([target, source])
 }

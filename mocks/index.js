@@ -1,14 +1,25 @@
-const { rest } = require("msw");
+const { http, HttpResponse } = require("msw");
 const { setupServer } = require("msw/node");
+const { entry } = require("./contentfulReturn");
 
-// put one-off handlers that don't really need an entire file to themselves here
-const miscHandlers = [
-  rest.post(`${process.env.REMIX_DEV_HTTP_ORIGIN}/ping`, (req) =>
-    req.passthrough(),
+const handlers = [
+  http.get(
+    "https://cdn.contentful.com/spaces/:spaceid/entries",
+    async () => {
+      return HttpResponse.json(entry);
+    }
   ),
+  http.post("https://api.eu.mailgun.net/v3/:domain/messages", async (req) => {
+    const text = await req.request.text();
+    console.log("🔶 mocked email text:", text);
+
+    const randomId = "20210321210543.1.E01B8B612C44B41B";
+    const id = `<${randomId}>@${req.params.domain}`;
+    return HttpResponse.json({ id, message: "Queued. Thank you." });
+  }),
 ];
 
-const server = setupServer(...miscHandlers);
+const server = setupServer(...handlers);
 
 server.listen({ onUnhandledRequest: "bypass" });
 console.info("🔶 Mock server running");

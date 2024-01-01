@@ -52,6 +52,10 @@ export const links: LinksFunction = () => [
     rel: "token_endpoint",
     href: "https://tokens.indieauth.com/token",
   },
+  {
+    rel: "microsub",
+    href: "https://aperture.p3k.io/microsub/921",
+  },
   ...(cssBundleHref
     ? [
         { rel: "stylesheet", href: cssBundleHref },

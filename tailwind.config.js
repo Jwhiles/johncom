@@ -8,7 +8,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      // sans: ["system"],
+      sans: ["ui-sans-serif", "system-ui", ],
       header: ["Garamond", "system"],
     },
   },

@@ -57,7 +57,7 @@ body * {
   li {
     @apply text-xl;
     line-height: 1.4;
-    @apply my-4;
+    @apply mb-4;
     @apply dark:text-gray-200;
   }
   a {

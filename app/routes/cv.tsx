@@ -1,7 +1,7 @@
 export default function CV() {
   // The most outrageous tailwind classes I ever wrote.
   return (
-    <div className="p-4 leading-tight max-w-4xl mx-auto pt-10 [&:not(:last-child)]:*:mb-8 [&:not(:last-child)]:*:pb-8 [&:not(:last-child)]:*:border-b-2">
+    <div className="p-4 leading-tight max-w-4xl mx-auto pt-10 [&:not(:last-child)]:*:mb-8 [&:not(:last-child)]:*:pb-8 [&:not(:last-child)]:*:border-b-2 pb-16">
       <Profile />
 
       <WorkHistory />
@@ -71,7 +71,10 @@ const workHistory: WorkEntryProps[] = [
           Rebuilt the front-end technical interview, improving the experience
           for interviewers and candidates.
         </li>
-        <li>Assisted in onboarding various other engineers to the company.</li>
+        <li>
+          Helped several engineers onboard successfully into the Company by
+          providing mentorship and guidance.
+        </li>
       </ul>
     ),
   },
@@ -82,7 +85,13 @@ const workHistory: WorkEntryProps[] = [
     endDate: "2020-03",
     description: (
       <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
-        <li>Implemented the ability to tag other users in comments.</li>
+        <li>
+          Worked on Soundcloud’s music publishing product, allowing users to
+          publish their music to other platforms.
+        </li>
+        <li>
+          Implemented a system that allowed users to tag each other in comments.
+        </li>
         <li>
           Improved page load times on an internal admin tool by multiple orders
           of magnitude.
@@ -98,9 +107,9 @@ const workHistory: WorkEntryProps[] = [
     description: (
       <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
         <li>
-          As part of a two-person team, completed a rebuild of Habito’s design
-          system and styling, including building a design system that improved
-          the accessibility of the product.
+          As part of a two-person team, rebuilt Habito’s design system and
+          styling, including building a design system that improved the
+          accessibility of the product.
         </li>
         <li>
           Implemented the dynamic mortgage interview, which is the core of
@@ -200,7 +209,7 @@ const Education = () => {
             <p className="text-xs mb-0">2016 - 2017</p>
           </div>
 
-          <div className="col-span-4">Student developer</div>
+          <p className="col-span-4 text-base">Student developer</p>
         </div>
 
         <div className="grid grid-cols-6 gap-8">
@@ -211,7 +220,9 @@ const Education = () => {
             <p className="text-xs mb-0">2010 - 2013</p>
           </div>
 
-          <div className="col-span-4">BA Politics with Philosophy (2:1)</div>
+          <p className="col-span-4 text-base">
+            BA Politics with Philosophy (2:1)
+          </p>
         </div>
       </ol>
     </div>

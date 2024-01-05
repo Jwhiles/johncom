@@ -371,7 +371,6 @@ const WebmentionForm = () => {
 
 const Comments = () => {
   const { commentsAndMentions } = useLoaderData<typeof loader>();
-  const [addingComment, setAddingComment] = useState(false);
   const [replyingTo, setReplyingTo] = useState<{
     name: string;
     commentId: string;
@@ -386,7 +385,6 @@ const Comments = () => {
               key={item.data.id}
               comment={item.data}
               setReplyingTo={setReplyingTo}
-              setAddingComment={setAddingComment}
             />
           );
         }
@@ -396,18 +394,7 @@ const Comments = () => {
         throw new Error("unknown type");
       })}
 
-      {addingComment ? (
-        <AddComment replyingTo={replyingTo} />
-      ) : (
-        <button
-          type="button"
-          onClick={() => {
-            setAddingComment(true);
-          }}
-        >
-          Add Comment
-        </button>
-      )}
+      <AddComment replyingTo={replyingTo} />
     </div>
   );
 };
@@ -415,11 +402,9 @@ const Comments = () => {
 const Comment = ({
   comment,
   setReplyingTo,
-  setAddingComment,
 }: {
   comment: SerializeFrom<CommentsSelected>;
   setReplyingTo: (input: { name: string; commentId: string }) => void;
-  setAddingComment: (input: boolean) => void;
 }) => {
   return (
     <div key={comment.id}>
@@ -431,7 +416,7 @@ const Comment = ({
         <button
           type="button"
           onClick={() => {
-            setAddingComment(true);
+            // TODO: either make this scroll to the form on click, or make the form pop up inline
             setReplyingTo({
               name: comment.name,
               commentId: comment.id,

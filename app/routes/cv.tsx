@@ -1,3 +1,55 @@
+export default function CV() {
+  // The most outrageous tailwind classes I ever wrote.
+  return (
+    <div className="p-4 leading-tight max-w-4xl mx-auto pt-10 [&:not(:last-child)]:*:mb-8 [&:not(:last-child)]:*:pb-8 [&:not(:last-child)]:*:border-b-2">
+      <Profile />
+
+      <WorkHistory />
+
+      <Education />
+    </div>
+  );
+}
+
+const Profile = () => (
+  <div className="grid grid-cols-5 gap-4 ">
+    <h1 className="col-span-5 md:col-span-1 my-0 text-3xl">John Whiles</h1>
+    <p className="col-span-3 text-base">
+      I am a product-minded software engineer with 7 years of experience working
+      at high-growth companies. I prefer to work across the full stack and
+      deliver features end-to-end. I built the micro SaaS app{" "}
+      <a
+        className="not-italic font-sans text-base"
+        href="https://www.coachtracker.net"
+      >
+        Coachtracker
+      </a>{" "}
+      and write regularly on my{" "}
+      <a
+        className="not-italic font-sans text-base"
+        href="https://johnwhiles.com/"
+      >
+        personal website
+      </a>
+      .
+    </p>
+    <ul className="my-0 list-none">
+      <li>
+        <a href="https://github.com/jwhiles">Github</a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/john-whiles/">LinkedIn</a>
+      </li>
+      <li>
+        <a href="https://johnwhiles.com">Website</a>
+      </li>
+      <li>
+        <a href="mailto:cv@johnwhiles.com">Email</a>
+      </li>
+    </ul>
+  </div>
+);
+
 const workHistory: WorkEntryProps[] = [
   {
     companyName: "Contentful",
@@ -97,59 +149,6 @@ interface WorkEntryProps {
   endDate: string;
   description: React.ReactNode;
 }
-
-export default function CV() {
-  // The most outrageous tailwind classes I ever wrote.
-  return (
-    <div className="p-4 leading-tight max-w-4xl mx-auto pt-10 [&:not(:last-child)]:*:mb-8 [&:not(:last-child)]:*:pb-8 [&:not(:last-child)]:*:border-b-2">
-      <Profile />
-
-      <WorkHistory />
-
-      <Education />
-    </div>
-  );
-}
-
-const Profile = () => (
-  <div className="grid grid-cols-5 gap-4 ">
-    <h1 className="col-span-5 md:col-span-1 my-0 text-3xl">John Whiles</h1>
-    <p className="col-span-3 text-base">
-      I am a product-minded software engineer with years of experience working
-      at high-growth companies. I prefer to work across the full stack and
-      deliver features end-to-end. I built the micro SaaS app{" "}
-      <a
-        className="not-italic font-sans text-base"
-        href="https://www.coachtracker.net"
-      >
-        Coachtracker
-      </a>{" "}
-      and write regularly on my{" "}
-      <a
-        className="not-italic font-sans text-base"
-        href="https://johnwhiles.com/"
-      >
-        personal website
-      </a>
-      .
-    </p>
-    <ul className="my-0 list-none">
-      <li>
-        <a href="https://github.com/jwhiles">Github</a>
-      </li>
-      <li>
-        <a href="https://www.linkedin.com/in/john-whiles/">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://johnwhiles.com">Website</a>
-      </li>
-      <li>
-        <a href="mailto:cv@johnwhiles.com">Email</a>
-      </li>
-    </ul>
-  </div>
-);
-
 const WorkHistory = () => {
   return (
     <div className="grid grid-cols-9 gap-4">

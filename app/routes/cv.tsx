@@ -4,6 +4,8 @@ export default function CV() {
     <div className="p-4 leading-tight max-w-4xl mx-auto pt-10 [&:not(:last-child)]:*:mb-8 [&:not(:last-child)]:*:pb-8 [&:not(:last-child)]:*:border-b-2 pb-16">
       <Profile />
 
+      <WhatIWant />
+
       <WorkHistory />
 
       <Education />
@@ -11,28 +13,70 @@ export default function CV() {
   );
 }
 
+const WhatIWant = () => (
+  <div className="grid grid-cols-9 gap-4">
+    <div className="col-span-9 md:col-span-2">
+      <h2 className="my-0 text-3xl">What I’m looking for</h2>
+    </div>
+    <div className="col-span-9 md:col-span-7">
+      <div className="mb-4  *:text-base">
+        <p>
+          I’m primarily interested in remote, full-time roles where I can grow
+          into the next stage of my career. I’m interested in working for a
+          company that values its users, its team, and building great products.
+          I like the vibe of:
+        </p>
+
+        <ul className="*:text-base *:my-1">
+          <li>
+            <a href="https://linear.app/method/introduction">Linear</a>
+          </li>
+          <li>
+            <a href="https://thebrowser.company/values/">The Browser Company</a>
+          </li>
+          <li>
+            <a href="https://www.are.na/blog/on-motivation">Are.na</a>
+          </li>
+        </ul>
+
+        <p>
+          If you like these companies vibes too, then I’d love to hear from you.
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
 const Profile = () => (
   <div className="grid grid-cols-5 gap-4 ">
     <h1 className="col-span-5 md:col-span-1 my-0 text-3xl">John Whiles</h1>
-    <p className="col-span-3 text-base">
-      I am a product-minded software engineer with 7 years of experience working
-      at high-growth companies. I prefer to work across the full stack and
-      deliver features end-to-end. I built the micro SaaS app{" "}
-      <a
-        className="not-italic font-sans text-base"
-        href="https://www.coachtracker.net"
-      >
-        Coachtracker
-      </a>{" "}
-      and write regularly on my{" "}
-      <a
-        className="not-italic font-sans text-base"
-        href="https://johnwhiles.com/"
-      >
-        personal website
-      </a>
-      .
-    </p>
+    <div className="col-span-3">
+      <p className=" text-base">
+        I am a product-minded software engineer with 7 years of experience
+        working at high-growth companies. I prefer to work across the full stack
+        and deliver features end-to-end. I built the micro SaaS app{" "}
+        <a
+          className="not-italic font-sans text-base"
+          href="https://www.coachtracker.net"
+        >
+          Coachtracker
+        </a>{" "}
+        and write regularly on my{" "}
+        <a
+          className="not-italic font-sans text-base"
+          href="https://johnwhiles.com/"
+        >
+          personal website
+        </a>
+        .
+      </p>
+      <p className=" text-base">
+        I have extensive professional experience writing TypeScript, Node.js and
+        React. I’ve also worked in Ruby, Go, and Haskell. On the infrastructure
+        side I’ve worked with AWS, Docker, and Terraform. I’m always happy to be
+        learning new languages and tools.
+      </p>
+    </div>
     <ul className="my-0 list-none">
       <li>
         <a href="https://github.com/jwhiles">Github</a>
@@ -54,14 +98,22 @@ const workHistory: WorkEntryProps[] = [
   {
     companyName: "Contentful",
     jobTitle: "Senior Software Engineer",
-    startDate: "March 2023",
+    technologies: [
+      "TypeScript",
+      "Node.js",
+      "React",
+      "Go",
+      "PostgreSQL",
+      "Ruby on Rails",
+    ],
+    startDate: "March 2020",
     endDate: "September 2023",
     description: (
       <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
         <li>
-          Managed Contentful’s fleet of Postgres databases, including leading a
-          project to perform major version upgrades across the entire fleet with
-          zero downtime for customers.
+          Managed Contentful’s fleet of PostgreSQL databases, including leading
+          a project to perform major version upgrades across the entire fleet
+          with zero downtime for customers.
         </li>
         <li>
           Made extensive contributions to Contentful’s app framework, which is
@@ -81,8 +133,9 @@ const workHistory: WorkEntryProps[] = [
   {
     companyName: "Soundcloud",
     jobTitle: "Frontend Engineer",
-    startDate: "2019-06",
-    endDate: "2020-03",
+    technologies: ["JavaScript", "Backbone.js"],
+    startDate: "June 2019",
+    endDate: "March 2020",
     description: (
       <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
         <li>
@@ -102,8 +155,9 @@ const workHistory: WorkEntryProps[] = [
   {
     companyName: "Habito",
     jobTitle: "Senior Software Engineer",
-    startDate: "2018-07",
-    endDate: "2019-06",
+    technologies: ["Haskell", "PureScript", "React"],
+    startDate: "July 2018",
+    endDate: "June 2019",
     description: (
       <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
         <li>
@@ -121,8 +175,9 @@ const workHistory: WorkEntryProps[] = [
   {
     companyName: "Trainline",
     jobTitle: "Senior Software Engineer",
-    startDate: "2018-01",
-    endDate: "2018-07",
+    technologies: ["TypeScript", "React", "Node.js"],
+    startDate: "January 2018",
+    endDate: "July 2018",
     description: (
       <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
         <li>
@@ -136,8 +191,9 @@ const workHistory: WorkEntryProps[] = [
   {
     companyName: "Just Giving",
     jobTitle: "Senior Software Engineer",
-    startDate: "2017-03",
-    endDate: "2018-01",
+    technologies: ["TypeScript", "React"],
+    startDate: "March 2017",
+    endDate: "January 2018",
     description: (
       <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
         <li>Built a rich UI for a new financial reporting service.</li>
@@ -154,6 +210,7 @@ const workHistory: WorkEntryProps[] = [
 interface WorkEntryProps {
   companyName: string;
   jobTitle: string;
+  technologies: string[];
   startDate: string;
   endDate: string;
   description: React.ReactNode;
@@ -162,7 +219,7 @@ const WorkHistory = () => {
   return (
     <div className="grid grid-cols-9 gap-4">
       <div className="col-span-9 md:col-span-2">
-        <h2 className="my-0 text-3xl">Work</h2>
+        <h2 className="my-0 text-3xl">Professional Experience</h2>
       </div>
       <ol className="col-span-9 md:col-span-7">
         {workHistory.map((x) => (
@@ -176,6 +233,7 @@ const WorkHistory = () => {
 const WorkEntry = ({
   companyName,
   jobTitle,
+  technologies,
   startDate,
   endDate,
   description,
@@ -188,6 +246,13 @@ const WorkEntry = ({
         <p className="text-xs">
           {startDate} - {endDate}
         </p>
+        <ul className="list-none ml-0">
+          {technologies.map((x) => (
+            <li key={x} className="text-xs text-slate-400 my-1">
+              {x}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="col-span-4">{description}</div>

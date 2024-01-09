@@ -350,7 +350,7 @@ const WebmentionForm = () => {
             type="submit"
             value="Send Webmention"
           >
-            {submission === "submitting" ? "Sending" : "Send wembention"}
+            {submission === "submitting" ? "Sending" : "Send webmention"}
           </button>
         </div>
       </div>

@@ -1,9 +1,7 @@
 export default function CV() {
-  // The most outrageous tailwind classes I ever wrote.
   return (
     <div className="p-4 leading-tight max-w-4xl mx-auto pt-10 [&:not(:last-child)]:*:mb-8 [&:not(:last-child)]:*:pb-8 [&:not(:last-child)]:*:border-b-2 pb-16">
       <Profile />
-
       <WhatIWant />
 
       <WorkHistory />
@@ -21,10 +19,16 @@ const WhatIWant = () => (
     <div className="col-span-9 md:col-span-7">
       <div className="mb-4  *:text-base">
         <p>
-          I’m primarily interested in remote, full-time roles where I can grow
-          into the next stage of my career. I’m interested in working for a
-          company that values its users, its team, and building great products.
-          I like the vibe of:
+          I’m interested in remote, full-time roles where I can grow into the
+          next stage of my career. I’m currently looking for individual
+          contributor roles, but am also keen to gradually increase the amount
+          of mentorship and leadership I’m doing. I’d be interested in moving
+          into a team lead role in the near future.
+        </p>
+
+        <p>
+          I want to work for a company that values its users, its team, and
+          building great products. I’ve been impressed by organisations like:
         </p>
 
         <ul className="*:text-base *:my-1">
@@ -51,7 +55,7 @@ const Profile = () => (
   <div className="grid grid-cols-5 gap-4 ">
     <h1 className="col-span-5 md:col-span-1 my-0 text-3xl">John Whiles</h1>
     <div className="col-span-3">
-      <p className=" text-base">
+      <p className="text-base">
         I am a product-minded software engineer with 7 years of experience
         working at high-growth companies. I prefer to work across the full stack
         and deliver features end-to-end. I built the micro SaaS app{" "}
@@ -73,10 +77,12 @@ const Profile = () => (
       <p className=" text-base">
         I have extensive professional experience writing TypeScript, Node.js and
         React. I’ve also worked in Ruby, Go, and Haskell. On the infrastructure
-        side I’ve worked with AWS, Docker, and Terraform. I’m always happy to be
-        learning new languages and tools.
+        side I’ve worked with AWS, Docker, and Terraform. I enjoy learning new
+        languages and tools, and am happy to consider opportunities using
+        different technology stacks.
       </p>
     </div>
+
     <ul className="my-0 list-none">
       <li>
         <a href="https://github.com/jwhiles">Github</a>
@@ -102,9 +108,10 @@ const workHistory: WorkEntryProps[] = [
     startDate: "September 2023",
     endDate: "December 2023",
     experienceBulletPoints: [
-      "At Roost I was responsible for the initial technical direction of the company.",
-      "I built MVPs of potential Roost products, including a tool for managing rental properties and identifying property investment opportunities.",
-      "I worked closely with the CEO and COO to define the company’s strategy and direction.",
+      "As part of the founding team was accepted onto Techstar’s London 2023 cohort.",
+      "Was responsible for the initial technical direction of the company.",
+      "Built MVPs of potential Roost products including services to help house sharers live harmoniously, and tools for identifying property investment opportunities.",
+      "Worked closely with the CEO and COO to define the company’s strategy and direction.",
     ],
   },
   {
@@ -121,10 +128,10 @@ const workHistory: WorkEntryProps[] = [
     startDate: "March 2020",
     endDate: "September 2023",
     experienceBulletPoints: [
-      "Managed Contentful’s fleet of PostgreSQL databases, including leading a project to perform major version upgrades across the entire fleet with zero downtime for customers.",
+      "Managed Contentful’s fleet of PostgreSQL databases which support 30% of Fortune 500 companies. Lead a project to perform major version upgrades across the entire fleet with zero downtime for customers.",
       "Made extensive contributions to Contentful’s app framework.",
-      "Rebuilt the front-end technical interview, improving the experience for interviewers and candidates.",
-      "Helped several engineers onboard successfully into the Company by providing mentorship and guidance.",
+      "Rebuilt the front-end technical interview, improving the experience for interviewers and candidates and reducing the amount of time engineers spent in each interview by 40%.",
+      "Helped numerous engineers on-board successfully into the Company by providing mentorship and guidance.",
     ],
   },
   {
@@ -136,7 +143,7 @@ const workHistory: WorkEntryProps[] = [
     experienceBulletPoints: [
       "Worked on Soundcloud’s music publishing product, allowing users to publish their music to other platforms.",
       "Implemented a system that allowed users to tag each other in comments.",
-      "Improved page load times on an internal admin tool by multiple orders of magnitude.",
+      "Improved page load times on an internal admin tool by multiple orders of magnitude, which made it possible for a moderation team to achieve their goals.",
     ],
   },
   {
@@ -146,8 +153,9 @@ const workHistory: WorkEntryProps[] = [
     startDate: "July 2018",
     endDate: "June 2019",
     experienceBulletPoints: [
-      "As part of a two-person team, rebuilt Habito’s design system and styling, including building a design system that improved the accessibility of the product.",
+      "Built a design system which ensured accessibility and consistency across the entire product.",
       "Implemented the dynamic mortgage interview, which is the core of Habito’s user journey.",
+      "As part of a two-person team, restyled Habito’s entire website in one month.",
     ],
   },
   {
@@ -169,9 +177,8 @@ const workHistory: WorkEntryProps[] = [
     endDate: "January 2018",
     experienceBulletPoints: [
       "Built a rich UI for a new financial reporting service.",
-
-      "Maintained our design system’s component library.",
-      `Led a TypeScript migration, ensuring that our builds continued to work, and helped the rest of the team get used to TypeScript.`,
+      "Built a design system’s component library.",
+      `Led a TypeScript migration, ensuring that builds continued to work, and helping the engineering team learn TypeScript.`,
     ],
   },
 ];

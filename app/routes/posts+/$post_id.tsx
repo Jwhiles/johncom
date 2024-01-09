@@ -12,7 +12,7 @@ import { metaV1 } from "@remix-run/v1-meta";
 import { marked } from "marked";
 import { quoteBack } from "marked-quotebacks";
 import quotebacksStyle from "marked-quotebacks/dist/main.css";
-import { useState } from "react";
+import { Ref, forwardRef, useRef, useState } from "react";
 
 import { ExternalLink } from "~/components/ExternalLink";
 import { getEntry } from "~/contentful.server";
@@ -375,6 +375,14 @@ const Comments = () => {
     name: string;
     commentId: string;
   } | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const onReply = (input: { name: string; commentId: string }) => {
+    setReplyingTo(input);
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div>
@@ -384,7 +392,7 @@ const Comments = () => {
             <Comment
               key={item.data.id}
               comment={item.data}
-              setReplyingTo={setReplyingTo}
+              setReplyingTo={onReply}
             />
           );
         }
@@ -394,7 +402,11 @@ const Comments = () => {
         throw new Error("unknown type");
       })}
 
-      <AddComment replyingTo={replyingTo} />
+      <AddComment
+        clearReplying={() => setReplyingTo(null)}
+        ref={formRef}
+        replyingTo={replyingTo}
+      />
     </div>
   );
 };
@@ -416,7 +428,6 @@ const Comment = ({
         <button
           type="button"
           onClick={() => {
-            // TODO: either make this scroll to the form on click, or make the form pop up inline
             setReplyingTo({
               name: comment.name,
               commentId: comment.id,
@@ -478,14 +489,19 @@ const Mention = ({
   );
 };
 
-const AddComment = ({
-  replyingTo,
-}: {
-  replyingTo: {
-    name: string;
-    commentId: string;
-  } | null;
-}) => {
+const AddComment = forwardRef(function AddComment(
+  {
+    replyingTo,
+    clearReplying,
+  }: {
+    replyingTo: {
+      name: string;
+      commentId: string;
+    } | null;
+    clearReplying: () => void;
+  },
+  ref: Ref<HTMLFormElement>,
+) {
   const fetcher = useFetcher();
 
   if (fetcher.data) {
@@ -499,15 +515,20 @@ const AddComment = ({
     );
   }
   return (
-    <fetcher.Form method="POST" action="comments">
+    <fetcher.Form method="POST" action="comments" ref={ref}>
       {replyingTo ? (
         <input type="hidden" name="responseToId" value={replyingTo.commentId} />
       ) : null}
       <div className="bg-gray-100 dark:bg-slate-500 rounded-md p-4 my-4">
         {replyingTo ? (
-          <p>
-            replying to <strong>{replyingTo.name}</strong>
-          </p>
+          <div className="flex justify-between">
+            <p>
+              replying to <strong>{replyingTo.name}</strong>
+            </p>
+            <button className="inline" type="button" onClick={clearReplying}>
+              clear
+            </button>
+          </div>
         ) : (
           <p>Add your comment</p>
         )}
@@ -549,11 +570,11 @@ const AddComment = ({
             name="content"
           />
         </div>
-        <button className="btn">Submit</button>
+        <button className="">Submit</button>
       </div>
     </fetcher.Form>
   );
-};
+});
 
 const formatDate = (date: Date) => {
   return new Intl.DateTimeFormat("en-US", {

@@ -96,6 +96,18 @@ const Profile = () => (
 
 const workHistory: WorkEntryProps[] = [
   {
+    companyName: "Roost",
+    jobTitle: "CTO",
+    technologies: ["TypeScript", "Node.js", "Remix", "PostgreSQL"],
+    startDate: "September 2023",
+    endDate: "December 2023",
+    experienceBulletPoints: [
+      "At Roost I was responsible for the initial technical direction of the company.",
+      "I built MVPs of potential Roost products, including a tool for managing rental properties and identifying property investment opportunities.",
+      "I worked closely with the CEO and COO to define the company’s strategy and direction.",
+    ],
+  },
+  {
     companyName: "Contentful",
     jobTitle: "Senior Software Engineer",
     technologies: [
@@ -108,27 +120,12 @@ const workHistory: WorkEntryProps[] = [
     ],
     startDate: "March 2020",
     endDate: "September 2023",
-    description: (
-      <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
-        <li>
-          Managed Contentful’s fleet of PostgreSQL databases, including leading
-          a project to perform major version upgrades across the entire fleet
-          with zero downtime for customers.
-        </li>
-        <li>
-          Made extensive contributions to Contentful’s app framework, which is
-          heavily used by enterprise customers.
-        </li>
-        <li>
-          Rebuilt the front-end technical interview, improving the experience
-          for interviewers and candidates.
-        </li>
-        <li>
-          Helped several engineers onboard successfully into the Company by
-          providing mentorship and guidance.
-        </li>
-      </ul>
-    ),
+    experienceBulletPoints: [
+      "Managed Contentful’s fleet of PostgreSQL databases, including leading a project to perform major version upgrades across the entire fleet with zero downtime for customers.",
+      "Made extensive contributions to Contentful’s app framework.",
+      "Rebuilt the front-end technical interview, improving the experience for interviewers and candidates.",
+      "Helped several engineers onboard successfully into the Company by providing mentorship and guidance.",
+    ],
   },
   {
     companyName: "Soundcloud",
@@ -136,21 +133,11 @@ const workHistory: WorkEntryProps[] = [
     technologies: ["JavaScript", "Backbone.js"],
     startDate: "June 2019",
     endDate: "March 2020",
-    description: (
-      <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
-        <li>
-          Worked on Soundcloud’s music publishing product, allowing users to
-          publish their music to other platforms.
-        </li>
-        <li>
-          Implemented a system that allowed users to tag each other in comments.
-        </li>
-        <li>
-          Improved page load times on an internal admin tool by multiple orders
-          of magnitude.
-        </li>
-      </ul>
-    ),
+    experienceBulletPoints: [
+      "Worked on Soundcloud’s music publishing product, allowing users to publish their music to other platforms.",
+      "Implemented a system that allowed users to tag each other in comments.",
+      "Improved page load times on an internal admin tool by multiple orders of magnitude.",
+    ],
   },
   {
     companyName: "Habito",
@@ -158,19 +145,10 @@ const workHistory: WorkEntryProps[] = [
     technologies: ["Haskell", "PureScript", "React"],
     startDate: "July 2018",
     endDate: "June 2019",
-    description: (
-      <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
-        <li>
-          As part of a two-person team, rebuilt Habito’s design system and
-          styling, including building a design system that improved the
-          accessibility of the product.
-        </li>
-        <li>
-          Implemented the dynamic mortgage interview, which is the core of
-          Habito’s user journey.
-        </li>
-      </ul>
-    ),
+    experienceBulletPoints: [
+      "As part of a two-person team, rebuilt Habito’s design system and styling, including building a design system that improved the accessibility of the product.",
+      "Implemented the dynamic mortgage interview, which is the core of Habito’s user journey.",
+    ],
   },
   {
     companyName: "Trainline",
@@ -178,15 +156,10 @@ const workHistory: WorkEntryProps[] = [
     technologies: ["TypeScript", "React", "Node.js"],
     startDate: "January 2018",
     endDate: "July 2018",
-    description: (
-      <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
-        <li>
-          Moved one of The Trainline’s busiest services from C# to Node.js,
-          improving performance and maintainability.{" "}
-        </li>
-        <li>Improved The Trainline’s internal design system.</li>
-      </ul>
-    ),
+    experienceBulletPoints: [
+      "Moved one of The Trainline’s busiest services from C# to Node.js, improving performance and maintainability.",
+      "Improved The Trainline’s internal design system.",
+    ],
   },
   {
     companyName: "Just Giving",
@@ -194,16 +167,12 @@ const workHistory: WorkEntryProps[] = [
     technologies: ["TypeScript", "React"],
     startDate: "March 2017",
     endDate: "January 2018",
-    description: (
-      <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
-        <li>Built a rich UI for a new financial reporting service.</li>
-        <li>Maintained our design system’s component library.</li>
-        <li>
-          Led a TypeScript migration, ensuring that our builds continued to
-          work, and helped the rest of the team get used to TypeScript.
-        </li>
-      </ul>
-    ),
+    experienceBulletPoints: [
+      "Built a rich UI for a new financial reporting service.",
+
+      "Maintained our design system’s component library.",
+      `Led a TypeScript migration, ensuring that our builds continued to work, and helped the rest of the team get used to TypeScript.`,
+    ],
   },
 ];
 
@@ -213,8 +182,9 @@ interface WorkEntryProps {
   technologies: string[];
   startDate: string;
   endDate: string;
-  description: React.ReactNode;
+  experienceBulletPoints: string[];
 }
+
 const WorkHistory = () => {
   return (
     <div className="grid grid-cols-9 gap-4">
@@ -236,7 +206,7 @@ const WorkEntry = ({
   technologies,
   startDate,
   endDate,
-  description,
+  experienceBulletPoints,
 }: WorkEntryProps) => {
   return (
     <div className="grid grid-cols-6 gap-8 mb-4 last:mb-0">
@@ -255,7 +225,15 @@ const WorkEntry = ({
         </ul>
       </div>
 
-      <div className="col-span-4">{description}</div>
+      <div className="col-span-4">
+        <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
+          {experienceBulletPoints.map((x) => (
+            <li key={x} className="my-1">
+              {x}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

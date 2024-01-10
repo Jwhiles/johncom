@@ -1,14 +1,31 @@
 import { HeadersFunction, json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 
+import { Note } from "~/components/Note";
 import { getListOfEntries } from "~/contentful.server";
+import { prisma } from "~/db.server";
+import { renderToHtml } from "~/features/markdown/render.server";
 import { formatDate } from "~/utils/formatDate";
 
 export const loader = async () => {
   const latestPost = (await getListOfEntries()).items[0];
 
+  const notes = (
+    await prisma.note.findMany({ orderBy: { createdAt: "desc" }, take: 5 })
+  ).map((post) => {
+    return {
+      id: post.id,
+      content: renderToHtml(post.content),
+      // Dates... Do I want to add dayjs to this projects?
+      createdAt: post.createdAt,
+      inReplyToUrl: post.inReplyToUrl,
+      inReplyToAuthor: post.inReplyToAuthor,
+      inReplyToTitle: post.inReplyToTitle,
+    };
+  });
+
   return json(
-    { latestPost },
+    { latestPost, notes },
     { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
   );
 };
@@ -50,6 +67,10 @@ export default function Index() {
           {formatDate(latestPost.fields.date)}
         </div>
       </div>
+      <div className="my-24">
+        <div className="text-base font-bold text-slate-300 mb-1">Notes</div>
+        <Notes />
+      </div>
       <img
         alt="John’s logo"
         className="w-32 h-32 md:w-80 md:h-80 absolute top-80 md:top-20 right-20 z-0 animate-spin-slow"
@@ -61,3 +82,19 @@ export default function Index() {
     </div>
   );
 }
+
+const Notes = () => {
+  const { notes } = useLoaderData<typeof loader>();
+  return (
+    <ol>
+      {notes.map((post) => (
+        <li key={post.id}>
+          <Note {...post} />
+        </li>
+      ))}
+      <Link className="text-xs" to={`/notes`}>
+        See more
+      </Link>
+    </ol>
+  );
+};

@@ -9,7 +9,7 @@ export const ShowMarkdown = ({
 }) => {
   return (
     <div
-      className={className}
+      className={`markdown${className ? ` ${className}` : ""}`}
       dangerouslySetInnerHTML={{
         __html: markdown,
       }}

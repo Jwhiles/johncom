@@ -1,6 +1,5 @@
 import { HeadersFunction, LoaderFunctionArgs, json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import dayjs from "dayjs";
 
 import { Note } from "~/components/Note";
 import { prisma } from "~/db.server";
@@ -23,8 +22,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
       post: {
         id: post.id,
         content: renderToHtml(post.content),
-        // Dates... Do I want to add dayjs to this projects?
-        createdAt: dayjs(post.createdAt).format("ddd, MMM D, YYYY h:mmA Z"),
+        createdAt: post.createdAt,
         inReplyToUrl: post.inReplyToUrl,
         inReplyToAuthor: post.inReplyToAuthor,
         inReplyToTitle: post.inReplyToTitle,

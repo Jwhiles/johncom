@@ -1,4 +1,5 @@
 import { Link } from "@remix-run/react";
+import dayjs from "dayjs";
 
 import { HTML, ShowMarkdown } from "~/features/markdown";
 
@@ -18,25 +19,44 @@ export const Note = ({
   inReplyToAuthor: string | null;
 }) => {
   return (
-    <div className="rounded-md mb-2 dark:bg-gray-700 bg-gray-200">
+    <div className="pb-2">
+      <time
+        dateTime={dayjs(createdAt).format("ddd, MMM D, YYYY h:mmA Z")}
+        className="dt-published block text-xs mb-0"
+      >
+        {dayjs(createdAt).format("MMM D")}
+      </time>
       {inReplyToUrl ? (
-        <p className="px-4 mb-1 py-1 rounded-t-md bg-gray-100 dark:bg-gray-600 text-xs">
-          in reply to:{" "}
-          <a className="u-in-reply-to text-xs" href={inReplyToUrl}>
-            {inReplyToTitle ? inReplyToTitle : "article"}
-            {inReplyToAuthor ? " by " + inReplyToAuthor : null}
-          </a>
-        </p>
+        <a
+          className="u-in-reply-to text-xs flex gap-2 items-center"
+          href={inReplyToUrl}
+        >
+          <ReplyIcon />
+          {inReplyToTitle ? inReplyToTitle : "article"}
+          {inReplyToAuthor ? " by " + inReplyToAuthor : null}
+        </a>
       ) : null}
-      <div className="px-4 py-2">
-        <ShowMarkdown className="e-content" markdown={content} />
-        <time dateTime={createdAt} className="dt-published block text-xs mb-0">
-          {createdAt}
-        </time>
-        <Link className="u-url text-xs" to={`/notes/${id}`}>
-          permalink
-        </Link>
-      </div>
+      <ShowMarkdown className="*:text-base e-content" markdown={content} />
+      <Link className="u-url hidden text-xs" to={`/notes/${id}`}>
+        permalink
+      </Link>
     </div>
   );
 };
+
+const ReplyIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className="w-2 h-2"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"
+    />
+  </svg>
+);

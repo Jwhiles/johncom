@@ -12,6 +12,7 @@ body * {
   }
 }
 
+
 @layer base {
   h1 {
     @apply text-5xl;
@@ -111,5 +112,11 @@ body * {
     @apply border-2;
     @apply p-2;
     @apply rounded;
+  }
+
+  .markdown a {
+    @apply not-italic;
+    @apply font-sans;
+    @apply font-normal;
   }
 }

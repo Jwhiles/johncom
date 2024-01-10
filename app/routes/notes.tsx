@@ -6,7 +6,7 @@ export default function NotesIndex() {
       <Link className="my-2" to="..">
         Go back
       </Link>
-      <h1 className="tracking-tight">John’s stream of consciousness</h1>
+      <h1 className="tracking-tight">Notes</h1>
       <Outlet />
     </div>
   );

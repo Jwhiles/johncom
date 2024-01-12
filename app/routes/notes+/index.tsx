@@ -11,7 +11,6 @@ import { renderToHtml } from "~/features/markdown/render.server";
 export async function loader() {
   const posts = await prisma.note.findMany({
     orderBy: { createdAt: "desc" },
-    take: 5,
   });
 
   return json(

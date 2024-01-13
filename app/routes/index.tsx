@@ -32,7 +32,7 @@ export const loader = async () => {
 export default function Index() {
   const { latestPost } = useLoaderData<typeof loader>();
   return (
-    <div className="p-4 leading-tight max-w-2xl mx-auto">
+    <div className="body">
       <div className="select-none my-0">&nbsp;</div>
       <h1 className="text-8xl tracking-tighter">John’s website.</h1>
       <ul className="mt-10">

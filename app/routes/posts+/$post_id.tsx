@@ -16,6 +16,8 @@ import { Ref, forwardRef, useRef, useState } from "react";
 import { ExternalLink } from "~/components/ExternalLink";
 import { getEntry } from "~/contentful.server";
 import { prisma } from "~/db.server";
+import { HTML, ShowMarkdown } from "~/features/markdown";
+import { sanitiseHtmlHard } from "~/features/markdown/index.server";
 import {
   createPostBreadcrumbs,
   createSeoPageMetaTags,
@@ -89,6 +91,13 @@ export type MentionSelected = Prisma.WebmentionGetPayload<{
   select: typeof mentionsSelect;
 }>;
 
+const responseSelect = {
+  id: true,
+  content: true,
+  name: true,
+  createdAt: true,
+};
+
 const commentsSelect = (postId: string) => ({
   id: true,
   content: true,
@@ -99,21 +108,25 @@ const commentsSelect = (postId: string) => ({
       approved: true,
       postId,
     },
-    select: {
-      id: true,
-      content: true,
-      name: true,
-      createdAt: true,
-    },
+    select: responseSelect,
   },
 });
 export type CommentsSelected = Prisma.CommentGetPayload<{
   select: ReturnType<typeof commentsSelect>;
 }>;
 
+export type ResponsesSelected = Prisma.CommentGetPayload<{
+  select: ReturnType<typeof commentsSelect>;
+}>;
+
+type TODONameThisBetter = Omit<CommentsSelected, "content" | "responses"> & {
+  content: HTML;
+  responses: (Omit<ResponsesSelected, "content"> & { content: HTML })[];
+};
+
 type CommentOrMention =
   | {
-      data: CommentsSelected;
+      data: TODONameThisBetter;
       type: "comment";
     }
   | {
@@ -158,7 +171,17 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   const commentsAndMentions = [
     ...comments.map((comment) => {
-      return { data: comment, type: "comment" } as CommentOrMention;
+      return {
+        data: {
+          ...comment,
+          content: sanitiseHtmlHard(comment.content),
+          responses: comment.responses.map((r) => ({
+            ...r,
+            content: sanitiseHtmlHard(r.content),
+          })),
+        },
+        type: "comment",
+      } as CommentOrMention;
     }),
 
     // Filter out webmentions that don't have content
@@ -412,7 +435,7 @@ const Comment = ({
   comment,
   setReplyingTo,
 }: {
-  comment: SerializeFrom<CommentsSelected>;
+  comment: SerializeFrom<TODONameThisBetter>;
   setReplyingTo: (input: { name: string; commentId: string }) => void;
 }) => {
   return (
@@ -421,7 +444,7 @@ const Comment = ({
         <p className="text-xs font-bold">
           {comment.name} - {formatDate(new Date(comment.createdAt))}
         </p>
-        <p>{comment.content}</p>
+        <ShowMarkdown>{comment.content}</ShowMarkdown>
         <button
           type="button"
           onClick={() => {
@@ -436,16 +459,17 @@ const Comment = ({
       </div>
       {comment.responses.length > 0 ? (
         <div className="pl-8 mb-8">
-          {comment.responses.map((reply) => {
+          {comment.responses.map((response) => {
             return (
               <div
-                key={reply.id}
+                key={response.id}
                 className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4"
               >
                 <p className="text-xs font-bold">
-                  {reply.name} - {formatDate(new Date(reply.createdAt))}
+                  {response.name} - {formatDate(new Date(response.createdAt))}
                 </p>
-                <p>{reply.content}</p>
+
+                <ShowMarkdown>{response.content}</ShowMarkdown>
               </div>
             );
           })}

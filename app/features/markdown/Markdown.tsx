@@ -1,17 +1,17 @@
 import type { HTML } from "./types";
 
 export const ShowMarkdown = ({
-  markdown,
+  children,
   className,
 }: {
-  markdown: HTML;
+  children: HTML;
   className?: string;
 }) => {
   return (
     <div
       className={`markdown${className ? ` ${className}` : ""}`}
       dangerouslySetInnerHTML={{
-        __html: markdown,
+        __html: children,
       }}
     />
   );

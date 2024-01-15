@@ -1,3 +1,5 @@
+export { headers } from "~/utils/headers";
+
 export default function CV() {
   return (
     <div className="p-4 leading-tight max-w-4xl mx-auto pt-10 [&:not(:last-child)]:*:mb-8 [&:not(:last-child)]:*:pb-8 [&:not(:last-child)]:*:border-b-2 pb-16">

@@ -1,22 +1,16 @@
-import {
-  HeadersFunction,
-  json,
-  LoaderFunctionArgs,
-  MetaFunction,
-} from "@remix-run/node";
+import { json, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { useLoaderData, Link, useMatches } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
+export { headers } from "~/utils/headers";
 
 import { getListOfEntriesByTag } from "~/contentful.server";
+import { apiDefaultHeaders } from "~/utils/headers";
 
 export const meta: MetaFunction<typeof loader> = (args) => {
   return metaV1(args, {
     title: "John’s blog posts about " + args.data?.tagName,
   });
 };
-export const headers: HeadersFunction = () => ({
-  "Cache-Control": "max-age=300, s-maxage=3600",
-});
 
 // I'll do this better when I'm not about to go to sleep..
 const niceTags: Record<string, string> = {
@@ -32,7 +26,7 @@ export const loader = async ({ params: { tag_id } }: LoaderFunctionArgs) => {
   if (!tag_id) throw new Error();
 
   const { entries, tagName } = await getListOfEntriesByTag(
-    niceTags[tag_id] ?? tag_id
+    niceTags[tag_id] ?? tag_id,
   );
 
   const e = entries.map((entry) => {
@@ -43,10 +37,7 @@ export const loader = async ({ params: { tag_id } }: LoaderFunctionArgs) => {
     };
   });
 
-  return json(
-    { entries: e, tagName: tagName },
-    { headers: { "cache-control": "max-age=300, s-maxage=3600" } }
-  );
+  return json({ entries: e, tagName: tagName }, apiDefaultHeaders);
 };
 
 export default function Post() {

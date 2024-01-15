@@ -1,18 +1,17 @@
-import { HeadersFunction, json, MetaFunction } from "@remix-run/node";
+import { json, MetaFunction } from "@remix-run/node";
 import { useLoaderData, Link } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
 
 import { getListOfEntries } from "~/contentful.server";
 import { formatDate } from "~/utils/formatDate";
+import { apiDefaultHeaders } from "~/utils/headers";
+export { headers } from "~/utils/headers";
 
 export const meta: MetaFunction = (args) => {
   return metaV1(args, {
     title: "John’s blog",
   });
 };
-export const headers: HeadersFunction = () => ({
-  "Cache-Control": "max-age=300, s-maxage=3600",
-});
 
 export const loader = async () => {
   const entries = await getListOfEntries();
@@ -23,10 +22,7 @@ export const loader = async () => {
       date: entry.fields.date,
     };
   });
-  return json(
-    { entries: e },
-    { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
-  );
+  return json({ entries: e }, apiDefaultHeaders);
 };
 
 export default function Post() {

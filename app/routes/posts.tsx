@@ -1,13 +1,11 @@
-import { HeadersFunction, MetaFunction } from "@remix-run/node";
+import { MetaFunction } from "@remix-run/node";
 import { Outlet, isRouteErrorResponse, useRouteError } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
 
 import { EmailSignupForm } from "~/components/EmailSignupForm";
 import { FourOhFour } from "~/components/FourOhFour";
+export { headers } from "~/utils/headers";
 
-export const headers: HeadersFunction = () => ({
-  "Cache-Control": "max-age=300, s-maxage=3600",
-});
 export default function Index() {
   return (
     <div>

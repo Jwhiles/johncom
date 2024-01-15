@@ -1,4 +1,4 @@
-import { HeadersFunction, json } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 
 import { Note } from "~/components/Note";
@@ -6,6 +6,8 @@ import { getListOfEntries } from "~/contentful.server";
 import { prisma } from "~/db.server";
 import { renderToHtml } from "~/features/markdown/render.server";
 import { formatDate } from "~/utils/formatDate";
+import { apiDefaultHeaders } from "~/utils/headers";
+export { headers } from "~/utils/headers";
 
 export const loader = async () => {
   const latestPost = (await getListOfEntries()).items[0];
@@ -24,14 +26,8 @@ export const loader = async () => {
     };
   });
 
-  return json(
-    { latestPost, notes },
-    { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
-  );
+  return json({ latestPost, notes }, apiDefaultHeaders);
 };
-export const headers: HeadersFunction = () => ({
-  "Cache-Control": "max-age=300, s-maxage=3600",
-});
 
 export default function Index() {
   const { latestPost } = useLoaderData<typeof loader>();

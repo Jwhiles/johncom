@@ -1,9 +1,11 @@
-import { HeadersFunction, LoaderFunctionArgs, json } from "@remix-run/node";
+import { LoaderFunctionArgs, json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
 import { Note } from "~/components/Note";
 import { prisma } from "~/db.server";
 import { renderToHtml } from "~/features/markdown/render.server";
+import { apiDefaultHeaders } from "~/utils/headers";
+export { headers } from "~/utils/headers";
 
 // This page is so we can permalink to a note
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -28,12 +30,9 @@ export async function loader({ params }: LoaderFunctionArgs) {
         inReplyToTitle: post.inReplyToTitle,
       },
     },
-    { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
+    apiDefaultHeaders,
   );
 }
-export const headers: HeadersFunction = () => ({
-  "Cache-Control": "max-age=300, s-maxage=3600",
-});
 
 export default function NotePermalink() {
   const { post } = useLoaderData<typeof loader>();

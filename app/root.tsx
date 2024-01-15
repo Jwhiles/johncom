@@ -1,5 +1,5 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
-import { LinksFunction, MetaFunction, json } from "@remix-run/node";
+import { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -12,10 +12,7 @@ import { metaV1 } from "@remix-run/v1-meta";
 
 import fonts from "~/styles/fonts.css";
 import styles from "~/styles/tailwind.css";
-
-export async function loader() {
-  return json({ headers: { "cache-control": "max-age=300, s-maxage=3600" } });
-}
+export { headers } from "~/utils/headers";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },

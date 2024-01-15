@@ -1,12 +1,11 @@
-import { HeadersFunction, json } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
 
 import { EmailSignupForm } from "~/components/EmailSignupForm";
 import { getListOfTags } from "~/contentful.server";
+import { apiDefaultHeaders } from "~/utils/headers";
+export { headers } from "~/utils/headers";
 
-export const headers: HeadersFunction = () => ({
-  "Cache-Control": "max-age=300, s-maxage=3600",
-});
 export const loader = async () => {
   const tags = await getListOfTags();
   const t = tags.items.map((tag) => {
@@ -15,10 +14,7 @@ export const loader = async () => {
       name: tag.fields.tagName,
     };
   });
-  return json(
-    { tags: t },
-    { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
-  );
+  return json({ tags: t }, apiDefaultHeaders);
 };
 
 export default function Index() {

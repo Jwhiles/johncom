@@ -1,7 +1,6 @@
 import { Prisma } from "@prisma/client";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type {
-  HeadersFunction,
   LoaderFunctionArgs,
   MetaFunction,
   SerializeFrom,
@@ -21,6 +20,8 @@ import {
   createPostBreadcrumbs,
   createSeoPageMetaTags,
 } from "~/utils/createSeoMetadata";
+import { apiDefaultHeaders } from "~/utils/headers";
+export { headers } from "~/utils/headers";
 
 const footnoteMatch = /^\[\^([^\]]+)\]:([\s\S]*)$/;
 const referenceMatch = /\[\^([^\]]+)\](?!\()/g;
@@ -191,7 +192,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       likes,
       reposts,
     },
-    { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
+    apiDefaultHeaders,
   );
 };
 
@@ -221,10 +222,6 @@ export const meta: MetaFunction<typeof loader> = (args) => {
 
   return [];
 };
-
-export const headers: HeadersFunction = () => ({
-  "Cache-Control": "max-age=300, s-maxage=3600",
-});
 
 export default function Post() {
   const { html, hnUrl } = useLoaderData<typeof loader>();

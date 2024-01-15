@@ -1,10 +1,12 @@
-import { HeadersFunction, json } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import dayjs from "dayjs";
 
 import { Note } from "~/components/Note";
 import { prisma } from "~/db.server";
 import { renderToHtml } from "~/features/markdown/render.server";
+import { apiDefaultHeaders } from "~/utils/headers";
+export { headers } from "~/utils/headers";
 
 // TODO
 // * pagination
@@ -26,12 +28,9 @@ export async function loader() {
         };
       }),
     },
-    { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
+    apiDefaultHeaders,
   );
 }
-export const headers: HeadersFunction = () => ({
-  "Cache-Control": "max-age=300, s-maxage=3600",
-});
 
 export default function NoteIndex() {
   const { posts } = useLoaderData<typeof loader>();

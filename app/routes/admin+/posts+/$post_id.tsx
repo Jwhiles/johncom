@@ -60,7 +60,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 };
 
 const UpdateCommentSchema = z.object({
-  idiot: z.string(),
+  commentBody: z.string(),
   commentId: z.string().cuid(),
 });
 export const action = async ({ request, params }: ActionFunctionArgs) => {
@@ -80,7 +80,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
         id: parsed.commentId,
       },
       data: {
-        content: sanitiseHtmlHard(parsed.idiot),
+        content: sanitiseHtmlHard(parsed.commentBody),
       },
     });
     return json({});
@@ -119,7 +119,7 @@ const Comment = ({
           <input type="hidden" name="commentId" value={commentId} />
           <RichTextEditor
             id={commentId}
-            name={"idiot"}
+            name={"commentBody"}
             defaultValue={content}
           />
           <button onClick={() => setEditing(!editing)}>cancel</button>

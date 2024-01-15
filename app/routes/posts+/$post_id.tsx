@@ -14,6 +14,7 @@ import quotebacksStyle from "marked-quotebacks/dist/main.css";
 import { Ref, forwardRef, useRef, useState } from "react";
 
 import { ExternalLink } from "~/components/ExternalLink";
+import RichTextEditor from "~/components/RichTextEditor";
 import { getEntry } from "~/contentful.server";
 import { prisma } from "~/db.server";
 import { HTML, ShowMarkdown } from "~/features/markdown";
@@ -584,12 +585,9 @@ const AddComment = forwardRef(function AddComment(
           <label htmlFor="content" className="block text-xs font-bold mb-1">
             Comment
           </label>
-          <textarea
-            id="content"
-            className="w-2/3"
-            placeholder="I have a very important opinion..."
-            name="content"
-          />
+          <div className="w-2/3">
+            <RichTextEditor id="content" name="content" />
+          </div>
         </div>
         <button className="">Submit</button>
       </div>

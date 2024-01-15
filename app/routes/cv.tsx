@@ -2,7 +2,6 @@ export default function CV() {
   return (
     <div className="p-4 leading-tight max-w-4xl mx-auto pt-10 [&:not(:last-child)]:*:mb-8 [&:not(:last-child)]:*:pb-8 [&:not(:last-child)]:*:border-b-2 pb-16">
       <Profile />
-      <WhatIWant />
 
       <WorkHistory />
 
@@ -10,46 +9,6 @@ export default function CV() {
     </div>
   );
 }
-
-const WhatIWant = () => (
-  <div className="grid grid-cols-9 gap-4">
-    <div className="col-span-9 md:col-span-2">
-      <h2 className="my-0 text-3xl">What I’m looking for</h2>
-    </div>
-    <div className="col-span-9 md:col-span-7">
-      <div className="mb-4  *:text-base">
-        <p>
-          I’m interested in remote, full-time roles where I can grow into the
-          next stage of my career. I’m currently looking for individual
-          contributor roles, but am also keen to gradually increase the amount
-          of mentorship and leadership I’m doing. I’d be interested in moving
-          into a team lead role in the near future.
-        </p>
-
-        <p>
-          I want to work for a company that values its users, its team, and
-          building great products. I’ve been impressed by organisations like:
-        </p>
-
-        <ul className="*:text-base *:my-1">
-          <li>
-            <a href="https://linear.app/method/introduction">Linear</a>
-          </li>
-          <li>
-            <a href="https://thebrowser.company/values/">The Browser Company</a>
-          </li>
-          <li>
-            <a href="https://www.are.na/blog/on-motivation">Are.na</a>
-          </li>
-        </ul>
-
-        <p>
-          If you like these companies vibes too, then I’d love to hear from you.
-        </p>
-      </div>
-    </div>
-  </div>
-);
 
 const Profile = () => (
   <div className="grid grid-cols-5 gap-4 ">

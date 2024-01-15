@@ -26,7 +26,7 @@ const RichTextEditor = forwardRef<
   const editor = useEditor({
     editorProps: {
       attributes: {
-        class: "p-1 *:text-base min-h-[200px] ",
+        class: "p-1 *:text-black *:text-base min-h-[200px] ",
       },
     },
     extensions: [

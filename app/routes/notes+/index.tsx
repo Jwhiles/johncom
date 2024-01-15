@@ -4,9 +4,9 @@ import dayjs from "dayjs";
 
 import { Note } from "~/components/Note";
 import { prisma } from "~/db.server";
-import { renderToHtml } from "~/features/markdown/render.server";
 import { apiDefaultHeaders } from "~/utils/headers";
 export { headers } from "~/utils/headers";
+import { sanitiseHtml } from "~/features/markdown/render.server";
 
 // TODO
 // * pagination
@@ -20,7 +20,7 @@ export async function loader() {
       posts: posts.map((post) => {
         return {
           id: post.id,
-          content: renderToHtml(post.content),
+          content: sanitiseHtml(post.content),
           createdAt: dayjs(post.createdAt).format("ddd, MMM D, YYYY h:mmA Z"),
           inReplyToUrl: post.inReplyToUrl,
           inReplyToAuthor: post.inReplyToAuthor,
@@ -28,7 +28,7 @@ export async function loader() {
         };
       }),
     },
-    apiDefaultHeaders,
+    apiDefaultHeaders
   );
 }
 

@@ -8,7 +8,7 @@ import { requireAdmin } from "~/auth.server";
 import RichTextEditor from "~/components/RichTextEditor";
 import { prisma } from "~/db.server";
 import { HTML, ShowMarkdown } from "~/features/markdown";
-import { sanitiseHtmlHard } from "~/features/markdown/index.server";
+import { sanitiseHtml } from "~/features/markdown/index.server";
 
 const commentsSelect = (postId: string) => ({
   id: true,
@@ -52,7 +52,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   return json(
     {
       comments: comments.map((c) => {
-        return { ...c, content: sanitiseHtmlHard(c.content) };
+        return { ...c, content: sanitiseHtml(c.content) };
       }),
     },
     { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
@@ -80,7 +80,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
         id: parsed.commentId,
       },
       data: {
-        content: sanitiseHtmlHard(parsed.commentBody),
+        content: sanitiseHtml(parsed.commentBody),
       },
     });
     return json({});

@@ -3,9 +3,9 @@ import { useLoaderData } from "@remix-run/react";
 
 import { Note } from "~/components/Note";
 import { prisma } from "~/db.server";
-import { renderToHtml } from "~/features/markdown/render.server";
 import { apiDefaultHeaders } from "~/utils/headers";
 export { headers } from "~/utils/headers";
+import { sanitiseHtml } from "~/features/markdown/render.server";
 
 // This page is so we can permalink to a note
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -23,7 +23,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
     {
       post: {
         id: post.id,
-        content: renderToHtml(post.content),
+        content: sanitiseHtml(post.content),
         createdAt: post.createdAt,
         inReplyToUrl: post.inReplyToUrl,
         inReplyToAuthor: post.inReplyToAuthor,

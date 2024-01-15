@@ -18,7 +18,7 @@ import RichTextEditor from "~/components/RichTextEditor";
 import { getEntry } from "~/contentful.server";
 import { prisma } from "~/db.server";
 import { HTML, ShowMarkdown } from "~/features/markdown";
-import { sanitiseHtmlHard } from "~/features/markdown/index.server";
+import { sanitiseHtml } from "~/features/markdown/index.server";
 import {
   createPostBreadcrumbs,
   createSeoPageMetaTags,
@@ -88,7 +88,7 @@ const mentionsSelect = {
   source: true,
 } satisfies Prisma.WebmentionSelect;
 
-export type MentionSelected = Prisma.WebmentionGetPayload<{
+export type IMentions = Prisma.WebmentionGetPayload<{
   select: typeof mentionsSelect;
 }>;
 
@@ -120,18 +120,18 @@ export type ResponsesSelected = Prisma.CommentGetPayload<{
   select: ReturnType<typeof commentsSelect>;
 }>;
 
-type TODONameThisBetter = Omit<CommentsSelected, "content" | "responses"> & {
+type IComments = Omit<CommentsSelected, "content" | "responses"> & {
   content: HTML;
   responses: (Omit<ResponsesSelected, "content"> & { content: HTML })[];
 };
 
 type CommentOrMention =
   | {
-      data: TODONameThisBetter;
+      data: IComments;
       type: "comment";
     }
   | {
-      data: MentionSelected;
+      data: IMentions;
       type: "mention";
     };
 
@@ -175,10 +175,10 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       return {
         data: {
           ...comment,
-          content: sanitiseHtmlHard(comment.content),
+          content: sanitiseHtml(comment.content),
           responses: comment.responses.map((r) => ({
             ...r,
-            content: sanitiseHtmlHard(r.content),
+            content: sanitiseHtml(r.content),
           })),
         },
         type: "comment",
@@ -436,7 +436,7 @@ const Comment = ({
   comment,
   setReplyingTo,
 }: {
-  comment: SerializeFrom<TODONameThisBetter>;
+  comment: SerializeFrom<IComments>;
   setReplyingTo: (input: { name: string; commentId: string }) => void;
 }) => {
   return (
@@ -484,7 +484,7 @@ const Mention = ({
   mention,
 }: {
   // Type this with the cool satisfied thing.
-  mention: SerializeFrom<MentionSelected>;
+  mention: SerializeFrom<IMentions>;
 }) => {
   return (
     <div className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4">

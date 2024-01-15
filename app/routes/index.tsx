@@ -4,7 +4,7 @@ import { Link, useLoaderData } from "@remix-run/react";
 import { Note } from "~/components/Note";
 import { getListOfEntries } from "~/contentful.server";
 import { prisma } from "~/db.server";
-import { renderToHtml } from "~/features/markdown/render.server";
+import { sanitiseHtml } from "~/features/markdown/render.server";
 import { formatDate } from "~/utils/formatDate";
 import { apiDefaultHeaders } from "~/utils/headers";
 export { headers } from "~/utils/headers";
@@ -17,7 +17,7 @@ export const loader = async () => {
   ).map((post) => {
     return {
       id: post.id,
-      content: renderToHtml(post.content),
+      content: sanitiseHtml(post.content),
       // Dates... Do I want to add dayjs to this projects?
       createdAt: post.createdAt,
       inReplyToUrl: post.inReplyToUrl,
@@ -32,7 +32,7 @@ export const loader = async () => {
 export default function Index() {
   const { latestPost } = useLoaderData<typeof loader>();
   return (
-    <div className="p-4 leading-tight max-w-2xl mx-auto">
+    <div className="body">
       <div className="select-none my-0">&nbsp;</div>
       <h1 className="text-8xl tracking-tighter">John’s website.</h1>
       <ul className="mt-10">

@@ -16,9 +16,15 @@ export default function Admin() {
       <li>
         <Link to="microblog">microblog</Link>
       </li>
+
+      <li>
+        <Link to="posts">posts</Link>
+      </li>
+
       <li>
         <Link to="webmentions">webmentions</Link>
       </li>
+
       <li>
         <Link to="comments">comments</Link>
       </li>

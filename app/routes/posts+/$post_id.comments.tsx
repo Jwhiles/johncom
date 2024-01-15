@@ -2,6 +2,7 @@ import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
 import { z } from "zod";
 
 import { prisma } from "~/db.server";
+import { sanitiseHtml } from "~/features/markdown/index.server";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   if (!params.post_id) {
@@ -39,7 +40,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
 
   const comments = await prisma.comment.create({
     data: {
-      content: parsed.data.content,
+      content: sanitiseHtml(parsed.data.content),
       authorEmail: parsed.data.email,
       postId: params.post_id,
       name: parsed.data.name,

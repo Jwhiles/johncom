@@ -1,1 +1,1 @@
-export { renderToHtml, sanitiseHtml } from "./render.server";
+export { sanitiseHtml } from "./render.server";

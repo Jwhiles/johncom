@@ -14,8 +14,11 @@ import quotebacksStyle from "marked-quotebacks/dist/main.css";
 import { Ref, forwardRef, useRef, useState } from "react";
 
 import { ExternalLink } from "~/components/ExternalLink";
+import RichTextEditor from "~/components/RichTextEditor";
 import { getEntry } from "~/contentful.server";
 import { prisma } from "~/db.server";
+import { HTML, ShowMarkdown } from "~/features/markdown";
+import { sanitiseHtml } from "~/features/markdown/index.server";
 import {
   createPostBreadcrumbs,
   createSeoPageMetaTags,
@@ -85,9 +88,16 @@ const mentionsSelect = {
   source: true,
 } satisfies Prisma.WebmentionSelect;
 
-export type MentionSelected = Prisma.WebmentionGetPayload<{
+export type IMentions = Prisma.WebmentionGetPayload<{
   select: typeof mentionsSelect;
 }>;
+
+const responseSelect = {
+  id: true,
+  content: true,
+  name: true,
+  createdAt: true,
+};
 
 const commentsSelect = (postId: string) => ({
   id: true,
@@ -99,25 +109,29 @@ const commentsSelect = (postId: string) => ({
       approved: true,
       postId,
     },
-    select: {
-      id: true,
-      content: true,
-      name: true,
-      createdAt: true,
-    },
+    select: responseSelect,
   },
 });
 export type CommentsSelected = Prisma.CommentGetPayload<{
   select: ReturnType<typeof commentsSelect>;
 }>;
 
+export type ResponsesSelected = Prisma.CommentGetPayload<{
+  select: ReturnType<typeof commentsSelect>;
+}>;
+
+type IComments = Omit<CommentsSelected, "content" | "responses"> & {
+  content: HTML;
+  responses: (Omit<ResponsesSelected, "content"> & { content: HTML })[];
+};
+
 type CommentOrMention =
   | {
-      data: CommentsSelected;
+      data: IComments;
       type: "comment";
     }
   | {
-      data: MentionSelected;
+      data: IMentions;
       type: "mention";
     };
 
@@ -158,7 +172,17 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   const commentsAndMentions = [
     ...comments.map((comment) => {
-      return { data: comment, type: "comment" } as CommentOrMention;
+      return {
+        data: {
+          ...comment,
+          content: sanitiseHtml(comment.content),
+          responses: comment.responses.map((r) => ({
+            ...r,
+            content: sanitiseHtml(r.content),
+          })),
+        },
+        type: "comment",
+      } as CommentOrMention;
     }),
 
     // Filter out webmentions that don't have content
@@ -412,7 +436,7 @@ const Comment = ({
   comment,
   setReplyingTo,
 }: {
-  comment: SerializeFrom<CommentsSelected>;
+  comment: SerializeFrom<IComments>;
   setReplyingTo: (input: { name: string; commentId: string }) => void;
 }) => {
   return (
@@ -421,7 +445,7 @@ const Comment = ({
         <p className="text-xs font-bold">
           {comment.name} - {formatDate(new Date(comment.createdAt))}
         </p>
-        <p>{comment.content}</p>
+        <ShowMarkdown>{comment.content}</ShowMarkdown>
         <button
           type="button"
           onClick={() => {
@@ -436,16 +460,17 @@ const Comment = ({
       </div>
       {comment.responses.length > 0 ? (
         <div className="pl-8 mb-8">
-          {comment.responses.map((reply) => {
+          {comment.responses.map((response) => {
             return (
               <div
-                key={reply.id}
+                key={response.id}
                 className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4"
               >
                 <p className="text-xs font-bold">
-                  {reply.name} - {formatDate(new Date(reply.createdAt))}
+                  {response.name} - {formatDate(new Date(response.createdAt))}
                 </p>
-                <p>{reply.content}</p>
+
+                <ShowMarkdown>{response.content}</ShowMarkdown>
               </div>
             );
           })}
@@ -459,7 +484,7 @@ const Mention = ({
   mention,
 }: {
   // Type this with the cool satisfied thing.
-  mention: SerializeFrom<MentionSelected>;
+  mention: SerializeFrom<IMentions>;
 }) => {
   return (
     <div className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4">
@@ -560,12 +585,9 @@ const AddComment = forwardRef(function AddComment(
           <label htmlFor="content" className="block text-xs font-bold mb-1">
             Comment
           </label>
-          <textarea
-            id="content"
-            className="w-2/3"
-            placeholder="I have a very important opinion..."
-            name="content"
-          />
+          <div className="w-2/3">
+            <RichTextEditor id="content" name="content" />
+          </div>
         </div>
         <button className="">Submit</button>
       </div>

@@ -36,7 +36,7 @@ export const Note = ({
           {inReplyToAuthor ? " by " + inReplyToAuthor : null}
         </a>
       ) : null}
-      <ShowMarkdown className="*:text-base e-content" markdown={content} />
+      <ShowMarkdown className="*:text-base e-content">{content}</ShowMarkdown>
       <Link className="u-url hidden text-xs" to={`/notes/${id}`}>
         permalink
       </Link>

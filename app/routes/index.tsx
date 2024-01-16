@@ -52,7 +52,7 @@ export default function Index() {
           </Link>
         </li>
       </ul>
-      <div className="my-24">
+      <div className="mt-24">
         <div className="text-base font-bold text-slate-300 mb-1">
           Latest article
         </div>
@@ -63,7 +63,29 @@ export default function Index() {
           {formatDate(latestPost.fields.date)}
         </div>
       </div>
-      <div className="my-24">
+      <div className="mt-24">
+        <div className="text-base font-bold text-slate-300 mb-1">
+          Greatest hits
+        </div>
+        <ul>
+          <li>
+            <a className="mt-1" href={`/posts/programming-as-theory`}>
+              Suddenly, I Understand Software
+            </a>
+          </li>
+          <li>
+            <a className="mt-1" href={`/posts/music-production-lessons`}>
+              Six things I sort of believe about making music
+            </a>
+          </li>
+          <li>
+            <a className="mt-1" href={`/posts/work`}>
+              Maybe you should do less “work”
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div className="mt-24">
         <div className="text-base font-bold text-slate-300 mb-1">Notes</div>
         <Notes />
       </div>

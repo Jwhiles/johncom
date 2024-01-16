@@ -1,6 +1,5 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import dayjs from "dayjs";
 
 import { Note } from "~/components/Note";
 import { prisma } from "~/db.server";
@@ -21,7 +20,7 @@ export async function loader() {
         return {
           id: post.id,
           content: sanitiseHtml(post.content),
-          createdAt: dayjs(post.createdAt).format("ddd, MMM D, YYYY h:mmA Z"),
+          createdAt: post.createdAt,
           inReplyToUrl: post.inReplyToUrl,
           inReplyToAuthor: post.inReplyToAuthor,
           inReplyToTitle: post.inReplyToTitle,

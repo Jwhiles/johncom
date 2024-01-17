@@ -1,3 +1,5 @@
+import cx from "~/utils/cx";
+
 import type { HTML } from "./types";
 
 export const ShowMarkdown = ({
@@ -9,7 +11,7 @@ export const ShowMarkdown = ({
 }) => {
   return (
     <div
-      className={`markdown${className ? ` ${className}` : ""}`}
+      className={cx("markdown", className)}
       dangerouslySetInnerHTML={{
         __html: children,
       }}

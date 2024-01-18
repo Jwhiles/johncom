@@ -65,7 +65,7 @@ const workHistory: WorkEntryProps[] = [
   {
     companyName: "Roost",
     jobTitle: "CTO",
-    technologies: ["TypeScript", "Node.js", "Remix", "PostgreSQL"],
+    technologies: ["TypeScript", "Node.js", "Remix"],
     startDate: "September 2023",
     endDate: "December 2023",
     experienceBulletPoints: [
@@ -89,10 +89,41 @@ const workHistory: WorkEntryProps[] = [
     startDate: "March 2020",
     endDate: "September 2023",
     experienceBulletPoints: [
-      "Managed Contentful’s fleet of PostgreSQL databases which support 30% of Fortune 500 companies. Lead a project to perform major version upgrades across the entire fleet with zero downtime for customers.",
-      "Made extensive contributions to Contentful’s app framework.",
-      "Rebuilt the front-end technical interview, improving the experience for interviewers and candidates and reducing the amount of time engineers spent in each interview by 40%.",
-      "Helped numerous engineers on-board successfully into the Company by providing mentorship and guidance.",
+      <div key="psql">
+        Managed Contentful’s fleet of PostgreSQL databases which support 30% of
+        Fortune 500 companies.{" "}
+        <ul className=" *:my-2 *:text-sm">
+          <li>
+            Lead a project to perform major version upgrades across the entire
+            fleet of hundreds of databases with zero downtime for customers.
+          </li>
+          <li>
+            Maintained a custom Kubernetes operator, which ensured databases and
+            supporting infrastructure were always in the correct state.
+          </li>
+        </ul>
+      </div>,
+      <div key="app">
+        Was a key member of Contentful’s App Framework team.
+        <ul className=" *:my-2 *:text-sm">
+          <li>
+            Built a hosting solution for Contentful Apps, enabling users to
+            easily run their own code inside the Contentful web app.
+          </li>
+          <li>
+            Built a system that allowed users to share their Apps with other
+            organisations. This was a key feature to support enterprise users
+            and open source App developers.
+          </li>
+          <li>
+            Maintained Contentful's app marketplace, including Custom apps for
+            third-party services, such as Shopify, Mailgun, Cloudinary and
+            others.
+          </li>
+        </ul>
+      </div>,
+      "Rebuilt the front-end technical interview, reducing the amount of time engineers spent in each interview by 40%.",
+      "Helped junior engineers on-board successfully into the Company by providing mentorship and guidance.",
     ],
   },
   {
@@ -138,7 +169,7 @@ const workHistory: WorkEntryProps[] = [
     endDate: "January 2018",
     experienceBulletPoints: [
       "Built a rich UI for a new financial reporting service.",
-      "Built a design system’s component library.",
+      "Built a component library for the design system.",
       `Led a TypeScript migration, ensuring that builds continued to work, and helping the engineering team learn TypeScript.`,
     ],
   },
@@ -150,7 +181,7 @@ interface WorkEntryProps {
   technologies: string[];
   startDate: string;
   endDate: string;
-  experienceBulletPoints: string[];
+  experienceBulletPoints: React.ReactNode[];
 }
 
 const WorkHistory = () => {
@@ -194,9 +225,9 @@ const WorkEntry = ({
       </div>
 
       <div className="col-span-4">
-        <ul className="my-0 [&>*]:my-2 [&>*]:text-sm">
-          {experienceBulletPoints.map((x) => (
-            <li key={x} className="my-1">
+        <ul className="my-0 *:my-2 *:text-sm">
+          {experienceBulletPoints.map((x, i) => (
+            <li key={i} className="my-1">
               {x}
             </li>
           ))}

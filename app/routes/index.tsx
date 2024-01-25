@@ -33,25 +33,21 @@ export default function Index() {
   const { latestPost } = useLoaderData<typeof loader>();
   return (
     <div className="body">
-      <div className="select-none my-0">&nbsp;</div>
+      <nav className="flex p-0 m-0 gap-4">
+        <Link className="" to="/posts">
+          Blog
+        </Link>
+        <Link className="" to="/cv">
+          CV
+        </Link>
+        <Link className="" to="/albums">
+          Albums
+        </Link>
+        <Link className="" to="/contact">
+          Contact
+        </Link>
+      </nav>
       <h1 className="text-8xl tracking-tighter">John’s website.</h1>
-      <ul className="mt-10">
-        <li>
-          <Link className="text-2xl" to="/posts">
-            My blog
-          </Link>
-        </li>
-        <li>
-          <Link className="text-2xl" to="/cv">
-            My CV
-          </Link>
-        </li>
-        <li>
-          <Link className="text-2xl" to="/albums">
-            Albums
-          </Link>
-        </li>
-      </ul>
       <div className="mt-24">
         <div className="text-base font-bold text-slate-300 mb-1">
           Latest article

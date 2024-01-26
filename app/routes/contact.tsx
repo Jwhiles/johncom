@@ -16,6 +16,11 @@ export default function Contact() {
           </a>
         </li>
         <li>
+          <a href="https://www.admonymous.co/jwhiles">
+            Leave me anonymous feedback
+          </a>
+        </li>
+        <li>
           <a href="mailto:hi@johnwhiles.com">Email me</a>
         </li>
         <li>

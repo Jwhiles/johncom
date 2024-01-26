@@ -22,13 +22,13 @@ export const Note = ({
     <div className="pb-2">
       <time
         dateTime={dayjs(createdAt).format("ddd, MMM D, YYYY h:mmA Z")}
-        className="dt-published block text-xs mb-0"
+        className="dt-published mb-0 block text-xs"
       >
         {dayjs(createdAt).format("MMM D")}
       </time>
       {inReplyToUrl ? (
         <a
-          className="u-in-reply-to text-xs flex gap-2 items-center"
+          className="u-in-reply-to flex items-center gap-2 text-xs"
           href={inReplyToUrl}
         >
           <ReplyIcon />
@@ -36,7 +36,7 @@ export const Note = ({
           {inReplyToAuthor ? " by " + inReplyToAuthor : null}
         </a>
       ) : null}
-      <ShowMarkdown className="*:text-base e-content">{content}</ShowMarkdown>
+      <ShowMarkdown className="e-content *:text-base">{content}</ShowMarkdown>
       <Link className="u-url hidden text-xs" to={`/notes/${id}`}>
         permalink
       </Link>
@@ -51,7 +51,7 @@ const ReplyIcon = () => (
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className="w-2 h-2"
+    className="h-2 w-2"
   >
     <path
       strokeLinecap="round"

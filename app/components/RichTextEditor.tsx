@@ -60,7 +60,7 @@ const RichTextEditor = forwardRef<
   });
 
   return (
-    <div className="bg-white rounded">
+    <div className="rounded bg-white">
       <input
         ref={ref}
         type="hidden"

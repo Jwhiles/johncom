@@ -47,7 +47,7 @@ export function generateRss({
           <pubDate>${entry.pubDate}</pubDate>
           <link>${entry.link}</link>
           ${entry.guid ? `<guid isPermaLink="true">${entry.guid}</guid>` : ""}
-        </item>`
+        </item>`,
         )
         .join("")}
     </channel>

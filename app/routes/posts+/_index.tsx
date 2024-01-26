@@ -38,7 +38,7 @@ export default function Post() {
           return (
             <li key={`${title}${slug}`}>
               <Link
-                className="justify-between flex"
+                className="flex justify-between"
                 prefetch="intent"
                 to={slug}
               >

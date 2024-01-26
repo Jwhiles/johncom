@@ -100,7 +100,7 @@ export default function LoginPage() {
             aria-describedby="email-error"
           />
           {actionData?.errors?.email ? (
-            <div className="pt-1 text-error" id="email-error">
+            <div className="text-error pt-1" id="email-error">
               {actionData.errors.email}
             </div>
           ) : (
@@ -123,7 +123,7 @@ export default function LoginPage() {
               aria-describedby="password-error"
             />
             {actionData?.errors?.password ? (
-              <div className="pt-1 text-error" id="password-error">
+              <div className="text-error pt-1" id="password-error">
                 {actionData.errors.password}
               </div>
             ) : (

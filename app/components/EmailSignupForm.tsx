@@ -8,7 +8,7 @@ export const EmailSignupForm = () => (
       target="_blank"
       className=""
     >
-      <label className="block mb-2 text-sm" htmlFor="email">
+      <label className="mb-2 block text-sm" htmlFor="email">
         Subscribe to new posts by email
       </label>
       <div>

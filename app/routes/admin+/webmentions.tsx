@@ -71,7 +71,7 @@ export default function Admin() {
             </p>
             {webmention.authorPhoto ? (
               <img
-                className="rounded-full w-8 h-8"
+                className="h-8 w-8 rounded-full"
                 src={webmention.authorPhoto}
                 alt=""
               />

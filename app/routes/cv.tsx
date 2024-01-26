@@ -2,7 +2,7 @@ export { headers } from "~/utils/headers";
 
 export default function CV() {
   return (
-    <div className="p-4 leading-tight max-w-4xl mx-auto pt-10 [&:not(:last-child)]:*:mb-8 [&:not(:last-child)]:*:pb-8 [&:not(:last-child)]:*:border-b-2 pb-16">
+    <div className="mx-auto max-w-4xl p-4 pb-16 pt-10 leading-tight [&:not(:last-child)]:*:mb-8 [&:not(:last-child)]:*:border-b-2 [&:not(:last-child)]:*:pb-8">
       <Profile />
 
       <WorkHistory />
@@ -14,21 +14,21 @@ export default function CV() {
 
 const Profile = () => (
   <div className="grid grid-cols-5 gap-4 ">
-    <h1 className="col-span-5 md:col-span-1 my-0 text-3xl">John Whiles</h1>
+    <h1 className="col-span-5 my-0 text-3xl md:col-span-1">John Whiles</h1>
     <div className="col-span-3">
       <p className="text-base">
         I am a product-minded software engineer with 7 years of experience
         working at high-growth companies. I prefer to work across the full stack
         and deliver features end-to-end. I built the micro SaaS app{" "}
         <a
-          className="not-italic font-sans text-base"
+          className="font-sans text-base not-italic"
           href="https://www.coachtracker.net"
         >
           Coachtracker
         </a>{" "}
         and write regularly on my{" "}
         <a
-          className="not-italic font-sans text-base"
+          className="font-sans text-base not-italic"
           href="https://johnwhiles.com/"
         >
           personal website
@@ -208,16 +208,16 @@ const WorkEntry = ({
   experienceBulletPoints,
 }: WorkEntryProps) => {
   return (
-    <div className="grid grid-cols-6 gap-8 mb-4 last:mb-0">
+    <div className="mb-4 grid grid-cols-6 gap-8 last:mb-0">
       <div className="col-span-2">
-        <h3 className="mt-0 mb-1 text-xl">{companyName}</h3>
+        <h3 className="mb-1 mt-0 text-xl">{companyName}</h3>
         <p className="mb-1 text-sm">{jobTitle}</p>
         <p className="text-xs">
           {startDate} - {endDate}
         </p>
-        <ul className="list-none ml-0">
+        <ul className="ml-0 list-none">
           {technologies.map((x) => (
-            <li key={x} className="text-xs text-slate-400 my-1">
+            <li key={x} className="my-1 text-xs text-slate-400">
               {x}
             </li>
           ))}
@@ -245,10 +245,10 @@ const Education = () => {
       </div>
 
       <ol className="col-span-9 md:col-span-7">
-        <div className="grid grid-cols-6 gap-8 mb-4">
+        <div className="mb-4 grid grid-cols-6 gap-8">
           <div className="col-span-2">
-            <h3 className="mt-0 mb-1 text-xl">Founders and Coders</h3>
-            <p className="text-xs mb-0">2016 - 2017</p>
+            <h3 className="mb-1 mt-0 text-xl">Founders and Coders</h3>
+            <p className="mb-0 text-xs">2016 - 2017</p>
           </div>
 
           <p className="col-span-4 text-base">Student developer</p>
@@ -256,10 +256,10 @@ const Education = () => {
 
         <div className="grid grid-cols-6 gap-8">
           <div className="col-span-2">
-            <h3 className="mt-0 mb-1 text-xl">
+            <h3 className="mb-1 mt-0 text-xl">
               Royal Holloway, University of London
             </h3>
-            <p className="text-xs mb-0">2010 - 2013</p>
+            <p className="mb-0 text-xs">2010 - 2013</p>
           </div>
 
           <p className="col-span-4 text-base">

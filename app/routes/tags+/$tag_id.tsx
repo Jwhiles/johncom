@@ -63,7 +63,7 @@ export default function Post() {
             return (
               <li key={id}>
                 <Link
-                  className="justify-between flex"
+                  className="flex justify-between"
                   prefetch="intent"
                   to={`../${id}`}
                 >
@@ -89,7 +89,7 @@ export default function Post() {
           return (
             <li key={`${title}${slug}`}>
               <Link
-                className="justify-between flex"
+                className="flex justify-between"
                 prefetch="intent"
                 to={`/posts/${slug}`}
               >

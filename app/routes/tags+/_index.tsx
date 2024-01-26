@@ -17,7 +17,7 @@ export default function Post() {
         {tags.map(({ name, id }) => {
           return (
             <li key={id}>
-              <Link className="justify-between flex" prefetch="intent" to={id}>
+              <Link className="flex justify-between" prefetch="intent" to={id}>
                 {name}
               </Link>
             </li>

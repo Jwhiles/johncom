@@ -1,3 +1,3 @@
-it('Works', () => {
-  expect(true).toBe(true)
-})
+it("Works", () => {
+  expect(true).toBe(true);
+});

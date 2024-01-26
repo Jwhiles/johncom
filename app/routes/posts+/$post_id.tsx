@@ -278,11 +278,11 @@ const LikesAndReposts = () => {
       <p className="text-xs">
         {likes.length} Like{likes.length > 1 ? "s" : ""}
       </p>
-      <ul className="list-none flex m-0 p-0">
+      <ul className="m-0 flex list-none p-0">
         {likes.map((like) => {
           return (
             <li className="my-0 p-0" key={like.source}>
-              <ExternalLink className="m-0 p-0 inline" href={like.source}>
+              <ExternalLink className="m-0 inline p-0" href={like.source}>
                 {like.authorPhoto ? (
                   <img alt="" className="my-0 h-6 w-6" src={like.authorPhoto} />
                 ) : (
@@ -305,7 +305,7 @@ const WebmentionForm = () => {
 
   if (submission === "success") {
     return (
-      <div className="bg-green-100 dark:bg-green-900 rounded-md p-4 my-4">
+      <div className="my-4 rounded-md bg-green-100 p-4 dark:bg-green-900">
         <p>
           Thanks for the webmention! It will appear on the site once it's
           approved.
@@ -380,7 +380,7 @@ const WebmentionForm = () => {
       </div>
       <input type="hidden" name="target" value={canonicalUrl} />
       {submission === "error" ? (
-        <div className="bg-red-100 dark:bg-red-900 rounded-md p-4 my-4">
+        <div className="my-4 rounded-md bg-red-100 p-4 dark:bg-red-900">
           <p>
             Something went wrong submitting your webmention. Please try again.
           </p>
@@ -441,7 +441,7 @@ const Comment = ({
 }) => {
   return (
     <div key={comment.id}>
-      <div className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4">
+      <div className="my-4 rounded-md bg-gray-200 p-4 dark:bg-slate-600">
         <p className="text-xs font-bold">
           {comment.name} - {formatDate(new Date(comment.createdAt))}
         </p>
@@ -459,12 +459,12 @@ const Comment = ({
         </button>
       </div>
       {comment.responses.length > 0 ? (
-        <div className="pl-8 mb-8">
+        <div className="mb-8 pl-8">
           {comment.responses.map((response) => {
             return (
               <div
                 key={response.id}
-                className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4"
+                className="my-4 rounded-md bg-gray-200 p-4 dark:bg-slate-600"
               >
                 <p className="text-xs font-bold">
                   {response.name} - {formatDate(new Date(response.createdAt))}
@@ -487,13 +487,13 @@ const Mention = ({
   mention: SerializeFrom<IMentions>;
 }) => {
   return (
-    <div className="bg-gray-200 dark:bg-slate-600 rounded-md p-4 my-4">
+    <div className="my-4 rounded-md bg-gray-200 p-4 dark:bg-slate-600">
       <p className="text-xs font-bold">
         {mention.authorPhoto ? (
           <img
             alt=""
             src={mention.authorPhoto}
-            className="w-8 h-8 m-0 rounded-full inline-block mr-2"
+            className="m-0 mr-2 inline-block h-8 w-8 rounded-full"
           />
         ) : null}
         <ExternalLink href={mention.authorUrl}>
@@ -528,7 +528,7 @@ const AddComment = forwardRef(function AddComment(
 
   if (fetcher.data) {
     return (
-      <div className="bg-gray-100 dark:bg-slate-500 rounded-md p-4 my-4">
+      <div className="my-4 rounded-md bg-gray-100 p-4 dark:bg-slate-500">
         <p>
           Thanks for your comment! Once it's approved it will appear on the
           site.
@@ -541,7 +541,7 @@ const AddComment = forwardRef(function AddComment(
       {replyingTo ? (
         <input type="hidden" name="responseToId" value={replyingTo.commentId} />
       ) : null}
-      <div className="bg-gray-100 dark:bg-slate-500 rounded-md p-4 my-4">
+      <div className="my-4 rounded-md bg-gray-100 p-4 dark:bg-slate-500">
         {replyingTo ? (
           <div className="flex justify-between">
             <p>
@@ -557,7 +557,7 @@ const AddComment = forwardRef(function AddComment(
         <div className="mb-4">
           <label
             htmlFor="comment-email"
-            className="block text-xs font-bold mb-1"
+            className="mb-1 block text-xs font-bold"
           >
             Email (I won't share this with anyone)
           </label>
@@ -570,7 +570,7 @@ const AddComment = forwardRef(function AddComment(
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="name" className="block text-xs font-bold mb-1">
+          <label htmlFor="name" className="mb-1 block text-xs font-bold">
             Name
           </label>
           <input
@@ -582,7 +582,7 @@ const AddComment = forwardRef(function AddComment(
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="content" className="block text-xs font-bold mb-1">
+          <label htmlFor="content" className="mb-1 block text-xs font-bold">
             Comment
           </label>
           <div className="w-2/3">

@@ -33,7 +33,7 @@ export default function Index() {
   const { latestPost } = useLoaderData<typeof loader>();
   return (
     <div className="body">
-      <nav className="flex p-0 m-0 gap-4">
+      <nav className="m-0 flex gap-4 p-0">
         <Link className="" to="/posts">
           Blog
         </Link>
@@ -49,7 +49,7 @@ export default function Index() {
       </nav>
       <h1 className="text-8xl tracking-tighter">John’s website.</h1>
       <div className="mt-24">
-        <div className="text-base font-bold text-slate-300 mb-1">
+        <div className="mb-1 text-base font-bold text-slate-300">
           Latest article
         </div>
         <a className="mt-1" href={`/posts/${latestPost.fields.slug}`}>
@@ -60,7 +60,7 @@ export default function Index() {
         </div>
       </div>
       <div className="mt-24">
-        <div className="text-base font-bold text-slate-300 mb-1">
+        <div className="mb-1 text-base font-bold text-slate-300">
           Greatest hits
         </div>
         <ul>
@@ -82,12 +82,12 @@ export default function Index() {
         </ul>
       </div>
       <div className="mt-24">
-        <div className="text-base font-bold text-slate-300 mb-1">Notes</div>
+        <div className="mb-1 text-base font-bold text-slate-300">Notes</div>
         <Notes />
       </div>
       <img
         alt="John’s logo"
-        className="w-32 h-32 md:w-80 md:h-80 absolute top-80 md:top-20 right-20 z-0 animate-spin-slow"
+        className="absolute right-20 top-80 z-0 h-32 w-32 animate-spin-slow md:top-20 md:h-80 md:w-80"
         src="https://images.ctfassets.net/wc253zohgsra/6ldaNVODgtTNBymgloaY3Z/c36d9234283255a4802cb949b8c0dfad/john_logo.png"
       />
       <a className="hidden" href="https://github.com/jwhiles" rel="me">

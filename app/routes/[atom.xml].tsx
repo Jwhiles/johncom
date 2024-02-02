@@ -73,7 +73,7 @@ export const loader: LoaderFunction = async () => {
   return new Response(feed, {
     headers: {
       "Content-Type": "application/xml",
-      "Cache-Control": "public, max-age=2419200",
+      "Cache-Control": "public, max-age=300, s-maxage=3600",
     },
   });
 };

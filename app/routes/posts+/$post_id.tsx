@@ -13,6 +13,7 @@ import { quoteBack } from "marked-quotebacks";
 import quotebacksStyle from "marked-quotebacks/dist/main.css";
 import { Ref, forwardRef, useRef, useState } from "react";
 
+import { EmailSignupForm } from "~/components/EmailSignupForm";
 import { ExternalLink } from "~/components/ExternalLink";
 import RichTextEditor from "~/components/RichTextEditor";
 import { getEntry } from "~/contentful.server";
@@ -257,9 +258,10 @@ export default function Post() {
       </Link>
       <div className="" dangerouslySetInnerHTML={{ __html: html }} />
       <hr className="mb-1" />
-      <LikesAndReposts />
+      <EmailSignupForm />
       <div className="mt-4">
-        <h3>Comments & Web Mentions</h3>
+        <h3>Comments</h3>
+        <LikesAndReposts />
         <Comments />
       </div>
       <div className="mt-4">
@@ -274,7 +276,7 @@ const LikesAndReposts = () => {
   const { likes } = useLoaderData<typeof loader>();
 
   return likes.length > 0 ? (
-    <div className="">
+    <>
       <p className="text-xs">
         {likes.length} Like{likes.length > 1 ? "s" : ""}
       </p>
@@ -293,7 +295,7 @@ const LikesAndReposts = () => {
           );
         })}
       </ul>
-    </div>
+    </>
   ) : null;
 };
 
@@ -441,22 +443,25 @@ const Comment = ({
 }) => {
   return (
     <div key={comment.id}>
-      <div className="my-4 rounded-md bg-gray-200 p-4 dark:bg-slate-600">
-        <p className="text-xs font-bold">
-          {comment.name} - {formatDate(new Date(comment.createdAt))}
-        </p>
-        <ShowMarkdown>{comment.content}</ShowMarkdown>
-        <button
-          type="button"
-          onClick={() => {
-            setReplyingTo({
-              name: comment.name,
-              commentId: comment.id,
-            });
-          }}
-        >
-          reply
-        </button>
+      <div className="my-4 rounded-md border p-2 shadow-sm">
+        <div className="flex justify-between">
+          <p className="mb-1 text-xs text-slate-600 dark:text-slate-200">
+            {comment.name} - {formatDate(new Date(comment.createdAt))}
+          </p>
+          <button
+            type="button"
+            className="border-0 p-0"
+            onClick={() => {
+              setReplyingTo({
+                name: comment.name,
+                commentId: comment.id,
+              });
+            }}
+          >
+            reply
+          </button>
+        </div>
+        <ShowMarkdown className="*:text-base">{comment.content}</ShowMarkdown>
       </div>
       {comment.responses.length > 0 ? (
         <div className="mb-8 pl-8">
@@ -464,13 +469,15 @@ const Comment = ({
             return (
               <div
                 key={response.id}
-                className="my-4 rounded-md bg-gray-200 p-4 dark:bg-slate-600"
+                className="my-4 rounded-md border p-2 shadow-sm"
               >
-                <p className="text-xs font-bold">
+                <p className="mb-1 text-xs text-slate-600 dark:text-slate-200">
                   {response.name} - {formatDate(new Date(response.createdAt))}
                 </p>
 
-                <ShowMarkdown>{response.content}</ShowMarkdown>
+                <ShowMarkdown className="*:text-base">
+                  {response.content}
+                </ShowMarkdown>
               </div>
             );
           })}
@@ -487,13 +494,13 @@ const Mention = ({
   mention: SerializeFrom<IMentions>;
 }) => {
   return (
-    <div className="my-4 rounded-md bg-gray-200 p-4 dark:bg-slate-600">
-      <p className="text-xs font-bold">
+    <div className="my-4 rounded-md border p-2 shadow-sm">
+      <p className="mb-1 text-xs font-bold">
         {mention.authorPhoto ? (
           <img
             alt=""
             src={mention.authorPhoto}
-            className="m-0 mr-2 inline-block h-8 w-8 rounded-full"
+            className="m-0 mr-2 inline-block h-4 w-4 rounded-full"
           />
         ) : null}
         <ExternalLink href={mention.authorUrl}>
@@ -503,7 +510,7 @@ const Mention = ({
           ? ` - ${formatDate(new Date(mention.publishedAt))}`
           : null}
       </p>
-      <p>{mention.contentText}</p>
+      <p className="text-base">{mention.contentText}</p>
       <ExternalLink className="text-xs" href={mention.source}>
         See in context
       </ExternalLink>
@@ -541,7 +548,7 @@ const AddComment = forwardRef(function AddComment(
       {replyingTo ? (
         <input type="hidden" name="responseToId" value={replyingTo.commentId} />
       ) : null}
-      <div className="my-4 rounded-md bg-gray-100 p-4 dark:bg-slate-500">
+      <div className="my-4 rounded-md bg-gray-100 p-4 shadow-sm dark:bg-slate-500">
         {replyingTo ? (
           <div className="flex justify-between">
             <p>

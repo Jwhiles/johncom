@@ -1,5 +1,5 @@
 export const EmailSignupForm = () => (
-  <div className="border-t-2 py-6">
+  <div className=" py-6">
     <form
       action="
     https://buttondown.email/api/emails/embed-subscribe/johnwhiles

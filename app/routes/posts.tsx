@@ -2,7 +2,6 @@ import { MetaFunction } from "@remix-run/node";
 import { Outlet, isRouteErrorResponse, useRouteError } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
 
-import { EmailSignupForm } from "~/components/EmailSignupForm";
 import { FourOhFour } from "~/components/FourOhFour";
 export { headers } from "~/utils/headers";
 
@@ -11,9 +10,6 @@ export default function Index() {
     <div>
       <div className="body">
         <Outlet />
-        <br />
-
-        <EmailSignupForm />
       </div>
     </div>
   );

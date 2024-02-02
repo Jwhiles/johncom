@@ -4,6 +4,7 @@ import { useLoaderData, Link } from "@remix-run/react";
 import { requireAdmin } from "~/auth.server";
 import { getListOfEntries } from "~/contentful.server";
 import { formatDate } from "~/utils/formatDate";
+import { apiDefaultHeaders } from "~/utils/headers";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await requireAdmin(request);
@@ -15,10 +16,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       date: entry.fields.date,
     };
   });
-  return json(
-    { entries: e },
-    { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
-  );
+  return json({ entries: e }, apiDefaultHeaders);
 };
 
 export default function Post() {

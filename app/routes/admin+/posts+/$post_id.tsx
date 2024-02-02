@@ -9,6 +9,7 @@ import RichTextEditor from "~/components/RichTextEditor";
 import { prisma } from "~/db.server";
 import { HTML, ShowMarkdown } from "~/features/markdown";
 import { sanitiseHtml } from "~/features/markdown/index.server";
+import { apiDefaultHeaders } from "~/utils/headers";
 
 const commentsSelect = (postId: string) => ({
   id: true,
@@ -55,7 +56,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
         return { ...c, content: sanitiseHtml(c.content) };
       }),
     },
-    { headers: { "cache-control": "max-age=300, s-maxage=3600" } },
+    apiDefaultHeaders,
   );
 };
 

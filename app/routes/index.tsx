@@ -87,7 +87,7 @@ export default function Index() {
       </div>
       <img
         alt="John’s logo"
-        className="absolute right-20 top-80 z-0 h-32 w-32 animate-spin-slow md:top-20 md:h-80 md:w-80"
+        className="absolute right-20 top-20 z-0  hidden h-60 w-60 animate-spin-slow md:block"
         src="https://images.ctfassets.net/wc253zohgsra/6ldaNVODgtTNBymgloaY3Z/c36d9234283255a4802cb949b8c0dfad/john_logo.png"
       />
       <a className="hidden" href="https://github.com/jwhiles" rel="me">

@@ -52,9 +52,9 @@ export default function Index() {
         <div className="mb-1 text-base font-bold text-slate-300">
           Latest article
         </div>
-        <a className="mt-1" href={`/posts/${latestPost.fields.slug}`}>
+        <Link className="mt-1" to={`/posts/${latestPost.fields.slug}`}>
           {latestPost.fields.title}
-        </a>
+        </Link>
         <div className="text-xs dark:text-slate-300">
           {formatDate(latestPost.fields.date)}
         </div>
@@ -65,19 +65,19 @@ export default function Index() {
         </div>
         <ul>
           <li>
-            <a className="mt-1" href={`/posts/programming-as-theory`}>
+            <Link className="mt-1" to={`/posts/programming-as-theory`}>
               Suddenly, I Understand Software
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="mt-1" href={`/posts/music-production-lessons`}>
+            <Link className="mt-1" to={`/posts/music-production-lessons`}>
               Six things I sort of believe about making music
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="mt-1" href={`/posts/work`}>
+            <Link className="mt-1" to={`/posts/work`}>
               Maybe you should do less “work”
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

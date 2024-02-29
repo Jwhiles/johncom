@@ -19,12 +19,13 @@ export const links: LinksFunction = () => [
 
   { rel: "stylesheet", href: fonts },
   // These should probably be on some cdn...
-  {
-    rel: "apple-touch-icon",
-    href: "/apple-touch-icon.png",
-    sizes: "180x180",
-    type: "image/png",
-  },
+  // Commenting this out because it's insanely large
+  // {
+  //   rel: "apple-touch-icon",
+  //   href: "/apple-touch-icon.png",
+  //   sizes: "180x180",
+  //   type: "image/png",
+  // },
   {
     rel: "icon",
     href: "/favicon-16x16.ico",

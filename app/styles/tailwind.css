@@ -6,9 +6,29 @@ body * {
   @apply transition-colors duration-1000;
 }
 
+@keyframes rotateAnimation {
+  0% {
+    transform: rotateX(6deg) rotateY(-20deg);
+  }
+  50% {
+    transform: rotateX(10deg) rotateY(-15deg);
+  }
+  100% {
+    transform: rotateX(6deg) rotateY(-20deg);
+  }
+}
 @layer components {
   .body {
     @apply p-4 leading-tight max-w-2xl mx-auto;
+  }
+
+  .threeD-div {
+    transform: rotateX(6deg) rotateY(-20deg);
+    box-shadow: 7px 7px 10px rgba(0,0,0,0.5);
+    animation: rotateAnimation 20s infinite ease;
+  }
+  .perspective {
+    perspective: 525px;
   }
 }
 
@@ -50,6 +70,11 @@ body * {
     @apply text-xl;
     line-height: 1.4;
     @apply mb-4;
+    @apply dark:text-gray-200;
+  }
+  td, th {
+    @apply text-xl;
+    line-height: 1.4;
     @apply dark:text-gray-200;
   }
   ul {

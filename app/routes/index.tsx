@@ -46,6 +46,9 @@ export default function Index() {
         <Link className="" to="/contact">
           Contact
         </Link>
+        <Link className="" to="/now">
+          Now
+        </Link>
       </nav>
       <h1 className="text-8xl tracking-tighter">John’s website.</h1>
       <div className="mt-24">

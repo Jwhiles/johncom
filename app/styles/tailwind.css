@@ -72,6 +72,11 @@ body * {
     @apply mb-4;
     @apply dark:text-gray-200;
   }
+  td, th {
+    @apply text-xl;
+    line-height: 1.4;
+    @apply dark:text-gray-200;
+  }
   ul {
     @apply list-disc;
     @apply my-4;

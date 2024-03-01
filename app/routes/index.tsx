@@ -5,23 +5,12 @@ import { Note } from "~/components/Note";
 import { getListOfEntries } from "~/contentful.server";
 import { prisma } from "~/db.server";
 import { sanitiseHtml } from "~/features/markdown/render.server";
-import { getTopTracks } from "~/lastfm.server";
 import { formatDate } from "~/utils/formatDate";
 import { apiDefaultHeaders } from "~/utils/headers";
 export { headers } from "~/utils/headers";
 
 export const loader = async () => {
   const latestPost = (await getListOfEntries()).items[0];
-  const topTracks = (await getTopTracks("JilesFTW", "7day")).map(
-    (track: any) => {
-      return {
-        name: track.name,
-        url: track.url,
-        artistName: track.artist.name,
-        playcount: track.playcount,
-      };
-    }
-  );
 
   const notes = (
     await prisma.note.findMany({ orderBy: { createdAt: "desc" }, take: 5 })
@@ -37,7 +26,7 @@ export const loader = async () => {
     };
   });
 
-  return json({ latestPost, notes, topTracks }, apiDefaultHeaders);
+  return json({ latestPost, notes }, apiDefaultHeaders);
 };
 
 export default function Index() {
@@ -56,6 +45,9 @@ export default function Index() {
         </Link>
         <Link className="" to="/contact">
           Contact
+        </Link>
+        <Link className="" to="/now">
+          Now
         </Link>
       </nav>
       <h1 className="text-8xl tracking-tighter">John’s website.</h1>
@@ -96,9 +88,6 @@ export default function Index() {
         <div className="mb-1 text-base font-bold text-slate-300">Notes</div>
         <Notes />
       </div>
-      <div className="perspective absolute bottom-10 right-20 pb-4">
-        <TopTracks />
-      </div>
       <img
         alt="John’s logo"
         className="absolute right-20 top-20 z-0  hidden h-60 w-60 animate-spin-slow md:block"
@@ -124,33 +113,5 @@ const Notes = () => {
         See more
       </Link>
     </ol>
-  );
-};
-const TopTracks = () => {
-  const { topTracks } = useLoaderData<typeof loader>();
-  return (
-    <div className="threeD-div w-full rounded-md p-2">
-      <h2>What's on the Jukebox</h2>
-      <table>
-        <thead>
-          <tr className="grid grid-cols-7 *:text-left">
-            <th className="col-span-3 px-2 py-4">Song</th>
-            <th className="col-span-2 px-2 py-4">Artist</th>
-            <th className="col-span-2 px-2 py-4">Plays</th>
-          </tr>
-        </thead>
-        <tbody>
-          {topTracks.map((track) => (
-            <tr className="grid grid-cols-7 last:pb-4" key={track.name}>
-              <td className="col-span-3 px-2 py-1">
-                <a href={track.url}>{track.name}</a>
-              </td>
-              <td className="col-span-2 px-2 py-1">{track.artistName}</td>
-              <td className="col-span-2 px-2 py-1">{track.playcount}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
   );
 };

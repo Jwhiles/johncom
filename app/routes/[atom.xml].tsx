@@ -66,7 +66,7 @@ export const loader: LoaderFunction = async () => {
       pubDate: new Date(post.fields.date).toUTCString(),
       title: post.fields.title,
       link: `https://johnwhiles.com/posts/${post.fields.slug}`,
-      guid: `https://johnwhiles.com/${post.fields.slug}`,
+      guid: `https://johnwhiles.com/posts/${post.fields.slug}`,
     })),
   });
 

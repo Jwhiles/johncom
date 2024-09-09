@@ -42,6 +42,12 @@ export const links: LinksFunction = () => [
     rel: "webmention",
     href: "https://webmention.io/johnwhiles.com/webmention",
   },
+  {
+    rel: "alternate",
+    type: "application/rss+xml",
+    title: "RSS",
+    href: "https://johnwhiles.com/atom.xml",
+  },
   ...(cssBundleHref
     ? [
         { rel: "stylesheet", href: cssBundleHref },

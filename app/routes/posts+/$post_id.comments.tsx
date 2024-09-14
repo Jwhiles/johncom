@@ -24,6 +24,7 @@ const CommentSchema = z.object({
   email: z.string().email(),
   name: z.string(),
   responseToId: z.string().optional(),
+  "cf-turnstile-response": z.string(),
 });
 
 export async function action({ params, request }: ActionFunctionArgs) {
@@ -36,6 +37,26 @@ export async function action({ params, request }: ActionFunctionArgs) {
   const parsed = CommentSchema.safeParse(data);
   if (!parsed.success) {
     throw new Response(parsed.error.message, { status: 400 });
+  }
+
+  // now we check the cf-turnstile-response
+  const cloudflareResponse = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        secret: process.env.TURNSTILE_SECRET_KEY,
+        response: parsed.data["cf-turnstile-response"],
+      }),
+    },
+  );
+  const js = await cloudflareResponse.json();
+  console.log(js);
+  if (!js.success) {
+    throw new Response(js.error, { status: 400 });
   }
 
   const comments = await prisma.comment.create({

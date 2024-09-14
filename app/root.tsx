@@ -74,6 +74,10 @@ export default function App() {
           data-domain="johnwhiles.com"
           src="https://plausible.io/js/script.js"
         ></script>
+        <script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          defer
+        ></script>
       </head>
       <body className="bg-white dark:bg-stone-800">
         <Outlet />

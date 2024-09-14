@@ -216,6 +216,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       commentsAndMentions,
       likes,
       reposts,
+      turnstileSiteKey: process.env.TURNSTILE_SITE_KEY,
     },
     apiDefaultHeaders,
   );
@@ -531,6 +532,7 @@ const AddComment = forwardRef(function AddComment(
   },
   ref: Ref<HTMLFormElement>,
 ) {
+  const turnstileSiteKey = useLoaderData<typeof loader>().turnstileSiteKey;
   const fetcher = useFetcher();
 
   if (fetcher.data) {
@@ -596,7 +598,8 @@ const AddComment = forwardRef(function AddComment(
             <RichTextEditor id="content" name="content" />
           </div>
         </div>
-        <button className="">Submit</button>
+        <div className="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
+        <button className="mt-4">Submit</button>
       </div>
     </fetcher.Form>
   );

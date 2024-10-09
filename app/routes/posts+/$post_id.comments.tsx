@@ -24,6 +24,11 @@ const CommentSchema = z.object({
   email: z.string().email(),
   name: z.string(),
   responseToId: z.string().optional(),
+  reallyDifficultCaptcha: z.union([
+    z.literal("horse"),
+    z.literal("dog"),
+    z.literal("elephant"),
+  ]),
 });
 
 export async function action({ params, request }: ActionFunctionArgs) {

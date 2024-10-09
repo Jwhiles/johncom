@@ -596,6 +596,22 @@ const AddComment = forwardRef(function AddComment(
             <RichTextEditor id="content" name="content" />
           </div>
         </div>
+        <div className="mb-4">
+          <label
+            htmlFor="reallyDifficultCaptcha"
+            className="mb-1 block text-xs font-bold"
+          >
+            Please type{" "}
+            {["horse", "dog", "elephant"][Math.floor(Math.random() * 3)]}
+          </label>
+          <input
+            id="reallyDifficultCaptcha"
+            className="w-1/2"
+            placeholder="Go on, type it"
+            type="text"
+            name="reallyDifficultCaptcha"
+          />
+        </div>
         <button className="">Submit</button>
       </div>
     </fetcher.Form>

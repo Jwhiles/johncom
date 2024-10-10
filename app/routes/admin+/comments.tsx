@@ -3,6 +3,7 @@ import { Form, useLoaderData } from "@remix-run/react";
 
 import { requireAdmin } from "~/auth.server";
 import { prisma } from "~/db.server";
+import { sendCommentApprovedEmail } from "~/features/emails/mailgun.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await requireAdmin(request);
@@ -44,6 +45,12 @@ export async function action({ request }: ActionFunctionArgs) {
       },
     });
 
+    // It's actually gonna be tricky to get the name of the post.. Because that's in Contentful.
+    // Yikes
+    await sendCommentApprovedEmail({
+      email: comment.authorEmail,
+      commentLink: `https://johnwhiles.com/posts/${comment.postId}`,
+    });
     return comment;
   }
   throw new Response("invalid method", { status: 400 });

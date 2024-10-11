@@ -8,6 +8,7 @@ import type {
 import { json } from "@remix-run/node";
 import { Link, useFetcher, useLoaderData } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
+import { ValidatedForm, useField } from "@rvf/remix";
 import { marked } from "marked";
 import { quoteBack } from "marked-quotebacks";
 import quotebacksStyle from "marked-quotebacks/dist/main.css";
@@ -25,6 +26,8 @@ import {
   createSeoPageMetaTags,
 } from "~/utils/createSeoMetadata";
 import { apiDefaultHeaders } from "~/utils/headers";
+
+import { validator } from "./$post_id.comments";
 export { headers } from "~/utils/headers";
 
 const footnoteMatch = /^\[\^([^\]]+)\]:([\s\S]*)$/;
@@ -544,7 +547,13 @@ const AddComment = forwardRef(function AddComment(
     );
   }
   return (
-    <fetcher.Form method="POST" action="comments" ref={ref}>
+    <ValidatedForm
+      validator={validator}
+      fetcher={fetcher}
+      method="POST"
+      action="comments"
+      ref={ref}
+    >
       {replyingTo ? (
         <input type="hidden" name="responseToId" value={replyingTo.commentId} />
       ) : null}
@@ -562,61 +571,81 @@ const AddComment = forwardRef(function AddComment(
           <p>Add your comment</p>
         )}
         <div className="mb-4">
-          <label
-            htmlFor="comment-email"
-            className="mb-1 block text-xs font-bold"
-          >
-            Email (I won't share this with anyone)
-          </label>
-          <input
-            id="comment-email"
-            className="w-1/2"
-            placeholder="you@example.com"
-            type="email"
+          <MyInput
             name="email"
+            label="Email (I won't share this with anyone)"
+            type="email"
+            placeholder="you@example.com"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="name" className="mb-1 block text-xs font-bold">
-            Name
-          </label>
-          <input
-            id="name"
-            className="w-1/2"
-            placeholder="Krusty the Clown"
-            type="text"
+          <MyInput
             name="name"
+            label="Name"
+            type="text"
+            placeholder="Krusty the Clown"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="content" className="mb-1 block text-xs font-bold">
-            Comment
-          </label>
-          <div className="w-2/3">
-            <RichTextEditor id="content" name="content" />
-          </div>
+          <RichTextInput />
         </div>
         <div className="mb-4">
-          <label
-            htmlFor="reallyDifficultCaptcha"
-            className="mb-1 block text-xs font-bold"
-          >
-            Please type{" "}
-            {["horse", "dog", "elephant"][Math.floor(Math.random() * 3)]}
-          </label>
-          <input
-            id="reallyDifficultCaptcha"
-            className="w-1/2"
-            placeholder="Go on, type it"
-            type="text"
+          <MyInput
             name="reallyDifficultCaptcha"
+            label={`Please type ${
+              ["horse", "dog", "elephant"][Math.floor(Math.random() * 3)]
+            }`}
+            type="text"
+            placeholder=""
           />
         </div>
         <button className="">Submit</button>
       </div>
-    </fetcher.Form>
+    </ValidatedForm>
   );
 });
+
+const RichTextInput = () => {
+  const { error, getInputProps } = useField("content");
+  return (
+    <>
+      <label htmlFor="content" className="mb-1 block text-xs font-bold">
+        Comment
+      </label>
+      <div className="w-2/3">
+        <RichTextEditor {...getInputProps({ id: "content" })} />
+      </div>
+      {error ? <span className="text-md mt-1 block text-red-300">{error()}</span> : null}
+    </>
+  );
+};
+
+const MyInput = ({
+  name,
+  label,
+  type,
+  placeholder,
+}: {
+  name: string;
+  label: string;
+  type: string;
+  placeholder: string;
+}) => {
+  const { error, getInputProps } = useField(name);
+
+  return (
+    <>
+      <label htmlFor={name} className="mb-1 block text-xs font-bold">
+        {label}
+      </label>
+      <input
+        {...getInputProps({ id: name, placeholder, type })}
+        className="w-1/2"
+      />
+      {error ? <span className="text-md mt-1 block text-red-300">{error()}</span> : null}
+    </>
+  );
+};
 
 const formatDate = (date: Date) => {
   return new Intl.DateTimeFormat("en-US", {

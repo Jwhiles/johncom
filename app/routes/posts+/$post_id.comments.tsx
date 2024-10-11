@@ -1,4 +1,5 @@
 import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
+import { withZod } from "@rvf/zod";
 import { z } from "zod";
 
 import { prisma } from "~/db.server";
@@ -20,16 +21,24 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 const CommentSchema = z.object({
-  content: z.string(),
+  content: z.string().min(1),
   email: z.string().email(),
-  name: z.string(),
+  name: z.string().min(1),
   responseToId: z.string().optional(),
   reallyDifficultCaptcha: z.union([
-    z.literal("horse"),
-    z.literal("dog"),
-    z.literal("elephant"),
+    z.literal("horse", {
+      errorMap: () => ({ message: "I think you spelt something wrong" }),
+    }),
+    z.literal("dog", {
+      errorMap: () => ({ message: "I think you spelt something wrong" }),
+    }),
+    z.literal("elephant", {
+      errorMap: () => ({ message: "I think you spelt something wrong" }),
+    }),
   ]),
 });
+
+export const validator = withZod(CommentSchema);
 
 export async function action({ params, request }: ActionFunctionArgs) {
   if (!params.post_id) {

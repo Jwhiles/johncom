@@ -86,6 +86,7 @@ module.exports = {
             "newlines-between": "always",
           },
         ],
+        "@typescript-eslint/array-type": ["error", { default: "generic" }],
       },
     },
 

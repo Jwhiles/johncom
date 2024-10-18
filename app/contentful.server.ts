@@ -1,26 +1,35 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { z } from "zod";
+
+import { config } from "./utils/config.server";
+
 const baseUrl = "https://cdn.contentful.com";
 
 const previewUrl = "https://preview.contentful.com";
 
-export const getEntry = async (
-  slug: string,
-): Promise<{
-  fields: {
-    body: string;
-    title: string;
-    slug: string;
-    date: string;
-    hackerNewsLink?: string;
-  };
-}> => {
-  const url = `${baseUrl}/spaces/${process.env.SPACE_ID}/entries?access_token=${process.env.CDA_TOKEN}&content_type=blogPost&fields.slug[equals]=${slug}`;
+const entrySchema = z.object({
+  fields: z.object({
+    title: z.string(),
+    slug: z.string(),
+    date: z.string(),
+    body: z.string(),
+    hackerNewsLink: z.string().optional(),
+  }),
+});
+
+type Entry = z.infer<typeof entrySchema>;
+
+const entriesSchema = z.object({
+  items: z.array(entrySchema),
+});
+
+export const getEntry = async (slug: string): Promise<Entry> => {
+  const url = `${baseUrl}/spaces/${config.SPACE_ID}/entries?access_token=${config.CDA_TOKEN}&content_type=blogPost&fields.slug[equals]=${slug}`;
   const res = await fetch(url);
-  const j = (await res.json()) as any;
+  const j = entriesSchema.parse(await res.json());
   if (j.items.length === 0) {
-    const purl = `${previewUrl}/spaces/${process.env.SPACE_ID}/entries?access_token=${process.env.PREVIEW_TOKEN}&content_type=blogPost&fields.slug[equals]=${slug}`;
+    const purl = `${previewUrl}/spaces/${config.SPACE_ID}/entries?access_token=${config.PREVIEW_TOKEN}&content_type=blogPost&fields.slug[equals]=${slug}`;
     const pres = await fetch(purl);
-    const p = (await pres.json()) as any;
+    const p = entriesSchema.parse(await pres.json());
 
     if (p.items.length === 0) {
       throw new Response("Blogpost not found", { status: 404 });
@@ -31,47 +40,66 @@ export const getEntry = async (
 };
 
 export const getListOfEntries = async (): Promise<{
-  items: {
-    fields: { title: string; slug: string; date: string; body: string };
-  }[];
+  items: Array<Entry>;
 }> => {
-  const url = `${baseUrl}/spaces/${process.env.SPACE_ID}/entries?access_token=${process.env.CDA_TOKEN}&content_type=blogPost&order=-fields.date`;
+  const url = `${baseUrl}/spaces/${config.SPACE_ID}/entries?access_token=${config.CDA_TOKEN}&content_type=blogPost&order=-fields.date`;
 
   const res = await fetch(url);
-  const j = await res.json();
-  return j as any;
+  const parsed = entriesSchema.parse(await res.json());
+  return parsed;
 };
 
+export type Tag = z.infer<typeof tagSchema>;
+
+const tagSchema = z.object({
+  sys: z.object({
+    id: z.string(),
+  }),
+  fields: z.object({
+    tagName: z.string(),
+  }),
+});
+const tagResponseSchema = z.object({
+  items: z.array(tagSchema),
+});
+
+const entriesWithTagsSchema = entriesSchema.extend({
+  includes: z.object({
+    Entry: z.array(tagSchema),
+  }),
+});
 export const getListOfEntriesByTag = async (
   tagId: string,
 ): Promise<{
-  entries: { fields: { title: string; slug: string; date: string } }[];
+  entries: Array<Entry>;
   tagName: string;
 }> => {
-  const url = `${baseUrl}/spaces/${process.env.SPACE_ID}/entries?access_token=${process.env.CDA_TOKEN}&content_type=blogPost&order=-fields.date&links_to_entry=${tagId}`;
+  const url = new URL(`${baseUrl}/spaces/${config.SPACE_ID}/entries`);
+  url.searchParams.append("access_token", config.CDA_TOKEN!);
+  url.searchParams.append("content_type", "blogPost");
+  url.searchParams.append("order", "-fields.date");
+  url.searchParams.append("links_to_entry", tagId);
 
   const res = await fetch(url);
-  const j = (await res.json()) as any;
-  // Do proper validation of the returned value..
+  const j = entriesWithTagsSchema.parse(await res.json());
 
-  let tagName = tagId;
-  if (j?.includes?.Entry) {
-    tagName = j.includes.Entry.find((e: any) => e.sys.id === tagId).fields
-      .tagName;
-  }
+  const tagName =
+    j?.includes?.Entry?.find((e) => e.sys.id === tagId)?.fields.tagName ??
+    tagId;
 
-  return { entries: j.items, tagName } as any;
+  return { entries: j.items, tagName };
 };
 
-export interface Tag {
-  sys: { id: string };
-  fields: { tagName: string };
-}
-
-export const getListOfTags = async (): Promise<{ items: Tag[] }> => {
-  const url = `${baseUrl}/spaces/${process.env.SPACE_ID}/entries?access_token=${process.env.CDA_TOKEN}&content_type=tag`;
+export const getListOfTags = async (): Promise<{ items: Array<Tag> }> => {
+  const url = `${baseUrl}/spaces/${config.SPACE_ID}/entries?access_token=${config.CDA_TOKEN}&content_type=tag`;
 
   const res = await fetch(url);
-  const j = await res.json();
-  return j as any;
+  try {
+    const j = await res.json();
+    const parsed = tagResponseSchema.parse(j);
+    return parsed;
+  } catch (error) {
+    console.error("Error parsing tags:", error);
+    throw new Error("Failed to parse tags data");
+  }
 };

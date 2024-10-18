@@ -17,7 +17,7 @@ export function validateEmail(email: unknown): email is string {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const adminId = await getAdminId(request);
-  if (adminId) return redirect("/");
+  if (adminId) return redirect("/admin");
 
   return json({});
 }

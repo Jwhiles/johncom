@@ -1,10 +1,14 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs, redirect } from "@remix-run/node";
 import { Link, Outlet } from "@remix-run/react";
 
 import { requireAdmin } from "~/auth.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  await requireAdmin(request);
+  try {
+    await requireAdmin(request);
+  } catch (error) {
+    return redirect("/admin/login");
+  }
 
   return null;
 }

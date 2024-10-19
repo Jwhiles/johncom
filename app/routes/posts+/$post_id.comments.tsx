@@ -1,4 +1,5 @@
 import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
+import { validationError } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
 import { z } from "zod";
 
@@ -9,6 +10,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   if (!params.post_id) {
     throw new Error("no post id");
   }
+
   const comments = await prisma.comment.findMany({
     where: {
       postId: params.post_id,
@@ -37,28 +39,25 @@ const CommentSchema = z.object({
     }),
   ]),
 });
-
 export const validator = withZod(CommentSchema);
 
 export async function action({ params, request }: ActionFunctionArgs) {
   if (!params.post_id) {
     throw new Error("no post id");
   }
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
 
-  const parsed = CommentSchema.safeParse(data);
-  if (!parsed.success) {
-    throw new Response(parsed.error.message, { status: 400 });
+  const result = await validator.validate(await request.formData());
+  if (result.error) {
+    return validationError(result.error, result.submittedData);
   }
 
   const comments = await prisma.comment.create({
     data: {
-      content: sanitiseHtml(parsed.data.content),
-      authorEmail: parsed.data.email,
+      content: sanitiseHtml(result.data.content),
+      authorEmail: result.data.email,
       postId: params.post_id,
-      name: parsed.data.name,
-      responseToId: parsed.data.responseToId,
+      name: result.data.name,
+      responseToId: result.data.responseToId,
     },
   });
 

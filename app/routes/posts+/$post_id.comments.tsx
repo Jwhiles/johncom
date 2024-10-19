@@ -4,6 +4,7 @@ import { withZod } from "@rvf/zod";
 import { z } from "zod";
 
 import { prisma } from "~/db.server";
+import { sendNewCommentsEmail } from "~/features/emails/mailgun.server";
 import { sanitiseHtml } from "~/features/markdown/index.server";
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -60,6 +61,11 @@ export async function action({ params, request }: ActionFunctionArgs) {
       responseToId: result.data.responseToId,
     },
   });
+
+  const admin = await prisma.admin.findFirst();
+  if (admin) {
+    await sendNewCommentsEmail({ adminEmail: admin.email });
+  }
 
   return json({
     comments,

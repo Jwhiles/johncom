@@ -6,6 +6,7 @@ import { config } from "~/utils/config.server";
 enum EmailTemplates {
   ReplyToComment = "Reply To Comment Email",
   CommentApproved = "commentApproved",
+  NewComments = "newComments",
 }
 
 const mailgun = new Mailgun(formData);
@@ -28,6 +29,26 @@ export const sendCommentApprovedEmail = async ({
       to: email,
       template: EmailTemplates.CommentApproved,
       "v:commentLink": commentLink,
+    });
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
+/*
+ * Sends an email to admin when a new comment needs reviewing
+ */
+export const sendNewCommentsEmail = async ({
+  adminEmail,
+}: {
+  adminEmail: string;
+}) => {
+  try {
+    await mailgunClient.messages.create(config.MAILGUN_DOMAIN, {
+      // from: `John Admin <admin@${config.MAILGUN_DOMAIN}>`,
+      to: adminEmail,
+      template: EmailTemplates.NewComments,
     });
   } catch (e) {
     console.error(e);

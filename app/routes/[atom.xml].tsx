@@ -20,7 +20,7 @@ export function generateRss({
   lastUpdate: string;
   title: string;
   description: string;
-  entries: RssEntry[];
+  entries: Array<RssEntry>;
 }): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">

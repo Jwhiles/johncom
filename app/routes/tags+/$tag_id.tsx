@@ -44,7 +44,7 @@ export default function Post() {
   const { entries, tagName } = useLoaderData<typeof loader>();
   const matches = useMatches();
   const { tags } = matches[matches.length - 2].data as {
-    tags: { id: string; name: string }[];
+    tags: Array<{ id: string; name: string }>;
   };
 
   if (entries.length === 0) {

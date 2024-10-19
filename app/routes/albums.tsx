@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 export { headers } from "~/utils/headers";
 
-const albums: { title: string; image: string; url: string }[] = [
+const albums: Array<{ title: string; image: string; url: string }> = [
   {
     title: "A Maggot",
     image: "https://f4.bcbits.com/img/a2832880625_10.jpg",

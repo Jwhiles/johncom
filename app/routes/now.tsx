@@ -58,22 +58,22 @@ export default function Now() {
 const Films = () => {
   const { text } = useLoaderData<typeof loader>();
   const [films, setFilms] = useState<
-    {
+    Array<{
       review: string;
       title: string;
       link: string;
       image: string;
-    }[]
+    }>
   >([]);
   useEffect(() => {
     const rssDoc = new window.DOMParser().parseFromString(text, "text/xml");
     const items = rssDoc.querySelectorAll("item");
-    const parsed: {
+    const parsed: Array<{
       review: string;
       title: string;
       link: string;
       image: string;
-    }[] = [];
+    }> = [];
 
     items.forEach((el) => {
       // Warning, outrageously ugly code ahead

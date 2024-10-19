@@ -4,7 +4,7 @@ export { headers } from "~/utils/headers";
 export default function Post() {
   const matches = useMatches();
   const { tags } = matches[matches.length - 2].data as {
-    tags: { id: string; name: string }[];
+    tags: Array<{ id: string; name: string }>;
   };
   return (
     <div>

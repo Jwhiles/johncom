@@ -126,7 +126,7 @@ export type ResponsesSelected = Prisma.CommentGetPayload<{
 
 type IComments = Omit<CommentsSelected, "content" | "responses"> & {
   content: HTML;
-  responses: (Omit<ResponsesSelected, "content"> & { content: HTML })[];
+  responses: Array<Omit<ResponsesSelected, "content"> & { content: HTML }>;
 };
 
 type CommentOrMention =
@@ -615,7 +615,9 @@ const RichTextInput = () => {
       <div className="w-2/3">
         <RichTextEditor {...getInputProps({ id: "content" })} />
       </div>
-      {error ? <span className="text-md mt-1 block text-red-300">{error()}</span> : null}
+      {error ? (
+        <span className="text-md mt-1 block text-red-300">{error()}</span>
+      ) : null}
     </>
   );
 };
@@ -642,7 +644,9 @@ const MyInput = ({
         {...getInputProps({ id: name, placeholder, type })}
         className="w-1/2"
       />
-      {error ? <span className="text-md mt-1 block text-red-300">{error()}</span> : null}
+      {error ? (
+        <span className="text-md mt-1 block text-red-300">{error()}</span>
+      ) : null}
     </>
   );
 };

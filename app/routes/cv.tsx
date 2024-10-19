@@ -61,7 +61,7 @@ const Profile = () => (
   </div>
 );
 
-const workHistory: WorkEntryProps[] = [
+const workHistory: Array<WorkEntryProps> = [
   {
     companyName: "Roost",
     jobTitle: "CTO",
@@ -178,10 +178,10 @@ const workHistory: WorkEntryProps[] = [
 interface WorkEntryProps {
   companyName: string;
   jobTitle: string;
-  technologies: string[];
+  technologies: Array<string>;
   startDate: string;
   endDate: string;
-  experienceBulletPoints: React.ReactNode[];
+  experienceBulletPoints: Array<React.ReactNode>;
 }
 
 const WorkHistory = () => {

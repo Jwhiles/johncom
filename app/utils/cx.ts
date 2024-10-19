@@ -1,4 +1,4 @@
-const cx = (...args: (undefined | null | string | boolean)[]): string => {
+const cx = (...args: Array<undefined | null | string | boolean>): string => {
   return args.filter((x) => typeof x === "string").join(" ");
 };
 

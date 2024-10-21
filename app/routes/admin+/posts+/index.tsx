@@ -8,7 +8,7 @@ import { apiDefaultHeaders } from "~/utils/headers";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await requireAdmin(request);
-  const entries = await getListOfEntries();
+  const entries = await getListOfEntries({ limit: 100 });
   const e = entries.items.map((entry) => {
     return {
       title: entry.fields.title,

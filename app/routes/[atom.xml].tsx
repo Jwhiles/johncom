@@ -61,7 +61,7 @@ export function generateRss({
 }
 
 export const loader: LoaderFunction = async () => {
-  const blogEntries = await getListOfEntries();
+  const blogEntries = await getListOfEntries({ limit: 100 });
 
   const feed = generateRss({
     title: "John’s internet house",

@@ -21,6 +21,8 @@ import { getEntry } from "~/contentful.server";
 import { prisma } from "~/db.server";
 import { HTML, ShowMarkdown } from "~/features/markdown";
 import { sanitiseHtml } from "~/features/markdown/index.server";
+import { getRandomPosts } from "~/features/randomPosts/index.server";
+import { RandomPosts } from "~/features/randomPosts/RandomPosts";
 import {
   createPostBreadcrumbs,
   createSeoPageMetaTags,
@@ -146,7 +148,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const entry = await getEntry(params.post_id);
   const html = marked(entry.fields.body);
 
-  // TODO: prisma transaction to get all this stuff at once.
+  const randomPosts = await getRandomPosts();
 
   const [comments, mentions] = await prisma.$transaction([
     prisma.comment.findMany({
@@ -219,6 +221,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       commentsAndMentions,
       likes,
       reposts,
+      randomPosts,
     },
     apiDefaultHeaders,
   );
@@ -252,7 +255,7 @@ export const meta: MetaFunction<typeof loader> = (args) => {
 };
 
 export default function Post() {
-  const { html, hnUrl } = useLoaderData<typeof loader>();
+  const { html, hnUrl, randomPosts } = useLoaderData<typeof loader>();
 
   return (
     <div>
@@ -262,6 +265,12 @@ export default function Post() {
       <div className="" dangerouslySetInnerHTML={{ __html: html }} />
       <hr className="mb-1" />
       <EmailSignupForm />
+      <div className="mt-4">
+        <h3>
+          Want to read something else? Try one of these (randomly selected)
+        </h3>
+        <RandomPosts posts={randomPosts} />
+      </div>
       <div className="mt-4">
         <h3>Comments</h3>
         <LikesAndReposts />

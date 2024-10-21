@@ -14,7 +14,7 @@ export const meta: MetaFunction = (args) => {
 };
 
 export const loader = async () => {
-  const entries = await getListOfEntries();
+  const entries = await getListOfEntries({ limit: 100 });
   const e = entries.items.map((entry) => {
     return {
       title: entry.fields.title,

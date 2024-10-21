@@ -16,7 +16,7 @@ const entrySchema = z.object({
   }),
 });
 
-type Entry = z.infer<typeof entrySchema>;
+export type Entry = z.infer<typeof entrySchema>;
 
 const entriesSchema = z.object({
   items: z.array(entrySchema),
@@ -39,10 +39,16 @@ export const getEntry = async (slug: string): Promise<Entry> => {
   return j.items[0];
 };
 
-export const getListOfEntries = async (): Promise<{
+export const getListOfEntries = async ({
+  skip = 0,
+  limit,
+}: {
+  skip?: number;
+  limit?: number;
+}): Promise<{
   items: Array<Entry>;
 }> => {
-  const url = `${baseUrl}/spaces/${config.SPACE_ID}/entries?access_token=${config.CDA_TOKEN}&content_type=blogPost&order=-fields.date`;
+  const url = `${baseUrl}/spaces/${config.SPACE_ID}/entries?access_token=${config.CDA_TOKEN}&content_type=blogPost&order=-fields.date&skip=${skip}&limit=${limit}`;
 
   const res = await fetch(url);
   const parsed = entriesSchema.parse(await res.json());
@@ -102,4 +108,12 @@ export const getListOfTags = async (): Promise<{ items: Array<Tag> }> => {
     console.error("Error parsing tags:", error);
     throw new Error("Failed to parse tags data");
   }
+};
+
+export const getNumberOfEntries = async (): Promise<number> => {
+  const url = `${baseUrl}/spaces/${config.SPACE_ID}/entries?access_token=${config.CDA_TOKEN}&content_type=blogPost&limit=0`;
+
+  const res = await fetch(url);
+  const j = await res.json();
+  return j.total;
 };

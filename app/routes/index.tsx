@@ -10,7 +10,7 @@ import { apiDefaultHeaders } from "~/utils/headers";
 export { headers } from "~/utils/headers";
 
 export const loader = async () => {
-  const latestPost = (await getListOfEntries()).items[0];
+  const latestPost = (await getListOfEntries({ limit: 1 })).items[0];
 
   const notes = (
     await prisma.note.findMany({ orderBy: { createdAt: "desc" }, take: 5 })

@@ -2,6 +2,12 @@ import { LoaderFunction } from "@remix-run/node";
 import { marked } from "marked";
 
 import { getListOfEntries } from "~/contentful.server";
+import { headers as defaultHeaders } from "~/utils/headers";
+
+export const headers = {
+  ...defaultHeaders,
+  "Content-Type": "application/rss+xml",
+};
 
 export interface RssEntry {
   title: string;
@@ -72,7 +78,7 @@ export const loader: LoaderFunction = async () => {
 
   return new Response(feed, {
     headers: {
-      "Content-Type": "application/xml",
+      "Content-Type": "application/rss+xml",
       "Cache-Control": "public, max-age=300, s-maxage=3600",
     },
   });

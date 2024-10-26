@@ -12,6 +12,8 @@ import { z } from "zod";
 import { requireAdmin, requireAdminId } from "~/auth.server";
 import RichTextEditor from "~/components/RichTextEditor";
 import { prisma } from "~/db.server";
+import * as BlueSky from "~/features/bluesky/index.server";
+import { stripAllHtml } from "~/features/markdown/index.server";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
@@ -58,6 +60,12 @@ export async function action({ request }: ActionFunctionArgs) {
         inReplyToTitle: parsed.data.inReplyToTitle,
       },
     });
+
+    // Post to BlueSky
+    await BlueSky.makePost(
+      stripAllHtml(parsed.data.content),
+      parsed.data.createdDate,
+    );
 
     return redirect("/admin");
   }

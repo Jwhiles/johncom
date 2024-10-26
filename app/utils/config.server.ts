@@ -12,6 +12,10 @@ const configValidator = z.object({
   SPACE_ID: z.string(),
   CDA_TOKEN: z.string(),
   PREVIEW_TOKEN: z.string(),
+
+  // BlueSky
+  BLUESKY_USERNAME: z.string(),
+  BLUESKY_PASSWORD: z.string(),
 });
 
 const config = configValidator.parse(process.env);

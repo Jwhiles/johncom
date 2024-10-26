@@ -23,6 +23,7 @@
     "/public/build"
   ],
   "dependencies": {
+    "@atproto/api": "^0.13.12",
     "@headlessui/react": "^1.7.17",
     "@prisma/client": "^4.16.2",
     "@remix-run/css-bundle": "^2.3.0",

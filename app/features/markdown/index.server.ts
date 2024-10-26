@@ -1,1 +1,1 @@
-export { sanitiseHtml } from "./render.server";
+export { sanitiseHtml, stripAllHtml } from "./render.server";

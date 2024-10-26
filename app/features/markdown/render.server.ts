@@ -21,3 +21,9 @@ export const sanitiseHtml = (input: string): HTML => {
     },
   }) as HTML;
 };
+
+export const stripAllHtml = (input: string): string => {
+  return sanitise(input, {
+    allowedTags: [],
+  });
+};

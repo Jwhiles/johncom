@@ -1,9 +1,8 @@
-import { json } from "@remix-run/node";
-
 import { getEntriesFromSlugs } from "~/contentful.server";
 import { prisma } from "~/db.server";
+import { sanitiseHtml } from "~/features/markdown/index.server";
 
-export const loader = async () => {
+export const getLatestComments = async () => {
   const comments = await prisma.comment.findMany({
     where: { approved: true },
     orderBy: { createdAt: "desc" },
@@ -26,14 +25,12 @@ export const loader = async () => {
 
   const commentsWithPostName = comments.map((comment) => {
     const entry = entryMap.get(comment.postId);
-    if (entry) {
-      return {
-        ...comment,
-        postName: entry.fields.title,
-      };
-    }
-    return comment;
+    return {
+      ...comment,
+      content: sanitiseHtml(comment.content),
+      postName: entry ? entry.fields.title : "Post",
+    };
   });
 
-  return json(commentsWithPostName);
+  return commentsWithPostName;
 };

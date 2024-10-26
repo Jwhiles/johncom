@@ -1,31 +1,45 @@
-import { useFetcher, useLoaderData } from "@remix-run/react";
-import { useEffect } from "react";
+import { Link } from "@remix-run/react";
+import dayjs from "dayjs";
 
-import { loader } from "~/routes/lib+/latest_comments";
+import { ShowMarkdown } from "~/features/markdown";
+import { RendererHTML } from "~/features/markdown/types";
 
-export default function LatestComments() {
-  const fetcher = useFetcher<typeof loader>();
-
-  useEffect(() => {
-    if (fetcher.state === "idle" && !fetcher.data) {
-      fetcher.load("/lib/latest_comments");
-    }
-  }, [fetcher]);
-
-  const comments = useLoaderData<typeof loader>();
-
+export default function LatestComments({
+  latestComments,
+}: {
+  latestComments: Array<{
+    content: RendererHTML;
+    postName: string;
+    id: string;
+    createdAt: string;
+    name: string;
+    postId: string;
+  }>;
+}) {
   return (
-    <div>
-      <h2>Latest Approved Comments</h2>
-      <ul>
-        {comments.map((comment) => (
-          <li key={comment.id}>
-            <p>{comment.content}</p>
-            <p>By: {comment.name}</p>
-            <p>Date: {new Date(comment.createdAt).toLocaleString()}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ol>
+      {latestComments.map((comment) => (
+        <li key={comment.id}>
+          <div className="pb-2">
+            <div className="flex gap-3">
+              <time
+                dateTime={dayjs(comment.createdAt).format(
+                  "ddd, MMM D, YYYY h:mmA Z",
+                )}
+                className="dt-published mb-0 block text-xs"
+              >
+                {dayjs(comment.createdAt).format("MMM D")}
+              </time>
+              <Link className="u-url  text-xs" to={`/notes/${comment.id}`}>
+                on {comment.postName}
+              </Link>
+            </div>
+            <ShowMarkdown className="*:text-base">
+              {comment.content}
+            </ShowMarkdown>
+          </div>
+        </li>
+      ))}
+    </ol>
   );
 }

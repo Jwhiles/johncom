@@ -1,9 +1,11 @@
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 
+import LatestComments from "~/components/LatestComments";
 import { Note } from "~/components/Note";
 import { getListOfEntries } from "~/contentful.server";
 import { prisma } from "~/db.server";
+import { getLatestComments } from "~/features/Comments/getLatestComments.server";
 import { sanitiseHtml } from "~/features/markdown/render.server";
 import { formatDate } from "~/utils/formatDate";
 import { apiDefaultHeaders } from "~/utils/headers";
@@ -11,6 +13,7 @@ export { headers } from "~/utils/headers";
 
 export const loader = async () => {
   const latestPost = (await getListOfEntries({ limit: 1 })).items[0];
+  const latestComments = await getLatestComments();
 
   const notes = (
     await prisma.note.findMany({ orderBy: { createdAt: "desc" }, take: 5 })
@@ -18,7 +21,6 @@ export const loader = async () => {
     return {
       id: post.id,
       content: sanitiseHtml(post.content),
-      // Dates... Do I want to add dayjs to this projects?
       createdAt: post.createdAt,
       inReplyToUrl: post.inReplyToUrl,
       inReplyToAuthor: post.inReplyToAuthor,
@@ -26,11 +28,11 @@ export const loader = async () => {
     };
   });
 
-  return json({ latestPost, notes }, apiDefaultHeaders);
+  return json({ latestPost, latestComments, notes }, apiDefaultHeaders);
 };
 
 export default function Index() {
-  const { latestPost } = useLoaderData<typeof loader>();
+  const { latestPost, latestComments } = useLoaderData<typeof loader>();
   return (
     <div className="body">
       <nav className="m-0 flex gap-4 p-0">
@@ -84,9 +86,18 @@ export default function Index() {
           </li>
         </ul>
       </div>
-      <div className="mt-24">
-        <div className="mb-1 text-base font-bold text-slate-300">Notes</div>
-        <Notes />
+      <div className="mt-24 grid grid-cols-1 gap-8 sm:grid-cols-2">
+        <div>
+          <div className="mb-1 text-base font-bold text-slate-300">Notes</div>
+          <Notes />
+        </div>
+
+        <div>
+          <div className="mb-1 text-base font-bold text-slate-300">
+            Latest comments
+          </div>
+          <LatestComments latestComments={latestComments} />
+        </div>
       </div>
       <img
         alt="John’s logo"

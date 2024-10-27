@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type {
   LoaderFunctionArgs,
@@ -19,7 +18,14 @@ import { ExternalLink } from "~/components/ExternalLink";
 import RichTextEditor from "~/components/RichTextEditor";
 import { getEntry } from "~/contentful.server";
 import { prisma } from "~/db.server";
-import { HTML, ShowMarkdown } from "~/features/markdown";
+import { Comment } from "~/features/Comments/Comment";
+import {
+  CommentOrMention,
+  IMentions,
+  commentsSelect,
+  mentionsSelect,
+} from "~/features/Comments/index.server";
+import { Responses } from "~/features/Comments/Responses";
 import { sanitiseHtml } from "~/features/markdown/index.server";
 import { getRandomPosts } from "~/features/randomPosts/index.server";
 import { RandomPosts } from "~/features/randomPosts/RandomPosts";
@@ -27,10 +33,11 @@ import {
   createPostBreadcrumbs,
   createSeoPageMetaTags,
 } from "~/utils/createSeoMetadata";
+import { formatDateLong } from "~/utils/formatDate";
 import { apiDefaultHeaders } from "~/utils/headers";
+export { headers } from "~/utils/headers";
 
 import { validator } from "./$post_id.comments";
-export { headers } from "~/utils/headers";
 
 const footnoteMatch = /^\[\^([^\]]+)\]:([\s\S]*)$/;
 const referenceMatch = /\[\^([^\]]+)\](?!\()/g;
@@ -83,63 +90,6 @@ export function links() {
     ...(cssBundleHref ? [{ rel: "stylesheet", href: quotebacksStyle }] : []),
   ];
 }
-
-const mentionsSelect = {
-  publishedAt: true,
-  authorName: true,
-  authorPhoto: true,
-  authorUrl: true,
-  wmProperty: true,
-  contentText: true,
-  source: true,
-} satisfies Prisma.WebmentionSelect;
-
-export type IMentions = Prisma.WebmentionGetPayload<{
-  select: typeof mentionsSelect;
-}>;
-
-const responseSelect = {
-  id: true,
-  content: true,
-  name: true,
-  createdAt: true,
-};
-
-const commentsSelect = (postId: string) => ({
-  id: true,
-  content: true,
-  name: true,
-  createdAt: true,
-  responses: {
-    where: {
-      approved: true,
-      postId,
-    },
-    select: responseSelect,
-  },
-});
-export type CommentsSelected = Prisma.CommentGetPayload<{
-  select: ReturnType<typeof commentsSelect>;
-}>;
-
-export type ResponsesSelected = Prisma.CommentGetPayload<{
-  select: ReturnType<typeof commentsSelect>;
-}>;
-
-type IComments = Omit<CommentsSelected, "content" | "responses"> & {
-  content: HTML;
-  responses: Array<Omit<ResponsesSelected, "content"> & { content: HTML }>;
-};
-
-type CommentOrMention =
-  | {
-      data: IComments;
-      type: "comment";
-    }
-  | {
-      data: IMentions;
-      type: "mention";
-    };
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   if (!params.post_id) {
@@ -292,7 +242,7 @@ const LikesAndReposts = () => {
       <p className="text-xs">
         {likes.length} Like{likes.length > 1 ? "s" : ""}
       </p>
-      <ul className="m-0 flex list-none p-0">
+      <ol className="m-0 flex list-none p-0">
         {likes.map((like) => {
           return (
             <li className="my-0 p-0" key={like.source}>
@@ -306,7 +256,7 @@ const LikesAndReposts = () => {
             </li>
           );
         })}
-      </ul>
+      </ol>
     </>
   ) : null;
 };
@@ -410,7 +360,7 @@ const Comments = () => {
     name: string;
     commentId: string;
   } | null>(null);
-  const formRef = useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
 
   const onReply = (input: { name: string; commentId: string }) => {
     setReplyingTo(input);
@@ -421,80 +371,36 @@ const Comments = () => {
 
   return (
     <div>
-      {commentsAndMentions.map((item) => {
-        if (item.type === "comment") {
-          return (
-            <Comment
-              key={item.data.id}
-              comment={item.data}
-              setReplyingTo={onReply}
-            />
-          );
-        }
-        if (item.type === "mention") {
-          return <Mention key={item.data.source} mention={item.data} />;
-        }
-        throw new Error("unknown type");
-      })}
+      <ol className="m-0 list-none">
+        {commentsAndMentions.map((item) => {
+          if (item.type === "comment") {
+            return (
+              <li key={item.data.id}>
+                <Comment
+                  key={item.data.id}
+                  comment={item.data}
+                  setReplyingTo={onReply}
+                />
+                <Responses responses={item.data.responses} />
+              </li>
+            );
+          }
+          if (item.type === "mention") {
+            return (
+              <li key={item.data.source}>
+                <Mention key={item.data.source} mention={item.data} />
+              </li>
+            );
+          }
+          throw new Error("unknown type");
+        })}
+      </ol>
 
       <AddComment
         clearReplying={() => setReplyingTo(null)}
         ref={formRef}
         replyingTo={replyingTo}
       />
-    </div>
-  );
-};
-
-const Comment = ({
-  comment,
-  setReplyingTo,
-}: {
-  comment: SerializeFrom<IComments>;
-  setReplyingTo: (input: { name: string; commentId: string }) => void;
-}) => {
-  return (
-    <div key={comment.id}>
-      <div className="my-4 rounded-md border p-2 shadow-sm">
-        <div className="flex justify-between">
-          <p className="mb-1 text-xs text-slate-600 dark:text-slate-200">
-            {comment.name} - {formatDate(new Date(comment.createdAt))}
-          </p>
-          <button
-            type="button"
-            className="border-0 p-0"
-            onClick={() => {
-              setReplyingTo({
-                name: comment.name,
-                commentId: comment.id,
-              });
-            }}
-          >
-            reply
-          </button>
-        </div>
-        <ShowMarkdown className="*:text-base">{comment.content}</ShowMarkdown>
-      </div>
-      {comment.responses.length > 0 ? (
-        <div className="mb-8 pl-8">
-          {comment.responses.map((response) => {
-            return (
-              <div
-                key={response.id}
-                className="my-4 rounded-md border p-2 shadow-sm"
-              >
-                <p className="mb-1 text-xs text-slate-600 dark:text-slate-200">
-                  {response.name} - {formatDate(new Date(response.createdAt))}
-                </p>
-
-                <ShowMarkdown className="*:text-base">
-                  {response.content}
-                </ShowMarkdown>
-              </div>
-            );
-          })}
-        </div>
-      ) : null}
     </div>
   );
 };
@@ -519,7 +425,7 @@ const Mention = ({
           {mention.authorName}
         </ExternalLink>
         {mention.publishedAt
-          ? ` - ${formatDate(new Date(mention.publishedAt))}`
+          ? ` - ${formatDateLong(new Date(mention.publishedAt))}`
           : null}
       </p>
       <p className="text-base">{mention.contentText}</p>
@@ -541,7 +447,7 @@ const AddComment = forwardRef(function AddComment(
     } | null;
     clearReplying: () => void;
   },
-  ref: Ref<HTMLFormElement>,
+  ref: Ref<HTMLDivElement>,
 ) {
   const fetcher = useFetcher();
 
@@ -561,7 +467,6 @@ const AddComment = forwardRef(function AddComment(
       fetcher={fetcher}
       method="POST"
       action="comments"
-      ref={ref}
     >
       {replyingTo ? (
         <input type="hidden" name="responseToId" value={replyingTo.commentId} />
@@ -579,7 +484,7 @@ const AddComment = forwardRef(function AddComment(
         ) : (
           <p>Add your comment</p>
         )}
-        <div className="mb-4">
+        <div ref={ref} className="mb-4">
           <MyInput
             name="email"
             label="Email (I won't share this with anyone)"
@@ -658,12 +563,4 @@ const MyInput = ({
       ) : null}
     </>
   );
-};
-
-const formatDate = (date: Date) => {
-  return new Intl.DateTimeFormat("en-US", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(date);
 };

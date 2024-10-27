@@ -1,12 +1,12 @@
 import cx from "~/utils/cx";
 
-import type { HTML } from "./types";
+import type { RendererHTML } from "./types";
 
 export const ShowMarkdown = ({
   children,
   className,
 }: {
-  children: HTML;
+  children: RendererHTML;
   className?: string;
 }) => {
   return (

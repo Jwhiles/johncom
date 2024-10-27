@@ -55,6 +55,19 @@ export const getListOfEntries = async ({
   return parsed;
 };
 
+export const getEntriesFromSlugs = async (
+  slugs: Array<string>,
+): Promise<Array<Entry>> => {
+  const url = new URL(`${baseUrl}/spaces/${config.SPACE_ID}/entries`);
+  url.searchParams.append("access_token", config.CDA_TOKEN);
+  url.searchParams.append("content_type", "blogPost");
+  url.searchParams.append("fields.slug[in]", slugs.join(","));
+
+  const res = await fetch(url.toString());
+  const parsed = entriesSchema.parse(await res.json());
+  return parsed.items;
+};
+
 export type Tag = z.infer<typeof tagSchema>;
 
 const tagSchema = z.object({

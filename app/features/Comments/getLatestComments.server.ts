@@ -6,7 +6,7 @@ export const getLatestComments = async () => {
   const comments = await prisma.comment.findMany({
     where: { approved: true },
     orderBy: { createdAt: "desc" },
-    take: 10,
+    take: 5,
     // Make sure we don't select the email field
     select: {
       id: true,

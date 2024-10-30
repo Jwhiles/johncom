@@ -15,13 +15,11 @@
     "typecheck": "tsc",
     "validate": "run-p \"test -- --run\" lint typecheck test:e2e:run",
     "prepare": "husky install",
+    "migrate:contentful": "ts-node scripts/migrate-contentful.ts",
+    "migrate:contentful:dry": "DRY_RUN=true ts-node scripts/migrate-contentful.ts",
     "lint-staged": "lint-staged"
   },
-  "eslintIgnore": [
-    "/node_modules",
-    "/build",
-    "/public/build"
-  ],
+  "eslintIgnore": ["/node_modules", "/build", "/public/build"],
   "dependencies": {
     "@atproto/api": "^0.13.12",
     "@headlessui/react": "^1.7.17",
@@ -113,13 +111,7 @@
   },
   "lint-staged": {
     "*.md": "prettier --write",
-    "*ts": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*tsx": [
-      "prettier --write",
-      "eslint --fix"
-    ]
+    "*ts": ["prettier --write", "eslint --fix"],
+    "*tsx": ["prettier --write", "eslint --fix"]
   }
 }

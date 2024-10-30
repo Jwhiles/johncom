@@ -20,6 +20,7 @@ model Post {
   author   Admin  @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   authorId String
 
+  tags     Tag[]
   comments Comment[]
 }
 
@@ -78,6 +79,16 @@ model Webmention {
   approved Boolean @default(false)
 
   @@id([target, source])
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  posts Post[]
 }
 
 model Note {

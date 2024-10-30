@@ -16,7 +16,6 @@ import { Ref, forwardRef, useRef, useState } from "react";
 import { EmailSignupForm } from "~/components/EmailSignupForm";
 import { ExternalLink } from "~/components/ExternalLink";
 import RichTextEditor from "~/components/RichTextEditor";
-import { getEntry } from "~/contentful.server";
 import { prisma } from "~/db.server";
 import { Comment } from "~/features/Comments/Comment";
 import {
@@ -95,37 +94,56 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   if (!params.post_id) {
     throw new Error("no post id");
   }
-  const entry = await getEntry(params.post_id);
-  const html = marked(entry.fields.body);
 
   const randomPosts = await getRandomPosts();
 
-  const [comments, mentions] = await prisma.$transaction([
-    prisma.comment.findMany({
+  console.time("sx");
+  const [post, mentions, comments] = await prisma.$transaction(async (tx) => {
+    console.time("post");
+    const post = await tx.post.findUniqueOrThrow({
       where: {
-        postId: params.post_id,
+        slug: params.post_id,
+      },
+    });
+    console.timeEnd("post");
+
+    console.time("comments");
+    const comments = await tx.comment.findMany({
+      where: {
+        postId: post.id,
         approved: true,
         responseToId: null,
       },
+      select: commentsSelect(post.id),
+    });
+    console.timeEnd("comments");
 
-      // Make sure we don't accidentally reveal the users email
-      select: commentsSelect(params.post_id),
-    }),
-
-    prisma.webmention.findMany({
+    console.time("mentions");
+    const mentions = await tx.webmention.findMany({
       where: {
         target: `https://johnwhiles.com/posts/${params.post_id}`,
         approved: true,
       },
-
-      // Make sure we don't accidentally reveal the raw data.
       select: mentionsSelect,
-    }),
-  ]);
+    });
+    console.timeEnd("mentions");
+    return [post, mentions, comments];
+  });
+
+  console.timeEnd("sx");
+
+  if (!post) {
+    throw new Error("Post not found");
+  }
+
+  console.time("marked");
+  const html = marked(post.body);
+  console.timeEnd("marked");
 
   const likes = mentions.filter((m) => m.wmProperty === "like-of");
   const reposts = mentions.filter((m) => m.wmProperty === "repost-of");
 
+  console.time("commentsAndMentions");
   const commentsAndMentions = [
     ...comments.map((comment) => {
       return {
@@ -160,13 +178,14 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
     return aDate > bDate ? -1 : 1;
   });
+  console.timeEnd("commentsAndMentions");
 
   return json(
     {
       html,
-      date: entry.fields.date,
-      title: entry.fields.title,
-      hnUrl: entry.fields.hackerNewsLink,
+      date: post.date,
+      title: post.title,
+      hnUrl: post.hackerNewsLink,
       canonicalUrl: `https://johnwhiles.com/posts/${params.post_id}`,
       commentsAndMentions,
       likes,

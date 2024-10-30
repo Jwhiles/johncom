@@ -2,7 +2,7 @@ import { json, MetaFunction } from "@remix-run/node";
 import { useLoaderData, Link } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
 
-import { getListOfEntries } from "~/contentful.server";
+import { prisma } from "~/db.server";
 import { formatDate } from "~/utils/formatDate";
 import { apiDefaultHeaders } from "~/utils/headers";
 export { headers } from "~/utils/headers";
@@ -14,15 +14,18 @@ export const meta: MetaFunction = (args) => {
 };
 
 export const loader = async () => {
-  const entries = await getListOfEntries({ limit: 100 });
-  const e = entries.items.map((entry) => {
-    return {
-      title: entry.fields.title,
-      slug: entry.fields.slug,
-      date: entry.fields.date,
-    };
+  const entries = await prisma.post.findMany({
+    select: {
+      title: true,
+      slug: true,
+      date: true,
+    },
+    take: 100,
+    orderBy: {
+      date: "desc",
+    },
   });
-  return json({ entries: e }, apiDefaultHeaders);
+  return json({ entries }, apiDefaultHeaders);
 };
 
 export default function Post() {

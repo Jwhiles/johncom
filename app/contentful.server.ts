@@ -73,7 +73,6 @@ export const getListOfEntries = async ({
   const res = await fetch(url);
   const j = await res.json();
   const parsed = entriesSchema.parse(j);
-  console.log(j.items[0].fields.tag);
   return parsed;
 };
 

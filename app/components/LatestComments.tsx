@@ -9,11 +9,12 @@ export default function LatestComments({
 }: {
   latestComments: Array<{
     content: RendererHTML;
-    postName: string;
     id: string;
     createdAt: string;
-    name: string;
-    postId: string;
+    post: {
+      title: string;
+      slug: string;
+    };
   }>;
 }) {
   return (
@@ -30,8 +31,11 @@ export default function LatestComments({
               >
                 {dayjs(comment.createdAt).format("MMM D")}
               </time>
-              <Link className="u-url  text-xs" to={`/notes/${comment.id}`}>
-                on {comment.postName}
+              <Link
+                className="u-url  text-xs"
+                to={`/posts/${comment.post.slug}`}
+              >
+                on {comment.post.slug}
               </Link>
             </div>
             <ShowMarkdown className="*:text-base">

@@ -1,7 +1,7 @@
 import { LoaderFunction } from "@remix-run/node";
 import { marked } from "marked";
 
-import { getListOfEntries } from "~/contentful.server";
+import { prisma } from "~/db.server";
 import { headers as defaultHeaders } from "~/utils/headers";
 
 export const headers = {
@@ -61,18 +61,23 @@ export function generateRss({
 }
 
 export const loader: LoaderFunction = async () => {
-  const blogEntries = await getListOfEntries({ limit: 100 });
+  const blogEntries = await prisma.post.findMany({
+    take: 100,
+    orderBy: {
+      date: "desc",
+    },
+  });
 
   const feed = generateRss({
     title: "John’s internet house",
     description: "My Blog",
-    lastUpdate: blogEntries.items[0].fields.date,
-    entries: blogEntries.items.map((post) => ({
-      content: marked(post.fields.body),
-      pubDate: new Date(post.fields.date).toUTCString(),
-      title: post.fields.title,
-      link: `https://johnwhiles.com/posts/${post.fields.slug}`,
-      guid: `https://johnwhiles.com/posts/${post.fields.slug}`,
+    lastUpdate: blogEntries[0].date.toUTCString(),
+    entries: blogEntries.map((post) => ({
+      content: marked(post.body),
+      pubDate: post.date.toUTCString(),
+      title: post.title,
+      link: `https://johnwhiles.com/posts/${post.slug}`,
+      guid: `https://johnwhiles.com/posts/${post.slug}`,
     })),
   });
 

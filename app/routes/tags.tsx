@@ -2,19 +2,28 @@ import { json } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
 
 import { EmailSignupForm } from "~/components/EmailSignupForm";
-import { getListOfTags } from "~/contentful.server";
+import { prisma } from "~/db.server";
 import { apiDefaultHeaders } from "~/utils/headers";
 export { headers } from "~/utils/headers";
 
 export const loader = async () => {
-  const tags = await getListOfTags();
-  const t = tags.items.map((tag) => {
-    return {
-      id: tag.sys.id,
-      name: tag.fields.tagName,
-    };
+  const tags = await prisma.tag.findMany({
+    orderBy: { posts: { _count: "desc" } },
+    select: {
+      name: true,
+      slug: true,
+      _count: {
+        select: { posts: true },
+      },
+    },
   });
-  return json({ tags: t }, apiDefaultHeaders);
+
+  return json(
+    {
+      tags,
+    },
+    apiDefaultHeaders,
+  );
 };
 
 export default function Index() {

@@ -70,8 +70,8 @@ const renderer = {
     ]);
   },
 
-  // all my images are in Contentful
-  // this function just applys the same query params to all of them
+  // all my images are in Contentful's CDN
+  // this function just applies the same query params to all of them
   image(href: string, _title: string | null, text: string) {
     const url = new URL(`https:${href}`);
     url.searchParams.set("w", "800");
@@ -97,17 +97,13 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   const randomPosts = await getRandomPosts();
 
-  console.time("sx");
   const [post, mentions, comments] = await prisma.$transaction(async (tx) => {
-    console.time("post");
     const post = await tx.post.findUniqueOrThrow({
       where: {
         slug: params.post_id,
       },
     });
-    console.timeEnd("post");
 
-    console.time("comments");
     const comments = await tx.comment.findMany({
       where: {
         postId: post.id,
@@ -116,9 +112,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       },
       select: commentsSelect(post.id),
     });
-    console.timeEnd("comments");
 
-    console.time("mentions");
     const mentions = await tx.webmention.findMany({
       where: {
         target: `https://johnwhiles.com/posts/${params.post_id}`,
@@ -126,24 +120,18 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       },
       select: mentionsSelect,
     });
-    console.timeEnd("mentions");
     return [post, mentions, comments];
   });
-
-  console.timeEnd("sx");
 
   if (!post) {
     throw new Error("Post not found");
   }
 
-  console.time("marked");
   const html = marked(post.body);
-  console.timeEnd("marked");
 
   const likes = mentions.filter((m) => m.wmProperty === "like-of");
   const reposts = mentions.filter((m) => m.wmProperty === "repost-of");
 
-  console.time("commentsAndMentions");
   const commentsAndMentions = [
     ...comments.map((comment) => {
       return {
@@ -178,7 +166,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
     return aDate > bDate ? -1 : 1;
   });
-  console.timeEnd("commentsAndMentions");
 
   return json(
     {

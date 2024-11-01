@@ -3,7 +3,6 @@ import { Link, useLoaderData } from "@remix-run/react";
 
 import LatestComments from "~/components/LatestComments";
 import { Note } from "~/components/Note";
-import { getListOfEntries } from "~/contentful.server";
 import { prisma } from "~/db.server";
 import { getLatestComments } from "~/features/Comments/getLatestComments.server";
 import { sanitiseHtml } from "~/features/markdown/render.server";
@@ -12,7 +11,10 @@ import { apiDefaultHeaders } from "~/utils/headers";
 export { headers } from "~/utils/headers";
 
 export const loader = async () => {
-  const latestPost = (await getListOfEntries({ limit: 1 })).items[0];
+  const latestPost = await prisma.post.findFirstOrThrow({
+    orderBy: { date: "desc" },
+    select: { title: true, slug: true, createdAt: true },
+  });
   const latestComments = await getLatestComments();
 
   const notes = (
@@ -57,11 +59,11 @@ export default function Index() {
         <div className="mb-1 text-base font-bold text-slate-300">
           Latest article
         </div>
-        <Link className="mt-1" to={`/posts/${latestPost.fields.slug}`}>
-          {latestPost.fields.title}
+        <Link className="mt-1" to={`/posts/${latestPost.slug}`}>
+          {latestPost.title}
         </Link>
         <div className="text-xs dark:text-slate-300">
-          {formatDate(latestPost.fields.date)}
+          {formatDate(latestPost?.createdAt)}
         </div>
       </div>
       <div className="mt-24">

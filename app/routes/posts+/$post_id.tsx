@@ -533,7 +533,12 @@ const RichTextInput = () => {
         Comment
       </label>
       <div className="w-2/3">
-        <RichTextEditor {...getInputProps({ id: "content" })} />
+        <RichTextEditor
+          {...getInputProps({
+            editorClassNames: "p-1 *:text-black *:text-base min-h-[200px]",
+            id: "content",
+          })}
+        />
       </div>
       {error ? (
         <span className="text-md mt-1 block text-red-300">{error()}</span>

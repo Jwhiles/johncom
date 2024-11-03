@@ -10,6 +10,7 @@ import type { HTML } from "~/features/markdown";
 const RichTextEditor = forwardRef<
   HTMLInputElement,
   {
+    editorClassNames: string;
     defaultValue?: HTML;
     id: string;
     name: string;
@@ -18,7 +19,15 @@ const RichTextEditor = forwardRef<
     ariaDescribedBy?: string | undefined;
   }
 >(function RichTextEditor(
-  { defaultValue, id, name, ariaInvalid, ariaErrorMessage, ariaDescribedBy },
+  {
+    editorClassNames,
+    defaultValue,
+    id,
+    name,
+    ariaInvalid,
+    ariaErrorMessage,
+    ariaDescribedBy,
+  },
   ref,
 ) {
   const [valueToSave, setValueToSave] = useState<string>(defaultValue ?? "");
@@ -26,7 +35,7 @@ const RichTextEditor = forwardRef<
   const editor = useEditor({
     editorProps: {
       attributes: {
-        class: "p-1 *:text-black *:text-base min-h-[200px] ",
+        class: editorClassNames,
       },
     },
     extensions: [

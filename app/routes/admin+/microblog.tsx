@@ -90,7 +90,11 @@ export default function MicroBlog() {
       method="POST"
       className="flex flex-col gap-4"
     >
-      <RichTextEditor id="content" name="content" />
+      <RichTextEditor
+        editorClassNames="p-1 *:text-black *:text-base min-h-[200px] "
+        id="content"
+        name="content"
+      />
       <input
         placeholder="https://inreplyto.com"
         type="text"

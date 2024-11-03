@@ -16,6 +16,12 @@ const configValidator = z.object({
   // BlueSky
   BLUESKY_USERNAME: z.string(),
   BLUESKY_PASSWORD: z.string(),
+
+  CLOUDFLARE_R2_TOKEN: z.string(),
+
+  R2_ACCESS_KEY_ID: z.string(),
+  R2_SECRET_ACCESS_KEY: z.string(),
+  CLOUDFLARE_S3_URL: z.string(),
 });
 
 const config = configValidator.parse(process.env);

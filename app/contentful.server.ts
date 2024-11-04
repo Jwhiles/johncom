@@ -13,13 +13,30 @@ const entrySchema = z.object({
     date: z.string(),
     body: z.string(),
     hackerNewsLink: z.string().optional(),
+    tag: z.array(z.object({ sys: z.object({ id: z.string() }) })),
   }),
 });
 
+export type Tag = z.infer<typeof tagSchema>;
+
+const tagSchema = z.object({
+  sys: z.object({
+    id: z.string(),
+  }),
+  fields: z.object({
+    tagName: z.string(),
+  }),
+});
+const tagResponseSchema = z.object({
+  items: z.array(tagSchema),
+});
 export type Entry = z.infer<typeof entrySchema>;
 
 const entriesSchema = z.object({
   items: z.array(entrySchema),
+  includes: z.object({
+    Entry: z.array(tagSchema),
+  }),
 });
 
 export const getEntry = async (slug: string): Promise<Entry> => {
@@ -47,11 +64,16 @@ export const getListOfEntries = async ({
   limit?: number;
 }): Promise<{
   items: Array<Entry>;
+  includes: {
+    Entry: Array<Tag>;
+  };
 }> => {
   const url = `${baseUrl}/spaces/${config.SPACE_ID}/entries?access_token=${config.CDA_TOKEN}&content_type=blogPost&order=-fields.date&skip=${skip}&limit=${limit}`;
 
   const res = await fetch(url);
-  const parsed = entriesSchema.parse(await res.json());
+  const j = await res.json();
+  const parsed = entriesSchema.parse(j);
+  console.log(j.items[0].fields.tag);
   return parsed;
 };
 
@@ -67,20 +89,6 @@ export const getEntriesFromSlugs = async (
   const parsed = entriesSchema.parse(await res.json());
   return parsed.items;
 };
-
-export type Tag = z.infer<typeof tagSchema>;
-
-const tagSchema = z.object({
-  sys: z.object({
-    id: z.string(),
-  }),
-  fields: z.object({
-    tagName: z.string(),
-  }),
-});
-const tagResponseSchema = z.object({
-  items: z.array(tagSchema),
-});
 
 const entriesWithTagsSchema = entriesSchema.extend({
   includes: z.object({

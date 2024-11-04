@@ -7,6 +7,23 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Post {
+  id             String   @id @default(cuid())
+  title          String
+  slug           String   @unique
+  body           String
+  date           DateTime
+  hackerNewsLink String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  author   Admin  @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  authorId String
+
+  tags     Tag[]
+  comments Comment[]
+}
+
 model Comment {
   id          String   @id @default(cuid())
   authorEmail String
@@ -19,6 +36,7 @@ model Comment {
 
   content String
 
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   postId String
 
   responses    Comment[] @relation("responseTo")
@@ -34,6 +52,7 @@ model Admin {
   updatedAt DateTime  @updatedAt
 
   notes Note[]
+  posts Post[]
 }
 
 model Password {
@@ -62,6 +81,16 @@ model Webmention {
   @@id([target, source])
 }
 
+model Tag {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  posts Post[]
+}
+
 model Note {
   id          String @id @default(cuid())
   createdBy   Admin  @relation(fields: [createdById], references: [id], onDelete: Cascade, onUpdate: Cascade)
@@ -70,9 +99,9 @@ model Note {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  inReplyToTitle    String?
-  inReplyToUrl      String?
-  inReplyToAuthor   String?
+  inReplyToTitle  String?
+  inReplyToUrl    String?
+  inReplyToAuthor String?
 
   content String
 }

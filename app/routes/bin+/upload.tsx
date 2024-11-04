@@ -20,7 +20,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const { filename, contentType } = await request.json();
 
   // Generate a unique filename to prevent collisions
-  const uniqueFilename = `${Date.now()}-${filename}`;
+  const uniqueFilename = `${Date.now()}-${filename.replace(/\s+/g, "-")}`;
 
   const command = new PutObjectCommand({
     Bucket: process.env.R2_BUCKET_NAME,
@@ -31,9 +31,8 @@ export async function action({ request }: ActionFunctionArgs) {
 
   const preSignedUrl = await getSignedUrl(R2, command, { expiresIn: 3600 });
 
-  console.log(preSignedUrl);
   return json({
-    preSignedUrl,
+    uploadUrl: preSignedUrl,
     publicUrl: `${process.env.R2_PUBLIC_URL}/${uniqueFilename}`,
   });
 }

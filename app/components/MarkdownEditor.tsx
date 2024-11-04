@@ -3,19 +3,26 @@ import { markdown } from "@codemirror/lang-markdown";
 import { EditorState } from "@codemirror/state";
 import { EditorView, keymap } from "@codemirror/view";
 import { basicSetup } from "codemirror";
+import { marked } from "marked";
 import React, { useState } from "react";
 
 import { uploadImage } from "~/features/richtext/imageUpload";
 
-export const MarkdownEditor = ({ id, name }: { id: string; name: string }) => {
-  const [content, setContent] = useState(
-    "# Hello World\n\nStart typing your markdown here...",
-  );
+export const MarkdownEditor = ({
+  id,
+  name,
+  defaultValue = "",
+}: {
+  id: string;
+  name: string;
+  defaultValue?: string;
+}) => {
+  const [content, setContent] = useState(defaultValue);
+  const [previewShown, setPreviewShown] = useState<boolean>(false);
   const ref = React.useRef(null);
 
   React.useEffect(() => {
     if (!ref.current) return;
-
     const startState = EditorState.create({
       doc: content,
       extensions: [
@@ -82,18 +89,23 @@ export const MarkdownEditor = ({ id, name }: { id: string; name: string }) => {
     return () => {
       view.destroy();
     };
-  }, [content]);
+  }, []);
 
   return (
-    <div className="rounded-lg border">
+    <div className="rounded-lg">
       <input type="hidden" id={id} name={name} value={content} />
+
+      <div ref={ref} className={previewShown ? "hidden" : "bg-white"} />
+
       <div
-        ref={ref}
-        className="prose h-full bg-white"
-        style={{
-          fontSize: "14px",
-        }}
+        className={previewShown ? "" : "hidden"}
+        dangerouslySetInnerHTML={{ __html: marked(content) }}
       />
+      <div className="mt-2">
+        <button type="button" onClick={() => setPreviewShown(!previewShown)}>
+          {previewShown ? "Edit" : "Preview"}
+        </button>
+      </div>
     </div>
   );
 };

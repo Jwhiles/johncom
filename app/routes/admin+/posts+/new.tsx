@@ -107,7 +107,7 @@ export default function NewPost() {
           type="text"
           id="title"
           name="title"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          className="mt-1 block w-full border-b border-stone-200 text-white shadow-sm dark:bg-stone-800"
           required
         />
       </div>
@@ -120,7 +120,7 @@ export default function NewPost() {
           type="text"
           id="slug"
           name="slug"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          className="mt-1 block w-full border-b border-stone-200 text-white shadow-sm dark:bg-stone-800"
           required
         />
       </div>
@@ -140,7 +140,7 @@ export default function NewPost() {
           type="text"
           id="tags"
           name="tags"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          className="mt-1 block w-full border-b border-stone-200 text-white shadow-sm dark:bg-stone-800"
           placeholder="javascript, react, web"
         />
       </div>
@@ -153,16 +153,11 @@ export default function NewPost() {
           type="url"
           id="hackerNewsLink"
           name="hackerNewsLink"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          className="mt-1 block w-full border-b border-stone-200 text-white shadow-sm dark:bg-stone-800"
         />
       </div>
 
-      <button
-        type="submit"
-        className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-      >
-        Create Post
-      </button>
+      <button type="submit">Create Post</button>
     </Form>
   );
 }

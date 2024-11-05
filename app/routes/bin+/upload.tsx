@@ -23,7 +23,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const uniqueFilename = `${Date.now()}-${filename.replace(/\s+/g, "-")}`;
 
   const command = new PutObjectCommand({
-    Bucket: process.env.R2_BUCKET_NAME,
+    Bucket: config.R2_BUCKET_NAME,
     Key: uniqueFilename,
     ContentType: contentType,
   });
@@ -33,6 +33,6 @@ export async function action({ request }: ActionFunctionArgs) {
 
   return json({
     uploadUrl: preSignedUrl,
-    publicUrl: `${process.env.R2_PUBLIC_URL}/${uniqueFilename}`,
+    publicUrl: `${config.R2_PUBLIC_URL}/${uniqueFilename}`,
   });
 }

@@ -119,6 +119,7 @@ const Comment = ({
         <Form method="POST">
           <input type="hidden" name="commentId" value={commentId} />
           <RichTextEditor
+            editorClassNames="p-1 *:text-black *:text-base min-h-[200px]"
             id={commentId}
             name={"commentBody"}
             defaultValue={content}

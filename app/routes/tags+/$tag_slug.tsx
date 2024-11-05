@@ -3,18 +3,13 @@ import { useLoaderData, Link, useMatches } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
 export { headers } from "~/utils/headers";
 
-import { getListOfEntriesByTag } from "~/contentful.server";
+import { prisma } from "~/db.server";
 import { apiDefaultHeaders } from "~/utils/headers";
 
 export const meta: MetaFunction<typeof loader> = (args) => {
   return metaV1(args, {
-    title: "John’s blog posts about " + args.data?.tagName,
+    title: "John’s blog posts about " + args.data?.tag.name,
   });
-};
-
-// I'll do this better when I'm not about to go to sleep..
-const niceTags: Record<string, string> = {
-  technology: "2WcIjFkPgdfJVky5t8mYUl",
 };
 
 const formatDate = (date: string) => {
@@ -22,32 +17,36 @@ const formatDate = (date: string) => {
   return d.toLocaleDateString("en-GB");
 };
 
-export const loader = async ({ params: { tag_id } }: LoaderFunctionArgs) => {
-  if (!tag_id) throw new Error();
+export const loader = async ({ params: { tag_slug } }: LoaderFunctionArgs) => {
+  if (!tag_slug) throw new Error();
 
-  const { entries, tagName } = await getListOfEntriesByTag(
-    niceTags[tag_id] ?? tag_id,
-  );
-
-  const e = entries.map((entry) => {
-    return {
-      title: entry.fields.title,
-      slug: entry.fields.slug,
-      date: entry.fields.date,
-    };
+  const tag = await prisma.tag.findUniqueOrThrow({
+    where: {
+      slug: tag_slug,
+    },
+    select: {
+      name: true,
+      posts: {
+        select: {
+          slug: true,
+          title: true,
+          date: true,
+        },
+      },
+    },
   });
 
-  return json({ entries: e, tagName: tagName }, apiDefaultHeaders);
+  return json({ tag }, apiDefaultHeaders);
 };
 
 export default function Post() {
-  const { entries, tagName } = useLoaderData<typeof loader>();
+  const { tag } = useLoaderData<typeof loader>();
   const matches = useMatches();
   const { tags } = matches[matches.length - 2].data as {
     tags: Array<{ id: string; name: string }>;
   };
 
-  if (entries.length === 0) {
+  if (tag.posts.length === 0) {
     return (
       <div>
         <Link className="my-2" to="..">
@@ -55,7 +54,7 @@ export default function Post() {
         </Link>
         <h1>John’s blog</h1>
         <h2>
-          Sorry, I haven't written any posts that are tagged with "{tagName}"
+          Sorry, I haven't written any posts that are tagged with "{tag.name}"
         </h2>
         <p>Why not try one of these:</p>
         <ol>
@@ -83,9 +82,9 @@ export default function Post() {
         Go back
       </Link>
       <h1>John’s blog</h1>
-      <h2>Blog posts that are tagged with: "{tagName}"</h2>
+      <h2>Blog posts that are tagged with: "{tag.name}"</h2>
       <ol>
-        {entries.map(({ title, slug, date }) => {
+        {tag.posts.map(({ title, slug, date }) => {
           return (
             <li key={`${title}${slug}`}>
               <Link

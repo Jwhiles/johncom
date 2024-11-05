@@ -16,7 +16,6 @@ import { Ref, forwardRef, useRef, useState } from "react";
 import { EmailSignupForm } from "~/components/EmailSignupForm";
 import { ExternalLink } from "~/components/ExternalLink";
 import RichTextEditor from "~/components/RichTextEditor";
-import { getEntry } from "~/contentful.server";
 import { prisma } from "~/db.server";
 import { Comment } from "~/features/Comments/Comment";
 import {
@@ -37,7 +36,7 @@ import { formatDateLong } from "~/utils/formatDate";
 import { apiDefaultHeaders } from "~/utils/headers";
 export { headers } from "~/utils/headers";
 
-import { validator } from "./$post_id.comments";
+import { validator } from "./$post_slug.comments";
 
 const footnoteMatch = /^\[\^([^\]]+)\]:([\s\S]*)$/;
 const referenceMatch = /\[\^([^\]]+)\](?!\()/g;
@@ -71,8 +70,8 @@ const renderer = {
     ]);
   },
 
-  // all my images are in Contentful
-  // this function just applys the same query params to all of them
+  // all my images are in Contentful's CDN
+  // this function just applies the same query params to all of them
   image(href: string, _title: string | null, text: string) {
     const url = new URL(`https:${href}`);
     url.searchParams.set("w", "800");
@@ -92,36 +91,43 @@ export function links() {
 }
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  if (!params.post_id) {
+  if (!params.post_slug) {
     throw new Error("no post id");
   }
-  const entry = await getEntry(params.post_id);
-  const html = marked(entry.fields.body);
 
   const randomPosts = await getRandomPosts();
 
-  const [comments, mentions] = await prisma.$transaction([
-    prisma.comment.findMany({
+  const [post, mentions, comments] = await prisma.$transaction(async (tx) => {
+    const post = await tx.post.findUniqueOrThrow({
       where: {
-        postId: params.post_id,
+        slug: params.post_slug,
+      },
+    });
+
+    const comments = await tx.comment.findMany({
+      where: {
+        postId: post.id,
         approved: true,
         responseToId: null,
       },
+      select: commentsSelect(post.id),
+    });
 
-      // Make sure we don't accidentally reveal the users email
-      select: commentsSelect(params.post_id),
-    }),
-
-    prisma.webmention.findMany({
+    const mentions = await tx.webmention.findMany({
       where: {
-        target: `https://johnwhiles.com/posts/${params.post_id}`,
+        target: `https://johnwhiles.com/posts/${params.post_slug}`,
         approved: true,
       },
-
-      // Make sure we don't accidentally reveal the raw data.
       select: mentionsSelect,
-    }),
-  ]);
+    });
+    return [post, mentions, comments];
+  });
+
+  if (!post) {
+    throw new Error("Post not found");
+  }
+
+  const html = marked(post.body);
 
   const likes = mentions.filter((m) => m.wmProperty === "like-of");
   const reposts = mentions.filter((m) => m.wmProperty === "repost-of");
@@ -164,10 +170,10 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   return json(
     {
       html,
-      date: entry.fields.date,
-      title: entry.fields.title,
-      hnUrl: entry.fields.hackerNewsLink,
-      canonicalUrl: `https://johnwhiles.com/posts/${params.post_id}`,
+      date: post.date,
+      title: post.title,
+      hnUrl: post.hackerNewsLink,
+      canonicalUrl: `https://johnwhiles.com/posts/${params.post_slug}`,
       commentsAndMentions,
       likes,
       reposts,
@@ -187,7 +193,7 @@ export const meta: MetaFunction<typeof loader> = (args) => {
 
       ...createSeoPageMetaTags({
         ogTitle: args.data?.title,
-        // description: todo - find a way to render a plaintext intro..
+        // description: render a plaintext intro
         ogType: "article",
         canonicalUrl: args.data.canonicalUrl,
       }),
@@ -527,7 +533,12 @@ const RichTextInput = () => {
         Comment
       </label>
       <div className="w-2/3">
-        <RichTextEditor {...getInputProps({ id: "content" })} />
+        <RichTextEditor
+          {...getInputProps({
+            editorClassNames: "p-1 *:text-black *:text-base min-h-[200px]",
+            id: "content",
+          })}
+        />
       </div>
       {error ? (
         <span className="text-md mt-1 block text-red-300">{error()}</span>

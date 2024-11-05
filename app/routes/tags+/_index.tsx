@@ -4,7 +4,7 @@ export { headers } from "~/utils/headers";
 export default function Post() {
   const matches = useMatches();
   const { tags } = matches[matches.length - 2].data as {
-    tags: Array<{ id: string; name: string }>;
+    tags: Array<{ slug: string; name: string; _count: { posts: number } }>;
   };
   return (
     <div>
@@ -14,11 +14,15 @@ export default function Post() {
       <h1>John’s blog</h1>
       <h2>Topics that I've written about</h2>
       <ol>
-        {tags.map(({ name, id }) => {
+        {tags.map(({ name, slug, _count: { posts } }) => {
           return (
-            <li key={id}>
-              <Link className="flex justify-between" prefetch="intent" to={id}>
-                {name}
+            <li key={slug}>
+              <Link
+                className="flex justify-between"
+                prefetch="intent"
+                to={slug}
+              >
+                {name} - {posts} posts
               </Link>
             </li>
           );

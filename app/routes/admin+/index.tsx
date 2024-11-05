@@ -14,6 +14,10 @@ export default function Admin() {
   return (
     <ul className="my-4">
       <li>
+        <Link to="posts/new">New Post</Link>
+      </li>
+
+      <li>
         <Link to="microblog">microblog</Link>
       </li>
 

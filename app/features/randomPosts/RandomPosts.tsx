@@ -1,13 +1,13 @@
 import { Link } from "@remix-run/react";
 
-import { Entry } from "~/contentful.server";
+import { RandomPostsType } from "./index.server";
 
-export const RandomPosts = ({ posts }: { posts: Array<Entry> }) => {
+export const RandomPosts = ({ posts }: { posts: RandomPostsType }) => {
   return (
     <ul>
       {posts.map((post) => (
-        <li key={post.fields.slug}>
-          <Link to={`/posts/${post.fields.slug}`}>{post.fields.title}</Link>
+        <li key={post.slug}>
+          <Link to={`/posts/${post.slug}`}>{post.title}</Link>
         </li>
       ))}
     </ul>

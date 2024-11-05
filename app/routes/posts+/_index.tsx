@@ -20,7 +20,6 @@ export const loader = async () => {
       slug: true,
       date: true,
     },
-    take: 100,
     orderBy: {
       date: "desc",
     },

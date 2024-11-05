@@ -62,7 +62,6 @@ export function generateRss({
 
 export const loader: LoaderFunction = async () => {
   const blogEntries = await prisma.post.findMany({
-    take: 100,
     orderBy: {
       date: "desc",
     },

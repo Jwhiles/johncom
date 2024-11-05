@@ -36,7 +36,7 @@ import { formatDateLong } from "~/utils/formatDate";
 import { apiDefaultHeaders } from "~/utils/headers";
 export { headers } from "~/utils/headers";
 
-import { validator } from "./$post_id.comments";
+import { validator } from "./$post_slug.comments";
 
 const footnoteMatch = /^\[\^([^\]]+)\]:([\s\S]*)$/;
 const referenceMatch = /\[\^([^\]]+)\](?!\()/g;
@@ -91,7 +91,7 @@ export function links() {
 }
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  if (!params.post_id) {
+  if (!params.post_slug) {
     throw new Error("no post id");
   }
 
@@ -100,7 +100,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const [post, mentions, comments] = await prisma.$transaction(async (tx) => {
     const post = await tx.post.findUniqueOrThrow({
       where: {
-        slug: params.post_id,
+        slug: params.post_slug,
       },
     });
 
@@ -115,7 +115,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
     const mentions = await tx.webmention.findMany({
       where: {
-        target: `https://johnwhiles.com/posts/${params.post_id}`,
+        target: `https://johnwhiles.com/posts/${params.post_slug}`,
         approved: true,
       },
       select: mentionsSelect,
@@ -173,7 +173,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       date: post.date,
       title: post.title,
       hnUrl: post.hackerNewsLink,
-      canonicalUrl: `https://johnwhiles.com/posts/${params.post_id}`,
+      canonicalUrl: `https://johnwhiles.com/posts/${params.post_slug}`,
       commentsAndMentions,
       likes,
       reposts,
@@ -193,7 +193,7 @@ export const meta: MetaFunction<typeof loader> = (args) => {
 
       ...createSeoPageMetaTags({
         ogTitle: args.data?.title,
-        // description: todo - find a way to render a plaintext intro..
+        // description: render a plaintext intro
         ogType: "article",
         canonicalUrl: args.data.canonicalUrl,
       }),

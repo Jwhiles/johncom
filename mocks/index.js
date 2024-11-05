@@ -1,14 +1,7 @@
 const { http, HttpResponse } = require("msw");
 const { setupServer } = require("msw/node");
-const { entry } = require("./contentfulReturn");
 
 const handlers = [
-  http.get(
-    "https://cdn.contentful.com/spaces/:spaceid/entries",
-    async () => {
-      return HttpResponse.json(entry);
-    }
-  ),
   http.post("https://api.eu.mailgun.net/v3/:domain/messages", async (req) => {
     const text = await req.request.text();
     console.log("🔶 mocked email text:", text);

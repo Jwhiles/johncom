@@ -20,7 +20,7 @@ const formatDate = (date: string) => {
 export const loader = async ({ params: { tag_slug } }: LoaderFunctionArgs) => {
   if (!tag_slug) throw new Error();
 
-  const tag = await prisma.tag.findUniqueOrThrow({
+  const tag = await prisma.tag.findUnique({
     where: {
       slug: tag_slug,
     },
@@ -35,6 +35,9 @@ export const loader = async ({ params: { tag_slug } }: LoaderFunctionArgs) => {
       },
     },
   });
+  if (!tag) {
+    throw new Response(null, { status: 404 });
+  }
 
   return json({ tag }, apiDefaultHeaders);
 };

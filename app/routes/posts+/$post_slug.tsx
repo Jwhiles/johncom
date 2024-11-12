@@ -97,35 +97,32 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   const randomPosts = await getRandomPosts();
 
-  const [post, mentions, comments] = await prisma.$transaction(async (tx) => {
-    const post = await tx.post.findUniqueOrThrow({
-      where: {
-        slug: params.post_slug,
-      },
-    });
-
-    const comments = await tx.comment.findMany({
-      where: {
-        postId: post.id,
-        approved: true,
-        responseToId: null,
-      },
-      select: commentsSelect(post.id),
-    });
-
-    const mentions = await tx.webmention.findMany({
-      where: {
-        target: `https://johnwhiles.com/posts/${params.post_slug}`,
-        approved: true,
-      },
-      select: mentionsSelect,
-    });
-    return [post, mentions, comments];
+  const post = await prisma.post.findUnique({
+    where: {
+      slug: params.post_slug,
+    },
   });
 
   if (!post) {
-    throw new Error("Post not found");
+    throw new Response(null, { status: 404 });
   }
+
+  const comments = await prisma.comment.findMany({
+    where: {
+      postId: post.id,
+      approved: true,
+      responseToId: null,
+    },
+    select: commentsSelect(post.id),
+  });
+
+  const mentions = await prisma.webmention.findMany({
+    where: {
+      target: `https://johnwhiles.com/posts/${params.post_slug}`,
+      approved: true,
+    },
+    select: mentionsSelect,
+  });
 
   const html = marked(post.body);
 

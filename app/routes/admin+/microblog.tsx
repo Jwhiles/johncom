@@ -3,10 +3,12 @@ import {
   LoaderFunctionArgs,
   redirect,
 } from "@remix-run/node";
-import { Form, useSubmit } from "@remix-run/react";
+import { FormScope, useField, useForm, validationError } from "@rvf/remix";
+import { withZod } from "@rvf/zod";
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone.js";
 import utc from "dayjs/plugin/utc.js";
+import { useRef } from "react";
 import { z } from "zod";
 
 import { requireAdmin, requireAdminId } from "~/auth.server";
@@ -36,35 +38,35 @@ const MicroBlogSchema = z.object({
     .transform((s) => (s === "" ? undefined : s)),
 });
 
+const validator = withZod(MicroBlogSchema);
+
 export async function action({ request }: ActionFunctionArgs) {
   const adminId = await requireAdminId(request);
 
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-
   if (request.method === "POST") {
-    const parsed = MicroBlogSchema.safeParse(data);
-    if (!parsed.success) {
-      throw new Response(parsed.error.message, { status: 400 });
+    const result = await validator.validate(await request.formData());
+    if (result.error) {
+      return validationError(result.error, result.submittedData);
     }
+
     await prisma.note.create({
       data: {
-        content: parsed.data.content,
-        createdAt: parsed.data.createdDate,
-        updatedAt: parsed.data.createdDate,
+        content: result.data.content,
+        createdAt: result.data.createdDate,
+        updatedAt: result.data.createdDate,
         createdBy: {
           connect: { id: adminId },
         },
-        inReplyToUrl: parsed.data.inReplyToUrl,
-        inReplyToAuthor: parsed.data.inReplyToAuthor,
-        inReplyToTitle: parsed.data.inReplyToTitle,
+        inReplyToUrl: result.data.inReplyToUrl,
+        inReplyToAuthor: result.data.inReplyToAuthor,
+        inReplyToTitle: result.data.inReplyToTitle,
       },
     });
 
     // Post to BlueSky
     await BlueSky.makePost(
-      stripAllHtml(parsed.data.content),
-      parsed.data.createdDate,
+      stripAllHtml(result.data.content),
+      result.data.createdDate,
     );
 
     return redirect("/admin");
@@ -74,43 +76,72 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function MicroBlog() {
-  const submit = useSubmit();
+  const createdDate = useRef(dayjs.tz(dayjs(), dayjs.tz.guess()).format());
+  const form = useForm({ validator, method: "POST" });
+
   return (
-    <Form
-      onSubmit={(event) => {
-        const data = new FormData(event.currentTarget);
-
-        // Date is created on the client so we can capture the timezone.
-        const createdDate = dayjs.tz(dayjs(), dayjs.tz.guess()).format();
-        data.append("createdDate", createdDate);
-
-        submit(data, { method: "post" });
-        event.preventDefault();
-      }}
-      method="POST"
-      className="flex flex-col gap-4"
-    >
+    <form className="flex flex-col gap-4" {...form.getFormProps()}>
       <RichTextEditor
         editorClassNames="p-1 *:text-black *:text-base min-h-[200px] "
         id="content"
         name="content"
       />
-      <input
+      <input type="hidden" name="createdDate" value={createdDate.current} />
+      <MyInput
+        scope={form.scope("inReplyToUrl")}
+        label="In reply to URL"
         placeholder="https://inreplyto.com"
         type="text"
         name="inReplyToUrl"
       />
-      <input
+      <MyInput
+        scope={form.scope("inReplyToTitle")}
+        label="In reply to title"
         placeholder="In reply to title"
         type="text"
         name="inReplyToTitle"
       />
-      <input
+      <MyInput
+        scope={form.scope("inReplyToAuthor")}
+        label="In reply to author"
         placeholder="In reply to author"
         type="text"
         name="inReplyToAuthor"
       />
-      <button type="submit">Save</button>
-    </Form>
+      <button disabled={form.formState.isSubmitting} type="submit">
+        Save
+      </button>
+    </form>
   );
 }
+
+const MyInput = ({
+  scope,
+  name,
+  label,
+  type,
+  placeholder,
+}: {
+  scope: FormScope<{ name: string }>;
+  name: string;
+  label: string;
+  type: string;
+  placeholder: string;
+}) => {
+  const { error, getInputProps } = useField(scope);
+
+  return (
+    <>
+      <label htmlFor={name} className="mb-1 block text-xs font-bold">
+        {label}
+      </label>
+      <input
+        {...getInputProps({ id: name, placeholder, type })}
+        className="w-1/2"
+      />
+      {error ? (
+        <span className="text-md mt-1 block text-red-300">{error()}</span>
+      ) : null}
+    </>
+  );
+};

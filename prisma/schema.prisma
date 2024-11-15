@@ -10,6 +10,7 @@ generator client {
 model Post {
   id             String   @id @default(cuid())
   title          String
+  draft          Boolean  @default(true)
   slug           String   @unique
   body           String
   date           DateTime

@@ -23,6 +23,9 @@ export const loader = async () => {
     orderBy: {
       date: "desc",
     },
+    where: {
+      draft: false,
+    },
   });
   return json({ entries }, apiDefaultHeaders);
 };

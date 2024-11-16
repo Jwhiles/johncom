@@ -11,7 +11,7 @@ import { HTML, ShowMarkdown } from "~/features/markdown";
 import { sanitiseHtml } from "~/features/markdown/index.server";
 import { apiDefaultHeaders } from "~/utils/headers";
 
-const commentsSelect = (postId: string) => ({
+const commentsSelect = (postSlug: string) => ({
   id: true,
   content: true,
   name: true,
@@ -19,7 +19,9 @@ const commentsSelect = (postId: string) => ({
   responses: {
     where: {
       approved: true,
-      postId,
+      post: {
+        slug: postSlug,
+      },
     },
     select: {
       id: true,
@@ -34,19 +36,21 @@ export type CommentsSelected = Prisma.CommentGetPayload<{
 }>;
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   await requireAdmin(request);
-  if (!params.post_id) {
+  if (!params.post_slug) {
     throw new Error("no post id");
   }
 
   const [comments] = await prisma.$transaction([
     prisma.comment.findMany({
       where: {
-        postId: params.post_id,
+        post: {
+          slug: params.post_slug,
+        },
         approved: true,
       },
 
       // Make sure we don't accidentally reveal the users email
-      select: commentsSelect(params.post_id),
+      select: commentsSelect(params.post_slug),
     }),
   ]);
 

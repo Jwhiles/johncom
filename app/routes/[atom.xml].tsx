@@ -65,6 +65,9 @@ export const loader: LoaderFunction = async () => {
     orderBy: {
       date: "desc",
     },
+    where: {
+      draft: false,
+    },
   });
 
   const feed = generateRss({

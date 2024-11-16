@@ -144,17 +144,19 @@ export default function NewPost() {
           placeholder="javascript, react, web"
         />
       </div>
-
       <div>
-        <label htmlFor="hackerNewsLink" className="block text-sm font-medium">
-          Hacker News Link (optional)
+        <label
+          htmlFor="readyToPublish"
+          className="flex items-center gap-2 text-sm font-medium"
+        >
+          <input
+            type="checkbox"
+            id="readyToPublish"
+            name="readyToPublish"
+            className="h-6 w-6 rounded border-stone-300 text-blue-600 focus:ring-blue-500 dark:border-stone-600 dark:bg-stone-700"
+          />
+          Ready to publish
         </label>
-        <input
-          type="url"
-          id="hackerNewsLink"
-          name="hackerNewsLink"
-          className="mt-1 block w-full border-b border-stone-200 text-white shadow-sm dark:bg-stone-800"
-        />
       </div>
 
       <button type="submit">Create Post</button>

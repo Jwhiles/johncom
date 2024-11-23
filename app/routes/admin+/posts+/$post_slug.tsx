@@ -1,10 +1,12 @@
 import { Prisma } from "@prisma/client";
 import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, useLoaderData, useMatches } from "@remix-run/react";
+import { validationError } from "@rvf/remix";
 import { useState } from "react";
 import { z } from "zod";
 
 import { requireAdmin } from "~/auth.server";
+import { PostForm, validator } from "~/components/PostForm";
 import RichTextEditor from "~/components/RichTextEditor";
 import { prisma } from "~/db.server";
 import { HTML, ShowMarkdown } from "~/features/markdown";
@@ -36,26 +38,36 @@ export type CommentsSelected = Prisma.CommentGetPayload<{
 }>;
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   await requireAdmin(request);
-  if (!params.post_slug) {
-    throw new Error("no post id");
+  const parsedParams = Params.parse(params);
+  const post = await prisma.post.findUnique({
+    where: {
+      slug: parsedParams.post_slug,
+    },
+    include: {
+      tags: true,
+    },
+  });
+  if (!post) {
+    throw new Response("Post not found", { status: 404 });
   }
 
   const [comments] = await prisma.$transaction([
     prisma.comment.findMany({
       where: {
         post: {
-          slug: params.post_slug,
+          slug: parsedParams.post_slug,
         },
         approved: true,
       },
 
       // Make sure we don't accidentally reveal the users email
-      select: commentsSelect(params.post_slug),
+      select: commentsSelect(parsedParams.post_slug),
     }),
   ]);
 
   return json(
     {
+      post,
       comments: comments.map((c) => {
         return { ...c, content: sanitiseHtml(c.content) };
       }),
@@ -64,41 +76,80 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   );
 };
 
-const UpdateCommentSchema = z.object({
-  commentBody: z.string(),
-  commentId: z.string().cuid(),
+const Params = z.object({
+  post_slug: z.string(),
 });
+
+const slugify = (str: string) =>
+  str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
 export const action = async ({ request, params }: ActionFunctionArgs) => {
   await requireAdmin(request);
-  if (!params.post_id) {
-    throw new Error("no comment id");
-  }
+  Params.parse(params);
 
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-
-  try {
-    const parsed = UpdateCommentSchema.parse(data);
-
-    await prisma.comment.update({
+  if (request.method === "PUT") {
+    const parsed = await validator.validate(await request.formData());
+    if (parsed.error) {
+      return validationError(parsed.error, parsed.submittedData);
+    }
+    const post = await prisma.post.findUnique({
       where: {
-        id: parsed.commentId,
-      },
-      data: {
-        content: sanitiseHtml(parsed.commentBody),
+        slug: params.post_slug,
       },
     });
-    return json({});
-  } catch (e) {
-    console.error("failed to parse comment update", e);
-    throw new Response("Couldn’t parse request", { status: 400 });
+    if (!post) {
+      throw new Response("Post not found", { status: 404 });
+    }
+
+    await prisma.post.update({
+      where: {
+        slug: params.post_slug,
+      },
+      data: {
+        title: parsed.data.title,
+        slug: parsed.data.slug,
+        body: parsed.data.body,
+        date: parsed.data.createdDate,
+        hackerNewsLink: parsed.data.hackerNewsLink,
+        tags: {
+          connectOrCreate: parsed.data.tags.map((name) => ({
+            where: { name },
+            create: {
+              name,
+              slug: slugify(name),
+            },
+          })),
+        },
+        draft: !parsed.data.readyToPublish,
+      },
+    });
+    return null;
   }
+
+  throw new Response("Invalid method", { status: 400 });
 };
 
 export default function PostAdmin() {
-  const { comments } = useLoaderData<typeof loader>();
+  const { comments, post } = useLoaderData<typeof loader>();
   return (
     <div>
+      <h2>Post Admin</h2>
+      <PostForm
+        mode={{
+          type: "edit",
+          title: post.title,
+          slug: post.slug,
+          body: post.body,
+          tags: post.tags.map((t) => t.name),
+          createdDate: post.date,
+          hackerNewsLink: post.hackerNewsLink,
+          draft: post.draft,
+        }}
+      />
+      <h2>Comments</h2>
       <ul>
         {comments.map((c) => {
           return <Comment commentId={c.id} content={c.content} key={c.id} />;
@@ -117,11 +168,12 @@ const Comment = ({
 }) => {
   const [editing, setEditing] = useState(false);
 
+  const m = useMatches();
+  const route = `${m[m.length - 1].pathname}/${commentId}`;
   if (editing) {
     return (
       <div>
-        <Form method="POST">
-          <input type="hidden" name="commentId" value={commentId} />
+        <Form navigate={false} action={route} method="POST">
           <RichTextEditor
             editorClassNames="p-1 *:text-black *:text-base min-h-[200px]"
             id={commentId}

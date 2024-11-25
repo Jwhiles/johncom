@@ -6,8 +6,8 @@ import {
 import { validationError } from "@rvf/remix";
 
 import { requireAdmin, requireAdminId } from "~/auth.server";
-import { PostForm, validator } from "~/components/PostForm";
 import { prisma } from "~/db.server";
+import { PostForm, validator } from "~/features/posts/PostForm";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await requireAdmin(request);

@@ -6,11 +6,11 @@ import { useState } from "react";
 import { z } from "zod";
 
 import { requireAdmin } from "~/auth.server";
-import { PostForm, validator } from "~/components/PostForm";
 import RichTextEditor from "~/components/RichTextEditor";
 import { prisma } from "~/db.server";
 import { HTML, ShowMarkdown } from "~/features/markdown";
 import { sanitiseHtml } from "~/features/markdown/index.server";
+import { PostForm, validator } from "~/features/posts/PostForm";
 import { apiDefaultHeaders } from "~/utils/headers";
 
 const commentsSelect = (postSlug: string) => ({

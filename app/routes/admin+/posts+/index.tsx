@@ -13,8 +13,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       title: true,
       slug: true,
       date: true,
+      draft: true,
     },
-    take: 100,
+    orderBy: {
+      date: "desc",
+    },
   });
   return json({ entries }, apiDefaultHeaders);
 };
@@ -25,16 +28,16 @@ export default function Post() {
     <div>
       <h2 className="tracking-tight">Blog posts</h2>
       <ol>
-        {entries.map(({ title, slug, date }) => {
+        {entries.map(({ title, slug, date, draft }) => {
           return (
             <li key={`${title}${slug}`}>
               <Link
-                className="flex justify-between"
+                className={`flex justify-between ${draft ? "opacity-50" : ""}`}
                 prefetch="intent"
                 to={slug}
               >
                 {title}
-                <span>{formatDate(date)}</span>
+                <span>{draft ? "(Draft)" : formatDate(date)}</span>
               </Link>
             </li>
           );

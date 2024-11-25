@@ -14,6 +14,7 @@ export const loader = async () => {
   const latestPost = await prisma.post.findFirstOrThrow({
     orderBy: { date: "desc" },
     select: { title: true, slug: true, createdAt: true },
+    where: { draft: false },
   });
   const latestComments = await getLatestComments();
 

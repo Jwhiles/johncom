@@ -1,8 +1,10 @@
-import { FormScope, useField, useForm } from "@rvf/remix";
+import { useForm } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
 import { z } from "zod";
 
 import { MarkdownEditor } from "~/components/MarkdownEditor";
+import { CheckboxInput } from "~/features/forms/CheckboxInput";
+import { Input } from "~/features/forms/Input";
 import dayjs from "~/utils/dayjs";
 
 interface CreateForm {
@@ -68,7 +70,7 @@ export function PostForm({ mode }: PostFormProps) {
         name="createdDate"
         value={mode.type === "edit" ? mode.createdDate : dayjs().toISOString()}
       />
-      <MyInput
+      <Input
         scope={form.scope("title")}
         name="title"
         label="Title"
@@ -76,7 +78,7 @@ export function PostForm({ mode }: PostFormProps) {
         placeholder="Title"
       />
 
-      <MyInput
+      <Input
         scope={form.scope("slug")}
         name="slug"
         label="Slug"
@@ -95,14 +97,14 @@ export function PostForm({ mode }: PostFormProps) {
         />
       </div>
 
-      <MyInput
+      <Input
         scope={form.scope("tags")}
         name="tags"
         label="Tags (comma-separated)"
         type="text"
         placeholder="javascript, react, web"
       />
-      <MyInput
+      <Input
         scope={form.scope("hackerNewsLink")}
         name="hackerNewsLink"
         label="Hacker News Links"
@@ -123,62 +125,3 @@ export function PostForm({ mode }: PostFormProps) {
     </form>
   );
 }
-
-const CheckboxInput = ({
-  scope,
-  name,
-  label,
-  placeholder,
-}: {
-  scope: FormScope<boolean>;
-  name: string;
-  label: string;
-  placeholder: string;
-}) => {
-  const { error, getInputProps } = useField(scope);
-
-  return (
-    <>
-      <label htmlFor={name} className="mb-1 block text-xs font-bold">
-        {label}
-      </label>
-      <input
-        {...getInputProps({ id: name, placeholder, type: "checkbox" })}
-        className="w-1/2"
-      />
-      {error ? (
-        <span className="text-md mt-1 block text-red-300">{error()}</span>
-      ) : null}
-    </>
-  );
-};
-const MyInput = ({
-  scope,
-  name,
-  label,
-  type,
-  placeholder,
-}: {
-  scope: FormScope<string>;
-  name: string;
-  label: string;
-  type: string;
-  placeholder: string;
-}) => {
-  const { error, getInputProps } = useField(scope);
-
-  return (
-    <>
-      <label htmlFor={name} className="mb-1 block text-xs font-bold">
-        {label}
-      </label>
-      <input
-        {...getInputProps({ id: name, placeholder, type })}
-        className="w-1/2"
-      />
-      {error ? (
-        <span className="text-md mt-1 block text-red-300">{error()}</span>
-      ) : null}
-    </>
-  );
-};

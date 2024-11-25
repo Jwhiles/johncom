@@ -4,16 +4,10 @@ import {
   redirect,
 } from "@remix-run/node";
 import { validationError } from "@rvf/remix";
-import dayjs from "dayjs";
-import timezone from "dayjs/plugin/timezone.js";
-import utc from "dayjs/plugin/utc.js";
 
 import { requireAdmin, requireAdminId } from "~/auth.server";
 import { PostForm, validator } from "~/components/PostForm";
 import { prisma } from "~/db.server";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await requireAdmin(request);

@@ -1,4 +1,4 @@
-import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
+import { ActionFunctionArgs, json } from "@remix-run/node";
 import { z } from "zod";
 
 import { requireAdmin } from "~/auth.server";
@@ -13,12 +13,6 @@ const UpdateCommentParams = z.object({
   post_slug: z.string(),
   comment_id: z.string(),
 });
-
-export const loader = async ({ request, params }: LoaderFunctionArgs) => {
-  await requireAdmin(request);
-  UpdateCommentParams.parse(params);
-  return null;
-};
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
   await requireAdmin(request);
@@ -53,7 +47,3 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
     throw new Response("Couldn’t parse request", { status: 400 });
   }
 };
-
-export default function EditComment() {
-  return <div>TODO</div>;
-}

@@ -47,11 +47,15 @@ export async function action({ params, request }: ActionFunctionArgs) {
         },
       },
       name: result.data.name,
-      responseTo: {
-        connect: {
-          id: result.data.responseToId,
-        },
-      },
+      ...(result.data.responseToId
+        ? {
+            responseTo: {
+              connect: {
+                id: result.data.responseToId,
+              },
+            },
+          }
+        : {}),
     },
   });
 

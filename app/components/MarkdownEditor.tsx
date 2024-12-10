@@ -3,10 +3,10 @@ import { markdown } from "@codemirror/lang-markdown";
 import { EditorState } from "@codemirror/state";
 import { EditorView, keymap } from "@codemirror/view";
 import { basicSetup } from "codemirror";
-import { marked } from "marked";
 import React, { useState } from "react";
 
 import { uploadImage } from "~/features/richtext/imageUpload";
+import { marked } from "~/utils/marked";
 
 export const MarkdownEditor = ({
   id,

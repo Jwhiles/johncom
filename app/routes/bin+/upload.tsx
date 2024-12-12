@@ -27,7 +27,6 @@ export async function action({ request }: ActionFunctionArgs) {
     Key: uniqueFilename,
     ContentType: contentType,
   });
-  console.log(command);
 
   const preSignedUrl = await getSignedUrl(R2, command, { expiresIn: 3600 });
 

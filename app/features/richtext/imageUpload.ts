@@ -11,11 +11,10 @@ export async function uploadImage(file: File) {
     }),
   });
 
-  const { preSignedUrl, publicUrl } = await response.json();
-  console.log(preSignedUrl, publicUrl);
+  const { uploadUrl, publicUrl } = await response.json();
 
   // 2. Upload directly to R2
-  await fetch(preSignedUrl, {
+  await fetch(uploadUrl, {
     method: "PUT",
     body: file,
     headers: {

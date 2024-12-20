@@ -1,10 +1,8 @@
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 
-import LatestComments from "~/components/LatestComments";
 import { Note } from "~/components/Note";
 import { prisma } from "~/db.server";
-import { getLatestComments } from "~/features/Comments/getLatestComments.server";
 import { sanitiseHtml } from "~/features/markdown/render.server";
 import { formatDate } from "~/utils/formatDate";
 import { apiDefaultHeaders } from "~/utils/headers";
@@ -16,7 +14,6 @@ export const loader = async () => {
     select: { title: true, slug: true, createdAt: true },
     where: { draft: false },
   });
-  const latestComments = await getLatestComments();
 
   const notes = (
     await prisma.note.findMany({ orderBy: { createdAt: "desc" }, take: 5 })
@@ -31,11 +28,11 @@ export const loader = async () => {
     };
   });
 
-  return json({ latestPost, latestComments, notes }, apiDefaultHeaders);
+  return json({ latestPost, notes }, apiDefaultHeaders);
 };
 
 export default function Index() {
-  const { latestPost, latestComments } = useLoaderData<typeof loader>();
+  const { latestPost } = useLoaderData<typeof loader>();
   return (
     <div className="body">
       <nav className="m-0 flex gap-4 p-0">
@@ -93,13 +90,6 @@ export default function Index() {
         <div>
           <div className="mb-1 text-base font-bold text-slate-300">Notes</div>
           <Notes />
-        </div>
-
-        <div>
-          <div className="mb-1 text-base font-bold text-slate-300">
-            Latest comments
-          </div>
-          <LatestComments latestComments={latestComments} />
         </div>
       </div>
       <img

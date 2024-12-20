@@ -1,9 +1,11 @@
-import { json } from "@remix-run/node";
+import { MetaFunction, json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
+import { metaV1 } from "@remix-run/v1-meta";
 
 import { Note } from "~/components/Note";
 import { prisma } from "~/db.server";
 import { sanitiseHtml } from "~/features/markdown/render.server";
+import { createSeoPageMetaTags } from "~/utils/createSeoMetadata";
 import { formatDate } from "~/utils/formatDate";
 import { apiDefaultHeaders } from "~/utils/headers";
 export { headers } from "~/utils/headers";
@@ -103,6 +105,21 @@ export default function Index() {
     </div>
   );
 }
+
+export const meta: MetaFunction<typeof loader> = (args) => {
+  const e = metaV1(args, {});
+  return [
+    ...e,
+
+    ...createSeoPageMetaTags({
+      ogTitle: "John’s Internet House",
+      description:
+        "John Whiles is a person from England. This website contains their blog, music, and other things. Hopefully it will one day be the sort of website that people will look at and say, “They used to make good websites back in the day. What happened?”",
+      ogType: "website",
+      canonicalUrl: "https://johnwhiles.com",
+    }),
+  ];
+};
 
 const Notes = () => {
   const { notes } = useLoaderData<typeof loader>();

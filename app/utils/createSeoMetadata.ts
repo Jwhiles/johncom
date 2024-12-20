@@ -27,7 +27,7 @@ export const createPostBreadcrumbs = ({
 
 export const createSeoPageMetaTags = ({
   ogTitle,
-  // description,
+  description,
   ogType,
   canonicalUrl,
 }: {
@@ -40,7 +40,7 @@ export const createSeoPageMetaTags = ({
    * A description for the page, that should be rendered on social media shares.
    * Will be plain text, and won't be rendered nicely by the site. So don't shove it full of links.
    */
-  // description: string;
+  description?: string;
   /*
    * The type of the page. Different page types will be shared differently.
    */
@@ -51,17 +51,11 @@ export const createSeoPageMetaTags = ({
    */
   canonicalUrl: string;
 }) => {
-  // TODO: add the twitter tags
-
-  return [
+  const tags = [
     {
       property: "og:title",
       content: ogTitle,
     },
-    // {
-    //   property: "og:description",
-    //   content: description,
-    // },
     {
       property: "og:type",
       content: ogType,
@@ -72,4 +66,12 @@ export const createSeoPageMetaTags = ({
       href: canonicalUrl,
     },
   ];
+
+  if (description) {
+    tags.push({
+      property: "og:description",
+      content: description,
+    });
+  }
+  return tags;
 };

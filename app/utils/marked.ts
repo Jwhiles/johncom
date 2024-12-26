@@ -39,7 +39,7 @@ const renderer = {
     const url = new URL(`https:${href}`);
     url.searchParams.set("w", "800");
     url.searchParams.set("fm", "webp");
-    return `<img src=${url} alt=${text} />`;
+    return `<img loading='lazy' src=${url} alt=${text} />`;
   },
 };
 

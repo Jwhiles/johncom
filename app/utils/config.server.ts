@@ -17,6 +17,8 @@ const configValidator = z.object({
   CLOUDFLARE_S3_URL: z.string(),
   R2_BUCKET_NAME: z.string(),
   R2_PUBLIC_URL: z.string(),
+
+  ARENA_TOKEN: z.string(),
 });
 
 const config = configValidator.parse(process.env);

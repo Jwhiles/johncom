@@ -37,23 +37,7 @@ export default function Index() {
   const { latestPost } = useLoaderData<typeof loader>();
   return (
     <div className="body">
-      <nav className="m-0 flex gap-4 p-0">
-        <Link className="" to="/posts">
-          Blog
-        </Link>
-        <Link className="" to="/cv">
-          CV
-        </Link>
-        <Link className="" to="/albums">
-          Albums
-        </Link>
-        <Link className="" to="/contact">
-          Contact
-        </Link>
-        <Link className="" to="/now">
-          Now
-        </Link>
-      </nav>
+      <NavigationLinks />
       <h1 className="text-8xl tracking-tighter">John’s website.</h1>
       <div className="mt-24">
         <div className="mb-1 text-base font-bold text-slate-300">
@@ -66,27 +50,20 @@ export default function Index() {
           {formatDate(latestPost?.createdAt)}
         </div>
       </div>
-      <div className="mt-24">
-        <div className="mb-1 text-base font-bold text-slate-300">
-          Greatest hits
+      <div className="mt-24 grid grid-cols-2">
+        <GreatestHits />
+        <div>
+          <div className="mb-1 text-base font-bold text-slate-300">
+            Weird stuff
+          </div>
+          <ul>
+            <li>
+              <Link className="mt-1" to={`/screenshots`}>
+                Screenshot Garden
+              </Link>
+            </li>
+          </ul>
         </div>
-        <ul>
-          <li>
-            <Link className="mt-1" to={`/posts/programming-as-theory`}>
-              Suddenly, I Understand Software
-            </Link>
-          </li>
-          <li>
-            <Link className="mt-1" to={`/posts/music-production-lessons`}>
-              Six things I sort of believe about making music
-            </Link>
-          </li>
-          <li>
-            <Link className="mt-1" to={`/posts/work`}>
-              Maybe you should do less “work”
-            </Link>
-          </li>
-        </ul>
       </div>
       <div className="mt-24 grid grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
@@ -105,6 +82,48 @@ export default function Index() {
     </div>
   );
 }
+const GreatestHits = () => (
+  <div>
+    <div className="mb-1 text-base font-bold text-slate-300">Greatest hits</div>
+    <ul>
+      <li>
+        <Link className="mt-1" to={`/posts/programming-as-theory`}>
+          Suddenly, I Understand Software
+        </Link>
+      </li>
+      <li>
+        <Link className="mt-1" to={`/posts/music-production-lessons`}>
+          Six things I sort of believe about making music
+        </Link>
+      </li>
+      <li>
+        <Link className="mt-1" to={`/posts/work`}>
+          Maybe you should do less “work”
+        </Link>
+      </li>
+    </ul>
+  </div>
+);
+
+const NavigationLinks = () => (
+  <nav className="m-0 flex gap-4 p-0">
+    <Link className="" to="/posts">
+      Blog
+    </Link>
+    <Link className="" to="/cv">
+      CV
+    </Link>
+    <Link className="" to="/albums">
+      Albums
+    </Link>
+    <Link className="" to="/contact">
+      Contact
+    </Link>
+    <Link className="" to="/now">
+      Now
+    </Link>
+  </nav>
+);
 
 export const meta: MetaFunction<typeof loader> = (args) => {
   const e = metaV1(args, {});

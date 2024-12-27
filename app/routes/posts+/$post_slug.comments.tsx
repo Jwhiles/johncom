@@ -38,7 +38,7 @@ export async function action({ params, request }: ActionFunctionArgs) {
 
   const comments = await prisma.comment.create({
     data: {
-      approved: true,
+      approved: false,
       content: sanitiseHtml(result.data.content),
       authorEmail: result.data.email,
       post: {

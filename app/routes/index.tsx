@@ -38,10 +38,10 @@ export default function Index() {
   return (
     <div className="body">
       <NavigationLinks />
-      <h1 className="text-8xl tracking-tighter">John’s website.</h1>
+      <h1 className="text-8xl tracking-tighter">John’s internet house</h1>
       <div className="mt-24">
         <div className="mb-1 text-base font-bold text-slate-300">
-          Latest article
+          Latest blog post:
         </div>
         <Link className="mt-1" to={`/posts/${latestPost.slug}`}>
           {latestPost.title}
@@ -51,15 +51,22 @@ export default function Index() {
         </div>
       </div>
       <div className="mt-24 grid grid-cols-2">
-        <GreatestHits />
         <div>
-          <div className="mb-1 text-base font-bold text-slate-300">
-            Weird stuff
-          </div>
+          <div className="mb-1 text-base font-bold text-slate-300">Things:</div>
           <ul>
+            <li>
+              <Link className="mt-1" to={`/flowers`}>
+                Flower Arrangements
+              </Link>
+            </li>
             <li>
               <Link className="mt-1" to={`/screenshots`}>
                 Screenshot Garden
+              </Link>
+            </li>
+            <li>
+              <Link className="mt-1" to={`/albums`}>
+                Albums
               </Link>
             </li>
           </ul>
@@ -82,28 +89,6 @@ export default function Index() {
     </div>
   );
 }
-const GreatestHits = () => (
-  <div>
-    <div className="mb-1 text-base font-bold text-slate-300">Greatest hits</div>
-    <ul>
-      <li>
-        <Link className="mt-1" to={`/posts/programming-as-theory`}>
-          Suddenly, I Understand Software
-        </Link>
-      </li>
-      <li>
-        <Link className="mt-1" to={`/posts/music-production-lessons`}>
-          Six things I sort of believe about making music
-        </Link>
-      </li>
-      <li>
-        <Link className="mt-1" to={`/posts/work`}>
-          Maybe you should do less “work”
-        </Link>
-      </li>
-    </ul>
-  </div>
-);
 
 const NavigationLinks = () => (
   <nav className="m-0 flex gap-4 p-0">
@@ -112,9 +97,6 @@ const NavigationLinks = () => (
     </Link>
     <Link className="" to="/cv">
       CV
-    </Link>
-    <Link className="" to="/albums">
-      Albums
     </Link>
     <Link className="" to="/contact">
       Contact

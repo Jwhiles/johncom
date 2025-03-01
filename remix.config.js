@@ -1,7 +1,7 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 const { flatRoutes } = require("remix-flat-routes");
 
-const mdx = async (filename) => {
+const mdx = async () => {
   const { visit } = await import("unist-util-visit")
 
   // TODO: actually make this support backlinks...

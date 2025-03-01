@@ -8,28 +8,15 @@ export default function Contact() {
         Go back
       </Link>
       <h1>Contact Me</h1>
-      <p>There are numerous ways.</p>
       <ul>
-        <li>
-          <a href="https://calendly.com/jwhiles/speak-to-john">
-            Book a video call on Calendly
-          </a>
-        </li>
-        <li>
-          <a href="https://www.admonymous.co/jwhiles">
-            Leave me anonymous feedback
-          </a>
-        </li>
         <li>
           <a href="mailto:hi@johnwhiles.com">Email me</a>
         </li>
         <li>
-          <a href="https://mastodon.online/@jwhiles">@jwhiles on Mastodon</a>
+          <a href="https://bsky.app/profile/johnwhiles.com">on bluesky</a>
         </li>
         <li>
-          <a href="https://bsky.app/profile/johnwhiles.com">
-            @johnwhiles.com on bluesky
-          </a>
+          <a href="https://www.are.na/john-whiles/channels">are.na</a>
         </li>
       </ul>
       <div className="mt-2"></div>

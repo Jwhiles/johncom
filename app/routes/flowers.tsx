@@ -8,8 +8,6 @@ export { headers } from "~/utils/headers";
 
 export const loader = async () => {
   const client = new ArenaClient(config.ARENA_TOKEN);
-  const chans = await client.getUserChannels("john-whiles");
-  console.log(chans);
   const channel = await client.getChannelContents("log-flower-arrangements", {
     per: 100,
     page: 1,

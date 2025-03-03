@@ -39,21 +39,10 @@ export default function Index() {
     <div className="body">
       <NavigationLinks />
       <h1 className="text-8xl tracking-tighter">John’s internet house</h1>
-      <div className="mt-24">
-        <div className="mb-1 text-base font-bold text-slate-300">
-          Latest blog post:
-        </div>
-        <Link className="mt-1" to={`/posts/${latestPost.slug}`}>
-          {latestPost.title}
-        </Link>
-        <div className="text-xs dark:text-slate-300">
-          {formatDate(latestPost?.createdAt)}
-        </div>
-      </div>
       <div className="mt-24 grid grid-cols-2">
         <div>
           <div className="mb-1 text-base font-bold text-slate-300">Things:</div>
-          <ul>
+          <ul className="m-0 list-none">
             <li>
               <Link className="mt-1" to={`/flowers`}>
                 Flower Arrangements
@@ -71,7 +60,22 @@ export default function Index() {
             </li>
           </ul>
         </div>
+        <div>
+          <div className="mb-1 text-base font-bold text-slate-300">Blog:</div>
+          <Link className="mt-1" to={`/posts/${latestPost.slug}`}>
+            {latestPost.title}
+          </Link>
+          <div className="text-xs dark:text-slate-300">
+            {formatDate(latestPost?.createdAt)}
+          </div>
+
+          <br />
+          <Link className="mt-1" to={`/posts`}>
+            All blog posts
+          </Link>
+        </div>
       </div>
+
       <div className="mt-24 grid grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
           <div className="mb-1 text-base font-bold text-slate-300">Notes</div>
@@ -92,9 +96,6 @@ export default function Index() {
 
 const NavigationLinks = () => (
   <nav className="m-0 flex gap-4 p-0">
-    <Link className="" to="/posts">
-      Blog
-    </Link>
     <Link className="" to="/cv">
       CV
     </Link>

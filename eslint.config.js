@@ -5,7 +5,7 @@
  */
 
 /** @type {import('eslint').Linter.Config} */
-module.exports = {
+export default {
   root: true,
   parserOptions: {
     ecmaVersion: "latest",
@@ -16,7 +16,6 @@ module.exports = {
   },
   env: {
     browser: true,
-    commonjs: true,
     es6: true,
   },
 

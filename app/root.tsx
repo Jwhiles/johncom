@@ -2,7 +2,6 @@ import { cssBundleHref } from "@remix-run/css-bundle";
 import { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -10,8 +9,8 @@ import {
 } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
 
-import fonts from "~/styles/fonts.css";
-import styles from "~/styles/tailwind.css";
+import fonts from "~/styles/fonts.css?url";
+import styles from "~/styles/tailwind.css?url";
 export { headers } from "~/utils/headers";
 
 export const links: LinksFunction = () => [
@@ -79,7 +78,6 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   );

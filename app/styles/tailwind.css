@@ -1,6 +1,11 @@
+@import "tailwindcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@theme {
+  --font-header: "Garamond", serif;
+}
 
 body * {
   @apply transition-colors duration-1000;
@@ -51,14 +56,14 @@ body * {
   h3 {
     @apply text-3xl;
     @apply my-6;
-    @apply font-header;
+    /* @apply font-header; */
     @apply dark:text-white;
     @apply dark:text-gray-200;
   }
   h4 {
     @apply text-2xl;
     @apply my-5;
-    @apply font-header;
+    /* @apply font-header; */
     @apply dark:text-gray-200;
   }
   img {
@@ -92,7 +97,7 @@ body * {
     @apply dark:text-gray-200;
   }
   a {
-    @apply font-header;
+    /* @apply font-header; */
     @apply italic;
     @apply font-bold;
 

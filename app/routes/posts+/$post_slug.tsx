@@ -8,7 +8,7 @@ import { json } from "@remix-run/node";
 import { Link, useFetcher, useLoaderData } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
 import { ValidatedForm, useField } from "@rvf/remix";
-import quotebacksStyle from "marked-quotebacks/dist/main.css";
+import quotebacksStyle from "marked-quotebacks/dist/main.css?url";
 import { Ref, forwardRef, useRef, useState } from "react";
 
 import { EmailSignupForm } from "~/components/EmailSignupForm";

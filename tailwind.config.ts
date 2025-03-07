@@ -1,17 +1,13 @@
-import type { Config } from "tailwindcss";
-
-export default {
-  content: ["./app/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {
-      animation: {
-        "spin-slow": "spin 300s linear infinite",
-      },
-    },
-    fontFamily: {
-      // sans: ["system"],
-      header: ["Garamond", "system"],
+export const content = ["./app/**/*.{js,jsx,ts,tsx}"];
+export const theme = {
+  extend: {
+    animation: {
+      "spin-slow": "spin 300s linear infinite",
     },
   },
-  plugins: [],
-} satisfies Config;
+  fontFamily: {
+    sans: ["ui-sans-serif", "system-ui"],
+    header: ["Garamond", "system"],
+  },
+};
+export const plugins = [];

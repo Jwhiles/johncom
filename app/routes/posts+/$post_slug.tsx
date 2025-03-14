@@ -163,14 +163,21 @@ export const meta: MetaFunction<typeof loader> = (args) => {
 };
 
 export default function Post() {
-  const { html, hnUrl, randomPosts } = useLoaderData<typeof loader>();
+  const { html, hnUrl, randomPosts, canonicalUrl, title } =
+    useLoaderData<typeof loader>();
 
   return (
     <div>
       <Link className="my-2" to="..">
         Go back
       </Link>
-      <div className="" dangerouslySetInnerHTML={{ __html: html }} />
+      <div className="h-entry">
+        <p className="p-name hidden">{title}</p>
+        <div className="e-content" dangerouslySetInnerHTML={{ __html: html }} />
+        <a className="u-url" href={canonicalUrl}>
+          Permalink
+        </a>
+      </div>
       <hr className="mb-1" />
       <EmailSignupForm />
       <div className="mt-4">

@@ -17,31 +17,19 @@ const Profile = () => (
     <h1 className="col-span-5 my-0 text-3xl md:col-span-1">John Whiles</h1>
     <div className="col-span-3">
       <p className="text-base">
-        I am a product-minded software engineer with 7 years of experience
-        working at high-growth companies. I prefer to work across the full stack
-        and deliver features end-to-end. I built the micro SaaS app{" "}
-        <a
-          className="font-sans text-base not-italic"
-          href="https://www.coachtracker.net"
-        >
-          Coachtracker
-        </a>{" "}
-        and write regularly on my{" "}
-        <a
-          className="font-sans text-base not-italic"
-          href="https://johnwhiles.com/"
-        >
-          personal website
-        </a>
-        .
+        I am a product-minded software engineer with 8 years of experience
+        working at high-growth companies.
       </p>
-      <p className=" text-base">
-        I have extensive professional experience writing TypeScript, Node.js and
-        React. I’ve also worked in Ruby, Go, and Haskell. On the infrastructure
-        side I’ve worked with AWS, Docker, and Terraform. I enjoy learning new
-        languages and tools, and am happy to consider opportunities using
-        different technology stacks.
-      </p>
+
+      <p className="text-base">I'm currently particularly interested in:</p>
+      <ul className="my-0 ">
+        <li>New forms of software enabled by LLMs</li>
+        <li>
+          Decentralized communication protocols like the AT Protocol,
+          Microformats, and ActivityPub
+        </li>
+        <li>What comes after React</li>
+      </ul>
     </div>
 
     <ul className="my-0 list-none">
@@ -62,6 +50,18 @@ const Profile = () => (
 );
 
 const workHistory: Array<WorkEntryProps> = [
+  {
+    companyName: "Consensys",
+    jobTitle: "Staff Software Engineer",
+    technologies: ["TypeScript", "AWS", "Go"],
+    startDate: "March 2024",
+    endDate: "Present",
+    experienceBulletPoints: [
+      "I lead development on the Metamask developer dashboard.",
+      "I am working with newly acquired companies and other Consensys teams to combine our various developer offerings into one coherent platform.",
+      "I am leading hiring efforts to build out the Metamask developer team.",
+    ],
+  },
   {
     companyName: "Roost",
     jobTitle: "CTO",
@@ -89,6 +89,25 @@ const workHistory: Array<WorkEntryProps> = [
     startDate: "March 2020",
     endDate: "September 2023",
     experienceBulletPoints: [
+      <div key="app">
+        I Was a key member of Contentful’s App Framework team.
+        <ul className=" *:my-2 *:text-sm">
+          <li>
+            I built a hosting solution for Contentful Apps, enabling users to
+            easily run their own code inside the Contentful web app.
+          </li>
+          <li>
+            Built a system that allowed users to share their Apps with other
+            organisations. This was a key feature to support enterprise users
+            and open source App developers.
+          </li>
+          <li>
+            I worked directly with enterprise customers who used the App
+            Framework, both offering support with technical issues and gathering
+            feedback to understand what new features we should build.
+          </li>
+        </ul>
+      </div>,
       <div key="psql">
         Managed Contentful’s fleet of PostgreSQL databases which support 30% of
         Fortune 500 companies.{" "}
@@ -100,25 +119,6 @@ const workHistory: Array<WorkEntryProps> = [
           <li>
             Maintained a custom Kubernetes operator, which ensured databases and
             supporting infrastructure were always in the correct state.
-          </li>
-        </ul>
-      </div>,
-      <div key="app">
-        Was a key member of Contentful’s App Framework team.
-        <ul className=" *:my-2 *:text-sm">
-          <li>
-            Built a hosting solution for Contentful Apps, enabling users to
-            easily run their own code inside the Contentful web app.
-          </li>
-          <li>
-            Built a system that allowed users to share their Apps with other
-            organisations. This was a key feature to support enterprise users
-            and open source App developers.
-          </li>
-          <li>
-            Maintained Contentful's app marketplace, including Custom apps for
-            third-party services, such as Shopify, Mailgun, Cloudinary and
-            others.
           </li>
         </ul>
       </div>,

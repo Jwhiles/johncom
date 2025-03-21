@@ -44,5 +44,6 @@ const renderer = {
 };
 
 marked.use({ renderer, extensions: [quoteBack] });
+// marked.use({ renderer, extensions: [] });
 
 export { marked };

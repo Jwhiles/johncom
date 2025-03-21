@@ -1,12 +1,4 @@
-/**
- * This is intended to be a basic starting point for linting in the Indie Stack.
- * It relies on recommended configs out of the box for simplicity, but you can
- * and should modify this configuration to best suit your team's needs.
- */
-
-/** @type {import('eslint').Linter.Config} */
-module.exports = {
-  root: true,
+export default {
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
@@ -16,7 +8,6 @@ module.exports = {
   },
   env: {
     browser: true,
-    commonjs: true,
     es6: true,
   },
 

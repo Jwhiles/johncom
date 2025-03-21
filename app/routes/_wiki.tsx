@@ -23,7 +23,7 @@ const validatedLinks = linkSchema.parse(links);
 
 export default function Wiki() {
   const slug = useLocation().pathname.slice(1);
-  const backlinks = validatedLinks[slug] ?? { inboundLinks: [] };
+  const backlinks = validatedLinks[slug.toLowerCase()] ?? { inboundLinks: [] };
   return (
     <div className="body">
       <Link className="my-2" to="..">

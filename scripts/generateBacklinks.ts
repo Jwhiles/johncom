@@ -1,9 +1,13 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
 /*
  * originally copied from https://github.com/MaggieAppleton/maggieappleton.com-V3/blob/main/src/scripts/generate-links.js
  */
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * Parse a markdown file with front matter

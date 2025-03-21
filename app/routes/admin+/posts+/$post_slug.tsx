@@ -3,7 +3,7 @@ import { cssBundleHref } from "@remix-run/css-bundle";
 import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
 import { Form, useLoaderData, useMatches } from "@remix-run/react";
 import { validationError } from "@rvf/remix";
-import quotebacksStyle from "marked-quotebacks/dist/main.css";
+import quotebacksStyle from "marked-quotebacks/styles?url";
 import { useState } from "react";
 import { z } from "zod";
 
@@ -14,7 +14,6 @@ import { HTML, ShowMarkdown } from "~/features/markdown";
 import { sanitiseHtml } from "~/features/markdown/index.server";
 import { PostForm, validator } from "~/features/posts/PostForm";
 import { apiDefaultHeaders } from "~/utils/headers";
-
 
 export function links() {
   return [

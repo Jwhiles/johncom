@@ -3,7 +3,7 @@ import { cssBundleHref } from "@remix-run/css-bundle";
 import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
 import { Form, useLoaderData, useMatches } from "@remix-run/react";
 import { validationError } from "@rvf/remix";
-import quotebacksStyle from "marked-quotebacks/dist/main.css?url";
+import quotebacksStyle from "marked-quotebacks/styles?url";
 import { useState } from "react";
 import { z } from "zod";
 

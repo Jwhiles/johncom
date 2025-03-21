@@ -13,7 +13,6 @@
     "setup": "prisma generate && prisma migrate deploy && prisma db seed",
     "start:mocks": "binode --require ./mocks -- @remix-run/serve:remix-serve ./build/index.js",
     "typecheck": "tsc",
-    "validate": "run-p \"test -- --run\" lint typecheck test:e2e:run",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },

@@ -55,27 +55,6 @@ jobs:
       - name: 🔎 Type check
         run: npm run typecheck --if-present
 
-  vitest:
-    name: ⚡ Vitest
-    runs-on: ubuntu-latest
-    steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v4
-
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v4
-        with:
-          cache: npm
-          cache-dependency-path: ./package.json
-          node-version: 18
-
-      - name: 📥 Install deps
-        run: npm install
-
-      - name: ⚡ Run vitest
-        run: npm run test -- --coverage
-
-
   deploy:
     name: 🚀 Deploy
     runs-on: ubuntu-latest

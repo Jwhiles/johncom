@@ -68,11 +68,6 @@ export default function App() {
       <head>
         <Meta />
         <Links />
-        <script
-          defer
-          data-domain="johnwhiles.com"
-          src="https://plausible.io/js/script.js"
-        ></script>
       </head>
       <body className="bg-white dark:bg-stone-800">
         <Outlet />

@@ -1,17 +1,12 @@
-import { Prisma } from "@prisma/client";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
-import { Form, useLoaderData, useMatches } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { validationError } from "@rvf/remix";
 import quotebacksStyle from "marked-quotebacks/styles?url";
-import { useState } from "react";
 import { z } from "zod";
 
 import { requireAdmin } from "~/auth.server";
-import RichTextEditor from "~/components/RichTextEditor";
 import { prisma } from "~/db.server";
-import { HTML, ShowMarkdown } from "~/features/markdown";
-import { sanitiseHtml } from "~/features/markdown/index.server";
 import { PostForm, validator } from "~/features/posts/PostForm";
 import { apiDefaultHeaders } from "~/utils/headers";
 
@@ -23,29 +18,6 @@ export function links() {
   ];
 }
 
-const commentsSelect = (postSlug: string) => ({
-  id: true,
-  content: true,
-  name: true,
-  createdAt: true,
-  responses: {
-    where: {
-      approved: true,
-      post: {
-        slug: postSlug,
-      },
-    },
-    select: {
-      id: true,
-      content: true,
-      name: true,
-      createdAt: true,
-    },
-  },
-});
-export type CommentsSelected = Prisma.CommentGetPayload<{
-  select: ReturnType<typeof commentsSelect>;
-}>;
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   await requireAdmin(request);
   const parsedParams = Params.parse(params);
@@ -61,26 +33,9 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     throw new Response("Post not found", { status: 404 });
   }
 
-  const [comments] = await prisma.$transaction([
-    prisma.comment.findMany({
-      where: {
-        post: {
-          slug: parsedParams.post_slug,
-        },
-        approved: true,
-      },
-
-      // Make sure we don't accidentally reveal the users email
-      select: commentsSelect(parsedParams.post_slug),
-    }),
-  ]);
-
   return json(
     {
       post,
-      comments: comments.map((c) => {
-        return { ...c, content: sanitiseHtml(c.content) };
-      }),
     },
     apiDefaultHeaders,
   );
@@ -143,7 +98,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
 };
 
 export default function PostAdmin() {
-  const { comments, post } = useLoaderData<typeof loader>();
+  const { post } = useLoaderData<typeof loader>();
   return (
     <div>
       <h2>Post Admin</h2>
@@ -159,48 +114,6 @@ export default function PostAdmin() {
           draft: post.draft,
         }}
       />
-      <h2>Comments</h2>
-      <ul>
-        {comments.map((c) => {
-          return <Comment commentId={c.id} content={c.content} key={c.id} />;
-        })}
-      </ul>
     </div>
   );
 }
-
-const Comment = ({
-  commentId,
-  content,
-}: {
-  commentId: string;
-  content: HTML;
-}) => {
-  const [editing, setEditing] = useState(false);
-
-  const m = useMatches();
-  const route = `${m[m.length - 1].pathname}/${commentId}`;
-  if (editing) {
-    return (
-      <div>
-        <Form navigate={false} action={route} method="POST">
-          <RichTextEditor
-            editorClassNames="p-1 *:text-black *:text-base min-h-[200px]"
-            id={commentId}
-            name={"commentBody"}
-            defaultValue={content}
-          />
-          <button onClick={() => setEditing(!editing)}>cancel</button>
-          <button type="submit">save</button>
-        </Form>
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      <ShowMarkdown>{content}</ShowMarkdown>
-      <button onClick={() => setEditing(!editing)}>edit</button>
-    </div>
-  );
-};

@@ -5,25 +5,15 @@ import type {
   SerializeFrom,
 } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, useFetcher, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
-import { ValidatedForm, useField } from "@rvf/remix";
 import quotebacksStyle from "marked-quotebacks/styles?url";
-import { Ref, forwardRef, useRef, useState } from "react";
+import { useState } from "react";
 
 import { EmailSignupForm } from "~/components/EmailSignupForm";
 import { ExternalLink } from "~/components/ExternalLink";
-import RichTextEditor from "~/components/RichTextEditor";
 import { prisma } from "~/db.server";
-import { Comment } from "~/features/Comments/Comment";
-import {
-  CommentOrMention,
-  IMentions,
-  commentsSelect,
-  mentionsSelect,
-} from "~/features/Comments/index.server";
-import { Responses } from "~/features/Comments/Responses";
-import { sanitiseHtml } from "~/features/markdown/index.server";
+import { mentionsSelect } from "~/features/webmentions/index.server";
 import { getRandomPosts } from "~/features/randomPosts/index.server";
 import { RandomPosts } from "~/features/randomPosts/RandomPosts";
 import {
@@ -34,8 +24,6 @@ import { formatDateLong } from "~/utils/formatDate";
 import { apiDefaultHeaders } from "~/utils/headers";
 import { marked } from "~/utils/marked";
 export { headers } from "~/utils/headers";
-
-import { validator } from "./$post_slug.comments";
 
 export function links() {
   return [
@@ -62,15 +50,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     throw new Response(null, { status: 404 });
   }
 
-  const comments = await prisma.comment.findMany({
-    where: {
-      postId: post.id,
-      approved: true,
-      responseToId: null,
-    },
-    select: commentsSelect(post.id),
-  });
-
   const mentions = await prisma.webmention.findMany({
     where: {
       target: `https://johnwhiles.com/posts/${params.post_slug}`,
@@ -84,41 +63,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const likes = mentions.filter((m) => m.wmProperty === "like-of");
   const reposts = mentions.filter((m) => m.wmProperty === "repost-of");
 
-  const commentsAndMentions = [
-    ...comments.map((comment) => {
-      return {
-        data: {
-          ...comment,
-          content: sanitiseHtml(comment.content),
-          responses: comment.responses.map((r) => ({
-            ...r,
-            content: sanitiseHtml(r.content),
-          })),
-        },
-        type: "comment",
-      } as CommentOrMention;
-    }),
-
-    // Filter out webmentions that don't have content
-    ...mentions
-      .filter((m) => ["in-reply-to", "mention-of"].includes(m.wmProperty))
-      .map((mention) => {
-        return { data: mention, type: "mention" } as CommentOrMention;
-      }),
-  ].sort((a, b) => {
-    const aDate = "createdAt" in a.data ? a.data.createdAt : a.data.publishedAt;
-    const bDate = "createdAt" in b.data ? b.data.createdAt : b.data.publishedAt;
-
-    if (aDate === null) {
-      return 1;
-    }
-    if (bDate === null) {
-      return -1;
-    }
-
-    return aDate > bDate ? -1 : 1;
-  });
-
   return json(
     {
       html,
@@ -126,7 +70,11 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       title: post.title,
       hnUrl: post.hackerNewsLink,
       canonicalUrl: `https://johnwhiles.com/posts/${params.post_slug}`,
-      commentsAndMentions,
+      mentions: mentions
+        .filter((m) => ["in-reply-to", "mention-of"].includes(m.wmProperty))
+        .map((mention) => {
+          return { data: mention, type: "mention" };
+        }),
       likes,
       reposts,
       randomPosts,
@@ -187,9 +135,9 @@ export default function Post() {
         <RandomPosts posts={randomPosts} />
       </div>
       <div className="mt-4">
-        <h3>Comments</h3>
+        <h3>Web Mentions</h3>
         <LikesAndReposts />
-        <Comments />
+        <Mentions />
       </div>
       <div className="mt-4">
         <WebmentionForm />
@@ -319,53 +267,20 @@ const WebmentionForm = () => {
   );
 };
 
-const Comments = () => {
-  const { commentsAndMentions } = useLoaderData<typeof loader>();
-  const [replyingTo, setReplyingTo] = useState<{
-    name: string;
-    commentId: string;
-  } | null>(null);
-  const formRef = useRef<HTMLDivElement>(null);
-
-  const onReply = (input: { name: string; commentId: string }) => {
-    setReplyingTo(input);
-    if (formRef.current) {
-      formRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+const Mentions = () => {
+  const { mentions } = useLoaderData<typeof loader>();
 
   return (
     <div>
       <ol className="m-0 list-none">
-        {commentsAndMentions.map((item) => {
-          if (item.type === "comment") {
-            return (
-              <li key={item.data.id}>
-                <Comment
-                  key={item.data.id}
-                  comment={item.data}
-                  setReplyingTo={onReply}
-                />
-                <Responses responses={item.data.responses} />
-              </li>
-            );
-          }
-          if (item.type === "mention") {
-            return (
-              <li key={item.data.source}>
-                <Mention key={item.data.source} mention={item.data} />
-              </li>
-            );
-          }
-          throw new Error("unknown type");
+        {mentions.map((item) => {
+          return (
+            <li key={item.data.source}>
+              <Mention key={item.data.source} mention={item.data} />
+            </li>
+          );
         })}
       </ol>
-
-      <AddComment
-        clearReplying={() => setReplyingTo(null)}
-        ref={formRef}
-        replyingTo={replyingTo}
-      />
     </div>
   );
 };
@@ -374,7 +289,14 @@ const Mention = ({
   mention,
 }: {
   // Type this with the cool satisfied thing.
-  mention: SerializeFrom<IMentions>;
+  mention: {
+    authorPhoto: string | null;
+    authorUrl: string;
+    authorName: string | null;
+    publishedAt: string | null;
+    contentText: string | null;
+    source: string;
+  };
 }) => {
   return (
     <div className="my-4 rounded-md border p-2 shadow-sm">
@@ -398,139 +320,5 @@ const Mention = ({
         See in context
       </ExternalLink>
     </div>
-  );
-};
-
-const AddComment = forwardRef(function AddComment(
-  {
-    replyingTo,
-    clearReplying,
-  }: {
-    replyingTo: {
-      name: string;
-      commentId: string;
-    } | null;
-    clearReplying: () => void;
-  },
-  ref: Ref<HTMLDivElement>,
-) {
-  const fetcher = useFetcher();
-
-  if (fetcher.data) {
-    return (
-      <div className="my-4 rounded-md bg-gray-100 p-4 dark:bg-slate-500">
-        <p>
-          Thanks for your comment! Once it's approved it will appear on the
-          site.
-        </p>
-      </div>
-    );
-  }
-  return (
-    <ValidatedForm
-      validator={validator}
-      fetcher={fetcher}
-      method="POST"
-      action="comments"
-    >
-      {replyingTo ? (
-        <input type="hidden" name="responseToId" value={replyingTo.commentId} />
-      ) : null}
-      <div className="my-4 rounded-md bg-gray-100 p-4 shadow-sm dark:bg-slate-500">
-        {replyingTo ? (
-          <div className="flex justify-between">
-            <p>
-              replying to <strong>{replyingTo.name}</strong>
-            </p>
-            <button className="inline" type="button" onClick={clearReplying}>
-              clear
-            </button>
-          </div>
-        ) : (
-          <p>Add your comment</p>
-        )}
-        <div ref={ref} className="mb-4">
-          <MyInput
-            name="email"
-            label="Email (I won't share this with anyone)"
-            type="email"
-            placeholder="you@example.com"
-          />
-        </div>
-        <div className="mb-4">
-          <MyInput
-            name="name"
-            label="Name"
-            type="text"
-            placeholder="Krusty the Clown"
-          />
-        </div>
-        <div className="mb-4">
-          <RichTextInput />
-        </div>
-        <div className="mb-4">
-          <MyInput
-            name="reallyDifficultCaptcha"
-            label={`Please type ${
-              ["horse", "dog", "elephant"][Math.floor(Math.random() * 3)]
-            }`}
-            type="text"
-            placeholder=""
-          />
-        </div>
-        <button className="">Submit</button>
-      </div>
-    </ValidatedForm>
-  );
-});
-
-const RichTextInput = () => {
-  const { error, getInputProps } = useField("content");
-  return (
-    <>
-      <label htmlFor="content" className="mb-1 block text-xs font-bold">
-        Comment
-      </label>
-      <div className="w-2/3">
-        <RichTextEditor
-          {...getInputProps({
-            editorClassNames: "p-1 *:text-black *:text-base min-h-[200px]",
-            id: "content",
-          })}
-        />
-      </div>
-      {error ? (
-        <span className="text-md mt-1 block text-red-300">{error()}</span>
-      ) : null}
-    </>
-  );
-};
-
-const MyInput = ({
-  name,
-  label,
-  type,
-  placeholder,
-}: {
-  name: string;
-  label: string;
-  type: string;
-  placeholder: string;
-}) => {
-  const { error, getInputProps } = useField(name);
-
-  return (
-    <>
-      <label htmlFor={name} className="mb-1 block text-xs font-bold">
-        {label}
-      </label>
-      <input
-        {...getInputProps({ id: name, placeholder, type })}
-        className="w-1/2"
-      />
-      {error ? (
-        <span className="text-md mt-1 block text-red-300">{error()}</span>
-      ) : null}
-    </>
   );
 };

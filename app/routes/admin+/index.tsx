@@ -30,10 +30,6 @@ export default function Admin() {
       </li>
 
       <li>
-        <Link to="comments">comments</Link>
-      </li>
-
-      <li>
         <LogoutButton />
       </li>
     </ul>

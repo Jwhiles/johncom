@@ -35,7 +35,6 @@ export async function action({ request }: ActionFunctionArgs) {
         slug: parsed.data.slug,
         body: parsed.data.body,
         date: parsed.data.createdDate,
-        hackerNewsLink: parsed.data.hackerNewsLink,
         author: {
           connect: { id: adminId },
         },

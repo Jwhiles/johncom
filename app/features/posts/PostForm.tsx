@@ -17,7 +17,6 @@ interface EditForm {
   body: string;
   tags: Array<string>;
   createdDate: string;
-  hackerNewsLink: string | null;
   draft: boolean;
 }
 
@@ -36,9 +35,6 @@ const PostSchema = z.object({
   ),
   createdDate: z.string(),
   slug: z.string(),
-  hackerNewsLink: z
-    .union([z.string().url().optional(), z.literal("")])
-    .transform((s) => (s === "" ? undefined : s)),
   readyToPublish: z.union([
     z.literal("on").transform(() => true),
     z.literal(undefined).transform(() => false),
@@ -57,7 +53,6 @@ export function PostForm({ mode }: PostFormProps) {
             slug: mode.slug,
             body: mode.body,
             tags: mode.tags.join(","),
-            hackerNewsLink: mode.hackerNewsLink ?? "",
             readyToPublish: !mode.draft,
           },
         },
@@ -103,13 +98,6 @@ export function PostForm({ mode }: PostFormProps) {
         label="Tags (comma-separated)"
         type="text"
         placeholder="javascript, react, web"
-      />
-      <Input
-        scope={form.scope("hackerNewsLink")}
-        name="hackerNewsLink"
-        label="Hacker News Links"
-        type="text"
-        placeholder=""
       />
 
       <CheckboxInput

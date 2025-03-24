@@ -78,7 +78,6 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
         slug: parsed.data.slug,
         body: parsed.data.body,
         date: parsed.data.createdDate,
-        hackerNewsLink: parsed.data.hackerNewsLink,
         tags: {
           connectOrCreate: parsed.data.tags.map((name) => ({
             where: { name },
@@ -110,7 +109,6 @@ export default function PostAdmin() {
           body: post.body,
           tags: post.tags.map((t) => t.name),
           createdDate: post.date,
-          hackerNewsLink: post.hackerNewsLink,
           draft: post.draft,
         }}
       />

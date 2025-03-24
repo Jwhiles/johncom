@@ -14,7 +14,6 @@ model Post {
   slug           String   @unique
   body           String
   date           DateTime
-  hackerNewsLink String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 

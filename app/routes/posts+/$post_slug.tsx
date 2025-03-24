@@ -64,7 +64,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       html,
       date: post.date,
       title: post.title,
-      hnUrl: post.hackerNewsLink,
       canonicalUrl: `https://johnwhiles.com/posts/${params.post_slug}`,
       mentions: mentions
         .filter((m) => ["in-reply-to", "mention-of"].includes(m.wmProperty))
@@ -107,7 +106,7 @@ export const meta: MetaFunction<typeof loader> = (args) => {
 };
 
 export default function Post() {
-  const { html, hnUrl, randomPosts, canonicalUrl, title } =
+  const { html, randomPosts, canonicalUrl, title } =
     useLoaderData<typeof loader>();
 
   return (
@@ -137,7 +136,6 @@ export default function Post() {
       </div>
       <div className="mt-4">
         <WebmentionForm />
-        {hnUrl ? <a href={hnUrl}>Or, discuss on Hacker News</a> : null}
       </div>
     </div>
   );

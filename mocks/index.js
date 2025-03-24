@@ -1,5 +1,5 @@
-const { http, HttpResponse } = require("msw");
-const { setupServer } = require("msw/node");
+import { http, HttpResponse } from "msw";
+import { setupServer } from "msw/node";
 
 const handlers = [
   http.post("https://api.eu.mailgun.net/v3/:domain/messages", async (req) => {

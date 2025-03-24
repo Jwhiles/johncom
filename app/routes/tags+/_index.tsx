@@ -12,7 +12,7 @@ export default function Post() {
         Go back
       </Link>
       <h1>John’s blog</h1>
-      <h2>Topics that I've written about</h2>
+      <h2>Topics that I&apos;ve written about</h2>
       <ol>
         {tags.map(({ name, slug, _count: { posts } }) => {
           return (

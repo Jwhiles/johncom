@@ -1,9 +1,5 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
-import type {
-  LoaderFunctionArgs,
-  MetaFunction,
-  SerializeFrom,
-} from "@remix-run/node";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";

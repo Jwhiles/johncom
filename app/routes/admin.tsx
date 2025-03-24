@@ -7,6 +7,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   try {
     await requireAdmin(request);
   } catch (error) {
+    console.info("Admin access denied:", error);
     return redirect("/admin/login");
   }
 

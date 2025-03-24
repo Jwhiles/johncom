@@ -8,16 +8,15 @@ import mdx from "@mdx-js/rollup";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { visit } from "unist-util-visit";
+import { Node, Data } from "unist";
 installGlobals();
-
-type TODO = any;
 
 function remarkBacklinks() {
   const backlinksRegex = /\[\[(.*?)\]\]/g;
 
-  return (tree: TODO) => {
-    visit(tree, "text", (node) => {
-      const matches = [...node.value.matchAll(backlinksRegex)];
+  return (tree: Node) => {
+    visit(tree, "text", (node: Data) => {
+      const matches = [...(node.value as string).matchAll(backlinksRegex)];
 
       if (matches.length > 0) {
         const children = [];
@@ -25,13 +24,13 @@ function remarkBacklinks() {
 
         matches.forEach((match) => {
           const [fullMatch, linkText] = match;
-          const startIndex = match.index;
+          const startIndex = match.index as number;
 
           // Add text before the match if any
           if (startIndex > lastIndex) {
             children.push({
               type: "text",
-              value: node.value.slice(lastIndex, startIndex),
+              value: (node.value as string).slice(lastIndex, startIndex),
             });
           }
 
@@ -54,10 +53,10 @@ function remarkBacklinks() {
         });
 
         // Add any remaining text after the last match
-        if (lastIndex < node.value.length) {
+        if (lastIndex < (node.value as string).length) {
           children.push({
             type: "text",
-            value: node.value.slice(lastIndex),
+            value: (node.value as string).slice(lastIndex),
           });
         }
 

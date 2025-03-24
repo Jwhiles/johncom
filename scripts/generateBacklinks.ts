@@ -57,7 +57,8 @@ function parseMarkdownWithFrontMatter(fileContent: string) {
         frontMatter[key] = Number(value);
       }
       continue;
-    } catch (_) {
+    } catch (e) {
+      console.log(e);
       // Convert to number if it looks like a number
       if (!isNaN(value as unknown as number) && value !== "") {
         frontMatter[key] = Number(value);
@@ -88,6 +89,7 @@ const getFilesFromDir = (dir: string) => {
   try {
     return fs.readdirSync(dir).filter((file) => file.endsWith(".mdx"));
   } catch (e) {
+    console.log(e);
     console.warn(`No directory found for ${dir}`);
     return [];
   }

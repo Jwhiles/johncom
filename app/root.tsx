@@ -44,14 +44,14 @@ export const links: LinksFunction = () => [
   {
     rel: "alternate",
     type: "application/rss+xml",
-    title: "RSS",
+    title: "John Whiles' blog",
     href: "https://johnwhiles.com/atom.xml",
   },
   ...(cssBundleHref
     ? [
-        { rel: "stylesheet", href: cssBundleHref },
-        { rel: "stylesheet", href: fonts },
-      ]
+      { rel: "stylesheet", href: cssBundleHref },
+      { rel: "stylesheet", href: fonts },
+    ]
     : []),
 ];
 

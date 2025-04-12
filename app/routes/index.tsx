@@ -105,6 +105,9 @@ const NavigationLinks = () => (
     <Link className="" to="/now">
       Now
     </Link>
+    <Link className="" to="/library">
+      Library
+    </Link>
   </nav>
 );
 

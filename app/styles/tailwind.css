@@ -142,6 +142,9 @@ body * {
     @apply p-2;
     @apply rounded;
   }
+  summary {
+    @apply dark:text-gray-200;
+  }
 
   .markdown a {
     @apply not-italic;
@@ -149,4 +152,5 @@ body * {
     @apply font-normal;
   }
 }
+
 

@@ -2148,7 +2148,7 @@ export default function Library() {
 
       <details>
         <summary>What is this?</summary>
-        <p className='mt-2 italic'>A list of the books I am reading, or have read. Unfortunately very incomplete due to forgetfulness and lack of record keeping. A more extensive history can be found on <a href="https://www.goodreads.com/user/show/8718173-john">my goodreads page</a>, I hope to move that data over here gradually.</p>
+        <p className='mt-2 italic'>A list of the books I am reading, or have read. Unfortunately very incomplete due to forgetfulness and lack of record keeping. Includes data imported from GoodReads which certainly has inaccurate dates.</p>
       </details>
       <ol>
         {library.map((entry, i) => (

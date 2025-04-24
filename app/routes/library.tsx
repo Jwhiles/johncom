@@ -38,11 +38,18 @@ type Library = Array<LibraryEntry>;
 
 const library: Library = [
   {
+    title: 'The collected stories of Lydia Davis',
+    author: 'Lydia Davis',
+    id: { olid: 'OL23575807M' },
+    started: '2025-04-20',
+    finished: false,
+    links: []
+  },
+  {
     title: '2666',
     author: 'Roberto Bolaño',
     id: { olid: 'OL16820215M' },
     started: '2025-04-01',
-    // image: 'https://covers.openlibrary.org/b/id/7020480-L.jpg',
     finished: false,
     links: []
   },
@@ -52,7 +59,6 @@ const library: Library = [
     id: { olid: 'OL27098892M' },
     started: '2024-09',
     stopped: '2024-09',
-    // image: 'https://covers.openlibrary.org/b/olid/OL27098892M-L.jpg',
     finished: true,
     links: []
   },
@@ -62,7 +68,6 @@ const library: Library = [
     id: { olid: 'OL46844720M' },
     started: '2024-08',
     stopped: '2024-08',
-    // image: 'https://covers.openlibrary.org/b/id/7020480-L.jpg',
     finished: true,
     links: []
   },
@@ -72,7 +77,6 @@ const library: Library = [
     id: { olid: 'OL26367950M', },
     started: '2024-07',
     stopped: '2024-07',
-    // image: 'https://covers.openlibrary.org/b/id/7020480-L.jpg',
     finished: true,
     links: []
   },
@@ -82,7 +86,6 @@ const library: Library = [
     id: { olid: 'OL7826486M', },
     started: '2024-05',
     stopped: '2024-05',
-    // image: 'https://covers.openlibrary.org/b/id/7020480-L.jpg',
     finished: true,
     links: []
   },

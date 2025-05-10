@@ -50,7 +50,7 @@ const library: Library = [
     author: 'Roberto Bolaño',
     id: { olid: 'OL16820215M' },
     started: '2025-04-01',
-    stopped: '2025-05-9'
+    stopped: '2025-05-9',
     finished: true,
     links: []
   },

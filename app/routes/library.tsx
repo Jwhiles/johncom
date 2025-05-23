@@ -38,10 +38,19 @@ type Library = Array<LibraryEntry>;
 
 const library: Library = [
   {
+    title: '1Q84',
+    author: 'Haruki Murakami',
+    id: { olid: 'OL24839567M' },
+    started: '2025-05-9',
+    finished: false,
+    links: []
+  },
+  {
     title: 'The collected stories of Lydia Davis',
     author: 'Lydia Davis',
     id: { olid: 'OL23575807M' },
     started: '2025-04-20',
+    stopped: '2025-05-01',
     finished: false,
     links: []
   },

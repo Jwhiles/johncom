@@ -1,22 +1,16 @@
 {
   "conspiracy_brain": {
-    "ids": [
-      "Conspiracy Brain"
-    ],
+    "ids": ["Conspiracy Brain"],
     "outboundLinks": [],
     "inboundLinks": []
   },
   "llm_injection": {
-    "ids": [
-      "LLM Injection"
-    ],
+    "ids": ["LLM Injection"],
     "outboundLinks": [],
     "inboundLinks": []
   },
   "realised_projects": {
-    "ids": [
-      "Realised Projects"
-    ],
+    "ids": ["Realised Projects"],
     "outboundLinks": [
       {
         "matchedId": "Unrealised & Unfinished Projects",
@@ -32,9 +26,7 @@
     ]
   },
   "unrealised_projects": {
-    "ids": [
-      "Unrealised & Unfinished Projects"
-    ],
+    "ids": ["Unrealised & Unfinished Projects"],
     "outboundLinks": [
       {
         "matchedId": "Realised Projects",

@@ -9,6 +9,7 @@ import { requireAdmin } from "~/auth.server";
 import { prisma } from "~/db.server";
 import { PostForm, validator } from "~/features/posts/PostForm";
 import { apiDefaultHeaders } from "~/utils/headers";
+import { slugify } from "~/utils/slugify";
 
 export function links() {
   return [
@@ -44,12 +45,6 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 const Params = z.object({
   post_slug: z.string(),
 });
-
-const slugify = (str: string) =>
-  str
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
   await requireAdmin(request);

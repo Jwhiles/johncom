@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
-import dayjs from "dayjs";
 
 import { HTML, ShowMarkdown } from "~/features/markdown";
+import { formatNoteDateTime, formatNoteDisplay } from "~/utils/formatDate";
 
 export const Note = ({
   content,
@@ -21,10 +21,10 @@ export const Note = ({
   return (
     <div className="pb-2">
       <time
-        dateTime={dayjs(createdAt).format("ddd, MMM D, YYYY h:mmA Z")}
+        dateTime={formatNoteDateTime(createdAt)}
         className="dt-published mb-0 block text-xs"
       >
-        {dayjs(createdAt).format("MMM D")}
+        {formatNoteDisplay(createdAt)}
       </time>
       {inReplyToUrl ? (
         <a

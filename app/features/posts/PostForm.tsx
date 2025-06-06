@@ -5,7 +5,7 @@ import { z } from "zod";
 import { MarkdownEditor } from "~/components/MarkdownEditor";
 import { CheckboxInput } from "~/features/forms/CheckboxInput";
 import { Input } from "~/features/forms/Input";
-import dayjs from "~/utils/dayjs";
+import { getCurrentISOString } from "~/utils/formatDate";
 
 interface CreateForm {
   type: "create";
@@ -63,7 +63,7 @@ export function PostForm({ mode }: PostFormProps) {
       <input
         type="hidden"
         name="createdDate"
-        value={mode.type === "edit" ? mode.createdDate : dayjs().toISOString()}
+        value={mode.type === "edit" ? mode.createdDate : getCurrentISOString()}
       />
       <Input
         scope={form.scope("title")}

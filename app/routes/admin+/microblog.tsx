@@ -5,9 +5,6 @@ import {
 } from "@remix-run/node";
 import { FormScope, useField, useForm, validationError } from "@rvf/remix";
 import { withZod } from "@rvf/zod";
-import dayjs from "dayjs";
-import timezone from "dayjs/plugin/timezone.js";
-import utc from "dayjs/plugin/utc.js";
 import { useRef } from "react";
 import { z } from "zod";
 
@@ -16,8 +13,7 @@ import RichTextEditor from "~/components/RichTextEditor";
 import { prisma } from "~/db.server";
 import * as BlueSky from "~/features/bluesky/index.server";
 import { stripAllHtml } from "~/features/markdown/index.server";
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { getCurrentLocalDateTime } from "~/utils/formatDate";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await requireAdmin(request);
@@ -76,7 +72,7 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function MicroBlog() {
-  const createdDate = useRef(dayjs.tz(dayjs(), dayjs.tz.guess()).format());
+  const createdDate = useRef(getCurrentLocalDateTime());
   const form = useForm({ validator, method: "POST" });
 
   return (

@@ -5,16 +5,12 @@ export { headers } from "~/utils/headers";
 
 import { prisma } from "~/db.server";
 import { apiDefaultHeaders } from "~/utils/headers";
+import { formatDate } from "~/utils/formatDate";
 
 export const meta: MetaFunction<typeof loader> = (args) => {
   return metaV1(args, {
     title: "John’s blog posts about " + args.data?.tag.name,
   });
-};
-
-const formatDate = (date: string) => {
-  const d = new Date(date);
-  return d.toLocaleDateString("en-GB");
 };
 
 export const loader = async ({ params: { tag_slug } }: LoaderFunctionArgs) => {

@@ -8,16 +8,12 @@ import { validationError } from "@rvf/remix";
 import { requireAdmin, requireAdminId } from "~/auth.server";
 import { prisma } from "~/db.server";
 import { PostForm, validator } from "~/features/posts/PostForm";
+import { slugify } from "~/utils/slugify";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await requireAdmin(request);
   return null;
 }
-const slugify = (str: string) =>
-  str
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
 
 export async function action({ request }: ActionFunctionArgs) {
   const adminId = await requireAdminId(request);

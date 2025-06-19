@@ -33,6 +33,7 @@ export default defineConfig([
 
   globalIgnores([
     "build", 
-    "public/build", 
+    "public/build",
+    ".react-router",
   ]),
 ]);

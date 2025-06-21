@@ -19,7 +19,7 @@ export const loader = async () => {
 
   const notes = (
     await prisma.note.findMany({ orderBy: { createdAt: "desc" }, take: 5 })
-  ).map((post) => {
+  ).((post) => {
     return {
       id: post.id,
       content: sanitiseHtml(post.content),

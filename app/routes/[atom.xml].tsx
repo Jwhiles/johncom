@@ -61,26 +61,68 @@ export function generateRss({
 }
 
 export const loader: LoaderFunction = async () => {
-  const blogEntries = await prisma.post.findMany({
-    orderBy: {
-      date: "desc",
-    },
-    where: {
-      draft: false,
-    },
+  const [blogEntries, notes] = await Promise.all([
+    prisma.post.findMany({
+      orderBy: {
+        date: "desc",
+      },
+      where: {
+        draft: false,
+      },
+    }),
+    prisma.note.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    }),
+  ]);
+
+  // Convert posts to RSS entries
+  const postEntries = blogEntries.map((post) => ({
+    content: marked(post.body),
+    pubDate: post.date.toUTCString(),
+    title: post.title,
+    link: `https://johnwhiles.com/posts/${post.slug}`,
+    guid: `https://johnwhiles.com/posts/${post.slug}`,
+    date: post.date,
+  }));
+
+  // Convert notes to RSS entries
+  const noteEntries = notes.map((note) => {
+    const contentPreview = note.content
+      .replace(/<[^>]*>/g, "")
+      .substring(0, 50);
+    const title =
+      contentPreview.length > 0
+        ? contentPreview + (note.content.length > 50 ? "..." : "")
+        : `Note from ${note.createdAt.toLocaleDateString()}`;
+
+    let content = note.content;
+    if (note.inReplyToUrl) {
+      const replyContext = `<p><em>In reply to <a href="${note.inReplyToUrl}">${note.inReplyToTitle || "article"}</a>${note.inReplyToAuthor ? ` by ${note.inReplyToAuthor}` : ""}:</em></p>`;
+      content = replyContext + content;
+    }
+
+    return {
+      content,
+      pubDate: note.createdAt.toUTCString(),
+      title,
+      link: `https://johnwhiles.com/notes/${note.id}`,
+      guid: `https://johnwhiles.com/notes/${note.id}`,
+      date: note.createdAt,
+    };
   });
+
+  // Combine and sort by date
+  const allEntries = [...postEntries, ...noteEntries].sort(
+    (a, b) => b.date.getTime() - a.date.getTime(),
+  );
 
   const feed = generateRss({
     title: "John’s internet house",
     description: "My Blog",
-    lastUpdate: blogEntries[0].date.toUTCString(),
-    entries: blogEntries.map((post) => ({
-      content: marked(post.body),
-      pubDate: post.date.toUTCString(),
-      title: post.title,
-      link: `https://johnwhiles.com/posts/${post.slug}`,
-      guid: `https://johnwhiles.com/posts/${post.slug}`,
-    })),
+    lastUpdate: allEntries[0]?.date.toUTCString() || new Date().toUTCString(),
+    entries: allEntries,
   });
 
   return new Response(feed, {

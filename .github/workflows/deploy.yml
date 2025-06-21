@@ -55,6 +55,28 @@ jobs:
       - name: 🔎 Type check
         run: npm run typecheck --if-present
 
+  build: 
+    name: Build project
+    runs-on: ubuntu-latest
+    if: ${{ github.ref != 'refs/heads/master' }}
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+          cache-dependency-path: ./package.json
+          node-version: 18
+
+      - name: 📥 Install deps
+        run: npm install
+
+      - name: 🔎 Build Project
+        run: npm run build
+
+
   deploy:
     name: 🚀 Deploy
     runs-on: ubuntu-latest

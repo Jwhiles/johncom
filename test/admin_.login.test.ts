@@ -2,7 +2,7 @@
 // ABOUTME: Tests form validation, authentication, session creation, and error handling for admin login
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { redirect } from "@remix-run/node";
-import { action, validateEmail } from "./admin_.login";
+import { action, validateEmail } from "~/routes/admin_.login";
 
 // Mock dependencies
 vi.mock("~/auth.server", () => ({

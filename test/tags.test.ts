@@ -1,7 +1,7 @@
 // ABOUTME: Unit tests for tags route loader function
 // ABOUTME: Tests Remix loader by mocking Prisma database queries and verifying response structure and headers
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { loader } from "./tags";
+import { loader } from "~/routes/tags";
 
 // Type for the Prisma tag with _count
 type TagWithCount = {

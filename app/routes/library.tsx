@@ -42,7 +42,8 @@ const library: Library = [
     author: "W.G. Sebald",
     id: { olid: "OL699789M" },
     started: "2025-05-27",
-    finished: false,
+    stopped: "2025-06-27",
+    finished: true,
     links: [],
   },
   {

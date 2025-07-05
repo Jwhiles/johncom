@@ -38,6 +38,14 @@ type Library = Array<LibraryEntry>;
 
 const library: Library = [
   {
+    title: "A Year with Swollen Appendices",
+    author: "Brian Eno",
+    id: { olid: "OL95049M" },
+    started: "2025-07-05",
+    finished: false,
+    links: [],
+  },
+  {
     title: "The Rings of Saturn",
     author: "W.G. Sebald",
     id: { olid: "OL699789M" },

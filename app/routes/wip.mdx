@@ -1,0 +1,63 @@
+---
+meta:
+  - title: TODO
+---
+
+import { JavascriptRepl } from "~/components/Repl";
+
+# Poop
+
+
+TIL 
+Today I discovered something new, and I think strange, about the JavaScript  URL constructor. This something led to our service happily accepting redirect query parameters pointing to any other website. Which is not good!
+
+So. Imagine you have the following string `//johnwhiles.com` and you pass it into the new URL constructor. What do you get
+
+<JavascriptRepl content='console.log(new URL(`//johnwhiles.com`))' />
+
+
+It fails. Makes sense - obviously not a valid URL.
+
+However, the URL constructor takes a second argument. You can provide a `base url` which is used to help construct a URL from a relative path.
+
+<JavascriptRepl content={
+`console.log(new URL("/horses", "https://johnwhiles.com"))
+console.log(new URL("/horses", "https://johnwhiles.com/subpage"))`}
+  />
+
+Okay, that also kind of makes sense.
+
+Where things get weird is when you pass a "URL" starting with `//` into a URL with a base url.
+
+<JavascriptRepl content={
+`console.log(new URL("//horses", "https://johnwhiles.com"))
+console.log(new URL("//horses.com", "https://johnwhiles.com/subpage"))`}
+  />
+
+
+Now imagine that you have some sort of redirect flow in your website. You think that you have validated the redirect parameter to ensure that only local redirects are allowed - and you are using the URL constructor to construct valid URLs based on those redirects. Also imagine that the developer building this feature doesn’t know about the URL constructors “special” behaviour that we’ve just discussed.
+
+Well you might end up with something like this
+
+<JavascriptRepl content={
+`const doRedirects = (input) => {
+    const isLocal = input.startsWith('/') 
+    if (isLocal) {
+      const newUrl = new URL(input, 'https://johnwhiles.com')
+      console.log("redirecting to local path: ", newUrl)
+    } else {
+      console.log("not redirecting to non-local url: ", input)
+    }
+  }
+
+  doRedirects("/something")
+  doRedirects("https://malicious.com")
+  doRedirects("//malicious.com")`}
+  />
+
+Of course whether this ends up being a problem depends on the specifics of how you actually _do_ the redirect. But yeah. Watch out for this![^1]
+
+
+[^1]: Note for prospective employers. I didn’t write this dodgy code. I just fixed it. However in the same situation I’d probably have made the same mistake.
+
+

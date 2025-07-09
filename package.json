@@ -5,6 +5,7 @@
   "sideEffects": false,
   "scripts": {
     "generateBackLinks": "tsx scripts/generateBackLinks.ts",
+    "generatePublishedPages": "tsx scripts/generatePublishedPages.ts",
     "dev": "remix vite:dev",
     "build": "remix vite:build",
     "start": "remix-serve ./build/server/index.js",

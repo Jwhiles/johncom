@@ -28,6 +28,33 @@ async function seed() {
     },
   });
 
+  await prisma.note.create({
+    data: {
+      content: "This is a reply note.",
+      createdAt: new Date(),
+      inReplyToUrl: "https://example.com",
+      inReplyToAuthor: "John Doe",
+      inReplyToTitle: "Example Title",
+      createdBy: {
+        connect: {
+          id: admin.id,
+        },
+      }
+    },
+  });
+
+  await prisma.note.create({
+    data: {
+      content: "This is a normal note.",
+      createdAt: new Date(),
+      createdBy: {
+        connect: {
+          id: admin.id,
+        },
+      }
+    },
+  });
+
   console.log(`Database has been seeded. 🌱`);
 }
 

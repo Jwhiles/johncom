@@ -3,6 +3,7 @@ import { marked } from "marked";
 
 import { prisma } from "~/db.server";
 import { headers as defaultHeaders } from "~/utils/headers";
+import { getAndUpdateSummaries } from "~/features/summaries/index.server";
 
 export const headers = {
   ...defaultHeaders,
@@ -61,7 +62,7 @@ export function generateRss({
 }
 
 export const loader: LoaderFunction = async () => {
-  const [blogEntries, notes] = await Promise.all([
+  const [blogEntries, summaries] = await Promise.all([
     prisma.post.findMany({
       orderBy: {
         date: "desc",
@@ -70,11 +71,7 @@ export const loader: LoaderFunction = async () => {
         draft: false,
       },
     }),
-    prisma.note.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
-    }),
+    getAndUpdateSummaries(),
   ]);
 
   // Convert posts to RSS entries
@@ -87,34 +84,19 @@ export const loader: LoaderFunction = async () => {
     date: post.date,
   }));
 
-  // Convert notes to RSS entries
-  const noteEntries = notes.map((note) => {
-    const contentPreview = note.content
-      .replace(/<[^>]*>/g, "")
-      .substring(0, 50);
-    const title =
-      contentPreview.length > 0
-        ? contentPreview + (note.content.length > 50 ? "..." : "")
-        : `Note from ${note.createdAt.toLocaleDateString()}`;
+  const summaryEntries = summaries.map((summary) => ({
+    content: marked(summary.content),
+    pubDate: summary.createdAt.toUTCString(),
+    title: summary.title,
+    link: `https://johnwhiles.com/posts/summaries/${summary.id}`,
+    guid: `https://johnwhiles.com/posts/summaries/${summary.id}`,
+    date: summary.createdAt,
+  }));
 
-    let content = note.content;
-    if (note.inReplyToUrl) {
-      const replyContext = `<p><em>In reply to <a href="${note.inReplyToUrl}">${note.inReplyToTitle || "article"}</a>${note.inReplyToAuthor ? ` by ${note.inReplyToAuthor}` : ""}:</em></p>`;
-      content = replyContext + content;
-    }
+  // Get site summaries
+  // include em. Nice one.
 
-    return {
-      content,
-      pubDate: note.createdAt.toUTCString(),
-      title,
-      link: `https://johnwhiles.com/notes/${note.id}`,
-      guid: `https://johnwhiles.com/notes/${note.id}`,
-      date: note.createdAt,
-    };
-  });
-
-  // Combine and sort by date
-  const allEntries = [...postEntries, ...noteEntries].sort(
+  const allEntries = [...postEntries, ...summaryEntries].sort(
     (a, b) => b.date.getTime() - a.date.getTime(),
   );
 

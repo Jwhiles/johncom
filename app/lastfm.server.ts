@@ -13,6 +13,7 @@ export const getTopTracks = async (
     url: string;
   }>
 > => {
+  // TODO: I should cache these results in my DB because this endpoint is sloooow
   const url = `${baseUrl}&user=${process.env.LASTFM_USER}&api_key=${process.env.LASTFM_API_KEY}&format=json&period=${period}&limit=${limit}`;
   const res = await fetch(url);
   return (await res.json()).toptracks.track;

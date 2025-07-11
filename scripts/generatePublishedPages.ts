@@ -13,6 +13,7 @@ interface PublishedPage {
   published: string;
   slug: string;
   filePath: string;
+  updated?: string; // Optional field for last updated date
 }
 
 /**
@@ -161,7 +162,7 @@ function generateSlugFromPath(relativePath: string): string {
       if (data.published) {
         const title =
           (data.title as string) ||
-          path.basename(filePath, path.extname(filePath));
+          path.basename(filePath, path.extname(filePath)).replace('_', ' ');
         const published = data.published as string;
         const slug = generateSlugFromPath(relativePath);
 
@@ -171,6 +172,7 @@ function generateSlugFromPath(relativePath: string): string {
           published,
           slug,
           filePath: relativePath,
+          updated: data.updated ? (data.updated as string) : undefined,
         });
 
         console.log(`📄 Found published page: ${title} (${published})`);

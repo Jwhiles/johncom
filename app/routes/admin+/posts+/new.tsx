@@ -36,7 +36,7 @@ export async function action({ request }: ActionFunctionArgs) {
         },
         tags: {
           connectOrCreate: parsed.data.tags.map((name) => ({
-            where: { name },
+            where: { slug: slugify(name) },
             create: {
               name,
               slug: slugify(name),

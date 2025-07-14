@@ -50,7 +50,6 @@ body * {
     @apply text-4xl;
     @apply my-7;
     @apply font-header;
-    @apply dark:text-white;
     @apply dark:text-gray-200;
   }
   h3 {
@@ -120,6 +119,7 @@ body * {
   input {
     @apply p-1;
     @apply rounded;
+    @apply dark:text-gray-200;
   }
   textarea {
     @apply p-1;
@@ -151,6 +151,8 @@ body * {
     padding: 30px 40px;
     position: relative;
     @apply bg-gray-100;
+    @apply dark:bg-gray-800;
+    @apply dark:text-gray-200;
     border-left: 5px solid #6b7a8f;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -187,7 +189,7 @@ body * {
     font-style: italic;
     text-align: right;
     margin-top: 15px;
-    color: #555;
+    @apply dark:text-gray-200;
   }
 
   blockquote cite::before {

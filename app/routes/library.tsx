@@ -38,6 +38,14 @@ type Library = Array<LibraryEntry>;
 
 const library: Library = [
   {
+    title: "Heart of Darkness",
+    author: "Jospeh Conrad",
+    id: { olid: "OL24929283M" },
+    started: "2025-07-27",
+    finished: false,
+    links: []
+  },
+  {
     title: "A Year with Swollen Appendices",
     author: "Brian Eno",
     id: { olid: "OL95049M" },

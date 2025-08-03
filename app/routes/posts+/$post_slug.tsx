@@ -309,9 +309,8 @@ const Mention = ({
           ? ` - ${formatDateLong(new Date(mention.publishedAt))}`
           : null}
       </p>
-      <p className="text-base">{mention.contentText}</p>
-      <ExternalLink className="text-xs" href={mention.source}>
-        See in context
+      <ExternalLink href={mention.source}>
+        <p className="text-base">{mention.contentText ?? mention.source}</p>
       </ExternalLink>
     </div>
   );

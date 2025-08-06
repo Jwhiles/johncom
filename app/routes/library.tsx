@@ -42,8 +42,9 @@ const library: Library = [
     author: "Jospeh Conrad",
     id: { olid: "OL24929283M" },
     started: "2025-07-27",
-    finished: false,
-    links: []
+    stopped: "2025-08-06",
+    finished: true,
+    links: [],
   },
   {
     title: "A Year with Swollen Appendices",

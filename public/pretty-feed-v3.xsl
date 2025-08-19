@@ -62,7 +62,7 @@ This file is in BETA. Please test and contribute to the discussion:
         <title><xsl:value-of select="/rss/channel/title"/> Web Feed</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-				<link rel="stylesheet" href="/public/atom.css"></link>
+				<link rel="stylesheet" href="/atom.css"></link>
       </head>
       <body class="background">
         <nav class="bg-yellow-light">

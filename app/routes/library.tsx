@@ -38,6 +38,15 @@ type Library = Array<LibraryEntry>;
 
 const library: Library = [
   {
+    title: "The Big Short",
+    author: "Michael Lewis",
+    id: { olid: "OL24403141M" },
+    started: "2025-08-17",
+    stopped: "2025-08-24",
+    finished: true,
+    links: [],
+  },
+  {
     title: "Heart of Darkness",
     author: "Jospeh Conrad",
     id: { olid: "OL24929283M" },
@@ -2180,16 +2189,13 @@ const library: Library = [
 const isOlid = (id: Isbn | Olid): id is Olid => (id as Olid).olid !== undefined;
 const createImageLink = (id: { olid: string } | { isbn: string }) =>
   isOlid(id)
-    ? `https://covers.openlibrary.org/b/olid/${id.olid}-L.jpg`
-    : `https://covers.openlibrary.org/b/isbn/${id.isbn}-L.jpg`;
-
-// If stopped date but not finished, then show it as unfinished.
-// If finished, show it as finished.
+    ? `https://covers.openlibrary.org/b/olid/${id.olid}-M.jpg`
+    : `https://covers.openlibrary.org/b/isbn/${id.isbn}-M.jpg`;
 
 export default function Library() {
   return (
     <div className="h-full library_background">
-      <div className="body bg-white dark:bg-stone-800">
+      <div className="body bg-[#FFFCF0] dark:bg-[#282726]">
         <Link className="my-2" to="..">
           Go back
         </Link>
@@ -2202,10 +2208,15 @@ export default function Library() {
             incomplete due to forgetfulness and lack of record keeping. Includes
             data imported from GoodReads which certainly has inaccurate dates.
           </p>
+
+          <p className="mt-2 italic">
+            I list the title and author of the book, when I started and stopped
+            reading it, and whether I finished it.
+          </p>
         </details>
         <ol>
           {library.map((entry, i) => (
-            <li key={i} className="my-4">
+            <li key={i} className="my-4 library_entry">
               <div className="grid grid-cols-3 gap-4">
                 <img
                   loading="lazy"
@@ -2214,11 +2225,18 @@ export default function Library() {
                   className="h-48"
                 />
                 <div className="col-span-2">
-                  <h2 className="text-2xl">{entry.title}</h2>
-                  <p>{entry.author}</p>
-                  <p>{entry.started}</p>
-                  {entry.stopped && <p>{entry.stopped}</p>}
-                  {entry.finished && <p>Finished</p>}
+                  <h2 className="text-2xl text_me mb-0">{entry.title}</h2>
+                  <p className="author_name">{entry.author}</p>
+                  <div className="library_entry_dates">
+                    {entry.stopped ? (
+                      <p>
+                        {entry.started} - {entry.stopped}
+                      </p>
+                    ) : (
+                      <p>{entry.started}</p>
+                    )}
+                    {entry.finished && <p>Finished</p>}
+                  </div>
                   {entry.links.length > 0 && (
                     <ul>
                       {entry.links.map((link, j) => (

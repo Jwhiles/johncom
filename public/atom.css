@@ -1,0 +1,33 @@
+:root {
+	--light: #eee;
+	--white: #fff;
+}
+
+@font-face {
+	font-family: "CoralPixels";
+	src: url("/coral-pixels/CoralPixels-Regular.woff2")
+}
+
+h1,
+h2,
+h3 {
+	font-family: 'CoralPixels';
+}
+
+
+.background {
+	max-width: 800px;
+	padding: 2px 8px;
+	margin-left: auto;
+	margin-right: auto;
+	background: var(--light);
+	background-image: radial-gradient(var(--white) 1px, transparent 0);
+	background-size: 12px 12px;
+	background-position: -19px -19px;
+}
+
+.bg-yellow-light {
+	background: lightgoldenrodyellow;
+	border-radius: 2px;
+	padding: 4px;
+}

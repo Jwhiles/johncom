@@ -30,6 +30,7 @@ export function generateRss({
   entries: Array<RssEntry>;
 }): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
+  <?xml-stylesheet href="/pretty-feed-v3.xsl" type="text/xsl"?>
   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
       <title>${title}</title>
@@ -109,8 +110,9 @@ export const loader: LoaderFunction = async () => {
 
   return new Response(feed, {
     headers: {
-      "Content-Type": "application/rss+xml",
+      "Content-Type": "application/xml; charset=utf-8",
       "Cache-Control": "public, max-age=300, s-maxage=3600",
+      "x-content-type-options": "nosniff",
     },
   });
 };

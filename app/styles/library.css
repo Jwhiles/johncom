@@ -1,16 +1,55 @@
-.library_background {
-  min-height: 100vh;
+@import "tailwindcss";
 
-  --s: 228px; /* control the size*/
-  --c1: #f86466;
-  --c2: #000000;
-  --c3: #ffffff;
-  
-  --_g: conic-gradient(at 50% 25%,#0000 75%,var(--c1) 0);
-  background:
-    var(--_g),var(--_g) var(--s) var(--s),
-    var(--_g) calc(2*var(--s)) calc(2*var(--s)),
-    var(--_g) calc(3*var(--s)) calc(3*var(--s)),
-    repeating-linear-gradient(135deg,var(--c2) 0 12.5%,var(--c3) 0 25%);
-  background-size: calc(4*var(--s)) calc(4*var(--s))
+.library_background {
+	min-height: 100vh;
+
+	--s: 228px;
+	/* control the size*/
+	--c1: #f86466;
+	--c2: #000000;
+	--c3: olive;
+
+	--_g: conic-gradient(at 50% 25%, #0000 75%, var(--c1) 0);
+	background:
+		var(--_g), var(--_g) var(--s) var(--s),
+		var(--_g) calc(2*var(--s)) calc(2*var(--s)),
+		var(--_g) calc(3*var(--s)) calc(3*var(--s)),
+		repeating-linear-gradient(135deg, var(--c2) 0 12.5%, var(--c3) 0 25%);
+	background-size: calc(4*var(--s)) calc(4*var(--s))
+}
+
+.library_entry:nth-child(3n+1) {
+	--mycolor: #f86466;
+}
+
+.library_entry:nth-child(3n+2) {
+	--mycolor: #000000;
+}
+
+.library_entry:nth-child(3n+3) {
+	--mycolor: olive;
+}
+
+.library_entry_dates {
+	display: flex;
+	gap: 8px;
+
+	p {
+		font-size: small;
+	}
+}
+
+.text_me {
+	color: white;
+	margin-left: 8px;
+	text-shadow: 0 -1px #000, 1px 0 #000, 0 1px #000, -1px 0 #000;
+	filter: drop-shadow(3px 3px 0 var(--mycolor)) drop-shadow(-3px 3px 0 var(--mycolor)) drop-shadow(3px -3px 0 var(--mycolor)) drop-shadow(-3px -3px 0 var(--mycolor));
+	filter: drop-shadow(3px 3px 0 var(--mycolor)) drop-shadow(-3px 3px 0 var(--mycolor)) drop-shadow(3px -3px 0 var(--mycolor)) drop-shadow(-3px -3px 0 var(--mycolor));
+}
+
+.author_name {
+	font-family: 'Garamond';
+	/* font-style: italic; */
+	margin-bottom: 2px;
+	@apply text-3xl;
 }

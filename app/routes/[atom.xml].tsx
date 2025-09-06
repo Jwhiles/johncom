@@ -3,7 +3,7 @@ import { marked } from "marked";
 
 import { prisma } from "~/db.server";
 import { headers as defaultHeaders } from "~/utils/headers";
-import { getAndUpdateSummaries } from "~/features/summaries/index.server";
+// import { getAndUpdateSummaries } from "~/features/summaries/index.server";
 
 export const headers = {
   ...defaultHeaders,
@@ -63,7 +63,7 @@ export function generateRss({
 }
 
 export const loader: LoaderFunction = async () => {
-  const [blogEntries, summaries] = await Promise.all([
+  const [blogEntries] = await Promise.all([
     prisma.post.findMany({
       orderBy: {
         date: "desc",
@@ -72,7 +72,7 @@ export const loader: LoaderFunction = async () => {
         draft: false,
       },
     }),
-    getAndUpdateSummaries(),
+    // getAndUpdateSummaries(),
   ]);
 
   // Convert posts to RSS entries
@@ -85,19 +85,16 @@ export const loader: LoaderFunction = async () => {
     date: post.date,
   }));
 
-  const summaryEntries = summaries.map((summary) => ({
-    content: marked(summary.content),
-    pubDate: summary.createdAt.toUTCString(),
-    title: summary.title,
-    link: `https://johnwhiles.com/posts/summaries/${summary.id}`,
-    guid: `https://johnwhiles.com/posts/summaries/${summary.id}`,
-    date: summary.createdAt,
-  }));
+  // const summaryEntries = summaries.map((summary) => ({
+  //   content: marked(summary.content),
+  //   pubDate: summary.createdAt.toUTCString(),
+  //   title: summary.title,
+  //   link: `https://johnwhiles.com/posts/summaries/${summary.id}`,
+  //   guid: `https://johnwhiles.com/posts/summaries/${summary.id}`,
+  //   date: summary.createdAt,
+  // }));
 
-  // Get site summaries
-  // include em. Nice one.
-
-  const allEntries = [...postEntries, ...summaryEntries].sort(
+  const allEntries = [...postEntries].sort(
     (a, b) => b.date.getTime() - a.date.getTime(),
   );
 

@@ -77,7 +77,8 @@ const library: Library = [
     author: "Haruki Murakami",
     id: { olid: "OL24839567M" },
     started: "2025-05-9",
-    finished: false,
+    stopped: "2025-09-13",
+    finished: true,
     links: [],
   },
   {

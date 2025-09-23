@@ -1,5 +1,4 @@
 import { marked } from "marked";
-import { quoteBack } from "marked-quotebacks";
 
 const footnoteMatch = /^\[\^([^\]]+)\]:([\s\S]*)$/;
 const referenceMatch = /\[\^([^\]]+)\](?!\()/g;
@@ -43,7 +42,6 @@ const renderer = {
   },
 };
 
-marked.use({ renderer, extensions: [quoteBack] });
-// marked.use({ renderer, extensions: [] });
+marked.use({ renderer });
 
 export { marked };

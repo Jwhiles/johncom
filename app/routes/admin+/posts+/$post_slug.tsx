@@ -1,8 +1,6 @@
-import { cssBundleHref } from "@remix-run/css-bundle";
 import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { validationError } from "@rvf/remix";
-import quotebacksStyle from "marked-quotebacks/styles?url";
 import { z } from "zod";
 
 import { requireAdmin } from "~/auth.server";
@@ -10,14 +8,6 @@ import { prisma } from "~/db.server";
 import { PostForm, validator } from "~/features/posts/PostForm";
 import { apiDefaultHeaders } from "~/utils/headers";
 import { slugify } from "~/utils/slugify";
-
-export function links() {
-  return [
-    { rel: "stylesheet", href: quotebacksStyle },
-
-    ...(cssBundleHref ? [{ rel: "stylesheet", href: quotebacksStyle }] : []),
-  ];
-}
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   await requireAdmin(request);

@@ -1,9 +1,7 @@
-import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
-import quotebacksStyle from "marked-quotebacks/styles?url";
 import { useState } from "react";
 
 import { EmailSignupForm } from "~/components/EmailSignupForm";
@@ -20,14 +18,6 @@ import { formatDateLong } from "~/utils/formatDate";
 import { apiDefaultHeaders } from "~/utils/headers";
 import { marked } from "~/utils/marked";
 export { headers } from "~/utils/headers";
-
-export function links() {
-  return [
-    { rel: "stylesheet", href: quotebacksStyle },
-
-    ...(cssBundleHref ? [{ rel: "stylesheet", href: quotebacksStyle }] : []),
-  ];
-}
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   if (!params.post_slug) {

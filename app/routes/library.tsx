@@ -38,6 +38,14 @@ type Library = Array<LibraryEntry>;
 
 const library: Library = [
   {
+    title: "A Room With A View",
+    author: "E.M. Forster",
+    id: { olid: "OL118081M" },
+    started: "2025-10-01",
+    finished: false,
+    links: [],
+  },
+  {
     title: "The Big Short",
     author: "Michael Lewis",
     id: { olid: "OL24403141M" },

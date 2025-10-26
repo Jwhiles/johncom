@@ -42,7 +42,8 @@ const library: Library = [
     author: "E.M. Forster",
     id: { olid: "OL118081M" },
     started: "2025-10-01",
-    finished: false,
+    stopped: "2025-10-26",
+    finished: true,
     links: [],
   },
   {

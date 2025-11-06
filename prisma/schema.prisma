@@ -116,3 +116,12 @@ model Summary {
   title String @unique
   content String
 }
+
+model ArenaCache {
+  slug          String @id 
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+	content String
+}

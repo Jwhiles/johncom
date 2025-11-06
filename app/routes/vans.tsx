@@ -5,8 +5,11 @@ import { getCachedArenaChannel } from "~/features/arena";
 import { apiDefaultHeaders } from "~/utils/headers";
 export { headers } from "~/utils/headers";
 
+const channelSlug = "log-pictures-of-vans-aka-vanacular-design";
+
 export const loader = async () => {
-  const blocks = await getCachedArenaChannel("log-flower-arrangements");
+  const blocks = await getCachedArenaChannel(channelSlug);
+
   return json({ blocks }, apiDefaultHeaders);
 };
 
@@ -18,7 +21,7 @@ export default function Now() {
         <Link className="my-2" to="..">
           Go back
         </Link>
-        <h1>Flower Arrangements</h1>
+        <h1>Vans I’ve seen</h1>
       </div>
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3">

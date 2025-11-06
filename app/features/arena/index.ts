@@ -1,3 +1,6 @@
+import { prisma } from "~/db.server";
+import { config } from "~/utils/config.server";
+
 // Types for Are.na API responses
 interface User {
   id: number;
@@ -238,9 +241,13 @@ class ArenaClient {
     id: string | number,
     remainingCollaboratorIds: Array<number>,
   ): Promise<Array<User>> {
-    return this.request<Array<User>>(`/channels/${id}/collaborators`, "DELETE", {
-      ids: remainingCollaboratorIds,
-    });
+    return this.request<Array<User>>(
+      `/channels/${id}/collaborators`,
+      "DELETE",
+      {
+        ids: remainingCollaboratorIds,
+      },
+    );
   }
 
   // Users
@@ -290,3 +297,62 @@ class ArenaClient {
 }
 
 export default ArenaClient;
+
+type ArenaChannelData = Array<{
+  image: string;
+  title: string;
+  description: string;
+}>;
+export const getCachedArenaChannel = async (
+  slug: string,
+): Promise<ArenaChannelData> => {
+  const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+  const cachedData = await prisma.arenaCache.findFirst({
+    where: {
+      updatedAt: {
+        gte: yesterday,
+      },
+      slug,
+    },
+  });
+
+  if (cachedData) {
+    return JSON.parse(cachedData.content);
+  }
+
+  const client = new ArenaClient(config.ARENA_TOKEN);
+  const channel = await client.getChannelContents(slug, {
+    per: 100,
+    page: 1,
+  });
+
+  const blocks = (channel.contents ?? [])
+    .reduce((acc, block) => {
+      if (block.base_class !== "Block" || !block.image?.display?.url) {
+        return acc;
+      }
+
+      acc.push({
+        image: block.image.display.url,
+        title: block.title || "",
+        description: block.description || "",
+      });
+      return acc;
+    }, [] as ArenaChannelData)
+    .reverse();
+
+  await prisma.arenaCache.upsert({
+    create: {
+      slug,
+      content: JSON.stringify(blocks),
+    },
+    update: {
+      content: JSON.stringify(blocks),
+    },
+    where: {
+      slug,
+    },
+  });
+
+  return blocks;
+};

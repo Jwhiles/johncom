@@ -44,7 +44,7 @@
 		"@rvf/zod": "^6.0.3",
 		"@tailwindcss/postcss": "^4.0.10",
 		"@tailwindcss/vite": "^4.0.15",
-		"@tiptap/extension-link": "^2.9",
+		"@tiptap/extension-link": "^2.10",
 		"@tiptap/extension-placeholder": "^2.9",
 		"@tiptap/extension-text-style": "^2.9",
 		"@tiptap/pm": "^2.9",

@@ -38,11 +38,20 @@ type Library = Array<LibraryEntry>;
 
 const library: Library = [
   {
+    title: "Empusium",
+    author: "Olga Tokarczuk",
+    id: { olid: "OL51046121M" },
+    started: "2026-2-07",
+    finished: false,
+    links: [],
+  },
+  {
     title: "Absolution",
     author: "Jeff VanderMeer",
     id: { olid: "OL51816796M" },
     started: "2026-1-01",
-    finished: false,
+    stopped: "2025-1-30",
+    finished: true,
     links: [],
   },
   {

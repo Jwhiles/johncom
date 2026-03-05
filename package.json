@@ -109,13 +109,10 @@
 	},
 	"lint-staged": {
 		"*.md": "prettier --write",
-		"*.ts": [
+		"*.{ts,tsx}": [
 			"prettier --write",
-			"eslint --fix"
-		],
-		"*.tsx": [
-			"prettier --write",
-			"eslint --fix"
+			"eslint --fix",
+			"vitest related --run --passWithNoTests"
 		]
 	}
 }

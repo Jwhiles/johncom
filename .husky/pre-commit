@@ -1,4 +1,10 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run typecheck & npm run lint-staged & npm run test:run & wait $(jobs -p)
+npm run typecheck & PID1=$!
+npm run lint-staged & PID2=$!
+
+STATUS=0
+wait $PID1 || STATUS=1
+wait $PID2 || STATUS=1
+exit $STATUS

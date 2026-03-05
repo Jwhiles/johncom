@@ -17,6 +17,7 @@
     },
 
     "noEmit": true,
+    "incremental": true,
     "types": ["@remix-run/node", "vite/client"],
     "skipLibCheck": true,
     "module": "ESNext",

@@ -26,11 +26,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           cache: npm
-          cache-dependency-path: ./package.json
-          node-version: 18
+          cache-dependency-path: ./package-lock.json
+          node-version: 20
 
       - name: 📥 Install deps
-        run: npm install
+        run: npm ci
 
       - name: 🔬 Lint
         run: npm run lint
@@ -46,11 +46,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           cache: npm
-          cache-dependency-path: ./package.json
-          node-version: 18
+          cache-dependency-path: ./package-lock.json
+          node-version: 20
 
       - name: 📥 Install deps
-        run: npm install
+        run: npm ci
 
       - name: 🔎 Type check
         run: npm run typecheck --if-present
@@ -67,11 +67,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           cache: npm
-          cache-dependency-path: ./package.json
-          node-version: 18
+          cache-dependency-path: ./package-lock.json
+          node-version: 20
 
       - name: 📥 Install deps
-        run: npm install
+        run: npm ci
 
       - name: 🔎 Build Project
         run: npm run build
@@ -96,12 +96,6 @@ jobs:
 
       - name: 🎈 Setup Fly
         uses: superfly/flyctl-actions/setup-flyctl@v1.4
-
-      - name: 🚀 Deploy Staging
-        if: ${{ github.ref == 'refs/heads/dev' }}
-        run: flyctl deploy --remote-only --build-arg COMMIT_SHA=${{ github.sha }} --app ${{ steps.app_name.outputs.value }}-staging
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
       - name: 🚀 Deploy Production
         if: ${{ github.ref == 'refs/heads/master' }}

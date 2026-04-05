@@ -6,7 +6,6 @@
  * If there's not a summary for the current week, we generate it. Yolo.
  */
 import { prisma } from "~/db.server";
-import { getTopTracks } from "~/lastfm.server";
 import publishedPages from "~/publishedPages.json";
 
 const isAtLeastOneWeekOld = (targetDate: Date, createdAt: string | Date) => {
@@ -110,20 +109,6 @@ ${notes.map((note) => `- ${note.content}`).join("\n")}
 `;
 };
 
-const makeTopTracksSection = (
-  tracks: Array<{
-    artist: { name: string };
-    name: string;
-    url: string;
-    playcount: number;
-  }>,
-) => {
-  return `## Most played songs of this week
-|Artist|Track|Plays|
-|------|-----|-----|
-${tracks.map((track) => `|${track.artist.name}|[${track.name}](${track.url})|${track.playcount}|`).join("\n")}`;
-};
-
 const createSummary = async (weekAgo: Date) => {
   // Things to include
   // Notes from the week
@@ -140,8 +125,6 @@ const createSummary = async (weekAgo: Date) => {
   });
   console.log("Found notes:", notes.length);
 
-  const topTracks = await getTopTracks("7day", 5);
-
   console.log("Creating a new summary...");
   await prisma.summary.create({
     data: {
@@ -153,8 +136,6 @@ ${makeNewlyPublishedPagesSection(publishedPages, weekAgo)}
 ${makeNotesSection(notes)}
 
 ${makeChangedPagesSection(publishedPages, weekAgo)}
-
-${makeTopTracksSection(topTracks)}
 `,
     },
   });

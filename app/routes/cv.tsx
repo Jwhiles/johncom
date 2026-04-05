@@ -17,13 +17,19 @@ const Profile = () => (
     <h1 className="col-span-5 my-0 text-3xl md:col-span-1">John Whiles</h1>
     <div className="col-span-3">
       <p className="text-base">
-        I am a product-minded software engineer with 8 years of experience
-        working at high-growth companies.
+        I trained to be a software engineer after studying philosophy and then
+        working as a model. I’ve now been doing it for nine years, and I think
+        I’m pretty good at it. Most of my experience has been in frontend
+        development, TypeScript, functional programming, and API design.
       </p>
 
       <p className="text-base">I'm currently particularly interested in:</p>
       <ul className="my-0 ">
-        <li>New forms of software enabled by LLMs</li>
+        <li>
+          How LLM assisted coding impacts the productivity of engineering
+          organisations. How we can maintain performance, delivery time and
+          quality while adopting new ways of working.
+        </li>
         <li>
           Decentralized communication protocols like the AT Protocol,
           Microformats, and ActivityPub
@@ -53,13 +59,13 @@ const workHistory: Array<WorkEntryProps> = [
   {
     companyName: "Consensys",
     jobTitle: "Staff Software Engineer",
-    technologies: ["TypeScript", "AWS", "Go"],
+    technologies: ["TypeScript", "AWS", "Go", "React"],
     startDate: "March 2024",
     endDate: "Present",
     experienceBulletPoints: [
-      "I lead development on the Metamask developer dashboard.",
-      "I am working with newly acquired companies and other Consensys teams to combine our various developer offerings into one coherent platform.",
-      "I am leading hiring efforts to build out the Metamask developer team.",
+      "I led development on the Metamask developer dashboard.",
+      "I worked with a company acquired by Consensys to integrate their social login service into our platforms, and to combine our developer offerings into one coherent platform.",
+      "I am helping to build critical features related to stablecoins in the MetaMask extension and mobile app.",
     ],
   },
   {
@@ -71,8 +77,8 @@ const workHistory: Array<WorkEntryProps> = [
     experienceBulletPoints: [
       "As part of the founding team was accepted onto Techstar’s London 2023 cohort.",
       "Was responsible for the initial technical direction of the company.",
-      "Built MVPs of potential Roost products including services to help house sharers live harmoniously, and tools for identifying property investment opportunities.",
-      "Worked closely with the CEO and COO to define the company’s strategy and direction.",
+      "Built minimum viable verions of potential Roost products including services to help house sharers live harmoniously, and tools for identifying property investment opportunities.",
+      "Worked with the CEO and COO to define the company’s strategy and direction.",
     ],
   },
   {

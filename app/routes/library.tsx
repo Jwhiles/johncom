@@ -42,7 +42,8 @@ const library: Library = [
     author: "Olga Tokarczuk",
     id: { olid: "OL51046121M" },
     started: "2026-2-07",
-    finished: false,
+    stopped: "2025-2-28",
+    finished: true,
     links: [],
   },
   {

@@ -39,6 +39,7 @@ export default function Index() {
     <div className="body">
       <NavigationLinks />
       <h1 className="text-8xl tracking-tighter">John’s internet house</h1>
+
       <div className="mt-24 grid grid-cols-2">
         <div>
           <div className="mb-1 text-base font-bold text-slate-300">Things:</div>
@@ -76,12 +77,29 @@ export default function Index() {
         </div>
       </div>
 
-      <div className="mt-24 grid grid-cols-1 gap-8 sm:grid-cols-2">
+      <div className="mt-24 grid grid-cols-2">
         <div>
           <div className="mb-1 text-base font-bold text-slate-300">Notes</div>
           <Notes />
         </div>
+
+        <div>
+          <div className="mb-1 text-base font-bold text-slate-300">Media:</div>
+          <ul className="m-0 list-none">
+            <li>
+              <Link className="mt-1" to={`/library`}>
+                Books
+              </Link>
+            </li>
+            <li>
+              <Link className="mt-1" to={`/movies`}>
+                Movies
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
+
       <img
         alt="John’s logo"
         className="absolute right-20 top-20 z-0  hidden h-60 w-60 animate-spin-slow md:block"
@@ -101,12 +119,6 @@ const NavigationLinks = () => (
     </Link>
     <Link className="" to="/contact">
       Contact
-    </Link>
-    <Link className="" to="/now">
-      Now
-    </Link>
-    <Link className="" to="/library">
-      Library
     </Link>
   </nav>
 );

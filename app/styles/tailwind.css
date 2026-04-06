@@ -112,11 +112,13 @@ body * {
 
 	pre {
 		background-color: #f5f5f5;
+
 		@apply overflow-x-auto;
 		@apply p-4;
 		@apply rounded-md;
 		@apply my-4;
 		@apply dark:text-gray-200;
+		@apply dark:bg-gray-600;
 	}
 
 	hr {

@@ -79,11 +79,6 @@ export default function Index() {
 
       <div className="mt-24 grid grid-cols-2 gap-4">
         <div>
-          <div className="mb-1 text-base font-bold text-slate-300">Notes</div>
-          <Notes />
-        </div>
-
-        <div>
           <div className="mb-1 text-base font-bold text-slate-300">Media:</div>
           <ul className="m-0 list-none">
             <li>
@@ -97,6 +92,11 @@ export default function Index() {
               </Link>
             </li>
           </ul>
+        </div>
+
+        <div>
+          <div className="mb-1 text-base font-bold text-slate-300">Notes</div>
+          <Notes />
         </div>
       </div>
 

@@ -2,7 +2,6 @@ import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { metaV1 } from "@remix-run/v1-meta";
-import { useState } from "react";
 
 import { EmailSignupForm } from "~/components/EmailSignupForm";
 import { ExternalLink } from "~/components/ExternalLink";
@@ -96,7 +95,7 @@ export const meta: MetaFunction<typeof loader> = (args) => {
 };
 
 export default function Post() {
-  const { html, randomPosts, canonicalUrl, title } =
+  const { date, html, randomPosts, canonicalUrl, title } =
     useLoaderData<typeof loader>();
 
   return (
@@ -108,24 +107,21 @@ export default function Post() {
         <p className="p-name hidden">{title}</p>
         <div className="e-content" dangerouslySetInnerHTML={{ __html: html }} />
         <a className="u-url" href={canonicalUrl}>
-          Permalink
+          {formatDateLong(new Date(date))}
         </a>
       </div>
       <hr className="mb-1" />
-      <EmailSignupForm />
+
       <div className="mt-4">
-        <h3>
-          Want to read something else? Try one of these (randomly selected)
-        </h3>
+        <h3>Keep reading?</h3>
         <RandomPosts posts={randomPosts} />
       </div>
+
+      <EmailSignupForm />
+
       <div className="mt-4">
-        <h3>Web Mentions</h3>
         <LikesAndReposts />
         <Mentions />
-      </div>
-      <div className="mt-4">
-        <WebmentionForm />
       </div>
     </div>
   );
@@ -156,99 +152,6 @@ const LikesAndReposts = () => {
       </ol>
     </>
   ) : null;
-};
-
-type WebmentionSubmission = "idle" | "submitting" | "success" | "error";
-
-const WebmentionForm = () => {
-  const { canonicalUrl } = useLoaderData<typeof loader>();
-  const [submission, setSubmission] = useState<WebmentionSubmission>("idle");
-
-  if (submission === "success") {
-    return (
-      <div className="my-4 rounded-md bg-green-100 p-4 dark:bg-green-900">
-        <p>
-          Thanks for the webmention! It will appear on the site once it's
-          approved.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <form
-      className="webmention-form"
-      action="https://webmention.io/johnwhiles.com/webmention"
-      method="post"
-      onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-        // The form should work without JS. When JS is enabled, we prevent default and then submit via fetch.
-        // To make the user experience 'better' :)
-        e.preventDefault();
-        setSubmission("submitting");
-        const form = e.target as HTMLFormElement;
-
-        const formData = new FormData(form);
-
-        const body = new URLSearchParams({
-          source: formData.get("source") as string,
-          target: formData.get("target") as string,
-        });
-
-        fetch("https://webmention.io/johnwhiles.com/webmention", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body,
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.text();
-          })
-          .then(() => {
-            setSubmission("success");
-          })
-          .catch(() => {
-            setSubmission("error");
-          });
-      }}
-    >
-      <div>
-        <label htmlFor="source">
-          <p>Or, submit a webmention response!</p>
-        </label>
-        <div className="">
-          <input
-            type="url"
-            name="source"
-            id="source"
-            placeholder="https://mysite.com/webmention"
-            className="mr-2"
-          />
-          <button
-            disabled={["submitting", "success"].includes(submission)}
-            type="submit"
-            value="Send Webmention"
-          >
-            {submission === "submitting" ? "Sending" : "Send webmention"}
-          </button>
-        </div>
-      </div>
-      <div className="status hidden">
-        <div className="ui message"></div>
-      </div>
-      <input type="hidden" name="target" value={canonicalUrl} />
-      {submission === "error" ? (
-        <div className="my-4 rounded-md bg-red-100 p-4 dark:bg-red-900">
-          <p>
-            Something went wrong submitting your webmention. Please try again.
-          </p>
-        </div>
-      ) : null}
-    </form>
-  );
 };
 
 const Mentions = () => {

@@ -52,7 +52,7 @@ body * {
 	h3 {
 		@apply text-3xl;
 		@apply my-6;
-		/* @apply font-header; */
+		@apply font-header;
 		@apply dark:text-white;
 		@apply dark:text-gray-200;
 	}
@@ -93,6 +93,7 @@ body * {
 
 	label {
 		@apply dark:text-gray-200;
+		@apply font-header;
 	}
 
 	li {
@@ -102,7 +103,6 @@ body * {
 	}
 
 	a {
-		/* @apply font-header; */
 		@apply italic;
 		@apply font-bold;
 
@@ -125,9 +125,13 @@ body * {
 	}
 
 	input {
-		@apply p-1;
-		@apply rounded;
+		@apply p-2;
 		@apply dark:text-gray-200;
+		@apply border-gray-200;
+		@apply border-b-2;
+		@apply focus:outline-none;
+		@apply focus:border-sky-700;
+		@apply focus:dark:border-teal-400;
 	}
 
 	textarea {

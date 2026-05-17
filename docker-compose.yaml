@@ -12,7 +12,7 @@ services:
       NODE_ENV: production
       PORT: 3000
     volumes:
-      - app-data:/data
+      - ./data:/data
     networks:
       - web
   # dev:
@@ -30,5 +30,3 @@ services:
 networks:
   web:
     external: true
-volumes:
-  app-data:

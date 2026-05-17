@@ -1,6 +1,6 @@
 # Install dependencies
 install:
-    npm install
+    npm install && npx prisma generate
 
 # Run migrations and collect static files
 bootstrap:

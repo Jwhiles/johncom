@@ -1,13 +1,32 @@
-version: '3.8'
-
 services:
-  dev:
-    image: neovim-dev  # Use the pre-built image
-    container_name: johncom-dev
+  app:
+    build: .
+    container_name: johncom
+    restart: unless-stopped
+    expose:
+      - "3000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: file:/data/db.sqlite
+      NODE_ENV: production
+      PORT: 3000
     volumes:
-      - .:/workspace  # Mount current directory
-      - ~/.config/nvim:/home/node/.config/nvim:ro
-      - ~/.local/share/nvim:/home/node/.local/share/nvim
-    stdin_open: true
-    tty: true
-    command: tail -f /dev/null
+      - ./data:/data
+    networks:
+      - web
+  # dev:
+  #   image: neovim-dev  # Use the pre-built image
+  #   container_name: johncom-dev
+  #   volumes:
+  #     - .:/workspace  # Mount current directory
+  #     - ~/.config/nvim:/home/node/.config/nvim:ro
+  #     - ~/.local/share/nvim:/home/node/.local/share/nvim
+  #   stdin_open: true
+  #   tty: true
+  #   command: tail -f /dev/null
+
+      
+networks:
+  web:
+    external: true

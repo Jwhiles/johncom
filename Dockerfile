@@ -1,62 +1,37 @@
-# base node image
-FROM node:22-bullseye-slim as base
+FROM node:22-bullseye-slim AS base
+RUN apt-get update && apt-get install -y openssl
 
-# set for base and all layer that inherit from it
-ENV NODE_ENV production
-
-# Install openssl for Prisma
-RUN apt-get update && apt-get install -y openssl sqlite3
-
-# Install all node_modules, including dev dependencies
-FROM base as deps
-
+FROM base AS deps
 WORKDIR /myapp
+COPY package.json package-lock.json ./
+RUN npm install --include=dev --ignore-scripts
 
-ADD package.json package-lock.json ./
-RUN npm install --include=dev
-
-# Setup production node_modules
-FROM base as production-deps
-
+FROM base AS production-deps
 WORKDIR /myapp
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev --ignore-scripts
 
-COPY --from=deps /myapp/node_modules /myapp/node_modules
-ADD package.json package-lock.json ./
-RUN npm prune --omit=dev
-
-# Build the app
-FROM base as build
-
+FROM base AS build
 WORKDIR /myapp
-
-COPY --from=deps /myapp/node_modules /myapp/node_modules
-
-ADD prisma .
+COPY --from=deps /myapp/node_modules ./node_modules
+COPY prisma ./prisma
 RUN npx prisma generate
-
-ADD . .
+COPY . .
 RUN npm run build
 
-# Finally, build the production image with minimal footprint
 FROM base
-
-ENV DATABASE_URL=file:/data/sqlite.db
-ENV PORT="8080"
-ENV NODE_ENV="production"
-
-# add shortcut for connecting to database CLI
-RUN echo "#!/bin/sh\nset -x\nsqlite3 \$DATABASE_URL" > /usr/local/bin/database-cli && chmod +x /usr/local/bin/database-cli
-
 WORKDIR /myapp
-
-COPY --from=production-deps /myapp/node_modules /myapp/node_modules
-COPY --from=build /myapp/node_modules/.prisma /myapp/node_modules/.prisma
-
-COPY --from=build /myapp/build /myapp/build
-COPY --from=build /myapp/public /myapp/public
-COPY --from=build /myapp/package.json /myapp/package.json
-COPY --from=build /myapp/start.sh /myapp/start.sh
-COPY --from=build /myapp/prisma /myapp/prisma
-COPY --from=build /myapp/scripts /myapp/scripts
-
-ENTRYPOINT [ "./start.sh" ]
+COPY --from=production-deps --chown=node:node /myapp/node_modules ./node_modules
+COPY --from=build --chown=node:node /myapp/node_modules/.prisma ./node_modules/.prisma
+COPY --from=build --chown=node:node /myapp/build ./build
+COPY --from=build --chown=node:node /myapp/public ./public
+COPY --from=build --chown=node:node /myapp/package.json ./package.json
+COPY --from=build --chown=node:node /myapp/start.sh ./start.sh
+COPY --from=build --chown=node:node /myapp/prisma ./prisma
+COPY --from=build --chown=node:node /myapp/scripts ./scripts
+ENV PORT="3000"
+ENV NODE_ENV=production
+EXPOSE 3000
+RUN mkdir -p /data && chown -R node:node /data
+USER node
+ENTRYPOINT ["./start.sh"]

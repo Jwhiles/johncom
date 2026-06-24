@@ -43,8 +43,8 @@ export async function loader() {
     );
 
     return json({ images }, apiDefaultHeaders);
-  } catch (e) {
-    return { images: [] };
+  } catch {
+    return { images: [] } as { images: Array<string> };
   }
 }
 

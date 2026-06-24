@@ -1,9 +1,47 @@
 import { LoaderFunction } from "@remix-run/node";
 import { marked } from "marked";
+import { z } from "zod";
 
 import { prisma } from "~/db.server";
 import { headers as defaultHeaders } from "~/utils/headers";
-// import { getAndUpdateSummaries } from "~/features/summaries/index.server";
+
+interface FeedEntry {
+  content: string;
+  pubDate: string;
+  title: string;
+  link: string; // TODO: could be optional
+  guid: string;
+  date: Date;
+}
+const selfUpdates: Array<FeedEntry> = [
+  {
+    title: "Started including non-blog updates in the RSS feed",
+    date: new Date("2026-06-24"),
+    content:
+      "So, now I can update my RSS readers about things other than blog posts. Blogs are dead IMO",
+    guid: "https://johnwhiles.com/atom.xml+2026-06-24",
+    link: "https://johnwhiles.com/atom.xml",
+    pubDate: new Date("2026-06-24").toUTCString(),
+  },
+];
+
+const updateSchema = z.object({
+  content: z.string(),
+  pubDate: z.string(),
+  title: z.string(),
+  link: z.string().url(), // TODO: could be optional
+  guid: z.string(),
+  date: z.date(),
+});
+
+const pageHandleSchema = z.object({
+  rssUpdates: z.array(updateSchema).optional(),
+});
+
+const pagesSchema = z.array(z.object({ handle: pageHandleSchema.optional() }));
+
+const modules = import.meta.glob("../routes/**/*.tsx", { eager: true });
+const pageItems = pagesSchema.parse(Object.values(modules));
 
 export const headers = {
   ...defaultHeaders,
@@ -72,7 +110,6 @@ export const loader: LoaderFunction = async () => {
         draft: false,
       },
     }),
-    // getAndUpdateSummaries(),
   ]);
 
   // Convert posts to RSS entries
@@ -85,16 +122,11 @@ export const loader: LoaderFunction = async () => {
     date: post.date,
   }));
 
-  // const summaryEntries = summaries.map((summary) => ({
-  //   content: marked(summary.content),
-  //   pubDate: summary.createdAt.toUTCString(),
-  //   title: summary.title,
-  //   link: `https://johnwhiles.com/posts/summaries/${summary.id}`,
-  //   guid: `https://johnwhiles.com/posts/summaries/${summary.id}`,
-  //   date: summary.createdAt,
-  // }));
+  const pageUpdates = pageItems.flatMap((page) => {
+    return page.handle?.rssUpdates ?? [];
+  });
 
-  const allEntries = [...postEntries].sort(
+  const allEntries = [...postEntries, ...selfUpdates, ...pageUpdates].sort(
     (a, b) => b.date.getTime() - a.date.getTime(),
   );
 

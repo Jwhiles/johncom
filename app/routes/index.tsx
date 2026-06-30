@@ -120,6 +120,9 @@ const NavigationLinks = () => (
     <Link className="" to="/contact">
       Contact
     </Link>
+    <a className="ml-auto" href="/atom.xml">
+      RSS
+    </a>
   </nav>
 );
 

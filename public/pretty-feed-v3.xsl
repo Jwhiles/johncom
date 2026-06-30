@@ -66,15 +66,19 @@ This file is in BETA. Please test and contribute to the discussion:
       </head>
       <body class="background">
         <nav class="bg-yellow-light">
-          <p class="">
+          <p>
             <strong>This is a web feed,</strong> also known as an RSS feed. <strong>Subscribe</strong> by copying the URL from the address bar into your newsreader.
           </p>
-          <p class="text-gray">
+          <p>
             Visit <a href="https://aboutfeeds.com">About Feeds</a> to get started with newsreaders and subscribing. It’s free.
           </p>
         </nav>
-        <div class="container-md px-3 py-3 markdown-body">
-          <header class="py-5">
+        <div>
+          <header >
+            <a target="_blank">
+              <xsl:attribute name="href">
+                <xsl:value-of select="/rss/channel/link"/>
+              </xsl:attribute>
             <h1>
               <!-- https://commons.wikimedia.org/wiki/File:Feed-icon.svg -->
               <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="vertical-align: text-bottom; width: 1em; height: 1em; padding-bottom: 6px; margin-right: 8px;"  id="RSSicon" viewBox="0 0 256 256">
@@ -95,19 +99,15 @@ This file is in BETA. Please test and contribute to the discussion:
               </svg>
 
               <xsl:value-of select="/rss/channel/title"/>
+							&#x2192;
             </h1>
-            <p><xsl:value-of select="/rss/channel/description"/></p>
-            <a class="head_link" target="_blank">
-              <xsl:attribute name="href">
-                <xsl:value-of select="/rss/channel/link"/>
-              </xsl:attribute>
-              Visit Website &#x2192;
             </a>
+            <p><xsl:value-of select="/rss/channel/description"/></p>
           </header>
           <h2>Recent Items</h2>
           <xsl:for-each select="/rss/channel/item">
-            <div class="pb-5">
-              <h3 class="mb-0">
+            <div>
+              <h3>
                 <a target="_blank">
                   <xsl:attribute name="href">
                     <xsl:value-of select="link"/>
@@ -115,7 +115,7 @@ This file is in BETA. Please test and contribute to the discussion:
                   <xsl:value-of select="title"/>
                 </a>
               </h3>
-              <small class="text-gray">
+              <small>
                 Published: <xsl:value-of select="pubDate" />
               </small>
             </div>

@@ -1,7 +1,16 @@
 import { Link, json, useLoaderData } from "@remix-run/react";
 import { z } from "zod";
 import { apiDefaultHeaders } from "~/utils/headers";
+import { cssBundleHref } from "@remix-run/css-bundle";
+import libStyle from "~/styles/history.css?url";
 
+export function links() {
+  return [
+    { rel: "stylesheet", href: libStyle },
+
+    ...(cssBundleHref ? [{ rel: "stylesheet", href: libStyle }] : []),
+  ];
+}
 export const handle = {
   rssUpdates: [
     {
@@ -51,20 +60,20 @@ export async function loader() {
 export default function History() {
   const { images } = useLoaderData<typeof loader>();
   return (
-    <div className="body">
-      <Link className="my-2" to="..">
-        Go back
-      </Link>
-      <h1>the history</h1>
-      <div>
-        <ol>
-          {images.map((url) => (
-            <li key={url}>
-              <img className="h-80" loading="lazy" src={url} />
-            </li>
-          ))}
-        </ol>
+    <>
+      <div className="body">
+        <Link className="my-2" to="..">
+          Go back
+        </Link>
+        <h1>Illustrated History of this Website</h1>
       </div>
-    </div>
+      <ol className="history-container">
+        {images.map((url) => (
+          <li className="history-entry" key={url}>
+            <img className="h-40 md:h-120" loading="lazy" src={url} />
+          </li>
+        ))}
+      </ol>
+    </>
   );
 }

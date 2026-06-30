@@ -59,6 +59,11 @@ export default function Index() {
                 Albums
               </Link>
             </li>
+            <li>
+              <Link className="mt-1" to={`/history`}>
+                History of this website
+              </Link>
+            </li>
           </ul>
         </div>
         <div>
